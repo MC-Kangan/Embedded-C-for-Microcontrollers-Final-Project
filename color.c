@@ -1,6 +1,9 @@
 #include <xc.h>
+#include "dc_motor.h"
+#include "serial.h"
 #include "color.h"
 #include "i2c.h"
+#include <stdio.h>
 
 void color_click_init(void)
 {   
@@ -8,14 +11,14 @@ void color_click_init(void)
     I2C_2_Master_Init();      //Initialise i2c Master
 
      //set device PON
-	 color_writetoaddr(0x00, 0x01)
+	 color_writetoaddr(0x00, 0x01);
     __delay_ms(3); //need to wait 3ms for everthing to start up
     
     //turn on device ADC
-	color_writetoaddr(0x00, 0x03)
+	color_writetoaddr(0x00, 0x03);
 
     //set integration time
-	color_writetoaddr(0x01, 0xD5)
+	color_writetoaddr(0x01, 0xD5);
 }
 
 void color_writetoaddr(char address, char value){
@@ -66,4 +69,49 @@ unsigned int color_read_Green(void)
 	tmp=tmp | (I2C_2_Master_Read(0)<<8); //read the Green MSB (don't acknowledge as this is the last read)
 	I2C_2_Master_Stop();          //Stop condition
 	return tmp;
+}
+
+unsigned int color_read_Clear(void)
+{
+	unsigned int tmp;
+	I2C_2_Master_Start();         //Start condition
+	I2C_2_Master_Write(0x52 | 0x00);     //7 bit address + Write mode
+	I2C_2_Master_Write(0xA0 | 0x14);    //command (auto-increment protocol transaction) + start at CLEAR low register (Color Datasheet 11)
+	I2C_2_Master_RepStart();			// start a repeated transmission
+	I2C_2_Master_Write(0x52 | 0x01);     //7 bit address + Read (1) mode
+	tmp=I2C_2_Master_Read(1);			//read the Clear LSB
+	tmp=tmp | (I2C_2_Master_Read(0)<<8); //read the Clear MSB (don't acknowledge as this is the last read)
+	I2C_2_Master_Stop();          //Stop condition
+	return tmp;
+}
+
+void get_color (struct color_rgb *m)
+{
+    m->R = color_read_Red();
+    m->B = color_read_Blue();
+    m->G = color_read_Green();
+    m->C = color_read_Clear();
+    
+}
+
+void detect_color(struct color_rgb *m)
+{
+    LATGbits.LATG1 = 1; // output LED_R set on (power)
+    LATFbits.LATF7 = 1; // output LED_B set on (power)
+    LATAbits.LATA4 = 1; // output LED_G set on (power)
+    __delay_ms(200);
+    get_color(m);
+    
+    LATGbits.LATG1 = 1; // output LED_R set on (power)
+    LATFbits.LATF7 = 0; // output LED_B set on (power)
+    LATAbits.LATA4 = 0; // output LED_G set on (power)
+    __delay_ms(200);
+    get_color(m);
+}
+
+void color_display(struct color_rgb *m)
+{
+    char buf[80];
+    sprintf(buf,"\t%d\t%d\t%d\t%d\r\n", m->R, m->G, m->B, m->C);
+    sendStringSerial4(buf);
 }

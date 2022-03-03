@@ -11,6 +11,7 @@
 #include "serial.h"
 #include "color.h"
 #include "i2c.h"
+#include <stdio.h>
 
 #define _XTAL_FREQ 64000000 //note intrinsic _delay function is 62.5ns at 64,000,000Hz 
 #define TURNING_POWER_L 40 // This number needs to be adjusted according to different floor condition
@@ -25,8 +26,10 @@ void main(void){
     I2C_2_Master_Init();
     color_click_init();
     initDCmotorsPWM(199);
+    initUSART4();
     
     struct DC_motor motorL, motorR;
+    struct color_rgb rgb;
     
     // For the motor on the left
     motorL.power = 0; // Set power to 0
@@ -43,65 +46,17 @@ void main(void){
     motorR.dir_LAT = (unsigned char *)(&LATG);
     motorR.dir_pin = 6; // With dir_lat above, the direction pin for left motor is G6
     motorR.PWMperiod = 199; // Same as T2PR defined in dc_motor.c
-   
-    __delay_ms(3000);
-    while(1){
-        if (TEST == 1){
-            
-            fullSpeedAhead(&motorL, &motorR);
-            __delay_ms(1000);                   // set the delay to control the distance the car will move
-            stop(&motorL, &motorR);
-            __delay_ms(2000);
-            //turn180(&motorL, &motorR);
-            //__delay_ms(2000);
-            //stop(&motorL, &motorR);
-            //__delay_ms(500);
-            
-        }
     
-        if (TEST == 0){
-            unsigned char i;
-            for (i = 0; i < 3; i++){
-                fullSpeedAhead(&motorL, &motorR);
-                __delay_ms(2000);
-                stop(&motorL, &motorR);
-                __delay_ms(500);
-                turnLeft(&motorL, &motorR);
-                __delay_ms(TURNING_STOPTIME_L); 
-                stop(&motorL, &motorR);
-                __delay_ms(500);
-            }
-
-            fullSpeedAhead(&motorL, &motorR);
-            __delay_ms(2000);
-            stop(&motorL, &motorR);
-            __delay_ms(1000); //Stop for one second, 70ms needed to reduce power to 0, then add 1s
-            turn180(&motorL, &motorR);
-            __delay_ms(TURNING_STOPTIME_180);
-            stop(&motorL, &motorR);
-            __delay_ms(500);
-            
-
-            for (i = 0; i < 3; i++){ 
-                fullSpeedAhead(&motorL, &motorR);
-                __delay_ms(2000);
-                stop(&motorL, &motorR);
-                __delay_ms(500);
-                turnRight(&motorL, &motorR);
-                __delay_ms(TURNING_STOPTIME_R);
-                stop(&motorL, &motorR);
-                __delay_ms(500);
-            }
-
-            fullSpeedAhead(&motorL, &motorR);
-            __delay_ms(2000);
-            stop(&motorL, &motorR);
-            __delay_ms(1000); //Stop for one second, 70ms needed to reduce power to 0, then add 1s
-            turn180(&motorL, &motorR);
-            __delay_ms(TURNING_STOPTIME_180);
-            stop(&motorL, &motorR);
-            __delay_ms(500);
-        }
-        
+    TRISGbits.TRISG1 = 0; //output on RG1 (LED_R)
+    TRISFbits.TRISF7 = 0; //output on RF7 (LED_B)
+    TRISAbits.TRISA4 = 0; //output on RA4 (LED_G)
+    LATGbits.LATG1 = 1; // output LED_R set on (power)
+    LATFbits.LATF7 = 1; // output LED_B set on (power)
+    LATAbits.LATA4 = 1; // output LED_G set on (power)
+   
+    while(1){
+        detect_color(&rgb);
+        color_display(&rgb);
+        __delay_ms(1000);
     }
 }
