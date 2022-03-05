@@ -24328,7 +24328,10 @@ unsigned int color_read_Blue(void);
 unsigned int color_read_Green(void);
 unsigned int color_read_Clear(void);
 void get_color (struct color_rgb *m);
-void detect_color(struct color_rgb *m);
+void detect_color_R(struct color_rgb *m);
+void detect_color_C(struct color_rgb *m);
+void detect_color_B(struct color_rgb *m);
+void detect_color_G(struct color_rgb *m);
 void color_display(struct color_rgb *m);
 # 4 "color.c" 2
 
@@ -24603,14 +24606,8 @@ void get_color (struct color_rgb *m)
 
 }
 
-void detect_color(struct color_rgb *m)
+void detect_color_R(struct color_rgb *m)
 {
-    LATGbits.LATG1 = 1;
-    LATFbits.LATF7 = 1;
-    LATAbits.LATA4 = 1;
-    _delay((unsigned long)((200)*(64000000/4000.0)));
-    get_color(m);
-
     LATGbits.LATG1 = 1;
     LATFbits.LATF7 = 0;
     LATAbits.LATA4 = 0;
@@ -24618,9 +24615,36 @@ void detect_color(struct color_rgb *m)
     get_color(m);
 }
 
+void detect_color_C(struct color_rgb *m)
+{
+    LATGbits.LATG1 = 1;
+    LATFbits.LATF7 = 1;
+    LATAbits.LATA4 = 1;
+    _delay((unsigned long)((200)*(64000000/4000.0)));
+    get_color(m);
+}
+
+void detect_color_B(struct color_rgb *m)
+{
+    LATGbits.LATG1 = 0;
+    LATFbits.LATF7 = 1;
+    LATAbits.LATA4 = 0;
+    _delay((unsigned long)((200)*(64000000/4000.0)));
+    get_color(m);
+}
+
+void detect_color_G(struct color_rgb *m)
+{
+    LATGbits.LATG1 = 0;
+    LATFbits.LATF7 = 0;
+    LATAbits.LATA4 = 1;
+    _delay((unsigned long)((200)*(64000000/4000.0)));
+    get_color(m);
+}
+
 void color_display(struct color_rgb *m)
 {
-    char buf[80];
+    char buf[100];
     sprintf(buf,"\t%d\t%d\t%d\t%d\r\n", m->R, m->G, m->B, m->C);
     sendStringSerial4(buf);
 }

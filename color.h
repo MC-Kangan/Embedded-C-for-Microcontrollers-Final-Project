@@ -43,6 +43,12 @@ unsigned int color_read_Blue(void);
 unsigned int color_read_Green(void);
 unsigned int color_read_Clear(void);
 void get_color (struct color_rgb *m);
-void detect_color(struct color_rgb *m);
+void LED_R(struct color_rgb *m);
+void LED_C(struct color_rgb *m);
+void LED_B(struct color_rgb *m);
+void LED_G(struct color_rgb *m);
 void color_display(struct color_rgb *m);
+unsigned char detect_color_C(struct color_rgb *m);
+unsigned char check_color(unsigned char color,struct color_rgb *m);
+
 #endif

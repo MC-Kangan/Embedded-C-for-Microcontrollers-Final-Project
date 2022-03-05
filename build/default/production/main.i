@@ -24337,7 +24337,10 @@ unsigned int color_read_Blue(void);
 unsigned int color_read_Green(void);
 unsigned int color_read_Clear(void);
 void get_color (struct color_rgb *m);
-void detect_color(struct color_rgb *m);
+void detect_color_R(struct color_rgb *m);
+void detect_color_C(struct color_rgb *m);
+void detect_color_B(struct color_rgb *m);
+void detect_color_G(struct color_rgb *m);
 void color_display(struct color_rgb *m);
 # 12 "main.c" 2
 
@@ -24547,6 +24550,7 @@ void main(void){
     motorR.dir_pin = 6;
     motorR.PWMperiod = 199;
 
+
     TRISGbits.TRISG1 = 0;
     TRISFbits.TRISF7 = 0;
     TRISAbits.TRISA4 = 0;
@@ -24554,9 +24558,12 @@ void main(void){
     LATFbits.LATF7 = 1;
     LATAbits.LATA4 = 1;
 
+
+
+
     while(1){
-        detect_color(&rgb);
+        detect_color_G(&rgb);
         color_display(&rgb);
-        _delay((unsigned long)((1000)*(64000000/4000.0)));
+        _delay((unsigned long)((500)*(64000000/4000.0)));
     }
 }

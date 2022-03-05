@@ -11,13 +11,13 @@
  Intel Hex-file ranges:
   0h - 3h		(dist/default/production\final-project-kangan-yuhai.X.production.hex)
   E00h - E10h		(dist/default/production\final-project-kangan-yuhai.X.production.hex)
-  E12h - 1D77h		(dist/default/production\final-project-kangan-yuhai.X.production.hex)
+  E12h - 1D4Dh		(dist/default/production\final-project-kangan-yuhai.X.production.hex)
   200000h - 20000Fh		(dist/default/production\final-project-kangan-yuhai.X.production.hex)
   300000h - 30000Bh		(dist/default/production\final-project-kangan-yuhai.X.production.hex)
  Unused ranges:
   4h - DFFh
   E11h - E11h
-  1D78h - 1FFFFFh
+  1D4Eh - 1FFFFFh
   200010h - 2FFFFFh
 
 ### Hex Memory Map ###
@@ -273,10 +273,7 @@
 00001D10 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00001D20 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00001D30 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00001D40 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00001D50 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00001D60 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00001D70 | H1 H1 H1 H1 H1 H1 H1 H1 -- -- -- -- -- -- -- --
+00001D40 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 -- --
 ----------------------------------------------------------
 00200000 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 ----------------------------------------------------------

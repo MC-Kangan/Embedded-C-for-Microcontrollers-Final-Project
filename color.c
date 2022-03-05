@@ -94,14 +94,8 @@ void get_color (struct color_rgb *m)
     
 }
 
-void detect_color(struct color_rgb *m)
-{
-    LATGbits.LATG1 = 1; // output LED_R set on (power)
-    LATFbits.LATF7 = 1; // output LED_B set on (power)
-    LATAbits.LATA4 = 1; // output LED_G set on (power)
-    __delay_ms(200);
-    get_color(m);
-    
+void LED_R(struct color_rgb *m)
+{    
     LATGbits.LATG1 = 1; // output LED_R set on (power)
     LATFbits.LATF7 = 0; // output LED_B set on (power)
     LATAbits.LATA4 = 0; // output LED_G set on (power)
@@ -109,9 +103,50 @@ void detect_color(struct color_rgb *m)
     get_color(m);
 }
 
+void LED_C(struct color_rgb *m)
+{
+    LATGbits.LATG1 = 1; // output LED_R set on (power)
+    LATFbits.LATF7 = 1; // output LED_B set on (power)
+    LATAbits.LATA4 = 1; // output LED_G set on (power)
+    __delay_ms(200);
+    get_color(m);
+}
+
+void LED_B(struct color_rgb *m)
+{
+    LATGbits.LATG1 = 0; // output LED_R set on (power)
+    LATFbits.LATF7 = 1; // output LED_B set on (power)
+    LATAbits.LATA4 = 0; // output LED_G set on (power)
+    __delay_ms(200);
+    get_color(m);
+}
+
+void LED_G(struct color_rgb *m)
+{    
+    LATGbits.LATG1 = 0; // output LED_R set on (power)
+    LATFbits.LATF7 = 0; // output LED_B set on (power)
+    LATAbits.LATA4 = 1; // output LED_G set on (power)
+    __delay_ms(200);
+    get_color(m);
+}
+
 void color_display(struct color_rgb *m)
 {
-    char buf[80];
+    char buf[100];
     sprintf(buf,"\t%d\t%d\t%d\t%d\r\n", m->R, m->G, m->B, m->C);
     sendStringSerial4(buf);
+}
+
+// Function used to detect color with white light 
+unsigned char detect_color_C(struct color_rgb *m)
+{
+    unsigned char color = 0;
+    // Need to complete
+    return color;
+}
+
+// Function used to check the color after detecting the color with white light
+unsigned char check_color(unsigned char color,struct color_rgb *m)
+{
+    return color
 }

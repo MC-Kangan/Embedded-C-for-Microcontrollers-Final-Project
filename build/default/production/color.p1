@@ -2339,14 +2339,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :UE 2025 ]
 }
 "97
-[; ;color.c: 97: void detect_color(struct color_rgb *m)
-[v _detect_color `(v ~T0 @X0 1 ef1`*S2016 ]
+[; ;color.c: 97: void detect_color_R(struct color_rgb *m)
+[v _detect_color_R `(v ~T0 @X0 1 ef1`*S2016 ]
 "98
 [; ;color.c: 98: {
 {
-[e :U _detect_color ]
+[e :U _detect_color_R ]
 "97
-[; ;color.c: 97: void detect_color(struct color_rgb *m)
+[; ;color.c: 97: void detect_color_R(struct color_rgb *m)
 [v _m `*S2016 ~T0 @X0 1 r1 ]
 "98
 [; ;color.c: 98: {
@@ -2355,61 +2355,142 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;color.c: 99:     LATGbits.LATG1 = 1;
 [e = . . _LATGbits 0 1 -> -> 1 `i `uc ]
 "100
-[; ;color.c: 100:     LATFbits.LATF7 = 1;
-[e = . . _LATFbits 0 7 -> -> 1 `i `uc ]
+[; ;color.c: 100:     LATFbits.LATF7 = 0;
+[e = . . _LATFbits 0 7 -> -> 0 `i `uc ]
 "101
-[; ;color.c: 101:     LATAbits.LATA4 = 1;
-[e = . . _LATAbits 0 4 -> -> 1 `i `uc ]
+[; ;color.c: 101:     LATAbits.LATA4 = 0;
+[e = . . _LATAbits 0 4 -> -> 0 `i `uc ]
 "102
 [; ;color.c: 102:     _delay((unsigned long)((200)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 200 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "103
 [; ;color.c: 103:     get_color(m);
 [e ( _get_color (1 _m ]
-"105
-[; ;color.c: 105:     LATGbits.LATG1 = 1;
-[e = . . _LATGbits 0 1 -> -> 1 `i `uc ]
-"106
-[; ;color.c: 106:     LATFbits.LATF7 = 0;
-[e = . . _LATFbits 0 7 -> -> 0 `i `uc ]
-"107
-[; ;color.c: 107:     LATAbits.LATA4 = 0;
-[e = . . _LATAbits 0 4 -> -> 0 `i `uc ]
-"108
-[; ;color.c: 108:     _delay((unsigned long)((200)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"109
-[; ;color.c: 109:     get_color(m);
-[e ( _get_color (1 _m ]
-"110
-[; ;color.c: 110: }
+"104
+[; ;color.c: 104: }
 [e :UE 2026 ]
 }
+"106
+[; ;color.c: 106: void detect_color_C(struct color_rgb *m)
+[v _detect_color_C `(v ~T0 @X0 1 ef1`*S2016 ]
+"107
+[; ;color.c: 107: {
+{
+[e :U _detect_color_C ]
+"106
+[; ;color.c: 106: void detect_color_C(struct color_rgb *m)
+[v _m `*S2016 ~T0 @X0 1 r1 ]
+"107
+[; ;color.c: 107: {
+[f ]
+"108
+[; ;color.c: 108:     LATGbits.LATG1 = 1;
+[e = . . _LATGbits 0 1 -> -> 1 `i `uc ]
+"109
+[; ;color.c: 109:     LATFbits.LATF7 = 1;
+[e = . . _LATFbits 0 7 -> -> 1 `i `uc ]
+"110
+[; ;color.c: 110:     LATAbits.LATA4 = 1;
+[e = . . _LATAbits 0 4 -> -> 1 `i `uc ]
+"111
+[; ;color.c: 111:     _delay((unsigned long)((200)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "112
-[; ;color.c: 112: void color_display(struct color_rgb *m)
-[v _color_display `(v ~T0 @X0 1 ef1`*S2016 ]
+[; ;color.c: 112:     get_color(m);
+[e ( _get_color (1 _m ]
 "113
-[; ;color.c: 113: {
+[; ;color.c: 113: }
+[e :UE 2027 ]
+}
+"115
+[; ;color.c: 115: void detect_color_B(struct color_rgb *m)
+[v _detect_color_B `(v ~T0 @X0 1 ef1`*S2016 ]
+"116
+[; ;color.c: 116: {
+{
+[e :U _detect_color_B ]
+"115
+[; ;color.c: 115: void detect_color_B(struct color_rgb *m)
+[v _m `*S2016 ~T0 @X0 1 r1 ]
+"116
+[; ;color.c: 116: {
+[f ]
+"117
+[; ;color.c: 117:     LATGbits.LATG1 = 0;
+[e = . . _LATGbits 0 1 -> -> 0 `i `uc ]
+"118
+[; ;color.c: 118:     LATFbits.LATF7 = 1;
+[e = . . _LATFbits 0 7 -> -> 1 `i `uc ]
+"119
+[; ;color.c: 119:     LATAbits.LATA4 = 0;
+[e = . . _LATAbits 0 4 -> -> 0 `i `uc ]
+"120
+[; ;color.c: 120:     _delay((unsigned long)((200)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"121
+[; ;color.c: 121:     get_color(m);
+[e ( _get_color (1 _m ]
+"122
+[; ;color.c: 122: }
+[e :UE 2028 ]
+}
+"124
+[; ;color.c: 124: void detect_color_G(struct color_rgb *m)
+[v _detect_color_G `(v ~T0 @X0 1 ef1`*S2016 ]
+"125
+[; ;color.c: 125: {
+{
+[e :U _detect_color_G ]
+"124
+[; ;color.c: 124: void detect_color_G(struct color_rgb *m)
+[v _m `*S2016 ~T0 @X0 1 r1 ]
+"125
+[; ;color.c: 125: {
+[f ]
+"126
+[; ;color.c: 126:     LATGbits.LATG1 = 0;
+[e = . . _LATGbits 0 1 -> -> 0 `i `uc ]
+"127
+[; ;color.c: 127:     LATFbits.LATF7 = 0;
+[e = . . _LATFbits 0 7 -> -> 0 `i `uc ]
+"128
+[; ;color.c: 128:     LATAbits.LATA4 = 1;
+[e = . . _LATAbits 0 4 -> -> 1 `i `uc ]
+"129
+[; ;color.c: 129:     _delay((unsigned long)((200)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"130
+[; ;color.c: 130:     get_color(m);
+[e ( _get_color (1 _m ]
+"131
+[; ;color.c: 131: }
+[e :UE 2029 ]
+}
+"133
+[; ;color.c: 133: void color_display(struct color_rgb *m)
+[v _color_display `(v ~T0 @X0 1 ef1`*S2016 ]
+"134
+[; ;color.c: 134: {
 {
 [e :U _color_display ]
-"112
-[; ;color.c: 112: void color_display(struct color_rgb *m)
+"133
+[; ;color.c: 133: void color_display(struct color_rgb *m)
 [v _m `*S2016 ~T0 @X0 1 r1 ]
-"113
-[; ;color.c: 113: {
+"134
+[; ;color.c: 134: {
 [f ]
-"114
-[; ;color.c: 114:     char buf[80];
-[v _buf `uc ~T0 @X0 -> 80 `i a ]
-"115
-[; ;color.c: 115:     sprintf(buf,"\t%d\t%d\t%d\t%d\r\n", m->R, m->G, m->B, m->C);
+"135
+[; ;color.c: 135:     char buf[100];
+[v _buf `uc ~T0 @X0 -> 100 `i a ]
+"136
+[; ;color.c: 136:     sprintf(buf,"\t%d\t%d\t%d\t%d\r\n", m->R, m->G, m->B, m->C);
 [e ( _sprintf (1 , , , , (. , &U _buf :s 1C -> . *U _m 0 `i -> . *U _m 1 `i -> . *U _m 2 `i -> . *U _m 3 `i ]
-"116
-[; ;color.c: 116:     sendStringSerial4(buf);
+"137
+[; ;color.c: 137:     sendStringSerial4(buf);
 [e ( _sendStringSerial4 (1 &U _buf ]
-"117
-[; ;color.c: 117: }
-[e :UE 2027 ]
+"138
+[; ;color.c: 138: }
+[e :UE 2030 ]
 }
 [p f _sprintf 8388736 ]
 [a 1C 9 37 100 9 37 100 9 37 100 9 37 100 13 10 0 ]
