@@ -148,5 +148,5 @@ unsigned char detect_color_C(struct color_rgb *m)
 // Function used to check the color after detecting the color with white light
 unsigned char check_color(unsigned char color,struct color_rgb *m)
 {
-    return color
+    return color;
 }

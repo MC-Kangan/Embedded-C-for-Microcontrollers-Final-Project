@@ -6,6 +6,7 @@
 #define _XTAL_FREQ 64000000
 #define TURNING_POWER_L 40 // This number needs to be adjusted according to different floor condition
 #define TURNING_POWER_R 40 // This number needs to be adjusted according to different floor condition
+#define FORWARD_POWER 70
 
 struct DC_motor { //definition of DC_motor structure
     char power;         //motor power, out of 100
@@ -19,6 +20,7 @@ struct DC_motor { //definition of DC_motor structure
 
 //function prototypes
 void initDCmotorsPWM(int PWMperiod); // function to setup PWM
+void initDCmotors_parameter(struct DC_motor *motorL, struct DC_motor *motorR);
 void setMotorPWM(struct DC_motor *m);
 void stop(struct DC_motor *mL, struct DC_motor *mR);
 void turnLeft(struct DC_motor *mL, struct DC_motor *mR);

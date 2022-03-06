@@ -24232,7 +24232,7 @@ unsigned char __t3rd16on(void);
 # 1 "dc_motor.c" 2
 
 # 1 "./dc_motor.h" 1
-# 10 "./dc_motor.h"
+# 11 "./dc_motor.h"
 struct DC_motor {
     char power;
     char direction;
@@ -24245,6 +24245,7 @@ struct DC_motor {
 
 
 void initDCmotorsPWM(int PWMperiod);
+void initDCmotors_parameter(struct DC_motor *motorL, struct DC_motor *motorR);
 void setMotorPWM(struct DC_motor *m);
 void stop(struct DC_motor *mL, struct DC_motor *mR);
 void turnLeft(struct DC_motor *mL, struct DC_motor *mR);
@@ -24474,7 +24475,23 @@ void initDCmotorsPWM(int PWMperiod){
     PWM6CONbits.EN = 1;
     PWM7CONbits.EN = 1;
 }
+void initDCmotors_parameter(struct DC_motor *motorL, struct DC_motor *motorR){
 
+    motorL->power = 0;
+    motorL->direction = 1;
+    motorL->dutyHighByte = (unsigned char *)(&PWM6DCH);
+    motorL->dir_LAT = (unsigned char *)(&LATE);
+    motorL->dir_pin = 4;
+    motorL->PWMperiod = 199;
+
+
+    motorR->power = 0;
+    motorR->direction = 1;
+    motorR->dutyHighByte = (unsigned char *)(&PWM7DCH);
+    motorR->dir_LAT = (unsigned char *)(&LATG);
+    motorR->dir_pin = 6;
+    motorR->PWMperiod = 199;
+}
 
 
 void setMotorPWM(struct DC_motor *m)
@@ -24502,11 +24519,9 @@ void setMotorPWM(struct DC_motor *m)
 
 void stop(struct DC_motor *mL, struct DC_motor *mR)
 {
-
-
-    while (mL->power >0 && mR->power >0){
-        mL->power -= 10;
-        mR->power -= 10;
+    while (mL->power >0 || mR->power >0){
+        if (mL->power !=0){mL->power -= 5;}
+        if (mR->power !=0){mR->power -= 5;}
         setMotorPWM(mL);
         setMotorPWM(mR);
         _delay((unsigned long)((10)*(64000000/4000.0)));
@@ -24519,7 +24534,7 @@ void turnLeft(struct DC_motor *mL, struct DC_motor *mR)
       mL->direction=1;
       mR->direction=1;
       while (mR->power <40){
-        mR->power += 1;
+        mR->power += 5;
         mL->power = 0;
         setMotorPWM(mR);
         setMotorPWM(mL);
@@ -24533,7 +24548,7 @@ void turnRight(struct DC_motor *mL, struct DC_motor *mR)
     mL->direction=1;
     mR->direction=1;
     while (mL->power <40){
-        mL->power += 1;
+        mL->power += 5;
         mR->power = 0;
         setMotorPWM(mL);
         setMotorPWM(mR);

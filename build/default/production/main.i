@@ -24241,7 +24241,7 @@ unsigned char __t3rd16on(void);
 # 9 "main.c" 2
 
 # 1 "./dc_motor.h" 1
-# 10 "./dc_motor.h"
+# 11 "./dc_motor.h"
 struct DC_motor {
     char power;
     char direction;
@@ -24249,16 +24249,20 @@ struct DC_motor {
     unsigned char *dir_LAT;
     char dir_pin;
     int PWMperiod;
+    char voltage;
 };
 
 
 void initDCmotorsPWM(int PWMperiod);
+void initDCmotors_parameter(struct DC_motor *motorL, struct DC_motor *motorR);
 void setMotorPWM(struct DC_motor *m);
 void stop(struct DC_motor *mL, struct DC_motor *mR);
 void turnLeft(struct DC_motor *mL, struct DC_motor *mR);
 void turnRight(struct DC_motor *mL, struct DC_motor *mR);
 void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
 void turn180(struct DC_motor *mL, struct DC_motor *mR);
+void voltage_read(struct DC_motor *m);
+void voltage_display(struct DC_motor *m);
 # 10 "main.c" 2
 
 # 1 "./serial.h" 1
@@ -24337,11 +24341,13 @@ unsigned int color_read_Blue(void);
 unsigned int color_read_Green(void);
 unsigned int color_read_Clear(void);
 void get_color (struct color_rgb *m);
-void detect_color_R(struct color_rgb *m);
-void detect_color_C(struct color_rgb *m);
-void detect_color_B(struct color_rgb *m);
-void detect_color_G(struct color_rgb *m);
+void LED_R(struct color_rgb *m);
+void LED_C(struct color_rgb *m);
+void LED_B(struct color_rgb *m);
+void LED_G(struct color_rgb *m);
 void color_display(struct color_rgb *m);
+unsigned char detect_color_C(struct color_rgb *m);
+unsigned char check_color(unsigned char color,struct color_rgb *m);
 # 12 "main.c" 2
 
 # 1 "./i2c.h" 1
@@ -24378,6 +24384,16 @@ void I2C_2_Master_Write(unsigned char data_byte);
 
 unsigned char I2C_2_Master_Read(unsigned char ack);
 # 13 "main.c" 2
+
+# 1 "./movement.h" 1
+
+
+
+
+
+
+void movement(struct DC_motor *mL, struct DC_motor *mR);
+# 14 "main.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\c99\\stdio.h" 1 3
 # 24 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\c99\\stdio.h" 3
@@ -24523,33 +24539,22 @@ char *ctermid(char *);
 
 
 char *tempnam(const char *, const char *);
-# 14 "main.c" 2
-# 25 "main.c"
+# 15 "main.c" 2
+# 26 "main.c"
 void main(void){
     I2C_2_Master_Init();
     color_click_init();
     initDCmotorsPWM(199);
+
     initUSART4();
 
-    struct DC_motor motorL, motorR;
     struct color_rgb rgb;
+    struct DC_motor motorL, motorR;
 
+    initDCmotors_parameter(&motorL, &motorR);
 
-    motorL.power = 0;
-    motorL.direction = 1;
-    motorL.dutyHighByte = (unsigned char *)(&PWM6DCH);
-    motorL.dir_LAT = (unsigned char *)(&LATE);
-    motorL.dir_pin = 4;
-    motorL.PWMperiod = 199;
-
-
-    motorR.power = 0;
-    motorR.direction = 1;
-    motorR.dutyHighByte = (unsigned char *)(&PWM7DCH);
-    motorR.dir_LAT = (unsigned char *)(&LATG);
-    motorR.dir_pin = 6;
-    motorR.PWMperiod = 199;
-
+    TRISFbits.TRISF6 = 0;
+    LATFbits.LATF6 = 0;
 
     TRISGbits.TRISG1 = 0;
     TRISFbits.TRISF7 = 0;
@@ -24558,12 +24563,10 @@ void main(void){
     LATFbits.LATF7 = 1;
     LATAbits.LATA4 = 1;
 
-
-
+    unsigned char color = 0;
 
     while(1){
-        detect_color_G(&rgb);
-        color_display(&rgb);
-        _delay((unsigned long)((500)*(64000000/4000.0)));
+# 62 "main.c"
+        movement(&motorL, &motorR);
     }
 }
