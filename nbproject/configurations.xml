@@ -21,6 +21,9 @@
       <itemPath>serial.c</itemPath>
       <itemPath>serial.h</itemPath>
       <itemPath>main.c</itemPath>
+      <itemPath>ADC.h</itemPath>
+      <itemPath>ADC.c</itemPath>
+      <itemPath>.gitattributes</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

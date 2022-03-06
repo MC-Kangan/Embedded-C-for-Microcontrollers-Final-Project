@@ -47,7 +47,9 @@ void main(void){
     motorR.dir_pin = 6; // With dir_lat above, the direction pin for left motor is G6
     motorR.PWMperiod = 199; // Same as T2PR defined in dc_motor.c
     
-   
+    TRISFbits.TRISF6 = 0; //output on RF6 (BAT-VERSE), detects voltage of motor
+    LATFbits.LATF6 = 0; //output on BAT-VERSE set on (power) 
+    
     TRISGbits.TRISG1 = 0; //output on RG1 (LED_R)
     TRISFbits.TRISF7 = 0; //output on RF7 (LED_G)
     TRISAbits.TRISA4 = 0; //output on RA4 (LED_B)

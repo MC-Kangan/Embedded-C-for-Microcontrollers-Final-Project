@@ -1,2 +1,7 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+*.mk linguist-language=C
+*.i linguist-language=C
+*.d linguist-language=C
+*.xml linguist-language=C
+*.bash linguist-language=C 
