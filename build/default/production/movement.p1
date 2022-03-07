@@ -1,18 +1,4 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"11 ./dc_motor.h
-[; ;./dc_motor.h: 11: struct DC_motor {
-[s S2018 `uc 1 `uc 1 `*uc 1 `*uc 1 `uc 1 `i 1 `uc 1 ]
-[n S2018 DC_motor power direction dutyHighByte dir_LAT dir_pin PWMperiod voltage ]
-"26
-[; ;./dc_motor.h: 26: void turnLeft(struct DC_motor *mL, struct DC_motor *mR);
-[v _turnLeft `(v ~T0 @X0 0 ef2`*S2018`*S2018 ]
-[v F192 `(v ~T0 @X0 1 tf1`ul ]
-"12 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\builtins.h
-[v __delay `JF192 ~T0 @X0 0 e ]
-[p i __delay ]
-"25 ./dc_motor.h
-[; ;./dc_motor.h: 25: void stop(struct DC_motor *mL, struct DC_motor *mR);
-[v _stop `(v ~T0 @X0 0 ef2`*S2018`*S2018 ]
 "55 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 55: __asm("PPSLOCK equ 0DEFh");
 [; <" PPSLOCK equ 0DEFh ;# ">
@@ -2017,33 +2003,3 @@ Version 4.0 HI-TECH Software Intermediate Code
 [i _TxBufReadCnt
 -> -> 0 `i `uc
 ]
-"8 movement.c
-[; ;movement.c: 8: void movement(struct DC_motor *mL, struct DC_motor *mR)
-[v _movement `(v ~T0 @X0 1 ef2`*S2018`*S2018 ]
-"9
-[; ;movement.c: 9: {
-{
-[e :U _movement ]
-"8
-[; ;movement.c: 8: void movement(struct DC_motor *mL, struct DC_motor *mR)
-[v _mL `*S2018 ~T0 @X0 1 r1 ]
-[v _mR `*S2018 ~T0 @X0 1 r2 ]
-"9
-[; ;movement.c: 9: {
-[f ]
-"10
-[; ;movement.c: 10:     turnLeft(mL, mR);
-[e ( _turnLeft (2 , _mL _mR ]
-"11
-[; ;movement.c: 11:     _delay((unsigned long)((500)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"12
-[; ;movement.c: 12:     stop(mL, mR);
-[e ( _stop (2 , _mL _mR ]
-"13
-[; ;movement.c: 13:     _delay((unsigned long)((500)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"14
-[; ;movement.c: 14: }
-[e :UE 2019 ]
-}

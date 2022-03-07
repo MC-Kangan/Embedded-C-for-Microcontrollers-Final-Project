@@ -6,10 +6,10 @@
 #define _XTAL_FREQ 64000000 //note intrinsic _delay function is 62.5ns at 64,000,000Hz  
 
 struct color_rgb { //definition of color_rgb structure
-    unsigned char R ;         //Red color reading
-    unsigned char G ;         //Green color reading
-    unsigned char B ;         //Blue color reading
-    unsigned char C ;         //Clear color reading
+    unsigned int R ;         //Red color reading
+    unsigned int G ;         //Green color reading
+    unsigned int B ;         //Blue color reading
+    unsigned int C ;         //Clear color reading
 };
 
 /********************************************//**
@@ -48,7 +48,9 @@ void LED_C(struct color_rgb *m);
 void LED_B(struct color_rgb *m);
 void LED_G(struct color_rgb *m);
 void color_display(struct color_rgb *m);
+void color_predict(unsigned char color);
 unsigned char detect_color_C(struct color_rgb *m);
 unsigned char check_color(unsigned char color,struct color_rgb *m);
-
+unsigned char compare(unsigned int value2compare, unsigned int upper, unsigned int lower );
+void movement (unsigned char color,struct DC_motor *mL, struct DC_motor *mR);
 #endif

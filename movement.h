@@ -4,6 +4,6 @@
 #include <xc.h>
 
 //function prototypes
-void movement(struct DC_motor *mL, struct DC_motor *mR);
+//void movement(struct DC_motor *mL, struct DC_motor *mR);
 
 #endif

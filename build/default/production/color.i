@@ -24295,10 +24295,10 @@ void sendTxBuf(void);
 
 
 struct color_rgb {
-    unsigned char R ;
-    unsigned char G ;
-    unsigned char B ;
-    unsigned char C ;
+    unsigned int R ;
+    unsigned int G ;
+    unsigned int B ;
+    unsigned int C ;
 };
 
 
@@ -24337,8 +24337,11 @@ void LED_C(struct color_rgb *m);
 void LED_B(struct color_rgb *m);
 void LED_G(struct color_rgb *m);
 void color_display(struct color_rgb *m);
+void color_predict(unsigned char color);
 unsigned char detect_color_C(struct color_rgb *m);
 unsigned char check_color(unsigned char color,struct color_rgb *m);
+unsigned char compare(unsigned int value2compare, unsigned int upper, unsigned int lower );
+void movement (unsigned char color,struct DC_motor *mL, struct DC_motor *mR);
 # 4 "color.c" 2
 
 # 1 "./i2c.h" 1
@@ -24523,6 +24526,7 @@ char *tempnam(const char *, const char *);
 # 6 "color.c" 2
 
 
+
 void color_click_init(void)
 {
 
@@ -24655,16 +24659,43 @@ void color_display(struct color_rgb *m)
     sendStringSerial4(buf);
 }
 
+void color_predict(unsigned char color)
+{
+    char buf[100];
+    sprintf(buf,"\t%d\r\n", color);
+    sendStringSerial4(buf);
+}
+
+
 
 unsigned char detect_color_C(struct color_rgb *m)
 {
+
+
     unsigned char color = 0;
+    unsigned int RG_ratio = (m->R/m->G)*100;
+    unsigned int RB_ratio = (m->R/m->B)*100;
+    unsigned int GB_ratio = (m->G/m->B)*100;
+
+    if (compare(RG_ratio, 0, 100) && compare(RB_ratio, 0, 200)){color = 1;}
 
     return color;
+}
+
+unsigned char compare(unsigned int value2compare, unsigned int upper, unsigned int lower )
+{
+    unsigned char result = 0;
+    if (lower <= value2compare && value2compare <= upper){result = 1;}
+    return result;
 }
 
 
 unsigned char check_color(unsigned char color,struct color_rgb *m)
 {
     return color;
+}
+
+void movement (unsigned char color,struct DC_motor *mL, struct DC_motor *mR)
+{
+    if (color == 1){turnRight(mL, mR); _delay((unsigned long)((500)*(64000000/4000.0)));}
 }

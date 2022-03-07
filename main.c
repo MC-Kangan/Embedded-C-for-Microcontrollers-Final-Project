@@ -11,7 +11,7 @@
 #include "serial.h"
 #include "color.h"
 #include "i2c.h"
-#include "movement.h"
+//#include "movement.h"
 #include <stdio.h>
 
 #define _XTAL_FREQ 64000000 //note intrinsic _delay function is 62.5ns at 64,000,000Hz 
@@ -20,8 +20,12 @@
 #define TURNING_STOPTIME_L 600 
 #define TURNING_STOPTIME_R 700 
 #define TURNING_STOPTIME_180 1700 
-#define TEST 0
+ #define TEST 1
 //#define TEST 0 
+
+// Color code: 
+// 1: red; 2: green; 3: blue; 4: yellow; 5:pink; 6:orange; 7:light blue; 8:white; 9: black
+unsigned char color = 1;   
       
 void main(void){
     I2C_2_Master_Init();
@@ -48,17 +52,22 @@ void main(void){
     unsigned char color = 0;
    
     while(1){
-//        LED_G(&rgb);
-//        color_display(&rgb);
-//        __delay_ms(500);
-//        
-//        detect_color_C(&rgb);
-//        while (!color){
-//            fullSpeedAhead(&motorL, &motorR);
-//        }
-//        stop(&motorL, &motorR);
-//        __delay_ms(500);
-//        check_color(color, &rgb);
-        movement(&motorL, &motorR);
+		if (TEST){
+        LED_G(&rgb);
+        color_display(&rgb);
+        __delay_ms(200);
+        }
+        if (!TEST){
+            detect_color_C(&rgb);
+            while (color == 0){fullSpeedAhead(&motorL, &motorR);}
+            stop(&motorL, &motorR);
+            __delay_ms(1000);
+            movement(color,&motorL,&motorR);
+            color = 0;
+
+            //__delay_ms(500);
+            //check_color(color, &rgb);
+        }
     }
 }
+

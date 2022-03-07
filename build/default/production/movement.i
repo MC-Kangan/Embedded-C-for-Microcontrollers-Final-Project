@@ -24386,10 +24386,10 @@ char *tempnam(const char *, const char *);
 
 
 struct color_rgb {
-    unsigned char R ;
-    unsigned char G ;
-    unsigned char B ;
-    unsigned char C ;
+    unsigned int R ;
+    unsigned int G ;
+    unsigned int B ;
+    unsigned int C ;
 };
 
 
@@ -24428,8 +24428,11 @@ void LED_C(struct color_rgb *m);
 void LED_B(struct color_rgb *m);
 void LED_G(struct color_rgb *m);
 void color_display(struct color_rgb *m);
+void color_predict(unsigned char color);
 unsigned char detect_color_C(struct color_rgb *m);
 unsigned char check_color(unsigned char color,struct color_rgb *m);
+unsigned char compare(unsigned int value2compare, unsigned int upper, unsigned int lower );
+void movement (unsigned char color,struct DC_motor *mL, struct DC_motor *mR);
 # 3 "movement.c" 2
 
 # 1 "./dc_motor.h" 1
@@ -24488,20 +24491,5 @@ void sendTxBuf(void);
 # 5 "movement.c" 2
 
 # 1 "./movement.h" 1
-
-
-
-
-
-
-void movement(struct DC_motor *mL, struct DC_motor *mR);
 # 6 "movement.c" 2
 
-
-void movement(struct DC_motor *mL, struct DC_motor *mR)
-{
-    turnLeft(mL, mR);
-    _delay((unsigned long)((500)*(64000000/4000.0)));
-    stop(mL, mR);
-    _delay((unsigned long)((500)*(64000000/4000.0)));
-}

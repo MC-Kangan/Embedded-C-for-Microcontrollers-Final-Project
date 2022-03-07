@@ -21,9 +21,8 @@
       <itemPath>serial.c</itemPath>
       <itemPath>serial.h</itemPath>
       <itemPath>main.c</itemPath>
-      <itemPath>ADC.h</itemPath>
       <itemPath>ADC.c</itemPath>
-      <itemPath>.gitattributes</itemPath>
+      <itemPath>ADC.h</itemPath>
       <itemPath>movement.c</itemPath>
       <itemPath>movement.h</itemPath>
     </logicalFolder>

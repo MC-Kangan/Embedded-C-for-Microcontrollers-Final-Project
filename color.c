@@ -4,6 +4,7 @@
 #include "color.h"
 #include "i2c.h"
 #include <stdio.h>
+//#include "movement.h"
 
 void color_click_init(void)
 {   
@@ -137,16 +138,43 @@ void color_display(struct color_rgb *m)
     sendStringSerial4(buf);
 }
 
-// Function used to detect color with white light 
+void color_predict(unsigned char color)
+{
+    char buf[100];
+    sprintf(buf,"\t%d\r\n", color);
+    sendStringSerial4(buf);
+}
+
+
+// Function used to detect color with white light
 unsigned char detect_color_C(struct color_rgb *m)
 {
+    // Color code:
+    // 1: red; 2: green; 3: blue; 4: yellow; 5:pink; 6:orange; 7:light blue; 8:white; 9: black
     unsigned char color = 0;
-    // Need to complete
+    unsigned int RG_ratio = (m->R/m->G)*100;
+    unsigned int RB_ratio = (m->R/m->B)*100;
+    unsigned int GB_ratio = (m->G/m->B)*100;
+
+    if (compare(RG_ratio, 0, 100) && compare(RB_ratio, 0, 200)){color = 1;}
+
     return color;
+}
+
+unsigned char compare(unsigned int value2compare, unsigned int upper, unsigned int lower )
+{
+    unsigned char result = 0;
+    if (lower <= value2compare && value2compare <= upper){result = 1;}
+    return result;
 }
 
 // Function used to check the color after detecting the color with white light
 unsigned char check_color(unsigned char color,struct color_rgb *m)
 {
     return color;
+}
+
+void movement (unsigned char color,struct DC_motor *mL, struct DC_motor *mR)
+{
+    if (color == 1){turnRight(mL, mR); __delay_ms(500);}
 }

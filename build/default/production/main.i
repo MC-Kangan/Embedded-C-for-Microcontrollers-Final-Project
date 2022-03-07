@@ -24304,10 +24304,10 @@ void sendTxBuf(void);
 
 
 struct color_rgb {
-    unsigned char R ;
-    unsigned char G ;
-    unsigned char B ;
-    unsigned char C ;
+    unsigned int R ;
+    unsigned int G ;
+    unsigned int B ;
+    unsigned int C ;
 };
 
 
@@ -24346,8 +24346,11 @@ void LED_C(struct color_rgb *m);
 void LED_B(struct color_rgb *m);
 void LED_G(struct color_rgb *m);
 void color_display(struct color_rgb *m);
+void color_predict(unsigned char color);
 unsigned char detect_color_C(struct color_rgb *m);
 unsigned char check_color(unsigned char color,struct color_rgb *m);
+unsigned char compare(unsigned int value2compare, unsigned int upper, unsigned int lower );
+void movement (unsigned char color,struct DC_motor *mL, struct DC_motor *mR);
 # 12 "main.c" 2
 
 # 1 "./i2c.h" 1
@@ -24385,15 +24388,6 @@ void I2C_2_Master_Write(unsigned char data_byte);
 unsigned char I2C_2_Master_Read(unsigned char ack);
 # 13 "main.c" 2
 
-# 1 "./movement.h" 1
-
-
-
-
-
-
-void movement(struct DC_motor *mL, struct DC_motor *mR);
-# 14 "main.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\c99\\stdio.h" 1 3
 # 24 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\c99\\stdio.h" 3
@@ -24540,7 +24534,9 @@ char *ctermid(char *);
 
 char *tempnam(const char *, const char *);
 # 15 "main.c" 2
-# 26 "main.c"
+# 28 "main.c"
+unsigned char color = 1;
+
 void main(void){
     I2C_2_Master_Init();
     color_click_init();
@@ -24566,7 +24562,21 @@ void main(void){
     unsigned char color = 0;
 
     while(1){
-# 62 "main.c"
-        movement(&motorL, &motorR);
+  if (1){
+        LED_G(&rgb);
+        color_display(&rgb);
+        _delay((unsigned long)((200)*(64000000/4000.0)));
+        }
+        if (!1){
+            detect_color_C(&rgb);
+            while (color == 0){fullSpeedAhead(&motorL, &motorR);}
+            stop(&motorL, &motorR);
+            _delay((unsigned long)((1000)*(64000000/4000.0)));
+            movement(color,&motorL,&motorR);
+            color = 0;
+
+
+
+        }
     }
 }
