@@ -24560,21 +24560,55 @@ void main(void){
     LATAbits.LATA4 = 1;
 
     unsigned char color = 0;
+    unsigned char complete = 0;
+
+    int i = 0;
+    int j = 0;
+    int k = 0;
+    int x = 0;
+
+    _delay((unsigned long)((3000)*(64000000/4000.0)));
 
     while(1){
   if (1){
-        LED_G(&rgb);
-        color_display(&rgb);
-        _delay((unsigned long)((200)*(64000000/4000.0)));
+            while (complete == 0){
+                for (i = 0; i < 50; ++i){
+                    LED_C(&rgb);
+                    color_display(&rgb);
+                    _delay((unsigned long)((100)*(64000000/4000.0)));
+                }
+                color_predict(00000);
+                for (j = 0; j < 50; ++j){
+                    LED_R(&rgb);
+                    color_display(&rgb);
+                    _delay((unsigned long)((100)*(64000000/4000.0)));
+                }
+                color_predict(00000);
+                for (k = 0; k < 50; ++k){
+                    LED_G(&rgb);
+                    color_display(&rgb);
+                    _delay((unsigned long)((100)*(64000000/4000.0)));
+                }
+                color_predict(00000);
+                for (x = 0; x < 50; ++x){
+                    LED_B(&rgb);
+                    color_display(&rgb);
+                    _delay((unsigned long)((100)*(64000000/4000.0)));
+                }
+                color_predict(00000);
+                complete = 1;
+                LED_C(&rgb);
+            }
+
         }
         if (!1){
-            detect_color_C(&rgb);
-            while (color == 0){fullSpeedAhead(&motorL, &motorR);}
-            stop(&motorL, &motorR);
-            _delay((unsigned long)((1000)*(64000000/4000.0)));
-            movement(color,&motorL,&motorR);
-            color = 0;
 
+
+
+
+
+
+            color_predict(00000);
 
 
         }

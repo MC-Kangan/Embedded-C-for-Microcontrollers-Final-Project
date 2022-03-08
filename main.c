@@ -50,21 +50,54 @@ void main(void){
     LATAbits.LATA4 = 1; // output LED_B set on (power)
         
     unsigned char color = 0;
-   
+    unsigned char complete = 0;
+    int i = 0;
+    int j = 0;
+    int k = 0;
+    int x = 0;
+    
+    __delay_ms(3000);
+    
     while(1){
 		if (TEST){
-        LED_G(&rgb);
-        color_display(&rgb);
-        __delay_ms(200);
+            while (complete == 0){
+                for (i = 0; i < 50; ++i){
+                    LED_C(&rgb);
+                    color_display(&rgb);
+                    __delay_ms(100);
+                }  
+                color_predict(00000);
+                for (j = 0; j < 50; ++j){
+                    LED_R(&rgb);
+                    color_display(&rgb);
+                    __delay_ms(100);
+                }
+                color_predict(00000);
+                for (k = 0; k < 50; ++k){
+                    LED_G(&rgb);
+                    color_display(&rgb);
+                    __delay_ms(100);
+                }
+                color_predict(00000);
+                for (x = 0; x < 50; ++x){
+                    LED_B(&rgb);
+                    color_display(&rgb);
+                    __delay_ms(100);
+                }
+                color_predict(00000);
+                complete = 1;
+                LED_C(&rgb);
+            }
+
         }
         if (!TEST){
-            detect_color_C(&rgb);
-            while (color == 0){fullSpeedAhead(&motorL, &motorR);}
-            stop(&motorL, &motorR);
-            __delay_ms(1000);
-            movement(color,&motorL,&motorR);
-            color = 0;
-
+            //detect_color_C(&rgb);
+            //while (color == 0){fullSpeedAhead(&motorL, &motorR);}
+            //stop(&motorL, &motorR);
+            //__delay_ms(1000);
+            //movement(color,&motorL,&motorR);
+            //color = 0;
+            color_predict(00000);
             //__delay_ms(500);
             //check_color(color, &rgb);
         }

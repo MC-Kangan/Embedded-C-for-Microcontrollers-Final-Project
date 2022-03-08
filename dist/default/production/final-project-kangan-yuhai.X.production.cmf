@@ -11,64 +11,59 @@
 # All addresses and the length are given in unqualified hexadecimal
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
-$C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2vlg.o
+$C:\Users\KANGAN~1\AppData\Local\Temp\xcAscek.o
 idloc IDLOC 5 200000 200000 10 1 1
 init CODE 0 0 0 4 1 2
 config CONFIG 4 300000 300000 C 1 1
 $dist/default/production\final-project-kangan-yuhai.X.production.o
-cinit CODE 0 216C 216C 42 1 2
+cinit CODE 0 1D92 1D92 40 1 2
 idloc IDLOC 5 200000 200000 10 1 1
-text0 CODE 0 1D7E 1D7E 74 1 2
-text1 CODE 0 1C5E 1C5E A4 1 2
-text2 CODE 0 2232 2232 40 1 2
-text3 CODE 0 1D02 1D02 7C 1 2
-text4 CODE 0 2448 2448 1E 1 2
-text5 CODE 0 188C 188C D2 1 2
-text6 CODE 0 21AE 21AE 42 1 2
-text7 CODE 0 1BB2 1BB2 AC 1 2
-text8 CODE 0 10F6 10F6 1D4 1 2
-text9 CODE 0 1AEE 1AEE C4 1 2
-text10 CODE 0 176A 176A 122 1 2
-text11 CODE 0 22B2 22B2 38 1 2
-text12 CODE 0 2402 2402 26 1 2
-text13 CODE 0 1DF2 1DF2 74 1 2
-text14 CODE 0 1E66 1E66 70 1 2
-text15 CODE 0 1F96 1F96 52 1 2
-text16 CODE 0 1ED6 1ED6 62 1 2
-text17 CODE 0 12CA 12CA 1B4 1 2
-text18 CODE 0 E12 E12 2E4 1 2
-text19 CODE 0 1A28 1A28 C6 1 2
-text20 CODE 0 22EA 22EA 36 1 2
-text21 CODE 0 2128 2128 44 1 2
-text22 CODE 0 195E 195E CA 1 2
-text23 CODE 0 24A8 24A8 2 1 2
-text24 CODE 0 2272 2272 40 1 2
-text25 CODE 0 1606 1606 164 1 2
-text26 CODE 0 147E 147E 188 1 2
-text27 CODE 0 2354 2354 30 1 2
-text28 CODE 0 2466 2466 18 1 2
-text29 CODE 0 2320 2320 34 1 2
-text30 CODE 0 2428 2428 20 1 2
-text31 CODE 0 23B0 23B0 2A 1 2
-text32 CODE 0 2384 2384 2C 1 2
-text33 CODE 0 1F38 1F38 5E 1 2
-text34 CODE 0 1FE8 1FE8 50 1 2
-text35 CODE 0 2038 2038 50 1 2
-text36 CODE 0 2088 2088 50 1 2
-text37 CODE 0 20D8 20D8 50 1 2
-text38 CODE 0 247E 247E C 1 2
-text39 CODE 0 248A 248A A 1 2
-text40 CODE 0 2494 2494 A 1 2
-text41 CODE 0 249E 249E A 1 2
-text42 CODE 0 21F0 21F0 42 1 2
-text43 CODE 0 23DA 23DA 28 1 2
+text0 CODE 0 10F6 10F6 210 1 2
+text1 CODE 0 1FFC 1FFC 1E 1 2
+text2 CODE 0 17A6 17A6 D2 1 2
+text3 CODE 0 1D0E 1D0E 42 1 2
+text4 CODE 0 1EAC 1EAC 2E 1 2
+text5 CODE 0 1A08 1A08 70 1 2
+text6 CODE 0 1B38 1B38 52 1 2
+text7 CODE 0 1A78 1A78 62 1 2
+text8 CODE 0 1306 1306 1B4 1 2
+text9 CODE 0 E12 E12 2E4 1 2
+text10 CODE 0 1942 1942 C6 1 2
+text11 CODE 0 1E12 1E12 36 1 2
+text12 CODE 0 1CCA 1CCA 44 1 2
+text13 CODE 0 1878 1878 CA 1 2
+text14 CODE 0 205C 205C 2 1 2
+text15 CODE 0 1DD2 1DD2 40 1 2
+text16 CODE 0 1642 1642 164 1 2
+text17 CODE 0 14BA 14BA 188 1 2
+text18 CODE 0 1E7C 1E7C 30 1 2
+text19 CODE 0 201A 201A 18 1 2
+text20 CODE 0 1E48 1E48 34 1 2
+text21 CODE 0 1FDC 1FDC 20 1 2
+text22 CODE 0 1F8A 1F8A 2A 1 2
+text23 CODE 0 1EDA 1EDA 2C 1 2
+text24 CODE 0 1F06 1F06 2C 1 2
+text25 CODE 0 1F32 1F32 2C 1 2
+text26 CODE 0 1F5E 1F5E 2C 1 2
+text27 CODE 0 1ADA 1ADA 5E 1 2
+text28 CODE 0 1B8A 1B8A 50 1 2
+text29 CODE 0 1BDA 1BDA 50 1 2
+text30 CODE 0 1C2A 1C2A 50 1 2
+text31 CODE 0 1C7A 1C7A 50 1 2
+text32 CODE 0 2032 2032 C 1 2
+text33 CODE 0 203E 203E A 1 2
+text34 CODE 0 2048 2048 A 1 2
+text35 CODE 0 2052 2052 A 1 2
+text36 CODE 0 1D50 1D50 42 1 2
+text37 CODE 0 1FB4 1FB4 28 1 2
 cstackCOMRAM COMRAM 1 1 1 5B 1 1
-cstackBANK0 BANK0 1 60 60 99 1 1
-bssBANK0 BANK0 1 F9 F9 6 1 1
-bssBANK1 BANK1 1 100 100 72 1 1
+cstackBANK0 BANK0 1 60 60 7E 1 1
+cstackBANK1 BANK1 1 15C 15C 25 1 1
+bssBANK0 BANK0 1 DE DE 1C 1 1
+bssBANK1 BANK1 1 100 100 5C 1 1
 smallconst SMALLCONST 0 E00 E00 12 1 2
-idataBANK0 CODE 0 24AA 24AA 1 1 1
-dataBANK0 BANK0 1 FF FF 1 1 1
+idataBANK0 CODE 0 205E 205E 1 1 1
+dataBANK0 BANK0 1 FA FA 1 1 1
 bssCOMRAM COMRAM 1 5C 5C 4 1 1
 config CONFIG 4 300000 300000 C 1 1
 # %UNUSED Section
@@ -77,9 +72,11 @@ config CONFIG 4 300000 300000 C 1 1
 #    <class name> <range> <delta>
 # Addresses given in the range are in hexadecimal and units of delta.
 %UNUSED
-RAM 172-DE9 1
+RAM FB-FF 1
+RAM 181-DE9 1
 SFR DEF-FFF 1
-BANK1 172-1FF 1
+BANK0 FB-FF 1
+BANK1 181-1FF 1
 BANK2 200-2FF 1
 BANK3 300-3FF 1
 BANK4 400-4FF 1
@@ -89,18 +86,19 @@ BANK7 700-7FF 1
 BANK8 800-8FF 1
 BANK9 900-9FF 1
 CONST 4-DFF 1
-CONST 24AB-1FFFF 1
-SMALLCONST 24AB-1FFFF 1
+CONST 205F-1FFFF 1
+SMALLCONST 205F-1FFFF 1
 CODE 4-DFF 1
-CODE 24AB-1FFFF 1
+CODE 205F-1FFFF 1
 BANK10 A00-AFF 1
 BANK11 B00-BFF 1
 BANK12 C00-CFF 1
 BANK13 D00-DE9 1
-BIGRAM 172-DE9 1
+BIGRAM FB-FF 1
+BIGRAM 181-DE9 1
 BIGSFR DEF-FFF 1
 EEDATA 310000-3103FF 1
-MEDIUMCONST 24AB-FFFF 1
+MEDIUMCONST 205F-FFFF 1
 MEDIUMCONST 10E00-1FFFF 1
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
@@ -116,499 +114,446 @@ MEDIUMCONST 10E00-1FFFF 1
 # All other numeric values are in decimal.
 %LINETAB
 $dist/default/production\final-project-kangan-yuhai.X.production.o
-23DA text43 CODE >22:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
-23DA text43 CODE >24:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
-2400 text43 CODE >25:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
-21F0 text42 CODE >51:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
-21F2 text42 CODE >54:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
-21F6 text42 CODE >55:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
-21FA text42 CODE >56:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
-21FE text42 CODE >57:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
-2202 text42 CODE >58:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
-2206 text42 CODE >59:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
-222C text42 CODE >60:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
-222E text42 CODE >61:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
-2230 text42 CODE >62:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
-249E text41 CODE >33:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
-249E text41 CODE >35:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
-24A2 text41 CODE >36:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
-24A6 text41 CODE >37:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
-2494 text40 CODE >27:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
-2494 text40 CODE >29:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
-2498 text40 CODE >30:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
-249C text40 CODE >31:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
-248A text39 CODE >39:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
-248A text39 CODE >41:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
-248E text39 CODE >42:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
-2492 text39 CODE >43:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
-247E text38 CODE >45:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
-2480 text38 CODE >47:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
-2484 text38 CODE >48:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
-2488 text38 CODE >49:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
-20D8 text37 CODE >47:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-20D8 text37 CODE >50:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-20DC text37 CODE >51:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-20E2 text37 CODE >52:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-20E8 text37 CODE >53:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-20EC text37 CODE >54:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-20F2 text37 CODE >55:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-2100 text37 CODE >56:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-211A text37 CODE >57:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-211E text37 CODE >58:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-2126 text37 CODE >59:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-2088 text36 CODE >75:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-2088 text36 CODE >78:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-208C text36 CODE >79:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-2092 text36 CODE >80:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-2098 text36 CODE >81:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-209C text36 CODE >82:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-20A2 text36 CODE >83:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-20B0 text36 CODE >84:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-20CA text36 CODE >85:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-20CE text36 CODE >86:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-20D6 text36 CODE >87:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-2038 text35 CODE >61:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-2038 text35 CODE >64:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-203C text35 CODE >65:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-2042 text35 CODE >66:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-2048 text35 CODE >67:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-204C text35 CODE >68:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-2052 text35 CODE >69:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-2060 text35 CODE >70:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-207A text35 CODE >71:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-207E text35 CODE >72:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-2086 text35 CODE >73:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-1FE8 text34 CODE >33:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-1FE8 text34 CODE >36:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-1FEC text34 CODE >37:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-1FF2 text34 CODE >38:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-1FF8 text34 CODE >39:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-1FFC text34 CODE >40:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-2002 text34 CODE >41:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-2010 text34 CODE >42:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-202A text34 CODE >43:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-202E text34 CODE >44:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-2036 text34 CODE >45:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-1F38 text33 CODE >89:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-1F38 text33 CODE >91:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-1F4C text33 CODE >92:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-1F64 text33 CODE >93:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-1F7C text33 CODE >94:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-1F94 text33 CODE >96:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-2384 text32 CODE >125:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-2384 text32 CODE >127:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-2386 text32 CODE >128:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-2388 text32 CODE >129:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-238A text32 CODE >130:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-23A2 text32 CODE >131:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-23AE text32 CODE >132:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-23B0 text31 CODE >4:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
-23B0 text31 CODE >7:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
-23BA text31 CODE >8:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
-23BC text31 CODE >9:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
-23C0 text31 CODE >12:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
-23C2 text31 CODE >13:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
-23C4 text31 CODE >14:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
-23C6 text31 CODE >15:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
-23C8 text31 CODE >16:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
-23CC text31 CODE >17:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
-23D0 text31 CODE >18:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
-23D4 text31 CODE >19:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
-23D8 text31 CODE >20:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
-2428 text30 CODE >25:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-242A text30 CODE >26:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-242E text30 CODE >27:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-2434 text30 CODE >28:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-243C text30 CODE >29:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-2442 text30 CODE >30:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-2446 text30 CODE >31:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-2320 text29 CODE >9:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-2320 text29 CODE >12:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-2324 text29 CODE >15:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-232E text29 CODE >16:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-233E text29 CODE >19:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-2348 text29 CODE >22:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-2352 text29 CODE >23:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-2466 text28 CODE >29:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\serial.c
-2468 text28 CODE >30:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\serial.c
-2478 text28 CODE >31:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\serial.c
-247C text28 CODE >32:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\serial.c
-2354 text27 CODE >36:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\serial.c
-2354 text27 CODE >38:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\serial.c
-2358 text27 CODE >39:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\serial.c
-236A text27 CODE >38:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\serial.c
-2382 text27 CODE >40:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\serial.c
-147E text26 CODE >9:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aodiv.c
-147E text26 CODE >15:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aodiv.c
-1482 text26 CODE >16:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aodiv.c
-1490 text26 CODE >17:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aodiv.c
-14B0 text26 CODE >18:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aodiv.c
-14B4 text26 CODE >20:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aodiv.c
-14C2 text26 CODE >21:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aodiv.c
-14E2 text26 CODE >22:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aodiv.c
-14E6 text26 CODE >24:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aodiv.c
-14F2 text26 CODE >25:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aodiv.c
-1510 text26 CODE >26:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aodiv.c
-1514 text26 CODE >27:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aodiv.c
-1518 text26 CODE >28:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aodiv.c
-152A text26 CODE >29:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aodiv.c
-152C text26 CODE >27:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aodiv.c
-153A text26 CODE >32:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aodiv.c
-154C text26 CODE >33:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aodiv.c
-157A text26 CODE >34:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aodiv.c
-159A text26 CODE >35:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aodiv.c
-159C text26 CODE >37:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aodiv.c
-15AE text26 CODE >38:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aodiv.c
-15B4 text26 CODE >40:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aodiv.c
-15C4 text26 CODE >41:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aodiv.c
-15E4 text26 CODE >42:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aodiv.c
-1604 text26 CODE >43:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aodiv.c
-1606 text25 CODE >9:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aomod.c
-1606 text25 CODE >14:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aomod.c
-160A text25 CODE >15:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aomod.c
-1618 text25 CODE >16:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aomod.c
-1638 text25 CODE >17:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aomod.c
-163C text25 CODE >19:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aomod.c
-164A text25 CODE >20:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aomod.c
-166A text25 CODE >21:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aomod.c
-1688 text25 CODE >22:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aomod.c
-168C text25 CODE >23:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aomod.c
-1690 text25 CODE >24:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aomod.c
-16A2 text25 CODE >25:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aomod.c
-16A4 text25 CODE >23:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aomod.c
-16B2 text25 CODE >28:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aomod.c
-16E0 text25 CODE >29:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aomod.c
-1700 text25 CODE >30:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aomod.c
-1712 text25 CODE >31:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aomod.c
-1718 text25 CODE >33:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aomod.c
-1728 text25 CODE >34:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aomod.c
-1748 text25 CODE >35:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aomod.c
-1768 text25 CODE >36:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aomod.c
-2272 text24 CODE >1:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\abs.c
-2272 text24 CODE >3:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\abs.c
-22B0 text24 CODE >4:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\abs.c
-24A8 text23 CODE >7:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\putch.c
-24A8 text23 CODE >9:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\putch.c
-195E text22 CODE >8:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\nf_fputc.c
-195E text22 CODE >12:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\nf_fputc.c
-1982 text22 CODE >13:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\nf_fputc.c
-1988 text22 CODE >14:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\nf_fputc.c
-198C text22 CODE >15:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\nf_fputc.c
-19E0 text22 CODE >18:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\nf_fputc.c
-1A14 text22 CODE >20:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\nf_fputc.c
-1A26 text22 CODE >24:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\nf_fputc.c
-2128 text21 CODE >8:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\nf_fputs.c
-2128 text21 CODE >13:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\nf_fputs.c
-2130 text21 CODE >14:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\nf_fputs.c
-2134 text21 CODE >15:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\nf_fputs.c
-2146 text21 CODE >16:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\nf_fputs.c
-214A text21 CODE >14:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\nf_fputs.c
-216A text21 CODE >19:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\nf_fputs.c
-22EA text20 CODE >5:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\strlen.c
-22EA text20 CODE >7:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\strlen.c
-22F2 text20 CODE >8:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\strlen.c
-22F6 text20 CODE >9:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\strlen.c
-22FA text20 CODE >8:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\strlen.c
-2312 text20 CODE >11:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\strlen.c
-231E text20 CODE >12:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\strlen.c
-1A28 text19 CODE >72:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-1A28 text19 CODE >77:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-1A38 text19 CODE >78:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-1A4C text19 CODE >82:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-1A6E text19 CODE >83:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-1A76 text19 CODE >84:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-1A7A text19 CODE >85:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-1A8E text19 CODE >86:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-1A92 text19 CODE >84:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-1AB0 text19 CODE >90:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-1AC0 text19 CODE >91:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-1AD4 text19 CODE >94:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-1AEC text19 CODE >95:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-E12 text18 CODE >287:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-E12 text18 CODE >293:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-E32 text18 CODE >294:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-E48 text18 CODE >295:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-E5A text18 CODE >296:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-E7A text18 CODE >300:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-E8A text18 CODE >301:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-E8C text18 CODE >303:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-EBA text18 CODE >304:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-EC2 text18 CODE >305:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-EE2 text18 CODE >306:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-EE8 text18 CODE >310:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-EF0 text18 CODE >311:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-EF6 text18 CODE >312:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-EFA text18 CODE >313:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-F00 text18 CODE >314:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-F2C text18 CODE >314:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-F30 text18 CODE >314:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-F34 text18 CODE >314:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-F38 text18 CODE >314:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-F3C text18 CODE >314:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-F40 text18 CODE >314:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-F44 text18 CODE >314:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-F48 text18 CODE >314:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-F82 text18 CODE >315:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-F88 text18 CODE >316:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-F8E text18 CODE >317:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-FAE text18 CODE >317:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-FB2 text18 CODE >317:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-FB6 text18 CODE >317:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-FBA text18 CODE >317:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-FBE text18 CODE >317:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-FC2 text18 CODE >317:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-FC6 text18 CODE >317:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-FCA text18 CODE >317:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-FF2 text18 CODE >312:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-106E text18 CODE >321:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-1090 text18 CODE >322:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-1096 text18 CODE >323:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-10CC text18 CODE >327:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-10F4 text18 CODE >328:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-12CA text17 CODE >692:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-12CA text17 CODE >702:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-12EE text17 CODE >703:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-12FC text17 CODE >705:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-130E text17 CODE >706:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-1312 text17 CODE >847:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-135A text17 CODE >849:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-1368 text17 CODE >850:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-13A2 text17 CODE >852:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-13DA text17 CODE >1372:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-13FE text17 CODE >1373:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-140C text17 CODE >1374:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-1420 text17 CODE >1375:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-142C text17 CODE >1379:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-143A text17 CODE >1380:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-1446 text17 CODE >1384:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-146A text17 CODE >1385:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-147C text17 CODE >1387:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-1ED6 text16 CODE >1390:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-1ED6 text16 CODE >1395:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-1EDE text16 CODE >1396:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-1EE8 text16 CODE >1397:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-1EEC text16 CODE >1398:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-1F12 text16 CODE >1397:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-1F2E text16 CODE >1400:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-1F36 text16 CODE >1404:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
-1F96 text15 CODE >9:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\nf_sprintf.c
-1F96 text15 CODE >15:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\nf_sprintf.c
-1FA0 text15 CODE >16:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\nf_sprintf.c
-1FA8 text15 CODE >17:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\nf_sprintf.c
-1FB0 text15 CODE >18:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\nf_sprintf.c
-1FB8 text15 CODE >19:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\nf_sprintf.c
-1FD4 text15 CODE >20:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\nf_sprintf.c
-1FE6 text15 CODE >23:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\nf_sprintf.c
-1E66 text14 CODE >134:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-1E66 text14 CODE >137:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-1EC8 text14 CODE >138:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-1ED4 text14 CODE >139:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-1DF2 text13 CODE >7:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\lwdiv.c
-1DF2 text13 CODE >13:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\lwdiv.c
-1DFA text13 CODE >14:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\lwdiv.c
-1E0C text13 CODE >15:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\lwdiv.c
-1E10 text13 CODE >16:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\lwdiv.c
-1E14 text13 CODE >17:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\lwdiv.c
-1E1A text13 CODE >18:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\lwdiv.c
-1E1C text13 CODE >16:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\lwdiv.c
-1E2A text13 CODE >21:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\lwdiv.c
-1E30 text13 CODE >22:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\lwdiv.c
-1E46 text13 CODE >23:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\lwdiv.c
-1E4E text13 CODE >24:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\lwdiv.c
-1E50 text13 CODE >26:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\lwdiv.c
-1E56 text13 CODE >27:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\lwdiv.c
-1E5C text13 CODE >28:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\lwdiv.c
-1E5C text13 CODE >29:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\lwdiv.c
-1E64 text13 CODE >30:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\lwdiv.c
-2402 text12 CODE >15:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\Umul16.c
-2402 text12 CODE >37:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\Umul16.c
-240E text12 CODE >38:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\Umul16.c
-2416 text12 CODE >39:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\Umul16.c
-241E text12 CODE >52:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\Umul16.c
-2426 text12 CODE >53:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\Umul16.c
-22B2 text11 CODE >164:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-22B2 text11 CODE >166:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-22B6 text11 CODE >167:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-22E6 text11 CODE >168:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-22E8 text11 CODE >169:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-176A text10 CODE >150:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-176A text10 CODE >154:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-176A text10 CODE >155:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-17AE text10 CODE >156:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-17F2 text10 CODE >157:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-1832 text10 CODE >159:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-188A text10 CODE >162:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-1AEE text9 CODE >7:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\awdiv.c
-1AEE text9 CODE >13:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\awdiv.c
-1AF2 text9 CODE >14:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\awdiv.c
-1B00 text9 CODE >15:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\awdiv.c
-1B08 text9 CODE >16:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\awdiv.c
-1B0C text9 CODE >18:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\awdiv.c
-1B1A text9 CODE >19:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\awdiv.c
-1B22 text9 CODE >20:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\awdiv.c
-1B26 text9 CODE >22:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\awdiv.c
-1B2E text9 CODE >23:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\awdiv.c
-1B40 text9 CODE >24:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\awdiv.c
-1B44 text9 CODE >25:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\awdiv.c
-1B48 text9 CODE >26:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\awdiv.c
-1B4E text9 CODE >27:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\awdiv.c
-1B50 text9 CODE >25:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\awdiv.c
-1B5E text9 CODE >30:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\awdiv.c
-1B64 text9 CODE >31:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\awdiv.c
-1B7A text9 CODE >32:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\awdiv.c
-1B82 text9 CODE >33:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\awdiv.c
-1B84 text9 CODE >35:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\awdiv.c
-1B8A text9 CODE >36:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\awdiv.c
-1B90 text9 CODE >38:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\awdiv.c
-1BA0 text9 CODE >39:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\awdiv.c
-1BA8 text9 CODE >40:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\awdiv.c
-1BB0 text9 CODE >41:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\awdiv.c
-10F6 text8 CODE >56:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-10F6 text8 CODE >60:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-1112 text8 CODE >62:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-1170 text8 CODE >63:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-1174 text8 CODE >66:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-11BA text8 CODE >69:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-11DA text8 CODE >71:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-11F6 text8 CODE >72:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-125C text8 CODE >73:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-1260 text8 CODE >74:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-12C8 text8 CODE >76:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-1BB2 text7 CODE >119:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-1BB2 text7 CODE >121:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-1BC2 text7 CODE >122:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-1BD2 text7 CODE >123:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-1BDE text7 CODE >124:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-1BEA text7 CODE >125:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-1BEE text7 CODE >126:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-1BFA text7 CODE >127:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-1C06 text7 CODE >128:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-1C12 text7 CODE >129:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-1C1E text7 CODE >130:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-1C2C text7 CODE >125:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-1C5C text7 CODE >132:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-21AE text6 CODE >7:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-21AE text6 CODE >10:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-21B0 text6 CODE >11:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-21B2 text6 CODE >12:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-21B4 text6 CODE >13:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-21B6 text6 CODE >14:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-21B8 text6 CODE >15:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-21BA text6 CODE >16:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-21BC text6 CODE >17:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-21BE text6 CODE >20:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-21C6 text6 CODE >21:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-21CA text6 CODE >22:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-21D2 text6 CODE >25:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-21D6 text6 CODE >26:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-21D8 text6 CODE >28:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-21DE text6 CODE >29:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-21E2 text6 CODE >31:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-21E6 text6 CODE >32:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-21EA text6 CODE >34:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-21EC text6 CODE >35:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-21EE text6 CODE >36:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-188C text5 CODE >37:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-188C text5 CODE >39:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-1898 text5 CODE >40:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-18A8 text5 CODE >41:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-18BC text5 CODE >42:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-18D0 text5 CODE >43:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-18E0 text5 CODE >44:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-18F4 text5 CODE >47:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-1900 text5 CODE >48:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-1910 text5 CODE >49:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-1924 text5 CODE >50:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-1938 text5 CODE >51:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-1948 text5 CODE >52:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-195C text5 CODE >53:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-2448 text4 CODE >4:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\serial.c
-2448 text4 CODE >8:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\serial.c
-244E text4 CODE >9:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\serial.c
-2452 text4 CODE >11:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\serial.c
-2454 text4 CODE >12:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\serial.c
-2456 text4 CODE >13:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\serial.c
-245A text4 CODE >15:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\serial.c
-245E text4 CODE >17:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\serial.c
-2460 text4 CODE >18:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\serial.c
-2462 text4 CODE >19:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\serial.c
-2464 text4 CODE >20:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\serial.c
-1D02 text3 CODE >105:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-1D02 text3 CODE >107:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-1D12 text3 CODE >108:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-1D22 text3 CODE >109:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-1D26 text3 CODE >110:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-1D32 text3 CODE >111:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-1D3E text3 CODE >112:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-1D4A text3 CODE >113:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-1D56 text3 CODE >114:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-1D64 text3 CODE >109:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-1D7C text3 CODE >116:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-2232 text2 CODE >177:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-2234 text2 CODE >179:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-2270 text2 CODE >180:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-1C5E text1 CODE >79:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-1C5E text1 CODE >81:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-1C62 text1 CODE >82:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-1C86 text1 CODE >83:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-1CAA text1 CODE >84:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-1CB6 text1 CODE >85:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-1CC2 text1 CODE >86:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-1CD0 text1 CODE >81:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-1D00 text1 CODE >88:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
-1D7E text0 CODE >30:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
-1D7E text0 CODE >31:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
-1D82 text0 CODE >32:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
-1D86 text0 CODE >33:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
-1D92 text0 CODE >35:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
-1D96 text0 CODE >40:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
-1DAA text0 CODE >42:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
-1DAC text0 CODE >43:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
-1DAE text0 CODE >45:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
-1DB0 text0 CODE >46:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
-1DB2 text0 CODE >47:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
-1DB4 text0 CODE >48:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
-1DB6 text0 CODE >49:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
-1DB8 text0 CODE >50:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
-1DBA text0 CODE >52:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
-1DBA text0 CODE >56:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
-1DC6 text0 CODE >57:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
-1DD2 text0 CODE >58:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
-216C cinit CODE >9550:C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2vlg.s
-216C cinit CODE >9552:C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2vlg.s
-216C cinit CODE >9555:C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2vlg.s
-216C cinit CODE >9608:C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2vlg.s
-216E cinit CODE >9609:C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2vlg.s
-2170 cinit CODE >9610:C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2vlg.s
-2172 cinit CODE >9611:C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2vlg.s
-2174 cinit CODE >9612:C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2vlg.s
-2176 cinit CODE >9613:C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2vlg.s
-2178 cinit CODE >9614:C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2vlg.s
-217A cinit CODE >9615:C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2vlg.s
-217E cinit CODE >9619:C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2vlg.s
-2182 cinit CODE >9620:C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2vlg.s
-2184 cinit CODE >9621:C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2vlg.s
-2184 cinit CODE >9622:C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2vlg.s
-2186 cinit CODE >9623:C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2vlg.s
-2188 cinit CODE >9624:C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2vlg.s
-218A cinit CODE >9627:C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2vlg.s
-218C cinit CODE >9628:C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2vlg.s
-218E cinit CODE >9629:C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2vlg.s
-2190 cinit CODE >9630:C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2vlg.s
-2192 cinit CODE >9631:C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2vlg.s
-2194 cinit CODE >9632:C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2vlg.s
-2196 cinit CODE >9633:C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2vlg.s
-2198 cinit CODE >9636:C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2vlg.s
-219A cinit CODE >9637:C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2vlg.s
-219C cinit CODE >9638:C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2vlg.s
-219E cinit CODE >9639:C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2vlg.s
-21A0 cinit CODE >9645:C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2vlg.s
-21A0 cinit CODE >9648:C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2vlg.s
-21A2 cinit CODE >9649:C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2vlg.s
-21A4 cinit CODE >9650:C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2vlg.s
-21A6 cinit CODE >9651:C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2vlg.s
-21A8 cinit CODE >9652:C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2vlg.s
-21AA cinit CODE >9653:C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2vlg.s
+1FB4 text37 CODE >22:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
+1FB4 text37 CODE >24:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
+1FDA text37 CODE >25:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
+1D50 text36 CODE >51:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
+1D52 text36 CODE >54:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
+1D56 text36 CODE >55:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
+1D5A text36 CODE >56:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
+1D5E text36 CODE >57:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
+1D62 text36 CODE >58:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
+1D66 text36 CODE >59:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
+1D8C text36 CODE >60:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
+1D8E text36 CODE >61:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
+1D90 text36 CODE >62:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
+2052 text35 CODE >33:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
+2052 text35 CODE >35:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
+2056 text35 CODE >36:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
+205A text35 CODE >37:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
+2048 text34 CODE >27:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
+2048 text34 CODE >29:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
+204C text34 CODE >30:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
+2050 text34 CODE >31:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
+203E text33 CODE >39:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
+203E text33 CODE >41:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
+2042 text33 CODE >42:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
+2046 text33 CODE >43:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
+2032 text32 CODE >45:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
+2034 text32 CODE >47:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
+2038 text32 CODE >48:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
+203C text32 CODE >49:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
+1C7A text31 CODE >47:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1C7A text31 CODE >50:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1C7E text31 CODE >51:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1C84 text31 CODE >52:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1C8A text31 CODE >53:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1C8E text31 CODE >54:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1C94 text31 CODE >55:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1CA2 text31 CODE >56:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1CBC text31 CODE >57:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1CC0 text31 CODE >58:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1CC8 text31 CODE >59:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1C2A text30 CODE >75:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1C2A text30 CODE >78:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1C2E text30 CODE >79:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1C34 text30 CODE >80:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1C3A text30 CODE >81:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1C3E text30 CODE >82:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1C44 text30 CODE >83:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1C52 text30 CODE >84:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1C6C text30 CODE >85:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1C70 text30 CODE >86:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1C78 text30 CODE >87:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1BDA text29 CODE >61:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1BDA text29 CODE >64:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1BDE text29 CODE >65:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1BE4 text29 CODE >66:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1BEA text29 CODE >67:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1BEE text29 CODE >68:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1BF4 text29 CODE >69:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1C02 text29 CODE >70:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1C1C text29 CODE >71:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1C20 text29 CODE >72:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1C28 text29 CODE >73:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1B8A text28 CODE >33:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1B8A text28 CODE >36:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1B8E text28 CODE >37:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1B94 text28 CODE >38:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1B9A text28 CODE >39:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1B9E text28 CODE >40:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1BA4 text28 CODE >41:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1BB2 text28 CODE >42:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1BCC text28 CODE >43:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1BD0 text28 CODE >44:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1BD8 text28 CODE >45:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1ADA text27 CODE >89:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1ADA text27 CODE >91:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1AEE text27 CODE >92:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1B06 text27 CODE >93:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1B1E text27 CODE >94:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1B36 text27 CODE >96:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1F5E text26 CODE >116:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1F5E text26 CODE >118:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1F60 text26 CODE >119:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1F62 text26 CODE >120:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1F64 text26 CODE >121:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1F7C text26 CODE >122:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1F88 text26 CODE >123:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1F32 text25 CODE >107:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1F32 text25 CODE >109:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1F34 text25 CODE >110:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1F36 text25 CODE >111:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1F38 text25 CODE >112:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1F50 text25 CODE >113:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1F5C text25 CODE >114:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1F06 text24 CODE >125:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1F06 text24 CODE >127:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1F08 text24 CODE >128:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1F0A text24 CODE >129:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1F0C text24 CODE >130:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1F24 text24 CODE >131:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1F30 text24 CODE >132:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1EDA text23 CODE >98:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1EDA text23 CODE >100:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1EDC text23 CODE >101:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1EDE text23 CODE >102:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1EE0 text23 CODE >103:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1EF8 text23 CODE >104:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1F04 text23 CODE >105:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1F8A text22 CODE >4:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
+1F8A text22 CODE >7:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
+1F94 text22 CODE >8:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
+1F96 text22 CODE >9:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
+1F9A text22 CODE >12:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
+1F9C text22 CODE >13:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
+1F9E text22 CODE >14:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
+1FA0 text22 CODE >15:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
+1FA2 text22 CODE >16:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
+1FA6 text22 CODE >17:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
+1FAA text22 CODE >18:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
+1FAE text22 CODE >19:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
+1FB2 text22 CODE >20:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
+1FDC text21 CODE >25:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1FDE text21 CODE >26:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1FE2 text21 CODE >27:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1FE8 text21 CODE >28:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1FF0 text21 CODE >29:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1FF6 text21 CODE >30:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1FFA text21 CODE >31:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1E48 text20 CODE >9:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1E48 text20 CODE >12:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1E4C text20 CODE >15:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1E56 text20 CODE >16:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1E66 text20 CODE >19:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1E70 text20 CODE >22:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1E7A text20 CODE >23:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+201A text19 CODE >29:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\serial.c
+201C text19 CODE >30:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\serial.c
+202C text19 CODE >31:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\serial.c
+2030 text19 CODE >32:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\serial.c
+1E7C text18 CODE >36:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\serial.c
+1E7C text18 CODE >38:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\serial.c
+1E80 text18 CODE >39:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\serial.c
+1E92 text18 CODE >38:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\serial.c
+1EAA text18 CODE >40:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\serial.c
+14BA text17 CODE >9:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aodiv.c
+14BA text17 CODE >15:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aodiv.c
+14BE text17 CODE >16:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aodiv.c
+14CC text17 CODE >17:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aodiv.c
+14EC text17 CODE >18:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aodiv.c
+14F0 text17 CODE >20:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aodiv.c
+14FE text17 CODE >21:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aodiv.c
+151E text17 CODE >22:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aodiv.c
+1522 text17 CODE >24:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aodiv.c
+152E text17 CODE >25:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aodiv.c
+154C text17 CODE >26:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aodiv.c
+1550 text17 CODE >27:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aodiv.c
+1554 text17 CODE >28:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aodiv.c
+1566 text17 CODE >29:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aodiv.c
+1568 text17 CODE >27:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aodiv.c
+1576 text17 CODE >32:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aodiv.c
+1588 text17 CODE >33:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aodiv.c
+15B6 text17 CODE >34:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aodiv.c
+15D6 text17 CODE >35:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aodiv.c
+15D8 text17 CODE >37:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aodiv.c
+15EA text17 CODE >38:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aodiv.c
+15F0 text17 CODE >40:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aodiv.c
+1600 text17 CODE >41:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aodiv.c
+1620 text17 CODE >42:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aodiv.c
+1640 text17 CODE >43:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aodiv.c
+1642 text16 CODE >9:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aomod.c
+1642 text16 CODE >14:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aomod.c
+1646 text16 CODE >15:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aomod.c
+1654 text16 CODE >16:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aomod.c
+1674 text16 CODE >17:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aomod.c
+1678 text16 CODE >19:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aomod.c
+1686 text16 CODE >20:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aomod.c
+16A6 text16 CODE >21:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aomod.c
+16C4 text16 CODE >22:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aomod.c
+16C8 text16 CODE >23:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aomod.c
+16CC text16 CODE >24:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aomod.c
+16DE text16 CODE >25:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aomod.c
+16E0 text16 CODE >23:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aomod.c
+16EE text16 CODE >28:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aomod.c
+171C text16 CODE >29:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aomod.c
+173C text16 CODE >30:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aomod.c
+174E text16 CODE >31:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aomod.c
+1754 text16 CODE >33:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aomod.c
+1764 text16 CODE >34:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aomod.c
+1784 text16 CODE >35:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aomod.c
+17A4 text16 CODE >36:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aomod.c
+1DD2 text15 CODE >1:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\abs.c
+1DD2 text15 CODE >3:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\abs.c
+1E10 text15 CODE >4:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\abs.c
+205C text14 CODE >7:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\putch.c
+205C text14 CODE >9:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\putch.c
+1878 text13 CODE >8:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\nf_fputc.c
+1878 text13 CODE >12:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\nf_fputc.c
+189C text13 CODE >13:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\nf_fputc.c
+18A2 text13 CODE >14:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\nf_fputc.c
+18A6 text13 CODE >15:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\nf_fputc.c
+18FA text13 CODE >18:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\nf_fputc.c
+192E text13 CODE >20:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\nf_fputc.c
+1940 text13 CODE >24:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\nf_fputc.c
+1CCA text12 CODE >8:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\nf_fputs.c
+1CCA text12 CODE >13:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\nf_fputs.c
+1CD2 text12 CODE >14:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\nf_fputs.c
+1CD6 text12 CODE >15:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\nf_fputs.c
+1CE8 text12 CODE >16:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\nf_fputs.c
+1CEC text12 CODE >14:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\nf_fputs.c
+1D0C text12 CODE >19:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\nf_fputs.c
+1E12 text11 CODE >5:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\strlen.c
+1E12 text11 CODE >7:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\strlen.c
+1E1A text11 CODE >8:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\strlen.c
+1E1E text11 CODE >9:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\strlen.c
+1E22 text11 CODE >8:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\strlen.c
+1E3A text11 CODE >11:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\strlen.c
+1E46 text11 CODE >12:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\strlen.c
+1942 text10 CODE >72:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+1942 text10 CODE >77:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+1952 text10 CODE >78:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+1966 text10 CODE >82:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+1988 text10 CODE >83:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+1990 text10 CODE >84:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+1994 text10 CODE >85:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+19A8 text10 CODE >86:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+19AC text10 CODE >84:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+19CA text10 CODE >90:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+19DA text10 CODE >91:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+19EE text10 CODE >94:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+1A06 text10 CODE >95:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+E12 text9 CODE >287:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+E12 text9 CODE >293:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+E32 text9 CODE >294:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+E48 text9 CODE >295:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+E5A text9 CODE >296:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+E7A text9 CODE >300:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+E8A text9 CODE >301:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+E8C text9 CODE >303:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+EBA text9 CODE >304:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+EC2 text9 CODE >305:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+EE2 text9 CODE >306:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+EE8 text9 CODE >310:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+EF0 text9 CODE >311:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+EF6 text9 CODE >312:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+EFA text9 CODE >313:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+F00 text9 CODE >314:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+F2C text9 CODE >314:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+F30 text9 CODE >314:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+F34 text9 CODE >314:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+F38 text9 CODE >314:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+F3C text9 CODE >314:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+F40 text9 CODE >314:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+F44 text9 CODE >314:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+F48 text9 CODE >314:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+F82 text9 CODE >315:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+F88 text9 CODE >316:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+F8E text9 CODE >317:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+FAE text9 CODE >317:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+FB2 text9 CODE >317:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+FB6 text9 CODE >317:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+FBA text9 CODE >317:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+FBE text9 CODE >317:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+FC2 text9 CODE >317:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+FC6 text9 CODE >317:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+FCA text9 CODE >317:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+FF2 text9 CODE >312:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+106E text9 CODE >321:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+1090 text9 CODE >322:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+1096 text9 CODE >323:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+10CC text9 CODE >327:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+10F4 text9 CODE >328:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+1306 text8 CODE >692:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+1306 text8 CODE >702:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+132A text8 CODE >703:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+1338 text8 CODE >705:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+134A text8 CODE >706:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+134E text8 CODE >847:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+1396 text8 CODE >849:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+13A4 text8 CODE >850:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+13DE text8 CODE >852:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+1416 text8 CODE >1372:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+143A text8 CODE >1373:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+1448 text8 CODE >1374:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+145C text8 CODE >1375:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+1468 text8 CODE >1379:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+1476 text8 CODE >1380:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+1482 text8 CODE >1384:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+14A6 text8 CODE >1385:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+14B8 text8 CODE >1387:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+1A78 text7 CODE >1390:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+1A78 text7 CODE >1395:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+1A80 text7 CODE >1396:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+1A8A text7 CODE >1397:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+1A8E text7 CODE >1398:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+1AB4 text7 CODE >1397:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+1AD0 text7 CODE >1400:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+1AD8 text7 CODE >1404:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
+1B38 text6 CODE >9:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\nf_sprintf.c
+1B38 text6 CODE >15:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\nf_sprintf.c
+1B42 text6 CODE >16:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\nf_sprintf.c
+1B4A text6 CODE >17:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\nf_sprintf.c
+1B52 text6 CODE >18:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\nf_sprintf.c
+1B5A text6 CODE >19:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\nf_sprintf.c
+1B76 text6 CODE >20:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\nf_sprintf.c
+1B88 text6 CODE >23:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\nf_sprintf.c
+1A08 text5 CODE >134:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1A08 text5 CODE >137:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1A6A text5 CODE >138:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1A76 text5 CODE >139:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1EAC text4 CODE >141:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1EB0 text4 CODE >144:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1ECC text4 CODE >145:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1ED8 text4 CODE >146:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+1D0E text3 CODE >7:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
+1D0E text3 CODE >10:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
+1D10 text3 CODE >11:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
+1D12 text3 CODE >12:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
+1D14 text3 CODE >13:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
+1D16 text3 CODE >14:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
+1D18 text3 CODE >15:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
+1D1A text3 CODE >16:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
+1D1C text3 CODE >17:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
+1D1E text3 CODE >20:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
+1D26 text3 CODE >21:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
+1D2A text3 CODE >22:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
+1D32 text3 CODE >25:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
+1D36 text3 CODE >26:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
+1D38 text3 CODE >28:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
+1D3E text3 CODE >29:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
+1D42 text3 CODE >31:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
+1D46 text3 CODE >32:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
+1D4A text3 CODE >34:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
+1D4C text3 CODE >35:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
+1D4E text3 CODE >36:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
+17A6 text2 CODE >37:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
+17A6 text2 CODE >39:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
+17B2 text2 CODE >40:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
+17C2 text2 CODE >41:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
+17D6 text2 CODE >42:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
+17EA text2 CODE >43:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
+17FA text2 CODE >44:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
+180E text2 CODE >47:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
+181A text2 CODE >48:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
+182A text2 CODE >49:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
+183E text2 CODE >50:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
+1852 text2 CODE >51:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
+1862 text2 CODE >52:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
+1876 text2 CODE >53:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
+1FFC text1 CODE >4:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\serial.c
+1FFC text1 CODE >8:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\serial.c
+2002 text1 CODE >9:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\serial.c
+2006 text1 CODE >11:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\serial.c
+2008 text1 CODE >12:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\serial.c
+200A text1 CODE >13:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\serial.c
+200E text1 CODE >15:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\serial.c
+2012 text1 CODE >17:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\serial.c
+2014 text1 CODE >18:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\serial.c
+2016 text1 CODE >19:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\serial.c
+2018 text1 CODE >20:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\serial.c
+10F6 text0 CODE >30:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
+10F6 text0 CODE >31:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
+10FA text0 CODE >32:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
+10FE text0 CODE >33:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
+110A text0 CODE >35:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
+110E text0 CODE >40:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
+1122 text0 CODE >42:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
+1124 text0 CODE >43:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
+1126 text0 CODE >45:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
+1128 text0 CODE >46:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
+112A text0 CODE >47:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
+112C text0 CODE >48:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
+112E text0 CODE >49:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
+1130 text0 CODE >50:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
+1132 text0 CODE >52:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
+1132 text0 CODE >53:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
+1138 text0 CODE >55:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
+1138 text0 CODE >56:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
+1138 text0 CODE >57:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
+1138 text0 CODE >58:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
+1138 text0 CODE >60:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
+1154 text0 CODE >65:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
+115C text0 CODE >66:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
+1168 text0 CODE >67:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
+1174 text0 CODE >68:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
+118C text0 CODE >69:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
+11AE text0 CODE >70:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
+11B4 text0 CODE >71:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
+11BE text0 CODE >72:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
+11CA text0 CODE >73:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
+11D6 text0 CODE >74:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
+11EE text0 CODE >75:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
+1210 text0 CODE >76:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
+1216 text0 CODE >77:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
+1220 text0 CODE >78:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
+122C text0 CODE >79:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
+1238 text0 CODE >80:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
+1250 text0 CODE >81:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
+1272 text0 CODE >82:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
+1278 text0 CODE >83:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
+1282 text0 CODE >84:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
+128E text0 CODE >85:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
+129A text0 CODE >86:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
+12B2 text0 CODE >87:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
+12D4 text0 CODE >88:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
+12DA text0 CODE >89:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
+12E0 text0 CODE >90:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
+12EC text0 CODE >64:C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
+1D92 cinit CODE >9546:C:\Users\KANGAN~1\AppData\Local\Temp\xcAscek.s
+1D92 cinit CODE >9548:C:\Users\KANGAN~1\AppData\Local\Temp\xcAscek.s
+1D92 cinit CODE >9551:C:\Users\KANGAN~1\AppData\Local\Temp\xcAscek.s
+1D92 cinit CODE >9604:C:\Users\KANGAN~1\AppData\Local\Temp\xcAscek.s
+1D94 cinit CODE >9605:C:\Users\KANGAN~1\AppData\Local\Temp\xcAscek.s
+1D96 cinit CODE >9606:C:\Users\KANGAN~1\AppData\Local\Temp\xcAscek.s
+1D98 cinit CODE >9607:C:\Users\KANGAN~1\AppData\Local\Temp\xcAscek.s
+1D9A cinit CODE >9608:C:\Users\KANGAN~1\AppData\Local\Temp\xcAscek.s
+1D9C cinit CODE >9609:C:\Users\KANGAN~1\AppData\Local\Temp\xcAscek.s
+1D9E cinit CODE >9610:C:\Users\KANGAN~1\AppData\Local\Temp\xcAscek.s
+1DA0 cinit CODE >9611:C:\Users\KANGAN~1\AppData\Local\Temp\xcAscek.s
+1DA4 cinit CODE >9615:C:\Users\KANGAN~1\AppData\Local\Temp\xcAscek.s
+1DA8 cinit CODE >9616:C:\Users\KANGAN~1\AppData\Local\Temp\xcAscek.s
+1DAA cinit CODE >9617:C:\Users\KANGAN~1\AppData\Local\Temp\xcAscek.s
+1DAA cinit CODE >9618:C:\Users\KANGAN~1\AppData\Local\Temp\xcAscek.s
+1DAC cinit CODE >9619:C:\Users\KANGAN~1\AppData\Local\Temp\xcAscek.s
+1DAE cinit CODE >9620:C:\Users\KANGAN~1\AppData\Local\Temp\xcAscek.s
+1DB0 cinit CODE >9623:C:\Users\KANGAN~1\AppData\Local\Temp\xcAscek.s
+1DB4 cinit CODE >9624:C:\Users\KANGAN~1\AppData\Local\Temp\xcAscek.s
+1DB6 cinit CODE >9625:C:\Users\KANGAN~1\AppData\Local\Temp\xcAscek.s
+1DB6 cinit CODE >9626:C:\Users\KANGAN~1\AppData\Local\Temp\xcAscek.s
+1DB8 cinit CODE >9627:C:\Users\KANGAN~1\AppData\Local\Temp\xcAscek.s
+1DBA cinit CODE >9628:C:\Users\KANGAN~1\AppData\Local\Temp\xcAscek.s
+1DBC cinit CODE >9631:C:\Users\KANGAN~1\AppData\Local\Temp\xcAscek.s
+1DBE cinit CODE >9632:C:\Users\KANGAN~1\AppData\Local\Temp\xcAscek.s
+1DC0 cinit CODE >9633:C:\Users\KANGAN~1\AppData\Local\Temp\xcAscek.s
+1DC2 cinit CODE >9634:C:\Users\KANGAN~1\AppData\Local\Temp\xcAscek.s
+1DC4 cinit CODE >9640:C:\Users\KANGAN~1\AppData\Local\Temp\xcAscek.s
+1DC4 cinit CODE >9643:C:\Users\KANGAN~1\AppData\Local\Temp\xcAscek.s
+1DC6 cinit CODE >9644:C:\Users\KANGAN~1\AppData\Local\Temp\xcAscek.s
+1DC8 cinit CODE >9645:C:\Users\KANGAN~1\AppData\Local\Temp\xcAscek.s
+1DCA cinit CODE >9646:C:\Users\KANGAN~1\AppData\Local\Temp\xcAscek.s
+1DCC cinit CODE >9647:C:\Users\KANGAN~1\AppData\Local\Temp\xcAscek.s
+1DCE cinit CODE >9648:C:\Users\KANGAN~1\AppData\Local\Temp\xcAscek.s
 # %SYMTAB Section
 # An enumeration of all symbols in the program.
 # The beginning of the section is indicated by %SYMTAB.
@@ -621,106 +566,91 @@ FF2 text18 CODE >312:C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common
 # was defined in a psect then <psect> will be "-". File-name
 # is the name of the object file in which the symbol was defined.
 %SYMTAB
-___awdiv@counter 12 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
-detect_color_C@RG_ratio 10 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 __LdataBANK0 0 0 ABS 0 dataBANK0 dist/default/production\final-project-kangan-yuhai.X.production.o
 __Lmediumconst 0 0 MEDIUMCONST 0 mediumconst dist/default/production\final-project-kangan-yuhai.X.production.o
-__Hspace_0 24AB 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
-__Hspace_1 172 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
+__Hspace_0 205F 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
+__Hspace_1 181 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
 __Hspace_2 0 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
 __Hspace_4 60000C 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
 color_writetoaddr@address 4 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 __HidataBANK0 0 0 ABS 0 idataBANK0 dist/default/production\final-project-kangan-yuhai.X.production.o
-_sendCharSerial4 2466 0 CODE 0 text28 dist/default/production\final-project-kangan-yuhai.X.production.o
+_sendCharSerial4 201A 0 CODE 0 text19 dist/default/production\final-project-kangan-yuhai.X.production.o
 _PWM6DCH FA3 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
 _PWM7DCH FA0 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
 __Hibigdata 0 0 CODE 0 ibigdata dist/default/production\final-project-kangan-yuhai.X.production.o
-__mediumconst 0 0 MEDIUMCONST 0 mediumconst C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2vlg.o
+__mediumconst 0 0 MEDIUMCONST 0 mediumconst C:\Users\KANGAN~1\AppData\Local\Temp\xcAscek.o
 __Heeprom_data 0 0 EEDATA 0 eeprom_data dist/default/production\final-project-kangan-yuhai.X.production.o
-_initDCmotors_parameter 188C 0 CODE 0 text5 dist/default/production\final-project-kangan-yuhai.X.production.o
-setMotorPWM@m 16 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
+_initDCmotors_parameter 17A6 0 CODE 0 text2 dist/default/production\final-project-kangan-yuhai.X.production.o
 ?_abs 13 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 ?_pad 11 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
+main@i 15D 0 BANK1 1 cstackBANK1 dist/default/production\final-project-kangan-yuhai.X.production.o
+main@j 15F 0 BANK1 1 cstackBANK1 dist/default/production\final-project-kangan-yuhai.X.production.o
+main@k 161 0 BANK1 1 cstackBANK1 dist/default/production\final-project-kangan-yuhai.X.production.o
+main@x 163 0 BANK1 1 cstackBANK1 dist/default/production\final-project-kangan-yuhai.X.production.o
 ?_vfprintf 50 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 __Lsmallconst E00 0 SMALLCONST 0 smallconst dist/default/production\final-project-kangan-yuhai.X.production.o
 _LATE F7D 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
 _LATG F7F 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
 _T2PR FBC 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
-___sp 0 0 STACK 2 stack C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2vlg.o
-_dbuf 152 0 BANK1 1 bssBANK1 dist/default/production\final-project-kangan-yuhai.X.production.o
-_dtoa E12 0 CODE 0 text18 dist/default/production\final-project-kangan-yuhai.X.production.o
-_main 1D7E 0 CODE 0 text0 dist/default/production\final-project-kangan-yuhai.X.production.o
-_nout 150 0 BANK1 1 bssBANK1 dist/default/production\final-project-kangan-yuhai.X.production.o
-_prec FB 0 BANK0 1 bssBANK0 dist/default/production\final-project-kangan-yuhai.X.production.o
-_stop 1C5E 0 CODE 0 text1 dist/default/production\final-project-kangan-yuhai.X.production.o
+___sp 0 0 STACK 2 stack C:\Users\KANGAN~1\AppData\Local\Temp\xcAscek.o
+_dbuf 13C 0 BANK1 1 bssBANK1 dist/default/production\final-project-kangan-yuhai.X.production.o
+_dtoa E12 0 CODE 0 text9 dist/default/production\final-project-kangan-yuhai.X.production.o
+_main 10F6 0 CODE 0 text0 dist/default/production\final-project-kangan-yuhai.X.production.o
+_nout F2 0 BANK0 1 bssBANK0 dist/default/production\final-project-kangan-yuhai.X.production.o
+_prec F6 0 BANK0 1 bssBANK0 dist/default/production\final-project-kangan-yuhai.X.production.o
 abs@a 13 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 pad@i 18 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 pad@p 15 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 pad@w 1A 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
-start 0 0 CODE 0 init C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2vlg.o
+start 0 0 CODE 0 init C:\Users\KANGAN~1\AppData\Local\Temp\xcAscek.o
 color_display@m 58 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 ___aomod@counter 11 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 __HbssCOMRAM 0 0 ABS 0 bssCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 pad@fp 11 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
-?___wmul 8 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
-movement@mL 26 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
-movement@mR 28 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 _RxBufReadCnt 5E 0 COMRAM 1 bssCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
+main@complete 15C 0 BANK1 1 cstackBANK1 dist/default/production\final-project-kangan-yuhai.X.production.o
 __LidataBANK0 0 0 ABS 0 idataBANK0 dist/default/production\final-project-kangan-yuhai.X.production.o
 color_read_Green@tmp A 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 __Hpowerup 0 0 CODE 0 powerup dist/default/production\final-project-kangan-yuhai.X.production.o
-__end_of_vfpfcnvrt 147E 0 CODE 0 text17 dist/default/production\final-project-kangan-yuhai.X.production.o
-__accesstop 60 0 ABS 0 - C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2vlg.o
-intlevel0 0 0 CODE 0 text C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2vlg.o
-intlevel1 0 0 CODE 0 text C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2vlg.o
-intlevel2 0 0 CODE 0 text C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2vlg.o
-intlevel3 0 0 CODE 0 text C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2vlg.o
+__end_of_vfpfcnvrt 14BA 0 CODE 0 text8 dist/default/production\final-project-kangan-yuhai.X.production.o
+color_predict@color DD 0 BANK0 1 cstackBANK0 dist/default/production\final-project-kangan-yuhai.X.production.o
+__accesstop 60 0 ABS 0 - C:\Users\KANGAN~1\AppData\Local\Temp\xcAscek.o
+intlevel0 0 0 CODE 0 text C:\Users\KANGAN~1\AppData\Local\Temp\xcAscek.o
+intlevel1 0 0 CODE 0 text C:\Users\KANGAN~1\AppData\Local\Temp\xcAscek.o
+intlevel2 0 0 CODE 0 text C:\Users\KANGAN~1\AppData\Local\Temp\xcAscek.o
+intlevel3 0 0 CODE 0 text C:\Users\KANGAN~1\AppData\Local\Temp\xcAscek.o
 __LbssCOMRAM 0 0 ABS 0 bssCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 __LnvFARRAM 0 0 FARRAM 0 nvFARRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 __Hifardata 0 0 CODE 0 ifardata dist/default/production\final-project-kangan-yuhai.X.production.o
-compare@value2compare 1 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
-___awdiv@sign 13 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 __Hclrtext 0 0 ABS 0 clrtext dist/default/production\final-project-kangan-yuhai.X.production.o
-_vfpfcnvrt 12CA 0 CODE 0 text17 dist/default/production\final-project-kangan-yuhai.X.production.o
+_vfpfcnvrt 1306 0 CODE 0 text8 dist/default/production\final-project-kangan-yuhai.X.production.o
 dtoa@fp 1C 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
-___wmul@multiplicand A 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 _ADRESH F64 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
-___awdiv@dividend E 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
-___inthi_sp 0 0 STACK 2 stack C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2vlg.o
-___intlo_sp 0 0 STACK 2 stack C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2vlg.o
+___inthi_sp 0 0 STACK 2 stack C:\Users\KANGAN~1\AppData\Local\Temp\xcAscek.o
+___intlo_sp 0 0 STACK 2 stack C:\Users\KANGAN~1\AppData\Local\Temp\xcAscek.o
 I2C_2_Master_Read@ack 3 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 I2C_2_Master_Read@tmp 4 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 color_writetoaddr@value 3 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 __Hintcode_body 0 0 ABS 0 intcode_body dist/default/production\final-project-kangan-yuhai.X.production.o
-__end_of___wmul 2428 0 CODE 0 text12 dist/default/production\final-project-kangan-yuhai.X.production.o
-compare@lower 5 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 _TxBufWriteCnt 5D 0 COMRAM 1 bssCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
-compare@upper 3 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 __Lintsave_regs 0 0 BIGRAM 1 intsave_regs dist/default/production\final-project-kangan-yuhai.X.production.o
-main@rgb DD 0 BANK0 1 cstackBANK0 dist/default/production\final-project-kangan-yuhai.X.production.o
+main@rgb 179 0 BANK1 1 cstackBANK1 dist/default/production\final-project-kangan-yuhai.X.production.o
 __Hmediumconst 0 0 MEDIUMCONST 0 mediumconst dist/default/production\final-project-kangan-yuhai.X.production.o
 _PWM7CONbits FA1 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
 color_read_Blue@tmp A 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 __Hintcodelo 0 0 CODE 0 intcodelo dist/default/production\final-project-kangan-yuhai.X.production.o
-_movement 2232 0 CODE 0 text2 dist/default/production\final-project-kangan-yuhai.X.production.o
-___awdiv@divisor 10 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
-__end_of___aodiv 1606 0 CODE 0 text26 dist/default/production\final-project-kangan-yuhai.X.production.o
-__end_of___aomod 176A 0 CODE 0 text25 dist/default/production\final-project-kangan-yuhai.X.production.o
-__end_of___awdiv 1BB2 0 CODE 0 text9 dist/default/production\final-project-kangan-yuhai.X.production.o
-__end_of___lwdiv 1E66 0 CODE 0 text13 dist/default/production\final-project-kangan-yuhai.X.production.o
+__end_of___aodiv 1642 0 CODE 0 text17 dist/default/production\final-project-kangan-yuhai.X.production.o
+__end_of___aomod 17A6 0 CODE 0 text16 dist/default/production\final-project-kangan-yuhai.X.production.o
+_color_predict 1EAC 0 CODE 0 text4 dist/default/production\final-project-kangan-yuhai.X.production.o
 ___aodiv@quotient 13 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 ?_strlen 1 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
-_detect_color_C 176A 0 CODE 0 text10 dist/default/production\final-project-kangan-yuhai.X.production.o
-__end_of_movement 2272 0 CODE 0 text2 dist/default/production\final-project-kangan-yuhai.X.production.o
 ___aomod@dividend 1 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
-___lwdiv@quotient 5 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 __Lintcodelo 0 0 CODE 0 intcodelo dist/default/production\final-project-kangan-yuhai.X.production.o
 ___aomod@divisor 9 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 _SSP2CON1bits ED9 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
-start_initialization 216C 0 CODE 0 cinit dist/default/production\final-project-kangan-yuhai.X.production.o
+start_initialization 1D92 0 CODE 0 cinit dist/default/production\final-project-kangan-yuhai.X.production.o
 _SSP2CON2bits EDA 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
 _PWM6CONbits FA4 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
-_setMotorPWM 10F6 0 CODE 0 text8 dist/default/production\final-project-kangan-yuhai.X.production.o
 __HnvFARRAM 0 0 FARRAM 0 nvFARRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 _TRISAbits F81 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
 _TRISCbits F83 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
@@ -728,7 +658,7 @@ _TRISDbits F84 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.pr
 _TRISEbits F85 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
 _TRISFbits F86 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
 _TRISGbits F87 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
-__end_of_initDCmotors_parameter 195E 0 CODE 0 text5 dist/default/production\final-project-kangan-yuhai.X.production.o
+__end_of_initDCmotors_parameter 1878 0 CODE 0 text2 dist/default/production\final-project-kangan-yuhai.X.production.o
 ___rparam_used 1 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
 _RC0PPS E62 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
 _RC4REG EE3 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
@@ -739,12 +669,12 @@ _RE2PPS E74 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.produ
 _ADREFbits F58 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
 _RX4PPS E15 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
 __pcstackBANK0 60 0 BANK0 1 cstackBANK0 dist/default/production\final-project-kangan-yuhai.X.production.o
-__end_of_I2C_2_Master_Start 249E 0 CODE 0 text40 dist/default/production\final-project-kangan-yuhai.X.production.o
-__end_of_I2C_2_Master_Write 248A 0 CODE 0 text38 dist/default/production\final-project-kangan-yuhai.X.production.o
+__pcstackBANK1 15C 0 BANK1 1 cstackBANK1 dist/default/production\final-project-kangan-yuhai.X.production.o
+__end_of_I2C_2_Master_Start 2052 0 CODE 0 text34 dist/default/production\final-project-kangan-yuhai.X.production.o
+__end_of_I2C_2_Master_Write 203E 0 CODE 0 text32 dist/default/production\final-project-kangan-yuhai.X.production.o
 _TX4REG EE4 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
 I2C_2_Master_Write@data_byte 2 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
-isa$xinst 0 0 ABS 0 - C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2vlg.o
-__end_of_detect_color_C 188C 0 CODE 0 text10 dist/default/production\final-project-kangan-yuhai.X.production.o
+isa$xinst 0 0 ABS 0 - C:\Users\KANGAN~1\AppData\Local\Temp\xcAscek.o
 fputc@fp 3 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 fputs@fp C 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 __Hbank0 0 0 ABS 0 bank0 dist/default/production\final-project-kangan-yuhai.X.production.o
@@ -759,12 +689,12 @@ __Hbank8 0 0 ABS 0 bank8 dist/default/production\final-project-kangan-yuhai.X.pr
 __Hbank9 0 0 ABS 0 bank9 dist/default/production\final-project-kangan-yuhai.X.production.o
 __Hcinit 0 0 ABS 0 cinit dist/default/production\final-project-kangan-yuhai.X.production.o
 __Hconst 0 0 CONST 0 const dist/default/production\final-project-kangan-yuhai.X.production.o
-__end_of_strlen 2320 0 CODE 0 text20 dist/default/production\final-project-kangan-yuhai.X.production.o
+__end_of_strlen 1E48 0 CODE 0 text11 dist/default/production\final-project-kangan-yuhai.X.production.o
 __Hidata 0 0 CODE 0 idata dist/default/production\final-project-kangan-yuhai.X.production.o
 __Hidloc 200010 0 IDLOC 5 idloc dist/default/production\final-project-kangan-yuhai.X.production.o
-_color_read_Clear 2088 0 CODE 0 text36 dist/default/production\final-project-kangan-yuhai.X.production.o
+_color_read_Clear 1C2A 0 CODE 0 text30 dist/default/production\final-project-kangan-yuhai.X.production.o
 __Hnvbit 0 0 COMRAM 1 nvbit dist/default/production\final-project-kangan-yuhai.X.production.o
-_color_read_Green 2038 0 CODE 0 text35 dist/default/production\final-project-kangan-yuhai.X.production.o
+_color_read_Green 1BDA 0 CODE 0 text29 dist/default/production\final-project-kangan-yuhai.X.production.o
 __Hparam 0 0 COMRAM 1 rparam dist/default/production\final-project-kangan-yuhai.X.production.o
 __Hrdata 0 0 COMRAM 1 rdata dist/default/production\final-project-kangan-yuhai.X.production.o
 __Hstack 0 0 STACK 2 stack dist/default/production\final-project-kangan-yuhai.X.production.o
@@ -778,7 +708,6 @@ __Htext6 0 0 ABS 0 text6 dist/default/production\final-project-kangan-yuhai.X.pr
 __Htext7 0 0 ABS 0 text7 dist/default/production\final-project-kangan-yuhai.X.production.o
 __Htext8 0 0 ABS 0 text8 dist/default/production\final-project-kangan-yuhai.X.production.o
 __Htext9 0 0 ABS 0 text9 dist/default/production\final-project-kangan-yuhai.X.production.o
-___lwdiv@counter 7 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 __Hbank10 0 0 ABS 0 bank10 dist/default/production\final-project-kangan-yuhai.X.production.o
 __Hbank11 0 0 ABS 0 bank11 dist/default/production\final-project-kangan-yuhai.X.production.o
 __Hbank12 0 0 ABS 0 bank12 dist/default/production\final-project-kangan-yuhai.X.production.o
@@ -786,8 +715,8 @@ __Hbank13 0 0 ABS 0 bank13 dist/default/production\final-project-kangan-yuhai.X.
 __Hbigbss 0 0 BIGRAM 1 bigbss dist/default/production\final-project-kangan-yuhai.X.production.o
 __Hbigram 0 0 ABS 0 bigram dist/default/production\final-project-kangan-yuhai.X.production.o
 __Hbigsfr 0 0 ABS 0 bigsfr dist/default/production\final-project-kangan-yuhai.X.production.o
-__smallconst E00 0 SMALLCONST 0 smallconst C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2vlg.o
-__end_of_sprintf 1FE8 0 CODE 0 text15 dist/default/production\final-project-kangan-yuhai.X.production.o
+__smallconst E00 0 SMALLCONST 0 smallconst C:\Users\KANGAN~1\AppData\Local\Temp\xcAscek.o
+__end_of_sprintf 1B8A 0 CODE 0 text6 dist/default/production\final-project-kangan-yuhai.X.production.o
 __Hcomram 0 0 ABS 0 comram dist/default/production\final-project-kangan-yuhai.X.production.o
 __Hconfig 30000C 0 CONFIG 4 config dist/default/production\final-project-kangan-yuhai.X.production.o
 get_color@m C 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
@@ -820,9 +749,9 @@ __Ltext6 0 0 ABS 0 text6 dist/default/production\final-project-kangan-yuhai.X.pr
 __Ltext7 0 0 ABS 0 text7 dist/default/production\final-project-kangan-yuhai.X.production.o
 __Ltext8 0 0 ABS 0 text8 dist/default/production\final-project-kangan-yuhai.X.production.o
 __Ltext9 0 0 ABS 0 text9 dist/default/production\final-project-kangan-yuhai.X.production.o
-_I2C_2_Master_Start 2494 0 CODE 0 text40 dist/default/production\final-project-kangan-yuhai.X.production.o
+_I2C_2_Master_Start 2048 0 CODE 0 text34 dist/default/production\final-project-kangan-yuhai.X.production.o
 initDCmotorsPWM@PWMperiod 1 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
-_I2C_2_Master_Write 247E 0 CODE 0 text38 dist/default/production\final-project-kangan-yuhai.X.production.o
+_I2C_2_Master_Write 2032 0 CODE 0 text32 dist/default/production\final-project-kangan-yuhai.X.production.o
 __Hfarbss 0 0 FARRAM 0 farbss dist/default/production\final-project-kangan-yuhai.X.production.o
 __Lintcode_body 0 0 ABS 0 intcode_body dist/default/production\final-project-kangan-yuhai.X.production.o
 __Habs1 0 0 ABS 0 abs1 dist/default/production\final-project-kangan-yuhai.X.production.o
@@ -845,49 +774,47 @@ color_display@buf 79 0 BANK0 1 cstackBANK0 dist/default/production\final-project
 ___aodiv@counter 11 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 _SSP2CON2 EDA 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
 _SSP2STAT ED8 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
-___wmul 2402 0 CODE 0 text12 dist/default/production\final-project-kangan-yuhai.X.production.o
 _TxBufReadCnt 5C 0 COMRAM 1 bssCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 ___aomod@sign 12 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 __LcstackBANK0 0 0 ABS 0 cstackBANK0 dist/default/production\final-project-kangan-yuhai.X.production.o
+__LcstackBANK1 0 0 ABS 0 cstackBANK1 dist/default/production\final-project-kangan-yuhai.X.production.o
 __HcstackCOMRAM 0 0 ABS 0 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 __Hintret 0 0 ABS 0 intret dist/default/production\final-project-kangan-yuhai.X.production.o
 __Hirdata 0 0 CODE 0 irdata dist/default/production\final-project-kangan-yuhai.X.production.o
-__S0 24AB 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
-__S1 172 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
+__S0 205F 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
+__S1 181 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
 __S4 0 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
 __S5 0 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
-_abs 2272 0 CODE 0 text24 dist/default/production\final-project-kangan-yuhai.X.production.o
-_pad 1A28 0 CODE 0 text19 dist/default/production\final-project-kangan-yuhai.X.production.o
-compare@result 7 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
-detect_color_C@RB_ratio 12 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
-fullSpeedAhead@mL 21 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
-fullSpeedAhead@mR 23 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
-__end_of_get_color 1F96 0 CODE 0 text33 dist/default/production\final-project-kangan-yuhai.X.production.o
+_abs 1DD2 0 CODE 0 text15 dist/default/production\final-project-kangan-yuhai.X.production.o
+_pad 1942 0 CODE 0 text10 dist/default/production\final-project-kangan-yuhai.X.production.o
+__end_of_get_color 1B38 0 CODE 0 text27 dist/default/production\final-project-kangan-yuhai.X.production.o
 _TX4STAbits EE8 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
-_color_read_Red 1FE8 0 CODE 0 text34 dist/default/production\final-project-kangan-yuhai.X.production.o
+_color_read_Red 1B8A 0 CODE 0 text28 dist/default/production\final-project-kangan-yuhai.X.production.o
+LED_B@m E 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
+LED_C@m E 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 LED_G@m E 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
+LED_R@m E 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 _BAUD4CONbits EE9 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
 ___aodiv@sign 12 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 __Lbigdata 0 0 BIGRAM 1 bigdata dist/default/production\final-project-kangan-yuhai.X.production.o
+color_predict@buf 79 0 BANK0 1 cstackBANK0 dist/default/production\final-project-kangan-yuhai.X.production.o
 __Hnvrram 0 0 COMRAM 1 nvrram dist/default/production\final-project-kangan-yuhai.X.production.o
 sprintf@fmt 62 0 BANK0 1 cstackBANK0 dist/default/production\final-project-kangan-yuhai.X.production.o
-_dtoa$2122 2E 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
+_dtoa$2127 2E 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
+__end_of_color_predict 1EDA 0 CODE 0 text4 dist/default/production\final-project-kangan-yuhai.X.production.o
 initDCmotors_parameter@motorL 1 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 initDCmotors_parameter@motorR 3 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
-__end_of_abs 22B2 0 CODE 0 text24 dist/default/production\final-project-kangan-yuhai.X.production.o
-__end_of_pad 1AEE 0 CODE 0 text19 dist/default/production\final-project-kangan-yuhai.X.production.o
-turnRight@mL 21 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
-turnRight@mR 23 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
+__end_of_abs 1E12 0 CODE 0 text15 dist/default/production\final-project-kangan-yuhai.X.production.o
+__end_of_pad 1A08 0 CODE 0 text10 dist/default/production\final-project-kangan-yuhai.X.production.o
 __Lintentry 0 0 ABS 0 intentry dist/default/production\final-project-kangan-yuhai.X.production.o
-movement@color 2C 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
-_color_click_init 2320 0 CODE 0 text29 dist/default/production\final-project-kangan-yuhai.X.production.o
-_get_color 1F38 0 CODE 0 text33 dist/default/production\final-project-kangan-yuhai.X.production.o
+_color_click_init 1E48 0 CODE 0 text20 dist/default/production\final-project-kangan-yuhai.X.production.o
+_get_color 1ADA 0 CODE 0 text27 dist/default/production\final-project-kangan-yuhai.X.production.o
 __Hramtop E00 0 RAM 0 ramtop dist/default/production\final-project-kangan-yuhai.X.production.o
 strlen@a 3 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 strlen@s 1 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 __Hrparam 0 0 COMRAM 1 rparam dist/default/production\final-project-kangan-yuhai.X.production.o
-__pdataBANK0 FF 0 BANK0 1 dataBANK0 dist/default/production\final-project-kangan-yuhai.X.production.o
-_color_display 1E66 0 CODE 0 text14 dist/default/production\final-project-kangan-yuhai.X.production.o
+__pdataBANK0 FA 0 BANK0 1 dataBANK0 dist/default/production\final-project-kangan-yuhai.X.production.o
+_color_display 1A08 0 CODE 0 text5 dist/default/production\final-project-kangan-yuhai.X.production.o
 __activetblptr 1 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
 __Hstruct 0 0 COMRAM 1 struct dist/default/production\final-project-kangan-yuhai.X.production.o
 __LbssBANK0 0 0 ABS 0 bssBANK0 dist/default/production\final-project-kangan-yuhai.X.production.o
@@ -920,58 +847,43 @@ __Htext34 0 0 ABS 0 text34 dist/default/production\final-project-kangan-yuhai.X.
 __Htext35 0 0 ABS 0 text35 dist/default/production\final-project-kangan-yuhai.X.production.o
 __Htext36 0 0 ABS 0 text36 dist/default/production\final-project-kangan-yuhai.X.production.o
 __Htext37 0 0 ABS 0 text37 dist/default/production\final-project-kangan-yuhai.X.production.o
-__Htext38 0 0 ABS 0 text38 dist/default/production\final-project-kangan-yuhai.X.production.o
-__Htext39 0 0 ABS 0 text39 dist/default/production\final-project-kangan-yuhai.X.production.o
-__Htext40 0 0 ABS 0 text40 dist/default/production\final-project-kangan-yuhai.X.production.o
-__Htext41 0 0 ABS 0 text41 dist/default/production\final-project-kangan-yuhai.X.production.o
-__Htext42 0 0 ABS 0 text42 dist/default/production\final-project-kangan-yuhai.X.production.o
-__Htext43 0 0 ABS 0 text43 dist/default/production\final-project-kangan-yuhai.X.production.o
-__end_of_color_read_Clear 20D8 0 CODE 0 text36 dist/default/production\final-project-kangan-yuhai.X.production.o
-__end_of_color_read_Green 2088 0 CODE 0 text35 dist/default/production\final-project-kangan-yuhai.X.production.o
+__end_of_color_read_Clear 1C7A 0 CODE 0 text30 dist/default/production\final-project-kangan-yuhai.X.production.o
+__end_of_color_read_Green 1C2A 0 CODE 0 text29 dist/default/production\final-project-kangan-yuhai.X.production.o
 vfpfcnvrt@fmt 42 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 _PIE4bits E2D 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
 pad@buf 13 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
-__end_of_compare 22EA 0 CODE 0 text11 dist/default/production\final-project-kangan-yuhai.X.production.o
-__end_of_sendStringSerial4 2384 0 CODE 0 text27 dist/default/production\final-project-kangan-yuhai.X.production.o
+__end_of_sendStringSerial4 1EAC 0 CODE 0 text18 dist/default/production\final-project-kangan-yuhai.X.production.o
 _RxBufWriteCnt 5F 0 COMRAM 1 bssCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
-__ptext10 176A 0 CODE 0 text10 dist/default/production\final-project-kangan-yuhai.X.production.o
-__ptext11 22B2 0 CODE 0 text11 dist/default/production\final-project-kangan-yuhai.X.production.o
-__ptext12 2402 0 CODE 0 text12 dist/default/production\final-project-kangan-yuhai.X.production.o
-__ptext13 1DF2 0 CODE 0 text13 dist/default/production\final-project-kangan-yuhai.X.production.o
-__ptext14 1E66 0 CODE 0 text14 dist/default/production\final-project-kangan-yuhai.X.production.o
-__ptext15 1F96 0 CODE 0 text15 dist/default/production\final-project-kangan-yuhai.X.production.o
-__ptext16 1ED6 0 CODE 0 text16 dist/default/production\final-project-kangan-yuhai.X.production.o
-__ptext17 12CA 0 CODE 0 text17 dist/default/production\final-project-kangan-yuhai.X.production.o
-__ptext18 E12 0 CODE 0 text18 dist/default/production\final-project-kangan-yuhai.X.production.o
-__ptext19 1A28 0 CODE 0 text19 dist/default/production\final-project-kangan-yuhai.X.production.o
-__ptext20 22EA 0 CODE 0 text20 dist/default/production\final-project-kangan-yuhai.X.production.o
-__ptext21 2128 0 CODE 0 text21 dist/default/production\final-project-kangan-yuhai.X.production.o
-__ptext22 195E 0 CODE 0 text22 dist/default/production\final-project-kangan-yuhai.X.production.o
-__ptext23 24A8 0 CODE 0 text23 dist/default/production\final-project-kangan-yuhai.X.production.o
-__ptext24 2272 0 CODE 0 text24 dist/default/production\final-project-kangan-yuhai.X.production.o
-__ptext25 1606 0 CODE 0 text25 dist/default/production\final-project-kangan-yuhai.X.production.o
-__ptext26 147E 0 CODE 0 text26 dist/default/production\final-project-kangan-yuhai.X.production.o
-__ptext27 2354 0 CODE 0 text27 dist/default/production\final-project-kangan-yuhai.X.production.o
-__ptext28 2466 0 CODE 0 text28 dist/default/production\final-project-kangan-yuhai.X.production.o
-__ptext29 2320 0 CODE 0 text29 dist/default/production\final-project-kangan-yuhai.X.production.o
-__ptext30 2428 0 CODE 0 text30 dist/default/production\final-project-kangan-yuhai.X.production.o
-__ptext31 23B0 0 CODE 0 text31 dist/default/production\final-project-kangan-yuhai.X.production.o
-__ptext32 2384 0 CODE 0 text32 dist/default/production\final-project-kangan-yuhai.X.production.o
-__ptext33 1F38 0 CODE 0 text33 dist/default/production\final-project-kangan-yuhai.X.production.o
-__ptext34 1FE8 0 CODE 0 text34 dist/default/production\final-project-kangan-yuhai.X.production.o
-__ptext35 2038 0 CODE 0 text35 dist/default/production\final-project-kangan-yuhai.X.production.o
-__ptext36 2088 0 CODE 0 text36 dist/default/production\final-project-kangan-yuhai.X.production.o
-__ptext37 20D8 0 CODE 0 text37 dist/default/production\final-project-kangan-yuhai.X.production.o
-__ptext38 247E 0 CODE 0 text38 dist/default/production\final-project-kangan-yuhai.X.production.o
-__ptext39 248A 0 CODE 0 text39 dist/default/production\final-project-kangan-yuhai.X.production.o
-__ptext40 2494 0 CODE 0 text40 dist/default/production\final-project-kangan-yuhai.X.production.o
-__ptext41 249E 0 CODE 0 text41 dist/default/production\final-project-kangan-yuhai.X.production.o
-__ptext42 21F0 0 CODE 0 text42 dist/default/production\final-project-kangan-yuhai.X.production.o
-__ptext43 23DA 0 CODE 0 text43 dist/default/production\final-project-kangan-yuhai.X.production.o
-___aodiv 147E 0 CODE 0 text26 dist/default/production\final-project-kangan-yuhai.X.production.o
-___aomod 1606 0 CODE 0 text25 dist/default/production\final-project-kangan-yuhai.X.production.o
-___awdiv 1AEE 0 CODE 0 text9 dist/default/production\final-project-kangan-yuhai.X.production.o
-___lwdiv 1DF2 0 CODE 0 text13 dist/default/production\final-project-kangan-yuhai.X.production.o
+__ptext10 1942 0 CODE 0 text10 dist/default/production\final-project-kangan-yuhai.X.production.o
+__ptext11 1E12 0 CODE 0 text11 dist/default/production\final-project-kangan-yuhai.X.production.o
+__ptext12 1CCA 0 CODE 0 text12 dist/default/production\final-project-kangan-yuhai.X.production.o
+__ptext13 1878 0 CODE 0 text13 dist/default/production\final-project-kangan-yuhai.X.production.o
+__ptext14 205C 0 CODE 0 text14 dist/default/production\final-project-kangan-yuhai.X.production.o
+__ptext15 1DD2 0 CODE 0 text15 dist/default/production\final-project-kangan-yuhai.X.production.o
+__ptext16 1642 0 CODE 0 text16 dist/default/production\final-project-kangan-yuhai.X.production.o
+__ptext17 14BA 0 CODE 0 text17 dist/default/production\final-project-kangan-yuhai.X.production.o
+__ptext18 1E7C 0 CODE 0 text18 dist/default/production\final-project-kangan-yuhai.X.production.o
+__ptext19 201A 0 CODE 0 text19 dist/default/production\final-project-kangan-yuhai.X.production.o
+__ptext20 1E48 0 CODE 0 text20 dist/default/production\final-project-kangan-yuhai.X.production.o
+__ptext21 1FDC 0 CODE 0 text21 dist/default/production\final-project-kangan-yuhai.X.production.o
+__ptext22 1F8A 0 CODE 0 text22 dist/default/production\final-project-kangan-yuhai.X.production.o
+__ptext23 1EDA 0 CODE 0 text23 dist/default/production\final-project-kangan-yuhai.X.production.o
+__ptext24 1F06 0 CODE 0 text24 dist/default/production\final-project-kangan-yuhai.X.production.o
+__ptext25 1F32 0 CODE 0 text25 dist/default/production\final-project-kangan-yuhai.X.production.o
+__ptext26 1F5E 0 CODE 0 text26 dist/default/production\final-project-kangan-yuhai.X.production.o
+__ptext27 1ADA 0 CODE 0 text27 dist/default/production\final-project-kangan-yuhai.X.production.o
+__ptext28 1B8A 0 CODE 0 text28 dist/default/production\final-project-kangan-yuhai.X.production.o
+__ptext29 1BDA 0 CODE 0 text29 dist/default/production\final-project-kangan-yuhai.X.production.o
+__ptext30 1C2A 0 CODE 0 text30 dist/default/production\final-project-kangan-yuhai.X.production.o
+__ptext31 1C7A 0 CODE 0 text31 dist/default/production\final-project-kangan-yuhai.X.production.o
+__ptext32 2032 0 CODE 0 text32 dist/default/production\final-project-kangan-yuhai.X.production.o
+__ptext33 203E 0 CODE 0 text33 dist/default/production\final-project-kangan-yuhai.X.production.o
+__ptext34 2048 0 CODE 0 text34 dist/default/production\final-project-kangan-yuhai.X.production.o
+__ptext35 2052 0 CODE 0 text35 dist/default/production\final-project-kangan-yuhai.X.production.o
+__ptext36 1D50 0 CODE 0 text36 dist/default/production\final-project-kangan-yuhai.X.production.o
+__ptext37 1FB4 0 CODE 0 text37 dist/default/production\final-project-kangan-yuhai.X.production.o
+___aodiv 14BA 0 CODE 0 text17 dist/default/production\final-project-kangan-yuhai.X.production.o
+___aomod 1642 0 CODE 0 text16 dist/default/production\final-project-kangan-yuhai.X.production.o
 __Lbank10 0 0 ABS 0 bank10 dist/default/production\final-project-kangan-yuhai.X.production.o
 __Lbank11 0 0 ABS 0 bank11 dist/default/production\final-project-kangan-yuhai.X.production.o
 __Lbank12 0 0 ABS 0 bank12 dist/default/production\final-project-kangan-yuhai.X.production.o
@@ -980,38 +892,33 @@ __Lbigbss 0 0 BIGRAM 1 bigbss dist/default/production\final-project-kangan-yuhai
 __Lbigram 0 0 ABS 0 bigram dist/default/production\final-project-kangan-yuhai.X.production.o
 __Lbigsfr 0 0 ABS 0 bigsfr dist/default/production\final-project-kangan-yuhai.X.production.o
 color_read_Red@tmp A 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
-__end_of_color_read_Red 2038 0 CODE 0 text34 dist/default/production\final-project-kangan-yuhai.X.production.o
+__end_of_color_read_Red 1BDA 0 CODE 0 text28 dist/default/production\final-project-kangan-yuhai.X.production.o
 ?_dtoa 1C 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 __Lcomram 0 0 ABS 0 comram dist/default/production\final-project-kangan-yuhai.X.production.o
 __Lconfig 0 0 CONFIG 4 config dist/default/production\final-project-kangan-yuhai.X.production.o
-___wmul@multiplier 8 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 _LATAbits F79 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
 _LATCbits F7B 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
 _LATEbits F7D 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
 _LATFbits F7E 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
 _LATGbits F7F 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
-__end_of_I2C_2_Master_Idle 2402 0 CODE 0 text43 dist/default/production\final-project-kangan-yuhai.X.production.o
-__end_of_I2C_2_Master_Init 23DA 0 CODE 0 text31 dist/default/production\final-project-kangan-yuhai.X.production.o
-__end_of_I2C_2_Master_Read 2232 0 CODE 0 text42 dist/default/production\final-project-kangan-yuhai.X.production.o
-__end_of_I2C_2_Master_Stop 2494 0 CODE 0 text39 dist/default/production\final-project-kangan-yuhai.X.production.o
+__end_of_I2C_2_Master_Idle 1FDC 0 CODE 0 text37 dist/default/production\final-project-kangan-yuhai.X.production.o
+__end_of_I2C_2_Master_Init 1FB4 0 CODE 0 text22 dist/default/production\final-project-kangan-yuhai.X.production.o
+__end_of_I2C_2_Master_Read 1D92 0 CODE 0 text36 dist/default/production\final-project-kangan-yuhai.X.production.o
+__end_of_I2C_2_Master_Stop 2048 0 CODE 0 text33 dist/default/production\final-project-kangan-yuhai.X.production.o
 __Lfarbss 0 0 FARRAM 0 farbss dist/default/production\final-project-kangan-yuhai.X.production.o
-___lwdiv@divisor 3 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 ?_color_read_Red 5 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
-_strlen 22EA 0 CODE 0 text20 dist/default/production\final-project-kangan-yuhai.X.production.o
+_strlen 1E12 0 CODE 0 text11 dist/default/production\final-project-kangan-yuhai.X.production.o
 __Lfardata 0 0 FARRAM 0 fardata dist/default/production\final-project-kangan-yuhai.X.production.o
-isa$std 1 0 ABS 0 - C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2vlg.o
-setMotorPWM@PWMduty 1F 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
-_EUSART4RXbuf 13C 0 BANK1 1 bssBANK1 dist/default/production\final-project-kangan-yuhai.X.production.o
+isa$std 1 0 ABS 0 - C:\Users\KANGAN~1\AppData\Local\Temp\xcAscek.o
+_EUSART4RXbuf DE 0 BANK0 1 bssBANK0 dist/default/production\final-project-kangan-yuhai.X.production.o
 _EUSART4TXbuf 100 0 BANK1 1 bssBANK1 dist/default/production\final-project-kangan-yuhai.X.production.o
-stackhi 0 0 ABS 0 - C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2vlg.o
-stacklo 0 0 ABS 0 - C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2vlg.o
-stop@mL 21 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
-stop@mR 23 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
+stackhi 0 0 ABS 0 - C:\Users\KANGAN~1\AppData\Local\Temp\xcAscek.o
+stacklo 0 0 ABS 0 - C:\Users\KANGAN~1\AppData\Local\Temp\xcAscek.o
 __Lintcode 0 0 CODE 0 intcode dist/default/production\final-project-kangan-yuhai.X.production.o
 __Lintret 0 0 ABS 0 intret dist/default/production\final-project-kangan-yuhai.X.production.o
 __Lirdata 0 0 CODE 0 irdata dist/default/production\final-project-kangan-yuhai.X.production.o
 _ADCON0bits F60 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
-_initUSART4 2448 0 CODE 0 text4 dist/default/production\final-project-kangan-yuhai.X.production.o
+_initUSART4 1FFC 0 CODE 0 text1 dist/default/production\final-project-kangan-yuhai.X.production.o
 ?_vfpfcnvrt 40 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 __Lspace_0 0 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
 __Lspace_1 0 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
@@ -1020,14 +927,13 @@ __Lspace_4 0 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.prod
 __pbssCOMRAM 5C 0 COMRAM 1 bssCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 color_read_Clear@tmp A 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 __HcstackBANK0 0 0 ABS 0 cstackBANK0 dist/default/production\final-project-kangan-yuhai.X.production.o
+__HcstackBANK1 0 0 ABS 0 cstackBANK1 dist/default/production\final-project-kangan-yuhai.X.production.o
 _PIR4bits E37 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
-__end_of_turnRight 1D7E 0 CODE 0 text3 dist/default/production\final-project-kangan-yuhai.X.production.o
 ___aodiv@divisor 9 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 ___aodiv@dividend 1 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 __LcstackCOMRAM 0 0 ABS 0 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
-__end_of_setMotorPWM 12CA 0 CODE 0 text8 dist/default/production\final-project-kangan-yuhai.X.production.o
-end_of_initialization 21A0 0 CODE 0 cinit dist/default/production\final-project-kangan-yuhai.X.production.o
-__end_of_color_click_init 2354 0 CODE 0 text29 dist/default/production\final-project-kangan-yuhai.X.production.o
+end_of_initialization 1DC4 0 CODE 0 cinit dist/default/production\final-project-kangan-yuhai.X.production.o
+__end_of_color_click_init 1E7C 0 CODE 0 text20 dist/default/production\final-project-kangan-yuhai.X.production.o
 _T2CLKCONbits FBF 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
 __Lnvrram 0 0 COMRAM 1 nvrram dist/default/production\final-project-kangan-yuhai.X.production.o
 __Hintentry 0 0 ABS 0 intentry dist/default/production\final-project-kangan-yuhai.X.production.o
@@ -1035,39 +941,33 @@ fputc@c 1 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-y
 fputs@c E 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 fputs@i F 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 fputs@s A 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
-___awdiv@quotient 14 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 ?___aodiv 1 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 ?___aomod 1 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
-?___awdiv E 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
-___lwdiv@dividend 1 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
-?___lwdiv 1 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 vfprintf@fmt 52 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 __Hreset_vec 0 0 CODE 0 reset_vec dist/default/production\final-project-kangan-yuhai.X.production.o
 ?_color_read_Blue 5 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 __HbssBANK0 0 0 ABS 0 bssBANK0 dist/default/production\final-project-kangan-yuhai.X.production.o
 __HbssBANK1 0 0 ABS 0 bssBANK1 dist/default/production\final-project-kangan-yuhai.X.production.o
 sendStringSerial4@string 2 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
-__end_of_initDCmotorsPWM 21F0 0 CODE 0 text6 dist/default/production\final-project-kangan-yuhai.X.production.o
+__end_of_initDCmotorsPWM 1D50 0 CODE 0 text3 dist/default/production\final-project-kangan-yuhai.X.production.o
 __Lramtop E00 0 RAM 0 ramtop dist/default/production\final-project-kangan-yuhai.X.production.o
 __Lrparam 0 0 COMRAM 1 rparam dist/default/production\final-project-kangan-yuhai.X.production.o
-_fullSpeedAhead 1BB2 0 CODE 0 text7 dist/default/production\final-project-kangan-yuhai.X.production.o
-__pcinit 216C 0 CODE 0 cinit dist/default/production\final-project-kangan-yuhai.X.production.o
-_turnRight 1D02 0 CODE 0 text3 dist/default/production\final-project-kangan-yuhai.X.production.o
-__end_of_color_read_Blue 2128 0 CODE 0 text37 dist/default/production\final-project-kangan-yuhai.X.production.o
+__pcinit 1D92 0 CODE 0 cinit dist/default/production\final-project-kangan-yuhai.X.production.o
+__end_of_color_read_Blue 1CCA 0 CODE 0 text31 dist/default/production\final-project-kangan-yuhai.X.production.o
 vfpfcnvrt@ap 44 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 vfpfcnvrt@fp 40 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 vfpfcnvrt@ll 48 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
-__ptext0 1D7E 0 CODE 0 text0 dist/default/production\final-project-kangan-yuhai.X.production.o
-__ptext1 1C5E 0 CODE 0 text1 dist/default/production\final-project-kangan-yuhai.X.production.o
-__ptext2 2232 0 CODE 0 text2 dist/default/production\final-project-kangan-yuhai.X.production.o
-__ptext3 1D02 0 CODE 0 text3 dist/default/production\final-project-kangan-yuhai.X.production.o
-__ptext4 2448 0 CODE 0 text4 dist/default/production\final-project-kangan-yuhai.X.production.o
-__ptext5 188C 0 CODE 0 text5 dist/default/production\final-project-kangan-yuhai.X.production.o
-__ptext6 21AE 0 CODE 0 text6 dist/default/production\final-project-kangan-yuhai.X.production.o
-__ptext7 1BB2 0 CODE 0 text7 dist/default/production\final-project-kangan-yuhai.X.production.o
-__ptext8 10F6 0 CODE 0 text8 dist/default/production\final-project-kangan-yuhai.X.production.o
-__ptext9 1AEE 0 CODE 0 text9 dist/default/production\final-project-kangan-yuhai.X.production.o
-__end_of_I2C_2_Master_RepStart 24A8 0 CODE 0 text41 dist/default/production\final-project-kangan-yuhai.X.production.o
+__ptext0 10F6 0 CODE 0 text0 dist/default/production\final-project-kangan-yuhai.X.production.o
+__ptext1 1FFC 0 CODE 0 text1 dist/default/production\final-project-kangan-yuhai.X.production.o
+__ptext2 17A6 0 CODE 0 text2 dist/default/production\final-project-kangan-yuhai.X.production.o
+__ptext3 1D0E 0 CODE 0 text3 dist/default/production\final-project-kangan-yuhai.X.production.o
+__ptext4 1EAC 0 CODE 0 text4 dist/default/production\final-project-kangan-yuhai.X.production.o
+__ptext5 1A08 0 CODE 0 text5 dist/default/production\final-project-kangan-yuhai.X.production.o
+__ptext6 1B38 0 CODE 0 text6 dist/default/production\final-project-kangan-yuhai.X.production.o
+__ptext7 1A78 0 CODE 0 text7 dist/default/production\final-project-kangan-yuhai.X.production.o
+__ptext8 1306 0 CODE 0 text8 dist/default/production\final-project-kangan-yuhai.X.production.o
+__ptext9 E12 0 CODE 0 text9 dist/default/production\final-project-kangan-yuhai.X.production.o
+__end_of_I2C_2_Master_RepStart 205C 0 CODE 0 text35 dist/default/production\final-project-kangan-yuhai.X.production.o
 __Lstruct 0 0 COMRAM 1 struct dist/default/production\final-project-kangan-yuhai.X.production.o
 vfprintf@ap 54 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 vfprintf@fp 50 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
@@ -1101,63 +1001,61 @@ __Ltext34 0 0 ABS 0 text34 dist/default/production\final-project-kangan-yuhai.X.
 __Ltext35 0 0 ABS 0 text35 dist/default/production\final-project-kangan-yuhai.X.production.o
 __Ltext36 0 0 ABS 0 text36 dist/default/production\final-project-kangan-yuhai.X.production.o
 __Ltext37 0 0 ABS 0 text37 dist/default/production\final-project-kangan-yuhai.X.production.o
-__Ltext38 0 0 ABS 0 text38 dist/default/production\final-project-kangan-yuhai.X.production.o
-__Ltext39 0 0 ABS 0 text39 dist/default/production\final-project-kangan-yuhai.X.production.o
-__Ltext40 0 0 ABS 0 text40 dist/default/production\final-project-kangan-yuhai.X.production.o
-__Ltext41 0 0 ABS 0 text41 dist/default/production\final-project-kangan-yuhai.X.production.o
-__Ltext42 0 0 ABS 0 text42 dist/default/production\final-project-kangan-yuhai.X.production.o
-__Ltext43 0 0 ABS 0 text43 dist/default/production\final-project-kangan-yuhai.X.production.o
-__end_of_color_writetoaddr 2448 0 CODE 0 text30 dist/default/production\final-project-kangan-yuhai.X.production.o
-__ramtop E00 0 RAM 0 ramtop C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2vlg.o
-_sprintf 1F96 0 CODE 0 text15 dist/default/production\final-project-kangan-yuhai.X.production.o
-_sendStringSerial4 2354 0 CODE 0 text27 dist/default/production\final-project-kangan-yuhai.X.production.o
-_vfprintf 1ED6 0 CODE 0 text16 dist/default/production\final-project-kangan-yuhai.X.production.o
-main@motorL EF 0 BANK0 1 cstackBANK0 dist/default/production\final-project-kangan-yuhai.X.production.o
-main@motorR E5 0 BANK0 1 cstackBANK0 dist/default/production\final-project-kangan-yuhai.X.production.o
+__end_of_color_writetoaddr 1FFC 0 CODE 0 text21 dist/default/production\final-project-kangan-yuhai.X.production.o
+__ramtop E00 0 RAM 0 ramtop C:\Users\KANGAN~1\AppData\Local\Temp\xcAscek.o
+_sprintf 1B38 0 CODE 0 text6 dist/default/production\final-project-kangan-yuhai.X.production.o
+_sendStringSerial4 1E7C 0 CODE 0 text18 dist/default/production\final-project-kangan-yuhai.X.production.o
+_vfprintf 1A78 0 CODE 0 text7 dist/default/production\final-project-kangan-yuhai.X.production.o
+main@motorL 165 0 BANK1 1 cstackBANK1 dist/default/production\final-project-kangan-yuhai.X.production.o
+main@motorR 16F 0 BANK1 1 cstackBANK1 dist/default/production\final-project-kangan-yuhai.X.production.o
 __Lpowerup 0 0 CODE 0 powerup dist/default/production\final-project-kangan-yuhai.X.production.o
 __Leeprom_data 0 0 EEDATA 0 eeprom_data dist/default/production\final-project-kangan-yuhai.X.production.o
 sprintf@ap 6C 0 BANK0 1 cstackBANK0 dist/default/production\final-project-kangan-yuhai.X.production.o
 __psmallconst E00 0 SMALLCONST 0 smallconst dist/default/production\final-project-kangan-yuhai.X.production.o
 __Lreset_vec 0 0 CODE 0 reset_vec dist/default/production\final-project-kangan-yuhai.X.production.o
-__end_of_vfprintf 1F38 0 CODE 0 text16 dist/default/production\final-project-kangan-yuhai.X.production.o
-_I2C_2_Master_RepStart 249E 0 CODE 0 text41 dist/default/production\final-project-kangan-yuhai.X.production.o
-___heap_hi 0 0 ABS 0 - C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2vlg.o
-___heap_lo 0 0 ABS 0 - C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2vlg.o
-_I2C_2_Master_Idle 23DA 0 CODE 0 text43 dist/default/production\final-project-kangan-yuhai.X.production.o
-_I2C_2_Master_Init 23B0 0 CODE 0 text31 dist/default/production\final-project-kangan-yuhai.X.production.o
-_I2C_2_Master_Read 21F0 0 CODE 0 text42 dist/default/production\final-project-kangan-yuhai.X.production.o
-_I2C_2_Master_Stop 248A 0 CODE 0 text39 dist/default/production\final-project-kangan-yuhai.X.production.o
-__end_of_initUSART4 2466 0 CODE 0 text4 dist/default/production\final-project-kangan-yuhai.X.production.o
+__end_of_vfprintf 1ADA 0 CODE 0 text7 dist/default/production\final-project-kangan-yuhai.X.production.o
+_I2C_2_Master_RepStart 2052 0 CODE 0 text35 dist/default/production\final-project-kangan-yuhai.X.production.o
+___heap_hi 0 0 ABS 0 - C:\Users\KANGAN~1\AppData\Local\Temp\xcAscek.o
+___heap_lo 0 0 ABS 0 - C:\Users\KANGAN~1\AppData\Local\Temp\xcAscek.o
+_I2C_2_Master_Idle 1FB4 0 CODE 0 text37 dist/default/production\final-project-kangan-yuhai.X.production.o
+_I2C_2_Master_Init 1F8A 0 CODE 0 text22 dist/default/production\final-project-kangan-yuhai.X.production.o
+_I2C_2_Master_Read 1D50 0 CODE 0 text36 dist/default/production\final-project-kangan-yuhai.X.production.o
+_I2C_2_Master_Stop 203E 0 CODE 0 text33 dist/default/production\final-project-kangan-yuhai.X.production.o
+__end_of_initUSART4 201A 0 CODE 0 text1 dist/default/production\final-project-kangan-yuhai.X.production.o
 ___param_bank 0 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
 __Hbigdata 0 0 BIGRAM 1 bigdata dist/default/production\final-project-kangan-yuhai.X.production.o
-__end_of__initialization 21A0 0 CODE 0 cinit dist/default/production\final-project-kangan-yuhai.X.production.o
+__end_of__initialization 1DC4 0 CODE 0 cinit dist/default/production\final-project-kangan-yuhai.X.production.o
 __Libigdata 0 0 CODE 0 ibigdata dist/default/production\final-project-kangan-yuhai.X.production.o
-__end_of_color_display 1ED6 0 CODE 0 text14 dist/default/production\final-project-kangan-yuhai.X.production.o
-__pidataBANK0 24AA 0 CODE 0 idataBANK0 dist/default/production\final-project-kangan-yuhai.X.production.o
+__end_of_color_display 1A78 0 CODE 0 text5 dist/default/production\final-project-kangan-yuhai.X.production.o
+__pidataBANK0 205E 0 CODE 0 idataBANK0 dist/default/production\final-project-kangan-yuhai.X.production.o
 _SP4BRGH EE6 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
 _SP4BRGL EE5 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
 __Lclrtext 0 0 ABS 0 clrtext dist/default/production\final-project-kangan-yuhai.X.production.o
-_initDCmotorsPWM 21AE 0 CODE 0 text6 dist/default/production\final-project-kangan-yuhai.X.production.o
+_initDCmotorsPWM 1D0E 0 CODE 0 text3 dist/default/production\final-project-kangan-yuhai.X.production.o
 __pcstackCOMRAM 1 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
-__end_of_fullSpeedAhead 1C5E 0 CODE 0 text7 dist/default/production\final-project-kangan-yuhai.X.production.o
-_color_read_Blue 20D8 0 CODE 0 text37 dist/default/production\final-project-kangan-yuhai.X.production.o
+_color_read_Blue 1C7A 0 CODE 0 text31 dist/default/production\final-project-kangan-yuhai.X.production.o
 _SSP2ADD ED6 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
 _SSP2BUF ED5 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
 sprintf@f 6E 0 BANK0 1 cstackBANK0 dist/default/production\final-project-kangan-yuhai.X.production.o
 sprintf@s 60 0 BANK0 1 cstackBANK0 dist/default/production\final-project-kangan-yuhai.X.production.o
 ?_color_read_Clear 5 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 ?_color_read_Green 5 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
-__end_of_dtoa 10F6 0 CODE 0 text18 dist/default/production\final-project-kangan-yuhai.X.production.o
-__end_of_main 1DF2 0 CODE 0 text0 dist/default/production\final-project-kangan-yuhai.X.production.o
-__end_of_stop 1D02 0 CODE 0 text1 dist/default/production\final-project-kangan-yuhai.X.production.o
-__end_of_sendCharSerial4 247E 0 CODE 0 text28 dist/default/production\final-project-kangan-yuhai.X.production.o
-__end_of_LED_G 23B0 0 CODE 0 text32 dist/default/production\final-project-kangan-yuhai.X.production.o
+__end_of_dtoa 10F6 0 CODE 0 text9 dist/default/production\final-project-kangan-yuhai.X.production.o
+__end_of_main 1306 0 CODE 0 text0 dist/default/production\final-project-kangan-yuhai.X.production.o
+__end_of_sendCharSerial4 2032 0 CODE 0 text19 dist/default/production\final-project-kangan-yuhai.X.production.o
+__end_of_LED_B 1F8A 0 CODE 0 text26 dist/default/production\final-project-kangan-yuhai.X.production.o
+__end_of_LED_C 1F5E 0 CODE 0 text25 dist/default/production\final-project-kangan-yuhai.X.production.o
+__end_of_LED_G 1F32 0 CODE 0 text24 dist/default/production\final-project-kangan-yuhai.X.production.o
+__end_of_LED_R 1F06 0 CODE 0 text23 dist/default/production\final-project-kangan-yuhai.X.production.o
 _ADPCH F5F 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
-__end_of_fputc 1A28 0 CODE 0 text22 dist/default/production\final-project-kangan-yuhai.X.production.o
-__end_of_fputs 216C 0 CODE 0 text21 dist/default/production\final-project-kangan-yuhai.X.production.o
-_LED_G 2384 0 CODE 0 text32 dist/default/production\final-project-kangan-yuhai.X.production.o
+__end_of_fputc 1942 0 CODE 0 text13 dist/default/production\final-project-kangan-yuhai.X.production.o
+__end_of_fputs 1D0E 0 CODE 0 text12 dist/default/production\final-project-kangan-yuhai.X.production.o
+_LED_B 1F5E 0 CODE 0 text26 dist/default/production\final-project-kangan-yuhai.X.production.o
+_LED_C 1F32 0 CODE 0 text25 dist/default/production\final-project-kangan-yuhai.X.production.o
+_LED_G 1F06 0 CODE 0 text24 dist/default/production\final-project-kangan-yuhai.X.production.o
+_LED_R 1EDA 0 CODE 0 text23 dist/default/production\final-project-kangan-yuhai.X.production.o
 ?_sprintf 60 0 BANK0 1 cstackBANK0 dist/default/production\final-project-kangan-yuhai.X.production.o
-__end_of_putch 24AA 0 CODE 0 text23 dist/default/production\final-project-kangan-yuhai.X.production.o
+__end_of_putch 205E 0 CODE 0 text14 dist/default/production\final-project-kangan-yuhai.X.production.o
 _RC4STAbits EE7 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
 __HRAM 0 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
 __Hbss 0 0 RAM 1 bss dist/default/production\final-project-kangan-yuhai.X.production.o
@@ -1167,22 +1065,19 @@ __LRAM 1 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.producti
 __Lbss 0 0 RAM 1 bss dist/default/production\final-project-kangan-yuhai.X.production.o
 __Lram 0 0 ABS 0 ram dist/default/production\final-project-kangan-yuhai.X.production.o
 __Lsfr 0 0 ABS 0 sfr dist/default/production\final-project-kangan-yuhai.X.production.o
-_color FF 0 BANK0 1 dataBANK0 dist/default/production\final-project-kangan-yuhai.X.production.o
-_flags FD 0 BANK0 1 bssBANK0 dist/default/production\final-project-kangan-yuhai.X.production.o
-_fputc 195E 0 CODE 0 text22 dist/default/production\final-project-kangan-yuhai.X.production.o
-_fputs 2128 0 CODE 0 text21 dist/default/production\final-project-kangan-yuhai.X.production.o
-_putch 24A8 0 CODE 0 text23 dist/default/production\final-project-kangan-yuhai.X.production.o
-_width F9 0 BANK0 1 bssBANK0 dist/default/production\final-project-kangan-yuhai.X.production.o
+_color FA 0 BANK0 1 dataBANK0 dist/default/production\final-project-kangan-yuhai.X.production.o
+_flags F8 0 BANK0 1 bssBANK0 dist/default/production\final-project-kangan-yuhai.X.production.o
+_fputc 1878 0 CODE 0 text13 dist/default/production\final-project-kangan-yuhai.X.production.o
+_fputs 1CCA 0 CODE 0 text12 dist/default/production\final-project-kangan-yuhai.X.production.o
+_putch 205C 0 CODE 0 text14 dist/default/production\final-project-kangan-yuhai.X.production.o
+_width F4 0 BANK0 1 bssBANK0 dist/default/production\final-project-kangan-yuhai.X.production.o
 __HdataBANK0 0 0 ABS 0 dataBANK0 dist/default/production\final-project-kangan-yuhai.X.production.o
-__initialization 216C 0 CODE 0 cinit dist/default/production\final-project-kangan-yuhai.X.production.o
-detect_color_C@m E 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
-__pbssBANK0 F9 0 BANK0 1 bssBANK0 dist/default/production\final-project-kangan-yuhai.X.production.o
+__initialization 1D92 0 CODE 0 cinit dist/default/production\final-project-kangan-yuhai.X.production.o
+__pbssBANK0 DE 0 BANK0 1 bssBANK0 dist/default/production\final-project-kangan-yuhai.X.production.o
 __pbssBANK1 100 0 BANK1 1 bssBANK1 dist/default/production\final-project-kangan-yuhai.X.production.o
 _T2CONbits FBD 0 ABS 0 - dist/default/production\final-project-kangan-yuhai.X.production.o
-_compare 22B2 0 CODE 0 text11 dist/default/production\final-project-kangan-yuhai.X.production.o
 __Hfardata 0 0 FARRAM 0 fardata dist/default/production\final-project-kangan-yuhai.X.production.o
-___wmul@product C 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
-_color_writetoaddr 2428 0 CODE 0 text30 dist/default/production\final-project-kangan-yuhai.X.production.o
+_color_writetoaddr 1FDC 0 CODE 0 text21 dist/default/production\final-project-kangan-yuhai.X.production.o
 __Hsmallconst E12 0 SMALLCONST 0 smallconst dist/default/production\final-project-kangan-yuhai.X.production.o
 dtoa@d 1E 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
 dtoa@i 3E 0 COMRAM 1 cstackCOMRAM dist/default/production\final-project-kangan-yuhai.X.production.o
@@ -1221,11 +1116,11 @@ __Hintcode 0 0 CODE 0 intcode dist/default/production\final-project-kangan-yuhai
 # and size are in units of delta. The file address is in units of bytes.
 # All other numeric quantities are in decimal.
 %SEGMENTS
-text18 0 E12 E12 1699 1
+text9 0 E12 E12 124D 1
 cstackCOMRAM 1 1 1 5F 1
-cstackBANK0 1 60 60 A0 1
+cstackBANK0 1 60 60 9B 1
 reset_vec 0 0 0 4 1
-bssBANK1 1 100 100 72 1
+bssBANK1 1 100 100 81 1
 smallconst 0 E00 E00 12 1
 # %NOTES Section
 # This section contains data of all the note-psects.  The beginning of the section
