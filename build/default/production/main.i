@@ -24340,16 +24340,16 @@ unsigned int color_read_Blue(void);
 
 unsigned int color_read_Green(void);
 unsigned int color_read_Clear(void);
-void get_color (struct color_rgb *m);
+void read_color (struct color_rgb *m);
 void LED_R(struct color_rgb *m);
 void LED_C(struct color_rgb *m);
 void LED_B(struct color_rgb *m);
 void LED_G(struct color_rgb *m);
 void color_display(struct color_rgb *m);
 void color_predict(unsigned char color);
-unsigned char detect_color_C(struct color_rgb *m);
+unsigned char detect_color(struct color_rgb *m);
 unsigned char check_color(unsigned char color,struct color_rgb *m);
-unsigned char compare(unsigned int value2compare, unsigned int upper, unsigned int lower );
+unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned int upper);
 void movement (unsigned char color,struct DC_motor *mL, struct DC_motor *mR);
 # 12 "main.c" 2
 
@@ -24561,7 +24561,6 @@ void main(void){
 
     unsigned char color = 0;
     unsigned char complete = 0;
-
     int i = 0;
     int j = 0;
     int k = 0;
@@ -24570,7 +24569,13 @@ void main(void){
     _delay((unsigned long)((3000)*(64000000/4000.0)));
 
     while(1){
-  if (1){
+  if (2 == 1){
+            color = detect_color(&rgb);
+            color_predict(color);
+            _delay((unsigned long)((200)*(64000000/4000.0)));
+            }
+
+        if (2 == 2){
             while (complete == 0){
                 for (i = 0; i < 50; ++i){
                     LED_C(&rgb);
@@ -24599,18 +24604,10 @@ void main(void){
                 complete = 1;
                 LED_C(&rgb);
             }
-
         }
-        if (!1){
 
-
-
-
-
-
-            color_predict(00000);
-
-
+        if (!2){
+# 109 "main.c"
         }
     }
 }

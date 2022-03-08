@@ -20,7 +20,7 @@
 #define TURNING_STOPTIME_L 600 
 #define TURNING_STOPTIME_R 700 
 #define TURNING_STOPTIME_180 1700 
- #define TEST 1
+ #define TEST 2
 //#define TEST 0 
 
 // Color code: 
@@ -49,7 +49,7 @@ void main(void){
     LATFbits.LATF7 = 1; // output LED_G set on (power)
     LATAbits.LATA4 = 1; // output LED_B set on (power)
         
-    unsigned char color = 0;
+    unsigned char color = 0;  
     unsigned char complete = 0;
     int i = 0;
     int j = 0;
@@ -59,7 +59,13 @@ void main(void){
     __delay_ms(3000);
     
     while(1){
-		if (TEST){
+		if (TEST == 1){
+            color = detect_color(&rgb);
+            color_predict(color);
+            __delay_ms(200);
+            }
+        
+        if (TEST == 2){
             while (complete == 0){
                 for (i = 0; i < 50; ++i){
                     LED_C(&rgb);
@@ -88,16 +94,16 @@ void main(void){
                 complete = 1;
                 LED_C(&rgb);
             }
-
         }
-        if (!TEST){
+
+        if (TEST == 0){
             //detect_color_C(&rgb);
             //while (color == 0){fullSpeedAhead(&motorL, &motorR);}
             //stop(&motorL, &motorR);
             //__delay_ms(1000);
             //movement(color,&motorL,&motorR);
             //color = 0;
-            color_predict(00000);
+            //color_predict(00000);
             //__delay_ms(500);
             //check_color(color, &rgb);
         }

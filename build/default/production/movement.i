@@ -24422,16 +24422,16 @@ unsigned int color_read_Blue(void);
 
 unsigned int color_read_Green(void);
 unsigned int color_read_Clear(void);
-void get_color (struct color_rgb *m);
+void read_color (struct color_rgb *m);
 void LED_R(struct color_rgb *m);
 void LED_C(struct color_rgb *m);
 void LED_B(struct color_rgb *m);
 void LED_G(struct color_rgb *m);
 void color_display(struct color_rgb *m);
 void color_predict(unsigned char color);
-unsigned char detect_color_C(struct color_rgb *m);
+unsigned char detect_color(struct color_rgb *m);
 unsigned char check_color(unsigned char color,struct color_rgb *m);
-unsigned char compare(unsigned int value2compare, unsigned int upper, unsigned int lower );
+unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned int upper);
 void movement (unsigned char color,struct DC_motor *mL, struct DC_motor *mR);
 # 3 "movement.c" 2
 

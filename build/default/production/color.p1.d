@@ -3,5 +3,4 @@ color.c  \
 dc_motor.h  \
 serial.h  \
 color.h  \
-i2c.h  \
-
+i2c.h 

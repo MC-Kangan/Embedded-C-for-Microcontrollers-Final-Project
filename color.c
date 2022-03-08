@@ -86,13 +86,12 @@ unsigned int color_read_Clear(void)
 	return tmp;
 }
 
-void get_color (struct color_rgb *m)
+void read_color (struct color_rgb *m)
 {
     m->R = color_read_Red();
     m->B = color_read_Blue();
     m->G = color_read_Green();
     m->C = color_read_Clear();
-    
 }
 
 void LED_R(struct color_rgb *m)
@@ -101,7 +100,7 @@ void LED_R(struct color_rgb *m)
     LATFbits.LATF7 = 0; // output LED_B set on (power)
     LATAbits.LATA4 = 0; // output LED_G set on (power)
     __delay_ms(200);
-    get_color(m);
+    read_color(m);
 }
 
 void LED_C(struct color_rgb *m)
@@ -110,7 +109,7 @@ void LED_C(struct color_rgb *m)
     LATFbits.LATF7 = 1; // output LED_B set on (power)
     LATAbits.LATA4 = 1; // output LED_G set on (power)
     __delay_ms(200);
-    get_color(m);
+    read_color(m);
 }
 
 void LED_B(struct color_rgb *m)
@@ -119,7 +118,7 @@ void LED_B(struct color_rgb *m)
     LATFbits.LATF7 = 1; // output LED_B set on (power)
     LATAbits.LATA4 = 0; // output LED_G set on (power)
     __delay_ms(200);
-    get_color(m);
+    read_color(m);
 }
 
 void LED_G(struct color_rgb *m)
@@ -128,7 +127,7 @@ void LED_G(struct color_rgb *m)
     LATFbits.LATF7 = 0; // output LED_B set on (power)
     LATAbits.LATA4 = 1; // output LED_G set on (power)
     __delay_ms(200);
-    get_color(m);
+    read_color(m);
 }
 
 void color_display(struct color_rgb *m)
@@ -141,30 +140,75 @@ void color_display(struct color_rgb *m)
 void color_predict(unsigned char color)
 {
     char buf[100];
+    char color_name;
+    if (color == 0){color_name = "Error";}
+    if (color == 1){color_name = "Red";}
+    if (color == 2){color_name = "Green";}
+    if (color == 3){color_name = "Blue";}
+    if (color == 4){color_name = "Yellow";}
+    if (color == 5){color_name = "Pink";}
+    if (color == 6){color_name = "Orange";}
+    if (color == 7){color_name = "Light blue";}
+    if (color == 8){color_name = "White";}
+    if (color == 9){color_name = "Black";}
+    
     sprintf(buf,"\t%d\r\n", color);
     sendStringSerial4(buf);
 }
 
 
 // Function used to detect color with white light
-unsigned char detect_color_C(struct color_rgb *m)
+unsigned char detect_color(struct color_rgb *m)
 {
     // Color code:
     // 1: red; 2: green; 3: blue; 4: yellow; 5:pink; 6:orange; 7:light blue; 8:white; 9: black
-    unsigned char color = 0;
-    unsigned int RG_ratio = (m->R/m->G)*100;
-    unsigned int RB_ratio = (m->R/m->B)*100;
-    unsigned int GB_ratio = (m->G/m->B)*100;
-
-    if (compare(RG_ratio, 0, 100) && compare(RB_ratio, 0, 200)){color = 1;}
-
+    
+    unsigned int RR = 0, RG = 0, RB = 0, GR = 0, GG = 0, GB = 0, BR = 0, BG = 0, BB = 0;
+    unsigned char color = 0;   
+            
+    LED_R(m); // Turn on red light 
+    read_color(m); 
+    RR = m->R; RG = m->G; RB = m->B;
+    __delay_ms(50);
+    
+    LED_G(m); // Turn on green light
+    read_color(m); 
+    GR = m->R; GG = m->G; GB = m->B;
+    __delay_ms(50);
+    
+    LED_B(m); // Turn on blue light
+    read_color(m); 
+    BR = m->R; BG = m->G; BB = m->B;
+    __delay_ms(50);
+    
+    if (compare(RR, 600, 1)){ // if RR < 600
+        if (compare(816, GG/BB*200, GG/BB*200 + 10)){color = 9;} // If 816 < GG/BB*2 <= GG/BB*2 + 10 (Define an upper bound randomly)
+        else if (compare(742, GG/BB*200, 816 )){color = 2;} // If 742 < GG/BB*2 <= 816 
+        else if (compare(0, GG/BB*200, 742 )){color = 3;} // If 0 < GG/BB*2 <= 742 (Define a lower bound randomly)
+        else {color = 0;}
+    } 
+    else{
+        if (compare(0, RG, 50)){ // If 0 < RG <= 50
+            if (compare(0, RR/BG*100, 1597)) {color = 6;} 
+            else if (compare(1597, RR/BG*100, RR/BG*100 + 10)) {color = 1;}
+            else {color = 0;}
+        }
+        else if (compare(65, RG, RG + 10)){color = 8;} // If 65 < RG <= RG + 10
+        else if (compare(50, RG, 65)){
+            if (compare(80, BR, BR + 10)){color = 5;}
+            else if (compare(0, BR, 80) && compare(0, RR/BG*100, 1075)){color = 7;}
+            else if (compare(0, BR, 80) && compare(1075, RR/BG*100, RR/BR*100 + 10)){color = 4;}
+            else {color = 0;}
+        }
+        else {color = 0;}
+    }
     return color;
 }
 
-unsigned char compare(unsigned int value2compare, unsigned int upper, unsigned int lower )
+unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned int upper)
 {
     unsigned char result = 0;
-    if (lower <= value2compare && value2compare <= upper){result = 1;}
+    if (lower < value2compare && value2compare <= upper){result = 1;} // Return 1 if true
     return result;
 }
 

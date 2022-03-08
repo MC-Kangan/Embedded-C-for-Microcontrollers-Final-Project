@@ -24331,16 +24331,16 @@ unsigned int color_read_Blue(void);
 
 unsigned int color_read_Green(void);
 unsigned int color_read_Clear(void);
-void get_color (struct color_rgb *m);
+void read_color (struct color_rgb *m);
 void LED_R(struct color_rgb *m);
 void LED_C(struct color_rgb *m);
 void LED_B(struct color_rgb *m);
 void LED_G(struct color_rgb *m);
 void color_display(struct color_rgb *m);
 void color_predict(unsigned char color);
-unsigned char detect_color_C(struct color_rgb *m);
+unsigned char detect_color(struct color_rgb *m);
 unsigned char check_color(unsigned char color,struct color_rgb *m);
-unsigned char compare(unsigned int value2compare, unsigned int upper, unsigned int lower );
+unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned int upper);
 void movement (unsigned char color,struct DC_motor *mL, struct DC_motor *mR);
 # 4 "color.c" 2
 
@@ -24607,13 +24607,12 @@ unsigned int color_read_Clear(void)
  return tmp;
 }
 
-void get_color (struct color_rgb *m)
+void read_color (struct color_rgb *m)
 {
     m->R = color_read_Red();
     m->B = color_read_Blue();
     m->G = color_read_Green();
     m->C = color_read_Clear();
-
 }
 
 void LED_R(struct color_rgb *m)
@@ -24622,7 +24621,7 @@ void LED_R(struct color_rgb *m)
     LATFbits.LATF7 = 0;
     LATAbits.LATA4 = 0;
     _delay((unsigned long)((200)*(64000000/4000.0)));
-    get_color(m);
+    read_color(m);
 }
 
 void LED_C(struct color_rgb *m)
@@ -24631,7 +24630,7 @@ void LED_C(struct color_rgb *m)
     LATFbits.LATF7 = 1;
     LATAbits.LATA4 = 1;
     _delay((unsigned long)((200)*(64000000/4000.0)));
-    get_color(m);
+    read_color(m);
 }
 
 void LED_B(struct color_rgb *m)
@@ -24640,7 +24639,7 @@ void LED_B(struct color_rgb *m)
     LATFbits.LATF7 = 1;
     LATAbits.LATA4 = 0;
     _delay((unsigned long)((200)*(64000000/4000.0)));
-    get_color(m);
+    read_color(m);
 }
 
 void LED_G(struct color_rgb *m)
@@ -24649,7 +24648,7 @@ void LED_G(struct color_rgb *m)
     LATFbits.LATF7 = 0;
     LATAbits.LATA4 = 1;
     _delay((unsigned long)((200)*(64000000/4000.0)));
-    get_color(m);
+    read_color(m);
 }
 
 void color_display(struct color_rgb *m)
@@ -24662,30 +24661,75 @@ void color_display(struct color_rgb *m)
 void color_predict(unsigned char color)
 {
     char buf[100];
+    char color_name;
+    if (color == 0){color_name = "Error";}
+    if (color == 1){color_name = "Red";}
+    if (color == 2){color_name = "Green";}
+    if (color == 3){color_name = "Blue";}
+    if (color == 4){color_name = "Yellow";}
+    if (color == 5){color_name = "Pink";}
+    if (color == 6){color_name = "Orange";}
+    if (color == 7){color_name = "Light blue";}
+    if (color == 8){color_name = "White";}
+    if (color == 9){color_name = "Black";}
+
     sprintf(buf,"\t%d\r\n", color);
     sendStringSerial4(buf);
 }
 
 
 
-unsigned char detect_color_C(struct color_rgb *m)
+unsigned char detect_color(struct color_rgb *m)
 {
 
 
+
+    unsigned int RR = 0, RG = 0, RB = 0, GR = 0, GG = 0, GB = 0, BR = 0, BG = 0, BB = 0;
     unsigned char color = 0;
-    unsigned int RG_ratio = (m->R/m->G)*100;
-    unsigned int RB_ratio = (m->R/m->B)*100;
-    unsigned int GB_ratio = (m->G/m->B)*100;
 
-    if (compare(RG_ratio, 0, 100) && compare(RB_ratio, 0, 200)){color = 1;}
+    LED_R(m);
+    read_color(m);
+    RR = m->R; RG = m->G; RB = m->B;
+    _delay((unsigned long)((50)*(64000000/4000.0)));
 
+    LED_G(m);
+    read_color(m);
+    GR = m->R; GG = m->G; GB = m->B;
+    _delay((unsigned long)((50)*(64000000/4000.0)));
+
+    LED_B(m);
+    read_color(m);
+    BR = m->R; BG = m->G; BB = m->B;
+    _delay((unsigned long)((50)*(64000000/4000.0)));
+
+    if (compare(RR, 600, 1)){
+        if (compare(816, GG/BB*200, GG/BB*200 + 10)){color = 9;}
+        else if (compare(742, GG/BB*200, 816 )){color = 2;}
+        else if (compare(0, GG/BB*200, 742 )){color = 3;}
+        else {color = 0;}
+    }
+    else{
+        if (compare(0, RG, 50)){
+            if (compare(0, RR/BG*100, 1597)) {color = 6;}
+            else if (compare(1597, RR/BG*100, RR/BG*100 + 10)) {color = 1;}
+            else {color = 0;}
+        }
+        else if (compare(65, RG, RG + 10)){color = 8;}
+        else if (compare(50, RG, 65)){
+            if (compare(80, BR, BR + 10)){color = 5;}
+            else if (compare(0, BR, 80) && compare(0, RR/BG*100, 1075)){color = 7;}
+            else if (compare(0, BR, 80) && compare(1075, RR/BG*100, RR/BR*100 + 10)){color = 4;}
+            else {color = 0;}
+        }
+        else {color = 0;}
+    }
     return color;
 }
 
-unsigned char compare(unsigned int value2compare, unsigned int upper, unsigned int lower )
+unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned int upper)
 {
     unsigned char result = 0;
-    if (lower <= value2compare && value2compare <= upper){result = 1;}
+    if (lower < value2compare && value2compare <= upper){result = 1;}
     return result;
 }
 
