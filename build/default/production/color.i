@@ -24232,7 +24232,7 @@ unsigned char __t3rd16on(void);
 # 1 "color.c" 2
 
 # 1 "./dc_motor.h" 1
-# 11 "./dc_motor.h"
+# 12 "./dc_motor.h"
 struct DC_motor {
     char power;
     char direction;
@@ -24248,8 +24248,8 @@ void initDCmotorsPWM(int PWMperiod);
 void initDCmotors_parameter(struct DC_motor *motorL, struct DC_motor *motorR);
 void setMotorPWM(struct DC_motor *m);
 void stop(struct DC_motor *mL, struct DC_motor *mR);
-void turnLeft(struct DC_motor *mL, struct DC_motor *mR);
-void turnRight(struct DC_motor *mL, struct DC_motor *mR);
+void turnLeft(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_left);
+void turnRight(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_right);
 void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
 void turn180(struct DC_motor *mL, struct DC_motor *mR);
 void voltage_read(struct DC_motor *m);
@@ -24741,5 +24741,5 @@ unsigned char check_color(unsigned char color,struct color_rgb *m)
 
 void movement (unsigned char color,struct DC_motor *mL, struct DC_motor *mR)
 {
-    if (color == 1){turnRight(mL, mR); _delay((unsigned long)((500)*(64000000/4000.0)));}
+    if (color == 1){turnRight(mL, mR,90); _delay((unsigned long)((500)*(64000000/4000.0)));}
 }

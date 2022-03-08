@@ -11,7 +11,7 @@
 #include "serial.h"
 #include "color.h"
 #include "i2c.h"
-//#include "movement.h"
+#include "movement.h"
 #include <stdio.h>
 
 #define _XTAL_FREQ 64000000 //note intrinsic _delay function is 62.5ns at 64,000,000Hz 
@@ -59,44 +59,45 @@ void main(void){
     __delay_ms(3000);
     
     while(1){
-		if (TEST == 1){
-            color = detect_color(&rgb);
-            color_predict(color);
-            __delay_ms(200);
-            }
-        
-        if (TEST == 2){
-            while (complete == 0){
-                for (i = 0; i < 50; ++i){
-                    LED_C(&rgb);
-                    color_display(&rgb);
-                    __delay_ms(100);
-                }  
-                color_predict(00000);
-                for (j = 0; j < 50; ++j){
-                    LED_R(&rgb);
-                    color_display(&rgb);
-                    __delay_ms(100);
-                }
-                color_predict(00000);
-                for (k = 0; k < 50; ++k){
-                    LED_G(&rgb);
-                    color_display(&rgb);
-                    __delay_ms(100);
-                }
-                color_predict(00000);
-                for (x = 0; x < 50; ++x){
-                    LED_B(&rgb);
-                    color_display(&rgb);
-                    __delay_ms(100);
-                }
-                color_predict(00000);
-                complete = 1;
-                LED_C(&rgb);
-            }
-        }
-
-        if (TEST == 0){
+        test_movement(&motorL, &motorR);
+//		if (TEST == 1){
+//            color = detect_color(&rgb);
+//            color_predict(color);
+//            __delay_ms(200);
+//            }
+//        
+//        if (TEST == 2){
+//            while (complete == 0){
+//                for (i = 0; i < 50; ++i){
+//                    LED_C(&rgb);
+//                    color_display(&rgb);
+//                    __delay_ms(100);
+//                }  
+//                color_predict(00000);
+//                for (j = 0; j < 50; ++j){
+//                    LED_R(&rgb);
+//                    color_display(&rgb);
+//                    __delay_ms(100);
+//                }
+//                color_predict(00000);
+//                for (k = 0; k < 50; ++k){
+//                    LED_G(&rgb);
+//                    color_display(&rgb);
+//                    __delay_ms(100);
+//                }
+//                color_predict(00000);
+//                for (x = 0; x < 50; ++x){
+//                    LED_B(&rgb);
+//                    color_display(&rgb);
+//                    __delay_ms(100);
+//                }
+//                color_predict(00000);
+//                complete = 1;
+//                LED_C(&rgb);
+//            }
+//        }
+//
+//        if (TEST == 0){
             //detect_color_C(&rgb);
             //while (color == 0){fullSpeedAhead(&motorL, &motorR);}
             //stop(&motorL, &motorR);
@@ -106,7 +107,7 @@ void main(void){
             //color_predict(00000);
             //__delay_ms(500);
             //check_color(color, &rgb);
-        }
+//        }
     }
 }
 

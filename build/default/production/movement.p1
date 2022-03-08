@@ -1,4 +1,14 @@
 Version 4.0 HI-TECH Software Intermediate Code
+"12 ./dc_motor.h
+[; ;./dc_motor.h: 12: struct DC_motor {
+[s S2019 `uc 1 `uc 1 `*uc 1 `*uc 1 `uc 1 `i 1 `uc 1 ]
+[n S2019 DC_motor power direction dutyHighByte dir_LAT dir_pin PWMperiod voltage ]
+"27
+[; ;./dc_motor.h: 27: void turnLeft(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_left);
+[v _turnLeft `(v ~T0 @X0 0 ef3`*S2019`*S2019`uc ]
+"26
+[; ;./dc_motor.h: 26: void stop(struct DC_motor *mL, struct DC_motor *mR);
+[v _stop `(v ~T0 @X0 0 ef2`*S2019`*S2019 ]
 "55 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 55: __asm("PPSLOCK equ 0DEFh");
 [; <" PPSLOCK equ 0DEFh ;# ">
@@ -2003,3 +2013,27 @@ Version 4.0 HI-TECH Software Intermediate Code
 [i _TxBufReadCnt
 -> -> 0 `i `uc
 ]
+"15 movement.c
+[; ;movement.c: 15: void test_movement (struct DC_motor *mL, struct DC_motor *mR)
+[v _test_movement `(v ~T0 @X0 1 ef2`*S2019`*S2019 ]
+"16
+[; ;movement.c: 16: {
+{
+[e :U _test_movement ]
+"15
+[; ;movement.c: 15: void test_movement (struct DC_motor *mL, struct DC_motor *mR)
+[v _mL `*S2019 ~T0 @X0 1 r1 ]
+[v _mR `*S2019 ~T0 @X0 1 r2 ]
+"16
+[; ;movement.c: 16: {
+[f ]
+"17
+[; ;movement.c: 17:     turnLeft(mL, mR, 90);
+[e ( _turnLeft (3 , , _mL _mR -> -> 90 `i `uc ]
+"18
+[; ;movement.c: 18:     stop(mL, mR);
+[e ( _stop (2 , _mL _mR ]
+"19
+[; ;movement.c: 19: }
+[e :UE 2020 ]
+}

@@ -24241,7 +24241,7 @@ unsigned char __t3rd16on(void);
 # 9 "main.c" 2
 
 # 1 "./dc_motor.h" 1
-# 11 "./dc_motor.h"
+# 12 "./dc_motor.h"
 struct DC_motor {
     char power;
     char direction;
@@ -24257,8 +24257,8 @@ void initDCmotorsPWM(int PWMperiod);
 void initDCmotors_parameter(struct DC_motor *motorL, struct DC_motor *motorR);
 void setMotorPWM(struct DC_motor *m);
 void stop(struct DC_motor *mL, struct DC_motor *mR);
-void turnLeft(struct DC_motor *mL, struct DC_motor *mR);
-void turnRight(struct DC_motor *mL, struct DC_motor *mR);
+void turnLeft(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_left);
+void turnRight(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_right);
 void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
 void turn180(struct DC_motor *mL, struct DC_motor *mR);
 void voltage_read(struct DC_motor *m);
@@ -24388,6 +24388,16 @@ void I2C_2_Master_Write(unsigned char data_byte);
 unsigned char I2C_2_Master_Read(unsigned char ack);
 # 13 "main.c" 2
 
+# 1 "./movement.h" 1
+
+
+
+
+
+
+
+void test_movement (struct DC_motor *mL, struct DC_motor *mR);
+# 14 "main.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\c99\\stdio.h" 1 3
 # 24 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\c99\\stdio.h" 3
@@ -24569,45 +24579,7 @@ void main(void){
     _delay((unsigned long)((3000)*(64000000/4000.0)));
 
     while(1){
-  if (2 == 1){
-            color = detect_color(&rgb);
-            color_predict(color);
-            _delay((unsigned long)((200)*(64000000/4000.0)));
-            }
-
-        if (2 == 2){
-            while (complete == 0){
-                for (i = 0; i < 50; ++i){
-                    LED_C(&rgb);
-                    color_display(&rgb);
-                    _delay((unsigned long)((100)*(64000000/4000.0)));
-                }
-                color_predict(00000);
-                for (j = 0; j < 50; ++j){
-                    LED_R(&rgb);
-                    color_display(&rgb);
-                    _delay((unsigned long)((100)*(64000000/4000.0)));
-                }
-                color_predict(00000);
-                for (k = 0; k < 50; ++k){
-                    LED_G(&rgb);
-                    color_display(&rgb);
-                    _delay((unsigned long)((100)*(64000000/4000.0)));
-                }
-                color_predict(00000);
-                for (x = 0; x < 50; ++x){
-                    LED_B(&rgb);
-                    color_display(&rgb);
-                    _delay((unsigned long)((100)*(64000000/4000.0)));
-                }
-                color_predict(00000);
-                complete = 1;
-                LED_C(&rgb);
-            }
-        }
-
-        if (!2){
-# 109 "main.c"
-        }
+        test_movement(&motorL, &motorR);
+# 111 "main.c"
     }
 }

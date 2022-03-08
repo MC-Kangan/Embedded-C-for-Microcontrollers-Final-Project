@@ -6,8 +6,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "18 ./color.h
 [; ;./color.h: 18: void color_click_init(void);
 [v _color_click_init `(v ~T0 @X0 0 ef ]
-"22 ./dc_motor.h
-[; ;./dc_motor.h: 22: void initDCmotorsPWM(int PWMperiod);
+"23 ./dc_motor.h
+[; ;./dc_motor.h: 23: void initDCmotorsPWM(int PWMperiod);
 [v _initDCmotorsPWM `(v ~T0 @X0 0 ef1`i ]
 "23 ./serial.h
 [; ;./serial.h: 23: void initUSART4(void);
@@ -16,12 +16,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./color.h: 8: struct color_rgb {
 [s S2016 `ui 1 `ui 1 `ui 1 `ui 1 ]
 [n S2016 color_rgb R G B C ]
-"11 ./dc_motor.h
-[; ;./dc_motor.h: 11: struct DC_motor {
+"12 ./dc_motor.h
+[; ;./dc_motor.h: 12: struct DC_motor {
 [s S2015 `uc 1 `uc 1 `*uc 1 `*uc 1 `uc 1 `i 1 `uc 1 ]
 [n S2015 DC_motor power direction dutyHighByte dir_LAT dir_pin PWMperiod voltage ]
-"23
-[; ;./dc_motor.h: 23: void initDCmotors_parameter(struct DC_motor *motorL, struct DC_motor *motorR);
+"24
+[; ;./dc_motor.h: 24: void initDCmotors_parameter(struct DC_motor *motorL, struct DC_motor *motorR);
 [v _initDCmotors_parameter `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
 "29946 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 29946:     struct {
@@ -105,27 +105,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "12 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\builtins.h
 [v __delay `JF192 ~T0 @X0 0 e ]
 [p i __delay ]
-"52 ./color.h
-[; ;./color.h: 52: unsigned char detect_color(struct color_rgb *m);
-[v _detect_color `(uc ~T0 @X0 0 ef1`*S2016 ]
-"51
-[; ;./color.h: 51: void color_predict(unsigned char color);
-[v _color_predict `(v ~T0 @X0 0 ef1`uc ]
-"47
-[; ;./color.h: 47: void LED_C(struct color_rgb *m);
-[v _LED_C `(v ~T0 @X0 0 ef1`*S2016 ]
-"50
-[; ;./color.h: 50: void color_display(struct color_rgb *m);
-[v _color_display `(v ~T0 @X0 0 ef1`*S2016 ]
-"46
-[; ;./color.h: 46: void LED_R(struct color_rgb *m);
-[v _LED_R `(v ~T0 @X0 0 ef1`*S2016 ]
-"49
-[; ;./color.h: 49: void LED_G(struct color_rgb *m);
-[v _LED_G `(v ~T0 @X0 0 ef1`*S2016 ]
-"48
-[; ;./color.h: 48: void LED_B(struct color_rgb *m);
-[v _LED_B `(v ~T0 @X0 0 ef1`*S2016 ]
+"8 ./movement.h
+[; ;./movement.h: 8: void test_movement (struct DC_motor *mL, struct DC_motor *mR);
+[v _test_movement `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
 "2 main.c
 [p x FEXTOSC  =  HS      ]
 "3
@@ -2229,172 +2211,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 2021 ]
 {
 "62
-[; ;main.c: 62:   if (2 == 1){
-[e $ ! == -> 2 `i -> 1 `i 2023  ]
-{
-"63
-[; ;main.c: 63:             color = detect_color(&rgb);
-[e = _color ( _detect_color (1 &U _rgb ]
-"64
-[; ;main.c: 64:             color_predict(color);
-[e ( _color_predict (1 _color ]
-"65
-[; ;main.c: 65:             _delay((unsigned long)((200)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"66
-[; ;main.c: 66:             }
-}
-[e :U 2023 ]
-"68
-[; ;main.c: 68:         if (2 == 2){
-[e $ ! == -> 2 `i -> 2 `i 2024  ]
-{
-"69
-[; ;main.c: 69:             while (complete == 0){
-[e $U 2025  ]
-[e :U 2026 ]
-{
-"70
-[; ;main.c: 70:                 for (i = 0; i < 50; ++i){
-{
-[e = _i -> 0 `i ]
-[e $ < _i -> 50 `i 2028  ]
-[e $U 2029  ]
-[e :U 2028 ]
-{
-"71
-[; ;main.c: 71:                     LED_C(&rgb);
-[e ( _LED_C (1 &U _rgb ]
-"72
-[; ;main.c: 72:                     color_display(&rgb);
-[e ( _color_display (1 &U _rgb ]
-"73
-[; ;main.c: 73:                     _delay((unsigned long)((100)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"74
-[; ;main.c: 74:                 }
-}
-[e =+ _i -> 1 `i ]
-[e $ < _i -> 50 `i 2028  ]
-[e :U 2029 ]
-}
-"75
-[; ;main.c: 75:                 color_predict(00000);
-[e ( _color_predict (1 -> -> 0 `i `uc ]
-"76
-[; ;main.c: 76:                 for (j = 0; j < 50; ++j){
-{
-[e = _j -> 0 `i ]
-[e $ < _j -> 50 `i 2031  ]
-[e $U 2032  ]
-[e :U 2031 ]
-{
-"77
-[; ;main.c: 77:                     LED_R(&rgb);
-[e ( _LED_R (1 &U _rgb ]
-"78
-[; ;main.c: 78:                     color_display(&rgb);
-[e ( _color_display (1 &U _rgb ]
-"79
-[; ;main.c: 79:                     _delay((unsigned long)((100)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"80
-[; ;main.c: 80:                 }
-}
-[e =+ _j -> 1 `i ]
-[e $ < _j -> 50 `i 2031  ]
-[e :U 2032 ]
-}
-"81
-[; ;main.c: 81:                 color_predict(00000);
-[e ( _color_predict (1 -> -> 0 `i `uc ]
-"82
-[; ;main.c: 82:                 for (k = 0; k < 50; ++k){
-{
-[e = _k -> 0 `i ]
-[e $ < _k -> 50 `i 2034  ]
-[e $U 2035  ]
-[e :U 2034 ]
-{
-"83
-[; ;main.c: 83:                     LED_G(&rgb);
-[e ( _LED_G (1 &U _rgb ]
-"84
-[; ;main.c: 84:                     color_display(&rgb);
-[e ( _color_display (1 &U _rgb ]
-"85
-[; ;main.c: 85:                     _delay((unsigned long)((100)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"86
-[; ;main.c: 86:                 }
-}
-[e =+ _k -> 1 `i ]
-[e $ < _k -> 50 `i 2034  ]
-[e :U 2035 ]
-}
-"87
-[; ;main.c: 87:                 color_predict(00000);
-[e ( _color_predict (1 -> -> 0 `i `uc ]
-"88
-[; ;main.c: 88:                 for (x = 0; x < 50; ++x){
-{
-[e = _x -> 0 `i ]
-[e $ < _x -> 50 `i 2037  ]
-[e $U 2038  ]
-[e :U 2037 ]
-{
-"89
-[; ;main.c: 89:                     LED_B(&rgb);
-[e ( _LED_B (1 &U _rgb ]
-"90
-[; ;main.c: 90:                     color_display(&rgb);
-[e ( _color_display (1 &U _rgb ]
-"91
-[; ;main.c: 91:                     _delay((unsigned long)((100)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"92
-[; ;main.c: 92:                 }
-}
-[e =+ _x -> 1 `i ]
-[e $ < _x -> 50 `i 2037  ]
-[e :U 2038 ]
-}
-"93
-[; ;main.c: 93:                 color_predict(00000);
-[e ( _color_predict (1 -> -> 0 `i `uc ]
-"94
-[; ;main.c: 94:                 complete = 1;
-[e = _complete -> -> 1 `i `uc ]
-"95
-[; ;main.c: 95:                 LED_C(&rgb);
-[e ( _LED_C (1 &U _rgb ]
-"96
-[; ;main.c: 96:             }
-}
-[e :U 2025 ]
-"69
-[; ;main.c: 69:             while (complete == 0){
-[e $ == -> _complete `i -> 0 `i 2026  ]
-[e :U 2027 ]
-"97
-[; ;main.c: 97:         }
-}
-[e :U 2024 ]
-"99
-[; ;main.c: 99:         if (!2){
-[e $ ! ! != -> 2 `i -> 0 `i 2040  ]
-{
-"109
-[; ;main.c: 109:         }
-}
-[e :U 2040 ]
-"110
-[; ;main.c: 110:     }
+[; ;main.c: 62:         test_movement(&motorL, &motorR);
+[e ( _test_movement (2 , &U _motorL &U _motorR ]
+"111
+[; ;main.c: 111:     }
 }
 [e :U 2020 ]
 [e $U 2021  ]
 [e :U 2022 ]
-"111
-[; ;main.c: 111: }
+"112
+[; ;main.c: 112: }
 [e :UE 2019 ]
 }

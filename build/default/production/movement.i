@@ -24436,7 +24436,7 @@ void movement (unsigned char color,struct DC_motor *mL, struct DC_motor *mR);
 # 3 "movement.c" 2
 
 # 1 "./dc_motor.h" 1
-# 11 "./dc_motor.h"
+# 12 "./dc_motor.h"
 struct DC_motor {
     char power;
     char direction;
@@ -24452,8 +24452,8 @@ void initDCmotorsPWM(int PWMperiod);
 void initDCmotors_parameter(struct DC_motor *motorL, struct DC_motor *motorR);
 void setMotorPWM(struct DC_motor *m);
 void stop(struct DC_motor *mL, struct DC_motor *mR);
-void turnLeft(struct DC_motor *mL, struct DC_motor *mR);
-void turnRight(struct DC_motor *mL, struct DC_motor *mR);
+void turnLeft(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_left);
+void turnRight(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_right);
 void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
 void turn180(struct DC_motor *mL, struct DC_motor *mR);
 void voltage_read(struct DC_motor *m);
@@ -24491,5 +24491,18 @@ void sendTxBuf(void);
 # 5 "movement.c" 2
 
 # 1 "./movement.h" 1
-# 6 "movement.c" 2
 
+
+
+
+
+
+
+void test_movement (struct DC_motor *mL, struct DC_motor *mR);
+# 6 "movement.c" 2
+# 15 "movement.c"
+void test_movement (struct DC_motor *mL, struct DC_motor *mR)
+{
+    turnLeft(mL, mR, 90);
+    stop(mL, mR);
+}

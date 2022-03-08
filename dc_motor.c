@@ -85,24 +85,28 @@ void stop(struct DC_motor *mL, struct DC_motor *mR)
         setMotorPWM(mR);                    // set the power to motor
         __delay_ms(10);
     }
+    __delay_ms(500);
 }
 
 //function to make the robot turn left 
-void turnLeft(struct DC_motor *mL, struct DC_motor *mR)
+void turnLeft(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_left)
 {
       mL->direction=1;
       mR->direction=1;
       while (mR->power <TURNING_POWER_R){      // when the right motor power is lower than the setting value(see dc_motor.h)
         mR->power += 5;                        // increase the right motor power by 1 for each time (this case the power of motor push to the setting value immediately)
-        mL->power = 0;                         // keep the left motor static, so the car will turn left
-        setMotorPWM(mR);                       // set the power to motor
-        setMotorPWM(mL);
+        mL->power = 0;                         // keep the left motor static, so the car will turn left               
+        setMotorPWM(mL);    // set the power to motor
+        setMotorPWM(mR); 
         __delay_ms(10);
     }
+    unsigned int delay = angle_left * SENSITIVITY;
+    for(unsigned int i = 0; i < delay; i++){__delay_ms(1);}
+    stop(mL,mR);
 }
 
 //function to make the robot turn right
-void turnRight(struct DC_motor *mL, struct DC_motor *mR)
+void turnRight(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_right)
 {
     mL->direction=1;
     mR->direction=1;
@@ -113,6 +117,9 @@ void turnRight(struct DC_motor *mL, struct DC_motor *mR)
         setMotorPWM(mR);
         __delay_ms(10);
     }
+    unsigned int delay = angle_right * SENSITIVITY;
+    for(unsigned int i = 0; i < delay; i++){__delay_ms(1);}
+    stop(mL,mR);
 }
 
 //function to make the robot go straight

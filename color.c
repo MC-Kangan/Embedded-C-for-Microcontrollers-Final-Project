@@ -220,5 +220,5 @@ unsigned char check_color(unsigned char color,struct color_rgb *m)
 
 void movement (unsigned char color,struct DC_motor *mL, struct DC_motor *mR)
 {
-    if (color == 1){turnRight(mL, mR); __delay_ms(500);}
+    if (color == 1){turnRight(mL, mR,90); __delay_ms(500);}
 }

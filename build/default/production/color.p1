@@ -82,13 +82,13 @@ Version 4.0 HI-TECH Software Intermediate Code
 "54 ./color.h
 [; ;./color.h: 54: unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned int upper);
 [v _compare `(uc ~T0 @X0 0 ef3`ui`ui`ui ]
-"11 ./dc_motor.h
-[; ;./dc_motor.h: 11: struct DC_motor {
+"12 ./dc_motor.h
+[; ;./dc_motor.h: 12: struct DC_motor {
 [s S2015 `uc 1 `uc 1 `*uc 1 `*uc 1 `uc 1 `i 1 `uc 1 ]
 [n S2015 DC_motor power direction dutyHighByte dir_LAT dir_pin PWMperiod voltage ]
-"27
-[; ;./dc_motor.h: 27: void turnRight(struct DC_motor *mL, struct DC_motor *mR);
-[v _turnRight `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
+"28
+[; ;./dc_motor.h: 28: void turnRight(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_right);
+[v _turnRight `(v ~T0 @X0 0 ef3`*S2015`*S2015`uc ]
 "55 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 55: __asm("PPSLOCK equ 0DEFh");
 [; <" PPSLOCK equ 0DEFh ;# ">
@@ -2897,10 +2897,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;color.c: 222: {
 [f ]
 "223
-[; ;color.c: 223:     if (color == 1){turnRight(mL, mR); _delay((unsigned long)((500)*(64000000/4000.0)));}
+[; ;color.c: 223:     if (color == 1){turnRight(mL, mR,90); _delay((unsigned long)((500)*(64000000/4000.0)));}
 [e $ ! == -> _color `i -> 1 `i 2071  ]
 {
-[e ( _turnRight (2 , _mL _mR ]
+[e ( _turnRight (3 , , _mL _mR -> -> 90 `i `uc ]
 [e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 }
 [e :U 2071 ]
