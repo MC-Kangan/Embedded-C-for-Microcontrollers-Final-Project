@@ -14,6 +14,17 @@
 //}
 void test_movement (struct DC_motor *mL, struct DC_motor *mR)
 {
-    turnLeft(mL, mR, 90);
+    turnRight(mL, mR, 90);
     stop(mL, mR);
+}
+void calibration_init(void)
+{   TRISFbits.TRISF2=1; //set TRIS value for pin (input)
+    ANSELFbits.ANSELF2=0; //turn off analogue input on pin     
+    TRISFbits.TRISF3=1; //set TRIS value for pin (input)
+    ANSELFbits.ANSELF3=0; //turn off analogue input on pin  
+}
+
+void goback(struct DC_motor *mL, struct DC_motor *mR)
+{
+    turnLeft(mL, mR, 180);   
 }
