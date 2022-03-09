@@ -2152,10 +2152,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 0 `i `uc
 ]
 "28 main.c
-[; ;main.c: 28: unsigned char color = 2;
+[; ;main.c: 28: unsigned char color = 0;
 [v _color `uc ~T0 @X0 1 e ]
 [i _color
--> -> 2 `i `uc
+-> -> 0 `i `uc
 ]
 [v $root$_main `(v ~T0 @X0 0 e ]
 "30
@@ -2217,216 +2217,203 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 55:     LATAbits.LATA4 = 1;
 [e = . . _LATAbits 0 4 -> -> 1 `i `uc ]
 "57
-[; ;main.c: 57:     unsigned char color = 0;
-[v _color `uc ~T0 @X0 1 a ]
-[e = _color -> -> 0 `i `uc ]
-"58
-[; ;main.c: 58:     unsigned char complete = 0;
+[; ;main.c: 57:     unsigned char complete = 0;
 [v _complete `uc ~T0 @X0 1 a ]
 [e = _complete -> -> 0 `i `uc ]
-"59
-[; ;main.c: 59:     int i = 0;
+"58
+[; ;main.c: 58:     int i = 0;
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
-"60
-[; ;main.c: 60:     int j = 0;
+"59
+[; ;main.c: 59:     int j = 0;
 [v _j `i ~T0 @X0 1 a ]
 [e = _j -> 0 `i ]
-"61
-[; ;main.c: 61:     int k = 0;
+"60
+[; ;main.c: 60:     int k = 0;
 [v _k `i ~T0 @X0 1 a ]
 [e = _k -> 0 `i ]
-"62
-[; ;main.c: 62:     int x = 0;
+"61
+[; ;main.c: 61:     int x = 0;
 [v _x `i ~T0 @X0 1 a ]
 [e = _x -> 0 `i ]
+"63
+[; ;main.c: 63:     _delay((unsigned long)((3000)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 3000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "64
-[; ;main.c: 64:     _delay((unsigned long)((3000)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 3000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"65
-[; ;main.c: 65:     calibrate_white(&white);
+[; ;main.c: 64:     calibrate_white(&white);
 [e ( _calibrate_white (1 &U _white ]
-"66
-[; ;main.c: 66:     _delay((unsigned long)((3000)*(64000000/4000.0)));
+"65
+[; ;main.c: 65:     _delay((unsigned long)((3000)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 3000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"69
-[; ;main.c: 69:     while(1){
+"68
+[; ;main.c: 68:     while(1){
 [e :U 2022 ]
 {
-"71
-[; ;main.c: 71:   if (1 == 1){
+"70
+[; ;main.c: 70:   if (1 == 1){
 [e $ ! == -> 1 `i -> 1 `i 2024  ]
 {
-"72
-[; ;main.c: 72:             color = detect_color(&rgb, &white);
+"71
+[; ;main.c: 71:             color = detect_color(&rgb, &white);
 [e = _color ( _detect_color (2 , &U _rgb &U _white ]
-"74
-[; ;main.c: 74:             read_color(&rgb);
+"73
+[; ;main.c: 73:             read_color(&rgb);
 [e ( _read_color (1 &U _rgb ]
-"76
-[; ;main.c: 76:             color_predict(color);
+"75
+[; ;main.c: 75:             color_predict(color);
 [e ( _color_predict (1 _color ]
-"77
-[; ;main.c: 77:             _delay((unsigned long)((200)*(64000000/4000.0)));
+"76
+[; ;main.c: 76:             _delay((unsigned long)((200)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 200 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"78
-[; ;main.c: 78:             }
+"77
+[; ;main.c: 77:             }
 }
 [e :U 2024 ]
-"80
-[; ;main.c: 80:         if (1 == 2){
+"79
+[; ;main.c: 79:         if (1 == 2){
 [e $ ! == -> 1 `i -> 2 `i 2025  ]
 {
-"81
-[; ;main.c: 81:             while (complete == 0){
+"80
+[; ;main.c: 80:             while (complete == 0){
 [e $U 2026  ]
 [e :U 2027 ]
 {
-"82
-[; ;main.c: 82:                 for (i = 0; i < 10; ++i){
+"81
+[; ;main.c: 81:                 for (i = 0; i < 1; ++i){
 {
 [e = _i -> 0 `i ]
-[e $ < _i -> 10 `i 2029  ]
+[e $ < _i -> 1 `i 2029  ]
 [e $U 2030  ]
 [e :U 2029 ]
 {
-"83
-[; ;main.c: 83:                     LED_C();
+"82
+[; ;main.c: 82:                     LED_C();
 [e ( _LED_C ..  ]
-"84
-[; ;main.c: 84:                     read_color(&rgb);
+"83
+[; ;main.c: 83:                     read_color(&rgb);
 [e ( _read_color (1 &U _rgb ]
-"85
-[; ;main.c: 85:                     color_display(&rgb);
+"84
+[; ;main.c: 84:                     color_display(&rgb);
 [e ( _color_display (1 &U _rgb ]
+"85
+[; ;main.c: 85:                    _delay((unsigned long)((500)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "86
-[; ;main.c: 86:                    _delay((unsigned long)((100)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"87
-[; ;main.c: 87:                 }
+[; ;main.c: 86:                 }
 }
 [e =+ _i -> 1 `i ]
-[e $ < _i -> 10 `i 2029  ]
+[e $ < _i -> 1 `i 2029  ]
 [e :U 2030 ]
 }
 "88
-[; ;main.c: 88:                 color_predict(00000);
-[e ( _color_predict (1 -> -> 0 `i `uc ]
-"89
-[; ;main.c: 89:                 for (j = 0; j < 10; ++j){
+[; ;main.c: 88:                 for (j = 0; j < 1; ++j){
 {
 [e = _j -> 0 `i ]
-[e $ < _j -> 10 `i 2032  ]
+[e $ < _j -> 1 `i 2032  ]
 [e $U 2033  ]
 [e :U 2032 ]
 {
-"90
-[; ;main.c: 90:                     LED_R();
+"89
+[; ;main.c: 89:                     LED_R();
 [e ( _LED_R ..  ]
-"91
-[; ;main.c: 91:                     read_color(&rgb);
+"90
+[; ;main.c: 90:                     read_color(&rgb);
 [e ( _read_color (1 &U _rgb ]
-"92
-[; ;main.c: 92:                     color_display(&rgb);
+"91
+[; ;main.c: 91:                     color_display(&rgb);
 [e ( _color_display (1 &U _rgb ]
+"92
+[; ;main.c: 92:                     _delay((unsigned long)((500)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "93
-[; ;main.c: 93:                     _delay((unsigned long)((100)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"94
-[; ;main.c: 94:                 }
+[; ;main.c: 93:                 }
 }
 [e =+ _j -> 1 `i ]
-[e $ < _j -> 10 `i 2032  ]
+[e $ < _j -> 1 `i 2032  ]
 [e :U 2033 ]
 }
 "95
-[; ;main.c: 95:                 color_predict(00000);
-[e ( _color_predict (1 -> -> 0 `i `uc ]
-"96
-[; ;main.c: 96:                 for (k = 0; k < 10; ++k){
+[; ;main.c: 95:                 for (k = 0; k < 1; ++k){
 {
 [e = _k -> 0 `i ]
-[e $ < _k -> 10 `i 2035  ]
+[e $ < _k -> 1 `i 2035  ]
 [e $U 2036  ]
 [e :U 2035 ]
 {
-"97
-[; ;main.c: 97:                     LED_G();
+"96
+[; ;main.c: 96:                     LED_G();
 [e ( _LED_G ..  ]
-"98
-[; ;main.c: 98:                     read_color(&rgb);
+"97
+[; ;main.c: 97:                     read_color(&rgb);
 [e ( _read_color (1 &U _rgb ]
-"99
-[; ;main.c: 99:                     color_display(&rgb);
+"98
+[; ;main.c: 98:                     color_display(&rgb);
 [e ( _color_display (1 &U _rgb ]
+"99
+[; ;main.c: 99:                     _delay((unsigned long)((500)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "100
-[; ;main.c: 100:                     _delay((unsigned long)((100)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"101
-[; ;main.c: 101:                 }
+[; ;main.c: 100:                 }
 }
 [e =+ _k -> 1 `i ]
-[e $ < _k -> 10 `i 2035  ]
+[e $ < _k -> 1 `i 2035  ]
 [e :U 2036 ]
 }
 "102
-[; ;main.c: 102:                 color_predict(00000);
-[e ( _color_predict (1 -> -> 0 `i `uc ]
-"103
-[; ;main.c: 103:                 for (x = 0; x < 10; ++x){
+[; ;main.c: 102:                 for (x = 0; x < 1; ++x){
 {
 [e = _x -> 0 `i ]
-[e $ < _x -> 10 `i 2038  ]
+[e $ < _x -> 1 `i 2038  ]
 [e $U 2039  ]
 [e :U 2038 ]
 {
-"104
-[; ;main.c: 104:                     LED_B();
+"103
+[; ;main.c: 103:                     LED_B();
 [e ( _LED_B ..  ]
-"105
-[; ;main.c: 105:                     read_color(&rgb);
+"104
+[; ;main.c: 104:                     read_color(&rgb);
 [e ( _read_color (1 &U _rgb ]
-"106
-[; ;main.c: 106:                     color_display(&rgb);
+"105
+[; ;main.c: 105:                     color_display(&rgb);
 [e ( _color_display (1 &U _rgb ]
+"106
+[; ;main.c: 106:                     _delay((unsigned long)((500)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "107
-[; ;main.c: 107:                     _delay((unsigned long)((100)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"108
-[; ;main.c: 108:                 }
+[; ;main.c: 107:                 }
 }
 [e =+ _x -> 1 `i ]
-[e $ < _x -> 10 `i 2038  ]
+[e $ < _x -> 1 `i 2038  ]
 [e :U 2039 ]
 }
-"109
-[; ;main.c: 109:                 color_predict(00000);
+"108
+[; ;main.c: 108:                 color_predict(00000);
 [e ( _color_predict (1 -> -> 0 `i `uc ]
-"110
-[; ;main.c: 110:                 complete = 1;
+"109
+[; ;main.c: 109:                 complete = 1;
 [e = _complete -> -> 1 `i `uc ]
-"111
-[; ;main.c: 111:                 LED_C();
+"110
+[; ;main.c: 110:                 LED_C();
 [e ( _LED_C ..  ]
-"112
-[; ;main.c: 112:             }
+"111
+[; ;main.c: 111:             }
 }
 [e :U 2026 ]
-"81
-[; ;main.c: 81:             while (complete == 0){
+"80
+[; ;main.c: 80:             while (complete == 0){
 [e $ == -> _complete `i -> 0 `i 2027  ]
 [e :U 2028 ]
-"113
-[; ;main.c: 113:         }
+"112
+[; ;main.c: 112:         }
 }
 [e :U 2025 ]
-"126
-[; ;main.c: 126:     }
+"125
+[; ;main.c: 125:     }
 }
 [e :U 2021 ]
 [e $U 2022  ]
 [e :U 2023 ]
-"127
-[; ;main.c: 127: }
+"126
+[; ;main.c: 126: }
 [e :UE 2020 ]
 }

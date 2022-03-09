@@ -25,7 +25,7 @@
 
 // Color code: 
 // 1: red; 2: green; 3: blue; 4: yellow; 5:pink; 6:orange; 7:light blue; 8:white; 9: black
-unsigned char color = 2;   
+unsigned char color = 0;   
       
 void main(void){
     I2C_2_Master_Init();
@@ -54,7 +54,6 @@ void main(void){
     LATFbits.LATF7 = 1; // output LED_G set on (power)
     LATAbits.LATA4 = 1; // output LED_B set on (power)
         
-    unsigned char color = 0;  
     unsigned char complete = 0;
     int i = 0;
     int j = 0;
@@ -79,32 +78,32 @@ void main(void){
         
         if (TEST == 2){
             while (complete == 0){
-                for (i = 0; i < 10; ++i){
+                for (i = 0; i < 1; ++i){
                     LED_C();
                     read_color(&rgb);
                     color_display(&rgb);
-                   __delay_ms(100);
+                   __delay_ms(500);
                 }  
-                color_predict(00000);
-                for (j = 0; j < 10; ++j){
+                //color_predict(00000);
+                for (j = 0; j < 1; ++j){
                     LED_R();
                     read_color(&rgb);
                     color_display(&rgb);
-                    __delay_ms(100);
+                    __delay_ms(500);
                 }
-                color_predict(00000);
-                for (k = 0; k < 10; ++k){
+                //color_predict(00000);
+                for (k = 0; k < 1; ++k){
                     LED_G();
                     read_color(&rgb);
                     color_display(&rgb);
-                    __delay_ms(100);
+                    __delay_ms(500);
                 }
-                color_predict(00000);
-                for (x = 0; x < 10; ++x){
+                //color_predict(00000);
+                for (x = 0; x < 1; ++x){
                     LED_B();
                     read_color(&rgb);
                     color_display(&rgb);
-                    __delay_ms(100);
+                    __delay_ms(500);
                 }
                 color_predict(00000);
                 complete = 1;

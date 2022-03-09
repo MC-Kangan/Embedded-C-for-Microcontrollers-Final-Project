@@ -25053,7 +25053,7 @@ void LED_G(void)
 void color_display(struct color_rgb *m)
 {
     char buf[100];
-    sprintf(buf,"\t%d\t%d\t%d\t%d\r\n", m->R, m->G, m->B, m->C);
+    sprintf(buf,"%d\t%d\t%d\t%d\r\n", m->R, m->G, m->B, m->C);
     sendStringSerial4(buf);
 }
 
@@ -25128,17 +25128,17 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
     _delay((unsigned long)((50)*(64000000/4000.0)));
 
 
-    if (compare(0, RR, 90)){
-        if (compare(0, lroundf((float)GG/BB * 200), 228)){color = 3;}
+    if (compare(0, BR, 55)){
+        if (compare(0, lroundf((float)(GG + BG)/BB * 200), 391)){color = 3;}
         else{color = 2;}
     }
     else{
-        if (compare(0, RG, 80)){
-            if (compare(0, lroundf((float)RR/BG * 200), 319)){color = 6;}
+        if (compare(0, BG, 75)){
+            if (compare(0, lroundf((float)RR/BG * 200), 313)){color = 6;}
             else {color = 1;}
         }
         else{
-            if (compare(0, BR, 95)){color = 7;}
+            if (compare(0, BR, 85)){color = 7;}
             else{
                 if (BG < BB){color = 5;}
                 else{color = 4;}
@@ -25147,7 +25147,7 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
     }
 
     if (compare(95, BR, 105) && compare(95,BG,105)){color = 8;}
-    if (compare(0, BR, 20) && compare(0,RR,90)){color = 9;}
+    if (compare(0, BR, 25) && compare(0,RR,90)){color = 9;}
     return color;
 }
 

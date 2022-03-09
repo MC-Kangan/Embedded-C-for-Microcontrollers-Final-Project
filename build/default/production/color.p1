@@ -2468,7 +2468,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;color.c: 138:     char buf[100];
 [v _buf `uc ~T0 @X0 -> 100 `i a ]
 "139
-[; ;color.c: 139:     sprintf(buf,"\t%d\t%d\t%d\t%d\r\n", m->R, m->G, m->B, m->C);
+[; ;color.c: 139:     sprintf(buf,"%d\t%d\t%d\t%d\r\n", m->R, m->G, m->B, m->C);
 [e ( _sprintf (1 , , , , (. , &U _buf :s 1C . *U _m 0 . *U _m 1 . *U _m 2 . *U _m 3 ]
 "140
 [; ;color.c: 140:     sendStringSerial4(buf);
@@ -2738,12 +2738,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;color.c: 211:     _delay((unsigned long)((50)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 50 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "214
-[; ;color.c: 214:     if (compare(0, RR, 90)){
-[e $ ! != -> ( _compare (3 , , -> -> 0 `i `ui _RR -> -> 90 `i `ui `i -> 0 `i 2047  ]
+[; ;color.c: 214:     if (compare(0, BR, 55)){
+[e $ ! != -> ( _compare (3 , , -> -> 0 `i `ui _BR -> -> 55 `i `ui `i -> 0 `i 2047  ]
 {
 "215
-[; ;color.c: 215:         if (compare(0, lroundf((float)GG/BB * 200), 228)){color = 3;}
-[e $ ! != -> ( _compare (3 , , -> -> 0 `i `ui -> ( _lroundf (1 * / -> _GG `f -> _BB `f -> -> 200 `i `f `ui -> -> 228 `i `ui `i -> 0 `i 2048  ]
+[; ;color.c: 215:         if (compare(0, lroundf((float)(GG + BG)/BB * 200), 391)){color = 3;}
+[e $ ! != -> ( _compare (3 , , -> -> 0 `i `ui -> ( _lroundf (1 * / -> + _GG _BG `f -> _BB `f -> -> 200 `i `f `ui -> -> 391 `i `ui `i -> 0 `i 2048  ]
 {
 [e = _color -> -> 3 `i `uc ]
 }
@@ -2764,12 +2764,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 2047 ]
 {
 "219
-[; ;color.c: 219:         if (compare(0, RG, 80)){
-[e $ ! != -> ( _compare (3 , , -> -> 0 `i `ui _RG -> -> 80 `i `ui `i -> 0 `i 2051  ]
+[; ;color.c: 219:         if (compare(0, BG, 75)){
+[e $ ! != -> ( _compare (3 , , -> -> 0 `i `ui _BG -> -> 75 `i `ui `i -> 0 `i 2051  ]
 {
 "220
-[; ;color.c: 220:             if (compare(0, lroundf((float)RR/BG * 200), 319)){color = 6;}
-[e $ ! != -> ( _compare (3 , , -> -> 0 `i `ui -> ( _lroundf (1 * / -> _RR `f -> _BG `f -> -> 200 `i `f `ui -> -> 319 `i `ui `i -> 0 `i 2052  ]
+[; ;color.c: 220:             if (compare(0, lroundf((float)RR/BG * 200), 313)){color = 6;}
+[e $ ! != -> ( _compare (3 , , -> -> 0 `i `ui -> ( _lroundf (1 * / -> _RR `f -> _BG `f -> -> 200 `i `f `ui -> -> 313 `i `ui `i -> 0 `i 2052  ]
 {
 [e = _color -> -> 6 `i `uc ]
 }
@@ -2790,8 +2790,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 2051 ]
 {
 "224
-[; ;color.c: 224:             if (compare(0, BR, 95)){color = 7;}
-[e $ ! != -> ( _compare (3 , , -> -> 0 `i `ui _BR -> -> 95 `i `ui `i -> 0 `i 2055  ]
+[; ;color.c: 224:             if (compare(0, BR, 85)){color = 7;}
+[e $ ! != -> ( _compare (3 , , -> -> 0 `i `ui _BR -> -> 85 `i `ui `i -> 0 `i 2055  ]
 {
 [e = _color -> -> 7 `i `uc ]
 }
@@ -2834,8 +2834,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e :U 2059 ]
 "233
-[; ;color.c: 233:     if (compare(0, BR, 20) && compare(0,RR,90)){color = 9;}
-[e $ ! && != -> ( _compare (3 , , -> -> 0 `i `ui _BR -> -> 20 `i `ui `i -> 0 `i != -> ( _compare (3 , , -> -> 0 `i `ui _RR -> -> 90 `i `ui `i -> 0 `i 2060  ]
+[; ;color.c: 233:     if (compare(0, BR, 25) && compare(0,RR,90)){color = 9;}
+[e $ ! && != -> ( _compare (3 , , -> -> 0 `i `ui _BR -> -> 25 `i `ui `i -> 0 `i != -> ( _compare (3 , , -> -> 0 `i `ui _RR -> -> 90 `i `ui `i -> 0 `i 2060  ]
 {
 [e = _color -> -> 9 `i `uc ]
 }
@@ -2942,6 +2942,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 [a 11C 87 104 105 116 101 0 ]
 [a 9C 79 114 97 110 103 101 0 ]
 [a 4C 82 101 100 0 ]
-[a 1C 9 37 100 9 37 100 9 37 100 9 37 100 13 10 0 ]
+[a 1C 37 100 9 37 100 9 37 100 9 37 100 13 10 0 ]
 [a 2C 9 37 100 9 37 100 9 37 100 13 10 0 ]
 [a 13C 9 37 100 13 10 0 ]

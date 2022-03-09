@@ -136,7 +136,7 @@ void LED_G(void)//struct color_rgb *m)
 void color_display(struct color_rgb *m)
 {
     char buf[100];
-    sprintf(buf,"\t%d\t%d\t%d\t%d\r\n", m->R, m->G, m->B, m->C);
+    sprintf(buf,"%d\t%d\t%d\t%d\r\n", m->R, m->G, m->B, m->C);
     sendStringSerial4(buf);
 }
 
@@ -211,17 +211,17 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
     __delay_ms(50);
     
     
-    if (compare(0, RR, 90)){ // if RR < 90
-        if (compare(0, lround((float)GG/BB * 200), 228)){color = 3;}// if GG/BB*2 <228 //Blue
+    if (compare(0, BR, 55)){ // if RR < 80
+        if (compare(0, lround((float)(GG + BG)/BB * 200), 391)){color = 3;}// if GG/BB*2 <228 //Blue
         else{color = 2;} // if GG/BB*2 > 228 //Green
     }
-    else{ // if RR >= 90 
-        if (compare(0, RG, 80)){ // if RG < 80
-            if (compare(0, lround((float)RR/BG * 200), 319)){color = 6;} // if RR/BG*2 < 319
+    else{ // if RR >= 80 
+        if (compare(0, BG, 75)){ // if RG < 80
+            if (compare(0, lround((float)RR/BG * 200), 313)){color = 6;} // if RR/BG*2 < 319
             else {color = 1;} // if RR/BG*2 >= 319
         }
         else{ // if RG >= 80
-            if (compare(0, BR, 95)){color = 7;} // if BR < 95
+            if (compare(0, BR, 85)){color = 7;} // if BR < 95
             else{// if BR > = 95
                 if (BG < BB){color = 5;} // if BG < BB
                 else{color = 4;}
@@ -230,7 +230,7 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
     }
     // Group 0 (black and white)
     if (compare(95, BR, 105) && compare(95,BG,105)){color = 8;}
-    if (compare(0, BR, 20) && compare(0,RR,90)){color = 9;}
+    if (compare(0, BR, 25) && compare(0,RR,90)){color = 9;}
     return color;
 }
 

@@ -24555,7 +24555,7 @@ char *ctermid(char *);
 char *tempnam(const char *, const char *);
 # 16 "main.c" 2
 # 28 "main.c"
-unsigned char color = 2;
+unsigned char color = 0;
 
 void main(void){
     I2C_2_Master_Init();
@@ -24584,7 +24584,6 @@ void main(void){
     LATFbits.LATF7 = 1;
     LATAbits.LATA4 = 1;
 
-    unsigned char color = 0;
     unsigned char complete = 0;
     int i = 0;
     int j = 0;
@@ -24609,38 +24608,38 @@ void main(void){
 
         if (1 == 2){
             while (complete == 0){
-                for (i = 0; i < 10; ++i){
+                for (i = 0; i < 1; ++i){
                     LED_C();
                     read_color(&rgb);
                     color_display(&rgb);
-                   _delay((unsigned long)((100)*(64000000/4000.0)));
+                   _delay((unsigned long)((500)*(64000000/4000.0)));
                 }
-                color_predict(00000);
-                for (j = 0; j < 10; ++j){
+
+                for (j = 0; j < 1; ++j){
                     LED_R();
                     read_color(&rgb);
                     color_display(&rgb);
-                    _delay((unsigned long)((100)*(64000000/4000.0)));
+                    _delay((unsigned long)((500)*(64000000/4000.0)));
                 }
-                color_predict(00000);
-                for (k = 0; k < 10; ++k){
+
+                for (k = 0; k < 1; ++k){
                     LED_G();
                     read_color(&rgb);
                     color_display(&rgb);
-                    _delay((unsigned long)((100)*(64000000/4000.0)));
+                    _delay((unsigned long)((500)*(64000000/4000.0)));
                 }
-                color_predict(00000);
-                for (x = 0; x < 10; ++x){
+
+                for (x = 0; x < 1; ++x){
                     LED_B();
                     read_color(&rgb);
                     color_display(&rgb);
-                    _delay((unsigned long)((100)*(64000000/4000.0)));
+                    _delay((unsigned long)((500)*(64000000/4000.0)));
                 }
                 color_predict(00000);
                 complete = 1;
                 LED_C();
             }
         }
-# 126 "main.c"
+# 125 "main.c"
     }
 }
