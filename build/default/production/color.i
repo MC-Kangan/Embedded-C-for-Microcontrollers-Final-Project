@@ -25149,7 +25149,7 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
 {
 
 
-    unsigned int RR = 0, RG = 0, RB = 0, GR = 0, GG = 0, GB = 0, BR = 0, BG = 0, BB = 0;
+    unsigned int RR = 0, RG = 0, RB = 0, GR = 0, GG = 0, GB = 0, BR = 0, BG = 0, BB = 0, GR_REAL = 0, GC_REAL = 0, BC = 0;
     unsigned char color = 0;
 
     LED_R();
@@ -25159,6 +25159,7 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
 
     LED_G();
     read_color(m);
+    GR_REAL = m->R ; GC_REAL = m->C;
     GR = lroundf((float)(m->R)/(w->GR)*100); GG = lroundf((float)(m->G)/(w->GG)*100); GB = lroundf((float)(m->B)/(w->GB)*100);
     _delay((unsigned long)((50)*(64000000/4000.0)));
 
@@ -25174,11 +25175,17 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
     }
     else{
         if (compare(0, BG, 75)){
-            if (compare(0, lroundf((float)RR/BG * 200), 313)){color = 6;}
+            if (compare(0, lroundf((float)RR/BG * 200), 285)){
+                if (GR > 90){color = 6;}
+                else {color = 0;}
+            }
             else {color = 1;}
         }
         else{
-            if (compare(0, BR, 85)){color = 7;}
+            if (compare(0, BR, 90)){
+                if (BG > 90){color = 7;}
+                else {color = 0;}
+            }
             else{
                 if (BG < BB){color = 5;}
                 else{color = 4;}
@@ -25187,7 +25194,18 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
     }
 
     if (compare(95, BR, 105) && compare(95,BG,105)){color = 8;}
-    if (compare(0, BR, 25) && compare(0,RR,90)){color = 9;}
+    if (compare(0, BR, 25) && compare(0,RR,90)){color = 0;}
+
+    if (color == 2 || color == 3){
+        if (GR_REAL < 50 || GC_REAL <520){color = 0;}
+    }
+    if (color == 1 || color == 6){
+        if (GR_REAL < 60 || GC_REAL <500){color = 0;}
+    }
+    if (color == 7 || color == 4 || color == 5 || color == 8){
+        if (GR_REAL < 70 || GC_REAL <560){color = 0;}
+    }
+
     return color;
 }
 

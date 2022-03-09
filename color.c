@@ -218,7 +218,7 @@ void calibrate_white(struct white_card *w)
     
     LED_B(); // Turn on blue light
     //read_color(w); 
-    w->BR = color_read_Red(); w->BG = color_read_Green(); w->BB = color_read_Blue();
+    w->BR = color_read_Red(); w->BG = color_read_Green(); w->BB = color_read_Blue(); 
     __delay_ms(100);
 }
 
@@ -226,8 +226,8 @@ void calibrate_white(struct white_card *w)
 unsigned char detect_color(struct color_rgb *m, struct white_card *w)
 {
     // Color code:
-    // 1: red; 2: green; 3: blue; 4: yellow; 5:pink; 6:orange; 7:light blue; 8:white; 9: black
-    unsigned int RR = 0, RG = 0, RB = 0, GR = 0, GG = 0, GB = 0, BR = 0, BG = 0, BB = 0;
+    // 1: red; 2: green; 3: blue; 4: yellow; 5:pink; 6:orange; 7:light blue; 8:white; 0: black
+    unsigned int RR = 0, RG = 0, RB = 0, GR = 0, GG = 0, GB = 0, BR = 0, BG = 0, BB = 0, GR_REAL = 0, GC_REAL = 0, BC = 0;
     unsigned char color = 0;   
             
     LED_R(); // Turn on red light 
@@ -237,6 +237,7 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
     
     LED_G(); // Turn on green light
     read_color(m); 
+    GR_REAL = m->R ;  GC_REAL = m->C;
     GR = lround((float)(m->R)/(w->GR)*100); GG = lround((float)(m->G)/(w->GG)*100); GB = lround((float)(m->B)/(w->GB)*100);
     __delay_ms(50);
     
@@ -246,18 +247,24 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
     __delay_ms(50);
     
     
-    if (compare(0, BR, 55)){ // if RR < 80
-        if (compare(0, lround((float)(GG + BG)/BB * 200), 391)){color = 3;}// if GG/BB*2 <228 //Blue
-        else{color = 2;} // if GG/BB*2 > 228 //Green
+    if (compare(0, BR, 55)){ // if BR < 55
+        if (compare(0, lround((float)(GG + BG)/BB * 200), 391)){color = 3;}// if (GG+BG)/BB*2 < 391 //Blue
+        else{color = 2;} // if (GG+BG)/BB*2 > 391 //Green
     }
-    else{ // if RR >= 80 
-        if (compare(0, BG, 75)){ // if RG < 80
-            if (compare(0, lround((float)RR/BG * 200), 313)){color = 6;} // if RR/BG*2 < 319
-            else {color = 1;} // if RR/BG*2 >= 319
+    else{ // if BR > 55
+        if (compare(0, BG, 75)){ // if RG < 75
+            if (compare(0, lround((float)RR/BG * 200), 285)){ // if RR/BG * 2 < 313
+                if (GR > 90){color = 6;} 
+                else {color = 0;}
+            }
+            else {color = 1;} // if RR/BG*2 >= 313
         }
-        else{ // if RG >= 80
-            if (compare(0, BR, 85)){color = 7;} // if BR < 95
-            else{// if BR > = 95
+        else{ // if RG >= 75
+            if (compare(0, BR, 90)){
+                if (BG > 90){color = 7;} // if BR < 85
+                else {color = 0;}
+            }
+            else{// if BR > = 85
                 if (BG < BB){color = 5;} // if BG < BB
                 else{color = 4;}
             }
@@ -265,7 +272,18 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
     }
     // Group 0 (black and white)
     if (compare(95, BR, 105) && compare(95,BG,105)){color = 8;}
-    if (compare(0, BR, 25) && compare(0,RR,90)){color = 9;}
+    if (compare(0, BR, 25) && compare(0,RR,90)){color = 0;}
+    
+    if (color == 2 || color == 3){
+        if (GR_REAL < 50 || GC_REAL <520){color = 0;}
+    }
+    if (color == 1 || color == 6){
+        if (GR_REAL < 60 || GC_REAL <500){color = 0;}
+    }
+    if (color == 7 || color == 4 || color == 5 || color == 8){
+        if (GR_REAL < 70 || GC_REAL <560){color = 0;}
+    }
+    
     return color;
 }
 

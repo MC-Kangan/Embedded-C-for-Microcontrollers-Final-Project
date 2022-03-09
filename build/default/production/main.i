@@ -24238,8 +24238,7 @@ __attribute__((__unsupported__("The READTIMER" "0" "() macro is not available wi
 unsigned char __t1rd16on(void);
 unsigned char __t3rd16on(void);
 # 34 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\\pic\\include\\xc.h" 2 3
-# 9 "main.c" 2
-
+# 10 "main.c" 2
 # 1 "./dc_motor.h" 1
 # 12 "./dc_motor.h"
 struct DC_motor {
@@ -24267,8 +24266,7 @@ void reverse_square(struct DC_motor *mL, struct DC_motor *mR);
 void calibration(struct DC_motor *mL, struct DC_motor *mR);
 void voltage_read(struct DC_motor *m);
 void voltage_display(struct DC_motor *m);
-# 10 "main.c" 2
-
+# 11 "main.c" 2
 # 1 "./serial.h" 1
 # 13 "./serial.h"
 volatile char EUSART4RXbuf[20];
@@ -24297,8 +24295,7 @@ void putCharToTxBuf(char byte);
 char isDataInTxBuf (void);
 void TxBufferedString(char *string);
 void sendTxBuf(void);
-# 11 "main.c" 2
-
+# 12 "main.c" 2
 # 1 "./color.h" 1
 
 
@@ -24370,8 +24367,7 @@ unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned i
 void movement (unsigned char color,struct DC_motor *mL, struct DC_motor *mR);
 void check_color_reading(struct color_rgb *, struct white_card *w);
 void color_data_collection(struct color_rgb *m);
-# 12 "main.c" 2
-
+# 13 "main.c" 2
 # 1 "./i2c.h" 1
 # 13 "./i2c.h"
 void I2C_2_Master_Init(void);
@@ -24405,8 +24401,7 @@ void I2C_2_Master_Write(unsigned char data_byte);
 
 
 unsigned char I2C_2_Master_Read(unsigned char ack);
-# 13 "main.c" 2
-
+# 14 "main.c" 2
 # 1 "./movement.h" 1
 
 
@@ -24418,8 +24413,7 @@ void action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR);
 void test_action (struct DC_motor *mL, struct DC_motor *mR);
 void pin_init(void);
 void goback(struct DC_motor *mL, struct DC_motor *mR);
-# 14 "main.c" 2
-
+# 15 "main.c" 2
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\c99\\stdio.h" 1 3
 # 24 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\c99\\stdio.h" 3
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\c99\\bits/alltypes.h" 1 3
@@ -24564,8 +24558,7 @@ char *ctermid(char *);
 
 
 char *tempnam(const char *, const char *);
-# 15 "main.c" 2
-
+# 16 "main.c" 2
 
 
 
@@ -24591,13 +24584,29 @@ void main(void){
     initDCmotors_parameter(&motorL, &motorR);
     pin_init();
 
-
-
-
+    _delay((unsigned long)((3000)*(64000000/4000.0)));
+    calibrate_white(&white);
+    _delay((unsigned long)((3000)*(64000000/4000.0)));
     unsigned char complete = 0;
 
-    action(color, &motorL, &motorR);
+
     while(1){
-# 63 "main.c"
+
+  if (1 == 1){
+
+
+
+
+            color = detect_color(&rgb, &white);
+            color_predict(color);
+            _delay((unsigned long)((200)*(64000000/4000.0)));
+            }
+
+        if (1 == 2){
+            while (complete == 0){
+                color_data_collection(&rgb);
+                complete = 1;
+            }
+        }
     }
 }
