@@ -20,12 +20,12 @@
 #define TURNING_STOPTIME_L 600 
 #define TURNING_STOPTIME_R 700 
 #define TURNING_STOPTIME_180 1700 
- #define TEST 2
+ #define TEST 1
 //#define TEST 0 
 
 // Color code: 
 // 1: red; 2: green; 3: blue; 4: yellow; 5:pink; 6:orange; 7:light blue; 8:white; 9: black
-unsigned char color = 1;   
+unsigned char color = 2;   
       
 void main(void){
     I2C_2_Master_Init();
@@ -35,6 +35,10 @@ void main(void){
     initUSART4();
     
     struct color_rgb rgb;
+    struct white_card white;
+    //white.RR = 627; white.RG = 43; white.RB = 88;
+    //white.GR = 98; white.GG = 347; white.GB = 126;
+    //white.BR = 53; white.BG = 46; white.BB = 97;
     struct DC_motor motorL, motorR;
 
     initDCmotors_parameter(&motorL, &motorR);
@@ -57,45 +61,52 @@ void main(void){
     int x = 0;
     
     __delay_ms(3000);
+    calibrate_white(&white);
+    __delay_ms(3000);
     
     while(1){
-        test_movement(&motorL, &motorR);
-//		if (TEST == 1){
-//            color = detect_color(&rgb);
-//            color_predict(color);
-//            __delay_ms(200);
-//            }
-//        
-//        if (TEST == 2){
-//            while (complete == 0){
-//                for (i = 0; i < 50; ++i){
-//                    LED_C(&rgb);
-//                    color_display(&rgb);
-//                    __delay_ms(100);
-//                }  
-//                color_predict(00000);
-//                for (j = 0; j < 50; ++j){
-//                    LED_R(&rgb);
-//                    color_display(&rgb);
-//                    __delay_ms(100);
-//                }
-//                color_predict(00000);
-//                for (k = 0; k < 50; ++k){
-//                    LED_G(&rgb);
-//                    color_display(&rgb);
-//                    __delay_ms(100);
-//                }
-//                color_predict(00000);
-//                for (x = 0; x < 50; ++x){
-//                    LED_B(&rgb);
-//                    color_display(&rgb);
-//                    __delay_ms(100);
-//                }
-//                color_predict(00000);
-//                complete = 1;
-//                LED_C(&rgb);
-//            }
-//        }
+        //test_movement(&motorL, &motorR);
+		if (TEST == 1){
+            color = detect_color(&rgb, &white);
+            check_color_reading(&rgb, &white);
+            //color_predict(color);
+            __delay_ms(200);
+            }
+        
+        if (TEST == 2){
+            while (complete == 0){
+                for (i = 0; i < 10; ++i){
+                    LED_C();
+                    read_color(&rgb);
+                    color_display(&rgb);
+                   __delay_ms(100);
+                }  
+                color_predict(00000);
+                for (j = 0; j < 10; ++j){
+                    LED_R();
+                    read_color(&rgb);
+                    color_display(&rgb);
+                    __delay_ms(100);
+                }
+                color_predict(00000);
+                for (k = 0; k < 10; ++k){
+                    LED_G();
+                    read_color(&rgb);
+                    color_display(&rgb);
+                    __delay_ms(100);
+                }
+                color_predict(00000);
+                for (x = 0; x < 10; ++x){
+                    LED_B();
+                    read_color(&rgb);
+                    color_display(&rgb);
+                    __delay_ms(100);
+                }
+                color_predict(00000);
+                complete = 1;
+                LED_C();
+            }
+        }
 //
 //        if (TEST == 0){
             //detect_color_C(&rgb);

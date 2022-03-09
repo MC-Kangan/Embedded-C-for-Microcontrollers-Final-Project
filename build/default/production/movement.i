@@ -24392,6 +24392,18 @@ struct color_rgb {
     unsigned int C ;
 };
 
+struct white_card {
+    unsigned int RR ;
+    unsigned int RG ;
+    unsigned int RB;
+    unsigned int GR ;
+    unsigned int GG ;
+    unsigned int GB ;
+    unsigned int BR ;
+    unsigned int BG ;
+    unsigned int BB ;
+};
+
 
 
 
@@ -24423,16 +24435,18 @@ unsigned int color_read_Blue(void);
 unsigned int color_read_Green(void);
 unsigned int color_read_Clear(void);
 void read_color (struct color_rgb *m);
-void LED_R(struct color_rgb *m);
-void LED_C(struct color_rgb *m);
-void LED_B(struct color_rgb *m);
-void LED_G(struct color_rgb *m);
+void LED_R(void);
+void LED_C(void);
+void LED_B(void);
+void LED_G(void);
 void color_display(struct color_rgb *m);
+void calibrate_white(struct white_card *w);
 void color_predict(unsigned char color);
-unsigned char detect_color(struct color_rgb *m);
+unsigned char detect_color(struct color_rgb *m, struct white_card *w);
 unsigned char check_color(unsigned char color,struct color_rgb *m);
 unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned int upper);
 void movement (unsigned char color,struct DC_motor *mL, struct DC_motor *mR);
+void check_color_reading(struct color_rgb *, struct white_card *w);
 # 3 "movement.c" 2
 
 # 1 "./dc_motor.h" 1

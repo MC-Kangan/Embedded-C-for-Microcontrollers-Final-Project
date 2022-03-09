@@ -94,40 +94,40 @@ void read_color (struct color_rgb *m)
     m->C = color_read_Clear();
 }
 
-void LED_R(struct color_rgb *m)
+void LED_R(void)//struct color_rgb *m)
 {    
     LATGbits.LATG1 = 1; // output LED_R set on (power)
     LATFbits.LATF7 = 0; // output LED_B set on (power)
     LATAbits.LATA4 = 0; // output LED_G set on (power)
     __delay_ms(200);
-    read_color(m);
+    //read_color(m);
 }
 
-void LED_C(struct color_rgb *m)
+void LED_C(void)//struct color_rgb *m)
 {
     LATGbits.LATG1 = 1; // output LED_R set on (power)
     LATFbits.LATF7 = 1; // output LED_B set on (power)
     LATAbits.LATA4 = 1; // output LED_G set on (power)
     __delay_ms(200);
-    read_color(m);
+    //read_color(m);
 }
 
-void LED_B(struct color_rgb *m)
+void LED_B(void)//struct color_rgb *m)
 {
     LATGbits.LATG1 = 0; // output LED_R set on (power)
     LATFbits.LATF7 = 1; // output LED_B set on (power)
     LATAbits.LATA4 = 0; // output LED_G set on (power)
     __delay_ms(200);
-    read_color(m);
+    //read_color(m);
 }
 
-void LED_G(struct color_rgb *m)
+void LED_G(void)//struct color_rgb *m)
 {    
     LATGbits.LATG1 = 0; // output LED_R set on (power)
     LATFbits.LATF7 = 0; // output LED_B set on (power)
     LATAbits.LATA4 = 1; // output LED_G set on (power)
     __delay_ms(200);
-    read_color(m);
+    //read_color(m);
 }
 
 void color_display(struct color_rgb *m)
@@ -136,6 +136,14 @@ void color_display(struct color_rgb *m)
     sprintf(buf,"\t%d\t%d\t%d\t%d\r\n", m->R, m->G, m->B, m->C);
     sendStringSerial4(buf);
 }
+
+void check_color_reading(struct color_rgb *m, struct white_card *w)
+{
+    char buf[100];
+    sprintf(buf,"\t%d\t%d\t%d\r\n", m->R, w->RR, 100*(m->R)/(w->RR));
+    sendStringSerial4(buf);
+}
+
 
 void color_predict(unsigned char color)
 {
@@ -154,54 +162,71 @@ void color_predict(unsigned char color)
     
     sprintf(buf,"\t%d\r\n", color);
     sendStringSerial4(buf);
+    //sendStringSerial4(color_name);
 }
 
+void calibrate_white(struct white_card *w)
+{
+    LED_R(); // Turn on red light 
+    read_color(w); 
+    w->RR = color_read_Red(); w->RG = color_read_Green(); w->RB = color_read_Blue();
+    __delay_ms(50);
+    
+    LED_G(); // Turn on green light
+    read_color(w); 
+    w->GR = color_read_Red(); w->GG = color_read_Green(); w->GB = color_read_Blue();
+    __delay_ms(50);
+    
+    LED_B(); // Turn on blue light
+    read_color(w); 
+    w->BR = color_read_Red(); w->BG = color_read_Green(); w->BB = color_read_Blue();
+    __delay_ms(50);
+}
 
 // Function used to detect color with white light
-unsigned char detect_color(struct color_rgb *m)
+unsigned char detect_color(struct color_rgb *m, struct white_card *w)
 {
     // Color code:
     // 1: red; 2: green; 3: blue; 4: yellow; 5:pink; 6:orange; 7:light blue; 8:white; 9: black
-    
     unsigned int RR = 0, RG = 0, RB = 0, GR = 0, GG = 0, GB = 0, BR = 0, BG = 0, BB = 0;
     unsigned char color = 0;   
             
-    LED_R(m); // Turn on red light 
+    LED_R(); // Turn on red light 
     read_color(m); 
-    RR = m->R; RG = m->G; RB = m->B;
+    RR = 100*(m->R)/(w->RR); RG = 100*(m->G)/(w->RG); RB = 100*(m->B)/(w->RB);
     __delay_ms(50);
     
-    LED_G(m); // Turn on green light
+    LED_G(); // Turn on green light
     read_color(m); 
-    GR = m->R; GG = m->G; GB = m->B;
+    GR = 100*(m->R)/(w->GR); GG = 100*(m->G)/(w->GG); GB = 100*(m->B)/(w->GB);
     __delay_ms(50);
     
-    LED_B(m); // Turn on blue light
+    LED_B(); // Turn on blue light
     read_color(m); 
-    BR = m->R; BG = m->G; BB = m->B;
+    BR = 100*(m->R)/(w->BR); BG = 100*(m->G)/(w->BG); BB = 100*(m->B)/(w->BB);
     __delay_ms(50);
     
-    if (compare(RR, 600, 1)){ // if RR < 600
-        if (compare(816, GG/BB*200, GG/BB*200 + 10)){color = 9;} // If 816 < GG/BB*2 <= GG/BB*2 + 10 (Define an upper bound randomly)
-        else if (compare(742, GG/BB*200, 816 )){color = 2;} // If 742 < GG/BB*2 <= 816 
-        else if (compare(0, GG/BB*200, 742 )){color = 3;} // If 0 < GG/BB*2 <= 742 (Define a lower bound randomly)
-        else {color = 0;}
-    } 
-    else{
-        if (compare(0, RG, 50)){ // If 0 < RG <= 50
-            if (compare(0, RR/BG*100, 1597)) {color = 6;} 
-            else if (compare(1597, RR/BG*100, RR/BG*100 + 10)) {color = 1;}
-            else {color = 0;}
-        }
-        else if (compare(65, RG, RG + 10)){color = 8;} // If 65 < RG <= RG + 10
-        else if (compare(50, RG, 65)){
-            if (compare(80, BR, BR + 10)){color = 5;}
-            else if (compare(0, BR, 80) && compare(0, RR/BG*100, 1075)){color = 7;}
-            else if (compare(0, BR, 80) && compare(1075, RR/BG*100, RR/BR*100 + 10)){color = 4;}
-            else {color = 0;}
-        }
-        else {color = 0;}
+    
+    if (compare(0, RR, 90)){ // if RR < 90
+        if (compare(0, GG/BB*200, 228)){color = 3;} //Blue
+        else{color = 2;} //Green
     }
+    else{
+        if (compare(0,RG,80)){
+            if (compare(0, RR/BG*200, 319)){color = 6;}
+            else {color = 1;}
+        }
+        else{
+            if (compare(0, BR, 95)){color = 7;}
+            else{
+                if (BG < BB){color = 5;}
+                else{color = 4;}
+            }
+        }
+    }
+    // Group 0 (black and white)
+    if (compare(95, BR, 105) && compare(95,BG,105)){color = 8;}
+    if (compare(0, BR, 20) && compare(0,RR,90)){color = 9;}
     return color;
 }
 

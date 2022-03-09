@@ -12,6 +12,18 @@ struct color_rgb { //definition of color_rgb structure
     unsigned int C ;         //Clear color reading
 };
 
+struct white_card { //definition of white_card structure
+    unsigned int RR ;         //Red color reading when red light on
+    unsigned int RG ;         //Green color reading when red light on
+    unsigned int RB;         //Blue color reading when red light on
+    unsigned int GR ;         //Red color reading when green light on
+    unsigned int GG ;         //Green color reading when green light on
+    unsigned int GB ;         //Blue color reading when green light on
+    unsigned int BR ;         //Red color reading when blue light on
+    unsigned int BG ;         //Green color reading when blue light on
+    unsigned int BB ;         //Blue color reading when blue light on
+};
+
 /********************************************//**
  *  Function to initialise the colour click module using I2C
  ***********************************************/
@@ -43,14 +55,16 @@ unsigned int color_read_Blue(void);
 unsigned int color_read_Green(void);
 unsigned int color_read_Clear(void);
 void read_color (struct color_rgb *m);
-void LED_R(struct color_rgb *m);
-void LED_C(struct color_rgb *m);
-void LED_B(struct color_rgb *m);
-void LED_G(struct color_rgb *m);
+void LED_R(void);//struct color_rgb *m);
+void LED_C(void);//(struct color_rgb *m);
+void LED_B(void);//(struct color_rgb *m);
+void LED_G(void);//(struct color_rgb *m);
 void color_display(struct color_rgb *m);
+void calibrate_white(struct white_card *w);
 void color_predict(unsigned char color);
-unsigned char detect_color(struct color_rgb *m);
+unsigned char detect_color(struct color_rgb *m, struct white_card *w);
 unsigned char check_color(unsigned char color,struct color_rgb *m);
 unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned int upper);
 void movement (unsigned char color,struct DC_motor *mL, struct DC_motor *mR);
+void check_color_reading(struct color_rgb *, struct white_card *w);
 #endif

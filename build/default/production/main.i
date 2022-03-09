@@ -24310,6 +24310,18 @@ struct color_rgb {
     unsigned int C ;
 };
 
+struct white_card {
+    unsigned int RR ;
+    unsigned int RG ;
+    unsigned int RB;
+    unsigned int GR ;
+    unsigned int GG ;
+    unsigned int GB ;
+    unsigned int BR ;
+    unsigned int BG ;
+    unsigned int BB ;
+};
+
 
 
 
@@ -24341,16 +24353,18 @@ unsigned int color_read_Blue(void);
 unsigned int color_read_Green(void);
 unsigned int color_read_Clear(void);
 void read_color (struct color_rgb *m);
-void LED_R(struct color_rgb *m);
-void LED_C(struct color_rgb *m);
-void LED_B(struct color_rgb *m);
-void LED_G(struct color_rgb *m);
+void LED_R(void);
+void LED_C(void);
+void LED_B(void);
+void LED_G(void);
 void color_display(struct color_rgb *m);
+void calibrate_white(struct white_card *w);
 void color_predict(unsigned char color);
-unsigned char detect_color(struct color_rgb *m);
+unsigned char detect_color(struct color_rgb *m, struct white_card *w);
 unsigned char check_color(unsigned char color,struct color_rgb *m);
 unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned int upper);
 void movement (unsigned char color,struct DC_motor *mL, struct DC_motor *mR);
+void check_color_reading(struct color_rgb *, struct white_card *w);
 # 12 "main.c" 2
 
 # 1 "./i2c.h" 1
@@ -24545,7 +24559,7 @@ char *ctermid(char *);
 char *tempnam(const char *, const char *);
 # 15 "main.c" 2
 # 28 "main.c"
-unsigned char color = 1;
+unsigned char color = 2;
 
 void main(void){
     I2C_2_Master_Init();
@@ -24555,6 +24569,10 @@ void main(void){
     initUSART4();
 
     struct color_rgb rgb;
+    struct white_card white;
+
+
+
     struct DC_motor motorL, motorR;
 
     initDCmotors_parameter(&motorL, &motorR);
@@ -24577,9 +24595,52 @@ void main(void){
     int x = 0;
 
     _delay((unsigned long)((3000)*(64000000/4000.0)));
+    calibrate_white(&white);
+    _delay((unsigned long)((3000)*(64000000/4000.0)));
 
     while(1){
-        test_movement(&motorL, &motorR);
-# 111 "main.c"
+
+  if (1 == 1){
+            color = detect_color(&rgb, &white);
+            check_color_reading(&rgb, &white);
+
+            _delay((unsigned long)((200)*(64000000/4000.0)));
+            }
+
+        if (1 == 2){
+            while (complete == 0){
+                for (i = 0; i < 10; ++i){
+                    LED_C();
+                    read_color(&rgb);
+                    color_display(&rgb);
+                   _delay((unsigned long)((100)*(64000000/4000.0)));
+                }
+                color_predict(00000);
+                for (j = 0; j < 10; ++j){
+                    LED_R();
+                    read_color(&rgb);
+                    color_display(&rgb);
+                    _delay((unsigned long)((100)*(64000000/4000.0)));
+                }
+                color_predict(00000);
+                for (k = 0; k < 10; ++k){
+                    LED_G();
+                    read_color(&rgb);
+                    color_display(&rgb);
+                    _delay((unsigned long)((100)*(64000000/4000.0)));
+                }
+                color_predict(00000);
+                for (x = 0; x < 10; ++x){
+                    LED_B();
+                    read_color(&rgb);
+                    color_display(&rgb);
+                    _delay((unsigned long)((100)*(64000000/4000.0)));
+                }
+                color_predict(00000);
+                complete = 1;
+                LED_C();
+            }
+        }
+# 122 "main.c"
     }
 }

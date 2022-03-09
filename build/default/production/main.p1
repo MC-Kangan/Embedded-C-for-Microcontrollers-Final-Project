@@ -3,8 +3,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "13 ./i2c.h
 [; ;./i2c.h: 13: void I2C_2_Master_Init(void);
 [v _I2C_2_Master_Init `(v ~T0 @X0 0 ef ]
-"18 ./color.h
-[; ;./color.h: 18: void color_click_init(void);
+"30 ./color.h
+[; ;./color.h: 30: void color_click_init(void);
 [v _color_click_init `(v ~T0 @X0 0 ef ]
 "23 ./dc_motor.h
 [; ;./dc_motor.h: 23: void initDCmotorsPWM(int PWMperiod);
@@ -16,6 +16,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./color.h: 8: struct color_rgb {
 [s S2016 `ui 1 `ui 1 `ui 1 `ui 1 ]
 [n S2016 color_rgb R G B C ]
+"15
+[; ;./color.h: 15: struct white_card {
+[s S2017 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 ]
+[n S2017 white_card RR RG RB GR GG GB BR BG BB ]
 "12 ./dc_motor.h
 [; ;./dc_motor.h: 12: struct DC_motor {
 [s S2015 `uc 1 `uc 1 `*uc 1 `*uc 1 `uc 1 `i 1 `uc 1 ]
@@ -105,9 +109,36 @@ Version 4.0 HI-TECH Software Intermediate Code
 "12 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\builtins.h
 [v __delay `JF192 ~T0 @X0 0 e ]
 [p i __delay ]
-"8 ./movement.h
-[; ;./movement.h: 8: void test_movement (struct DC_motor *mL, struct DC_motor *mR);
-[v _test_movement `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
+"63 ./color.h
+[; ;./color.h: 63: void calibrate_white(struct white_card *w);
+[v _calibrate_white `(v ~T0 @X0 0 ef1`*S2017 ]
+"65
+[; ;./color.h: 65: unsigned char detect_color(struct color_rgb *m, struct white_card *w);
+[v _detect_color `(uc ~T0 @X0 0 ef2`*S2016`*S2017 ]
+"69
+[; ;./color.h: 69: void check_color_reading(struct color_rgb *, struct white_card *w);
+[v _check_color_reading `(v ~T0 @X0 0 ef2`*S2016`*S2017 ]
+"59
+[; ;./color.h: 59: void LED_C(void);
+[v _LED_C `(v ~T0 @X0 0 ef ]
+"57
+[; ;./color.h: 57: void read_color (struct color_rgb *m);
+[v _read_color `(v ~T0 @X0 0 ef1`*S2016 ]
+"62
+[; ;./color.h: 62: void color_display(struct color_rgb *m);
+[v _color_display `(v ~T0 @X0 0 ef1`*S2016 ]
+"64
+[; ;./color.h: 64: void color_predict(unsigned char color);
+[v _color_predict `(v ~T0 @X0 0 ef1`uc ]
+"58
+[; ;./color.h: 58: void LED_R(void);
+[v _LED_R `(v ~T0 @X0 0 ef ]
+"61
+[; ;./color.h: 61: void LED_G(void);
+[v _LED_G `(v ~T0 @X0 0 ef ]
+"60
+[; ;./color.h: 60: void LED_B(void);
+[v _LED_B `(v ~T0 @X0 0 ef ]
 "2 main.c
 [p x FEXTOSC  =  HS      ]
 "3
@@ -2121,10 +2152,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 0 `i `uc
 ]
 "28 main.c
-[; ;main.c: 28: unsigned char color = 1;
+[; ;main.c: 28: unsigned char color = 2;
 [v _color `uc ~T0 @X0 1 e ]
 [i _color
--> -> 1 `i `uc
+-> -> 2 `i `uc
 ]
 [v $root$_main `(v ~T0 @X0 0 e ]
 "30
@@ -2149,77 +2180,247 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 37:     struct color_rgb rgb;
 [v _rgb `S2016 ~T0 @X0 1 a ]
 "38
-[; ;main.c: 38:     struct DC_motor motorL, motorR;
+[; ;main.c: 38:     struct white_card white;
+[v _white `S2017 ~T0 @X0 1 a ]
+"42
+[; ;main.c: 42:     struct DC_motor motorL, motorR;
 [v _motorL `S2015 ~T0 @X0 1 a ]
 [v _motorR `S2015 ~T0 @X0 1 a ]
-"40
-[; ;main.c: 40:     initDCmotors_parameter(&motorL, &motorR);
+"44
+[; ;main.c: 44:     initDCmotors_parameter(&motorL, &motorR);
 [e ( _initDCmotors_parameter (2 , &U _motorL &U _motorR ]
-"42
-[; ;main.c: 42:     TRISFbits.TRISF6 = 0;
-[e = . . _TRISFbits 0 6 -> -> 0 `i `uc ]
-"43
-[; ;main.c: 43:     LATFbits.LATF6 = 0;
-[e = . . _LATFbits 0 6 -> -> 0 `i `uc ]
-"45
-[; ;main.c: 45:     TRISGbits.TRISG1 = 0;
-[e = . . _TRISGbits 0 1 -> -> 0 `i `uc ]
 "46
-[; ;main.c: 46:     TRISFbits.TRISF7 = 0;
-[e = . . _TRISFbits 0 7 -> -> 0 `i `uc ]
+[; ;main.c: 46:     TRISFbits.TRISF6 = 0;
+[e = . . _TRISFbits 0 6 -> -> 0 `i `uc ]
 "47
-[; ;main.c: 47:     TRISAbits.TRISA4 = 0;
-[e = . . _TRISAbits 0 4 -> -> 0 `i `uc ]
-"48
-[; ;main.c: 48:     LATGbits.LATG1 = 1;
-[e = . . _LATGbits 0 1 -> -> 1 `i `uc ]
+[; ;main.c: 47:     LATFbits.LATF6 = 0;
+[e = . . _LATFbits 0 6 -> -> 0 `i `uc ]
 "49
-[; ;main.c: 49:     LATFbits.LATF7 = 1;
-[e = . . _LATFbits 0 7 -> -> 1 `i `uc ]
+[; ;main.c: 49:     TRISGbits.TRISG1 = 0;
+[e = . . _TRISGbits 0 1 -> -> 0 `i `uc ]
 "50
-[; ;main.c: 50:     LATAbits.LATA4 = 1;
-[e = . . _LATAbits 0 4 -> -> 1 `i `uc ]
+[; ;main.c: 50:     TRISFbits.TRISF7 = 0;
+[e = . . _TRISFbits 0 7 -> -> 0 `i `uc ]
+"51
+[; ;main.c: 51:     TRISAbits.TRISA4 = 0;
+[e = . . _TRISAbits 0 4 -> -> 0 `i `uc ]
 "52
-[; ;main.c: 52:     unsigned char color = 0;
+[; ;main.c: 52:     LATGbits.LATG1 = 1;
+[e = . . _LATGbits 0 1 -> -> 1 `i `uc ]
+"53
+[; ;main.c: 53:     LATFbits.LATF7 = 1;
+[e = . . _LATFbits 0 7 -> -> 1 `i `uc ]
+"54
+[; ;main.c: 54:     LATAbits.LATA4 = 1;
+[e = . . _LATAbits 0 4 -> -> 1 `i `uc ]
+"56
+[; ;main.c: 56:     unsigned char color = 0;
 [v _color `uc ~T0 @X0 1 a ]
 [e = _color -> -> 0 `i `uc ]
-"53
-[; ;main.c: 53:     unsigned char complete = 0;
+"57
+[; ;main.c: 57:     unsigned char complete = 0;
 [v _complete `uc ~T0 @X0 1 a ]
 [e = _complete -> -> 0 `i `uc ]
-"54
-[; ;main.c: 54:     int i = 0;
+"58
+[; ;main.c: 58:     int i = 0;
 [v _i `i ~T0 @X0 1 a ]
 [e = _i -> 0 `i ]
-"55
-[; ;main.c: 55:     int j = 0;
+"59
+[; ;main.c: 59:     int j = 0;
 [v _j `i ~T0 @X0 1 a ]
 [e = _j -> 0 `i ]
-"56
-[; ;main.c: 56:     int k = 0;
+"60
+[; ;main.c: 60:     int k = 0;
 [v _k `i ~T0 @X0 1 a ]
 [e = _k -> 0 `i ]
-"57
-[; ;main.c: 57:     int x = 0;
+"61
+[; ;main.c: 61:     int x = 0;
 [v _x `i ~T0 @X0 1 a ]
 [e = _x -> 0 `i ]
-"59
-[; ;main.c: 59:     _delay((unsigned long)((3000)*(64000000/4000.0)));
+"63
+[; ;main.c: 63:     _delay((unsigned long)((3000)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 3000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"61
-[; ;main.c: 61:     while(1){
-[e :U 2021 ]
-{
-"62
-[; ;main.c: 62:         test_movement(&motorL, &motorR);
-[e ( _test_movement (2 , &U _motorL &U _motorR ]
-"111
-[; ;main.c: 111:     }
-}
-[e :U 2020 ]
-[e $U 2021  ]
+"64
+[; ;main.c: 64:     calibrate_white(&white);
+[e ( _calibrate_white (1 &U _white ]
+"65
+[; ;main.c: 65:     _delay((unsigned long)((3000)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 3000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"67
+[; ;main.c: 67:     while(1){
 [e :U 2022 ]
-"112
-[; ;main.c: 112: }
-[e :UE 2019 ]
+{
+"69
+[; ;main.c: 69:   if (1 == 1){
+[e $ ! == -> 1 `i -> 1 `i 2024  ]
+{
+"70
+[; ;main.c: 70:             color = detect_color(&rgb, &white);
+[e = _color ( _detect_color (2 , &U _rgb &U _white ]
+"71
+[; ;main.c: 71:             check_color_reading(&rgb, &white);
+[e ( _check_color_reading (2 , &U _rgb &U _white ]
+"73
+[; ;main.c: 73:             _delay((unsigned long)((200)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"74
+[; ;main.c: 74:             }
+}
+[e :U 2024 ]
+"76
+[; ;main.c: 76:         if (1 == 2){
+[e $ ! == -> 1 `i -> 2 `i 2025  ]
+{
+"77
+[; ;main.c: 77:             while (complete == 0){
+[e $U 2026  ]
+[e :U 2027 ]
+{
+"78
+[; ;main.c: 78:                 for (i = 0; i < 10; ++i){
+{
+[e = _i -> 0 `i ]
+[e $ < _i -> 10 `i 2029  ]
+[e $U 2030  ]
+[e :U 2029 ]
+{
+"79
+[; ;main.c: 79:                     LED_C();
+[e ( _LED_C ..  ]
+"80
+[; ;main.c: 80:                     read_color(&rgb);
+[e ( _read_color (1 &U _rgb ]
+"81
+[; ;main.c: 81:                     color_display(&rgb);
+[e ( _color_display (1 &U _rgb ]
+"82
+[; ;main.c: 82:                    _delay((unsigned long)((100)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"83
+[; ;main.c: 83:                 }
+}
+[e =+ _i -> 1 `i ]
+[e $ < _i -> 10 `i 2029  ]
+[e :U 2030 ]
+}
+"84
+[; ;main.c: 84:                 color_predict(00000);
+[e ( _color_predict (1 -> -> 0 `i `uc ]
+"85
+[; ;main.c: 85:                 for (j = 0; j < 10; ++j){
+{
+[e = _j -> 0 `i ]
+[e $ < _j -> 10 `i 2032  ]
+[e $U 2033  ]
+[e :U 2032 ]
+{
+"86
+[; ;main.c: 86:                     LED_R();
+[e ( _LED_R ..  ]
+"87
+[; ;main.c: 87:                     read_color(&rgb);
+[e ( _read_color (1 &U _rgb ]
+"88
+[; ;main.c: 88:                     color_display(&rgb);
+[e ( _color_display (1 &U _rgb ]
+"89
+[; ;main.c: 89:                     _delay((unsigned long)((100)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"90
+[; ;main.c: 90:                 }
+}
+[e =+ _j -> 1 `i ]
+[e $ < _j -> 10 `i 2032  ]
+[e :U 2033 ]
+}
+"91
+[; ;main.c: 91:                 color_predict(00000);
+[e ( _color_predict (1 -> -> 0 `i `uc ]
+"92
+[; ;main.c: 92:                 for (k = 0; k < 10; ++k){
+{
+[e = _k -> 0 `i ]
+[e $ < _k -> 10 `i 2035  ]
+[e $U 2036  ]
+[e :U 2035 ]
+{
+"93
+[; ;main.c: 93:                     LED_G();
+[e ( _LED_G ..  ]
+"94
+[; ;main.c: 94:                     read_color(&rgb);
+[e ( _read_color (1 &U _rgb ]
+"95
+[; ;main.c: 95:                     color_display(&rgb);
+[e ( _color_display (1 &U _rgb ]
+"96
+[; ;main.c: 96:                     _delay((unsigned long)((100)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"97
+[; ;main.c: 97:                 }
+}
+[e =+ _k -> 1 `i ]
+[e $ < _k -> 10 `i 2035  ]
+[e :U 2036 ]
+}
+"98
+[; ;main.c: 98:                 color_predict(00000);
+[e ( _color_predict (1 -> -> 0 `i `uc ]
+"99
+[; ;main.c: 99:                 for (x = 0; x < 10; ++x){
+{
+[e = _x -> 0 `i ]
+[e $ < _x -> 10 `i 2038  ]
+[e $U 2039  ]
+[e :U 2038 ]
+{
+"100
+[; ;main.c: 100:                     LED_B();
+[e ( _LED_B ..  ]
+"101
+[; ;main.c: 101:                     read_color(&rgb);
+[e ( _read_color (1 &U _rgb ]
+"102
+[; ;main.c: 102:                     color_display(&rgb);
+[e ( _color_display (1 &U _rgb ]
+"103
+[; ;main.c: 103:                     _delay((unsigned long)((100)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"104
+[; ;main.c: 104:                 }
+}
+[e =+ _x -> 1 `i ]
+[e $ < _x -> 10 `i 2038  ]
+[e :U 2039 ]
+}
+"105
+[; ;main.c: 105:                 color_predict(00000);
+[e ( _color_predict (1 -> -> 0 `i `uc ]
+"106
+[; ;main.c: 106:                 complete = 1;
+[e = _complete -> -> 1 `i `uc ]
+"107
+[; ;main.c: 107:                 LED_C();
+[e ( _LED_C ..  ]
+"108
+[; ;main.c: 108:             }
+}
+[e :U 2026 ]
+"77
+[; ;main.c: 77:             while (complete == 0){
+[e $ == -> _complete `i -> 0 `i 2027  ]
+[e :U 2028 ]
+"109
+[; ;main.c: 109:         }
+}
+[e :U 2025 ]
+"122
+[; ;main.c: 122:     }
+}
+[e :U 2021 ]
+[e $U 2022  ]
+[e :U 2023 ]
+"123
+[; ;main.c: 123: }
+[e :UE 2020 ]
 }
