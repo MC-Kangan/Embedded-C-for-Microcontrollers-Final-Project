@@ -24472,6 +24472,8 @@ void turnRight(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_rig
 void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
 void fullSpeedAhead_test(struct DC_motor *mL, struct DC_motor *mR);
 void fullSpeedBack(struct DC_motor *mL, struct DC_motor *mR);
+void short_reverse(struct DC_motor *mL, struct DC_motor *mR);
+void reverse_square(struct DC_motor *mL, struct DC_motor *mR);
 void calibration(struct DC_motor *mL, struct DC_motor *mR);
 void voltage_read(struct DC_motor *m);
 void voltage_display(struct DC_motor *m);
@@ -24514,15 +24516,49 @@ void sendTxBuf(void);
 
 
 
-void action(struct DC_motor *mL, struct DC_motor *mR);
+void action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR);
 void test_action (struct DC_motor *mL, struct DC_motor *mR);
 void pin_init(void);
 void goback(struct DC_motor *mL, struct DC_motor *mR);
 # 6 "movement.c" 2
 
 
-void action(struct DC_motor *mL, struct DC_motor *mR)
+void action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR)
 { fullSpeedAhead(mL,mR);
+    if (color != 0){stop(mL,mR);
+        if (color == 1){
+            short_reverse(mL,mR);
+            turnRight(mL,mR,90);
+        }
+        if (color == 2){
+            short_reverse(mL,mR);
+            turnLeft(mL,mR,90);
+        }
+        if (color == 3){
+            short_reverse(mL,mR);
+            turnLeft(mL,mR,180);
+        }
+        if (color == 4){
+            reverse_square(mL,mR);
+            turnRight(mL,mR,90);
+        }
+        if (color == 5){
+            reverse_square(mL,mR);
+            turnLeft(mL,mR,90);
+        }
+        if (color == 6){
+            short_reverse(mL,mR);
+            turnRight(mL,mR,135);
+        }
+        if (color == 7){
+            short_reverse(mL,mR);
+            turnLeft(mL,mR,135);
+        }
+        if (color == 8){
+            short_reverse(mL,mR);
+            goback(mL,mR);
+        }
+    }
 }
 void test_action (struct DC_motor *mL, struct DC_motor *mR)
 { fullSpeedAhead_test(mL,mR);

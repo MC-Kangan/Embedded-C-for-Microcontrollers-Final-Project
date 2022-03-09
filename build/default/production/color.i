@@ -24253,6 +24253,8 @@ void turnRight(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_rig
 void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
 void fullSpeedAhead_test(struct DC_motor *mL, struct DC_motor *mR);
 void fullSpeedBack(struct DC_motor *mL, struct DC_motor *mR);
+void short_reverse(struct DC_motor *mL, struct DC_motor *mR);
+void reverse_square(struct DC_motor *mL, struct DC_motor *mR);
 void calibration(struct DC_motor *mL, struct DC_motor *mR);
 void voltage_read(struct DC_motor *m);
 void voltage_display(struct DC_motor *m);
@@ -24928,9 +24930,6 @@ typedef struct {
 # 9 "color.c" 2
 
 
-
-
-unsigned char color = 0;
 
 void color_click_init(void)
 {

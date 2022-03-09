@@ -30,9 +30,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "9 ./movement.h
 [; ;./movement.h: 9: void pin_init(void);
 [v _pin_init `(v ~T0 @X0 0 ef ]
-"31 ./dc_motor.h
-[; ;./dc_motor.h: 31: void fullSpeedBack(struct DC_motor *mL, struct DC_motor *mR);
-[v _fullSpeedBack `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
+"7
+[; ;./movement.h: 7: void action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR);
+[v _action `(v ~T0 @X0 0 ef3`uc`*S2015`*S2015 ]
 "2 main.c
 [p x FEXTOSC  =  HS      ]
 "3
@@ -2045,59 +2045,65 @@ Version 4.0 HI-TECH Software Intermediate Code
 [i _TxBufReadCnt
 -> -> 0 `i `uc
 ]
-[v $root$_main `(v ~T0 @X0 0 e ]
 "22 main.c
-[; ;main.c: 22: void main(void){
+[; ;main.c: 22: unsigned char color = 0;
+[v _color `uc ~T0 @X0 1 e ]
+[i _color
+-> -> 0 `i `uc
+]
+[v $root$_main `(v ~T0 @X0 0 e ]
+"24
+[; ;main.c: 24: void main(void){
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"23
-[; ;main.c: 23:     I2C_2_Master_Init();
-[e ( _I2C_2_Master_Init ..  ]
-"24
-[; ;main.c: 24:     color_click_init();
-[e ( _color_click_init ..  ]
 "25
-[; ;main.c: 25:     initDCmotorsPWM(199);
-[e ( _initDCmotorsPWM (1 -> 199 `i ]
+[; ;main.c: 25:     I2C_2_Master_Init();
+[e ( _I2C_2_Master_Init ..  ]
+"26
+[; ;main.c: 26:     color_click_init();
+[e ( _color_click_init ..  ]
 "27
-[; ;main.c: 27:     initUSART4();
-[e ( _initUSART4 ..  ]
+[; ;main.c: 27:     initDCmotorsPWM(199);
+[e ( _initDCmotorsPWM (1 -> 199 `i ]
 "29
-[; ;main.c: 29:     struct color_rgb rgb;
+[; ;main.c: 29:     initUSART4();
+[e ( _initUSART4 ..  ]
+"31
+[; ;main.c: 31:     struct color_rgb rgb;
 [v _rgb `S2016 ~T0 @X0 1 a ]
-"30
-[; ;main.c: 30:     struct white_card white;
+"32
+[; ;main.c: 32:     struct white_card white;
 [v _white `S2017 ~T0 @X0 1 a ]
-"34
-[; ;main.c: 34:     struct DC_motor motorL, motorR;
+"36
+[; ;main.c: 36:     struct DC_motor motorL, motorR;
 [v _motorL `S2015 ~T0 @X0 1 a ]
 [v _motorR `S2015 ~T0 @X0 1 a ]
-"36
-[; ;main.c: 36:     initDCmotors_parameter(&motorL, &motorR);
+"38
+[; ;main.c: 38:     initDCmotors_parameter(&motorL, &motorR);
 [e ( _initDCmotors_parameter (2 , &U _motorL &U _motorR ]
-"37
-[; ;main.c: 37:     pin_init();
+"39
+[; ;main.c: 39:     pin_init();
 [e ( _pin_init ..  ]
-"42
-[; ;main.c: 42:     unsigned char complete = 0;
+"44
+[; ;main.c: 44:     unsigned char complete = 0;
 [v _complete `uc ~T0 @X0 1 a ]
 [e = _complete -> -> 0 `i `uc ]
-"44
-[; ;main.c: 44:     fullSpeedBack(&motorL, &motorR);
-[e ( _fullSpeedBack (2 , &U _motorL &U _motorR ]
-"45
-[; ;main.c: 45:     while(1){
+"46
+[; ;main.c: 46:     action(color, &motorL, &motorR);
+[e ( _action (3 , , _color &U _motorL &U _motorR ]
+"47
+[; ;main.c: 47:     while(1){
 [e :U 2022 ]
 {
-"61
-[; ;main.c: 61:     }
+"63
+[; ;main.c: 63:     }
 }
 [e :U 2021 ]
 [e $U 2022  ]
 [e :U 2023 ]
-"62
-[; ;main.c: 62: }
+"64
+[; ;main.c: 64: }
 [e :UE 2020 ]
 }

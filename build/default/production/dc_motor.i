@@ -24253,6 +24253,8 @@ void turnRight(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_rig
 void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
 void fullSpeedAhead_test(struct DC_motor *mL, struct DC_motor *mR);
 void fullSpeedBack(struct DC_motor *mL, struct DC_motor *mR);
+void short_reverse(struct DC_motor *mL, struct DC_motor *mR);
+void reverse_square(struct DC_motor *mL, struct DC_motor *mR);
 void calibration(struct DC_motor *mL, struct DC_motor *mR);
 void voltage_read(struct DC_motor *m);
 void voltage_display(struct DC_motor *m);
@@ -24453,7 +24455,7 @@ char *tempnam(const char *, const char *);
 
 
 
-void action(struct DC_motor *mL, struct DC_motor *mR);
+void action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR);
 void test_action (struct DC_motor *mL, struct DC_motor *mR);
 void pin_init(void);
 void goback(struct DC_motor *mL, struct DC_motor *mR);
@@ -24545,7 +24547,7 @@ void stop(struct DC_motor *mL, struct DC_motor *mR)
         setMotorPWM(mR);
         _delay((unsigned long)((10)*(64000000/4000.0)));
     }
-    _delay((unsigned long)((500)*(64000000/4000.0)));
+    _delay((unsigned long)((1000)*(64000000/4000.0)));
 }
 
 
@@ -24626,6 +24628,18 @@ void fullSpeedBack(struct DC_motor *mL, struct DC_motor *mR)
         _delay((unsigned long)((10)*(64000000/4000.0)));
     }
     _delay((unsigned long)((500)*(64000000/4000.0)));
+    stop(mL,mR);
+}
+
+void short_reverse(struct DC_motor *mL, struct DC_motor *mR)
+{ fullSpeedBack(mL, mR);
+    _delay((unsigned long)((500)*(64000000/4000.0)));
+    stop(mL,mR);
+}
+
+void reverse_square(struct DC_motor *mL, struct DC_motor *mR)
+{ fullSpeedBack(mL, mR);
+    _delay((unsigned long)((1000)*(64000000/4000.0)));
     stop(mL,mR);
 }
 

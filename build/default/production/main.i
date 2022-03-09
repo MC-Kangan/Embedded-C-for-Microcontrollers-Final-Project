@@ -24262,6 +24262,8 @@ void turnRight(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_rig
 void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
 void fullSpeedAhead_test(struct DC_motor *mL, struct DC_motor *mR);
 void fullSpeedBack(struct DC_motor *mL, struct DC_motor *mR);
+void short_reverse(struct DC_motor *mL, struct DC_motor *mR);
+void reverse_square(struct DC_motor *mL, struct DC_motor *mR);
 void calibration(struct DC_motor *mL, struct DC_motor *mR);
 void voltage_read(struct DC_motor *m);
 void voltage_display(struct DC_motor *m);
@@ -24412,7 +24414,7 @@ unsigned char I2C_2_Master_Read(unsigned char ack);
 
 
 
-void action(struct DC_motor *mL, struct DC_motor *mR);
+void action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR);
 void test_action (struct DC_motor *mL, struct DC_motor *mR);
 void pin_init(void);
 void goback(struct DC_motor *mL, struct DC_motor *mR);
@@ -24570,6 +24572,8 @@ char *tempnam(const char *, const char *);
 
 
 
+unsigned char color = 0;
+
 void main(void){
     I2C_2_Master_Init();
     color_click_init();
@@ -24592,8 +24596,8 @@ void main(void){
 
     unsigned char complete = 0;
 
-    fullSpeedBack(&motorL, &motorR);
+    action(color, &motorL, &motorR);
     while(1){
-# 61 "main.c"
+# 63 "main.c"
     }
 }

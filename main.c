@@ -17,7 +17,9 @@
 #define _XTAL_FREQ 64000000 //note intrinsic _delay function is 62.5ns at 64,000,000Hz 
  #define TEST 2
 //#define TEST 0 
-
+// Color code: 
+// 1: red; 2: green; 3: blue; 4: yellow; 5:pink; 6:orange; 7:light blue; 8:white; 9: black
+unsigned char color = 0;  
 
 void main(void){
     I2C_2_Master_Init();
@@ -41,7 +43,7 @@ void main(void){
     //__delay_ms(3000);
     unsigned char complete = 0;
     //calibration(&motorL, &motorR);
-    fullSpeedBack(&motorL, &motorR);
+    action(color, &motorL, &motorR);
     while(1){
         //test_action(&motorL, &motorR);
 //		if (TEST == 1){

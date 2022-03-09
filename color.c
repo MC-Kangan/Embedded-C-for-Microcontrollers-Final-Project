@@ -8,9 +8,6 @@
 #include <math.h>
 #include <fenv.h>
 //#include "movement.h"
-// Color code: 
-// 1: red; 2: green; 3: blue; 4: yellow; 5:pink; 6:orange; 7:light blue; 8:white; 9: black
-unsigned char color = 0;  
 
 void color_click_init(void)
 {   
