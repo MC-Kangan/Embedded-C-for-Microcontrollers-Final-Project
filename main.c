@@ -38,6 +38,7 @@ void main(void){
     struct DC_motor motorL, motorR;
 
     initDCmotors_parameter(&motorL, &motorR);
+    calibration_init();
     
     TRISFbits.TRISF6 = 0; //output on RF6 (BAT-VERSE), detects voltage of motor
     LATFbits.LATF6 = 0; //output on BAT-VERSE set on (power) 
@@ -58,6 +59,7 @@ void main(void){
     
     __delay_ms(3000);
     
+    calibration(&motorL, &motorR);
     while(1){
         test_movement(&motorL, &motorR);
 //		if (TEST == 1){

@@ -24232,7 +24232,7 @@ unsigned char __t3rd16on(void);
 # 1 "color.c" 2
 
 # 1 "./dc_motor.h" 1
-# 12 "./dc_motor.h"
+# 11 "./dc_motor.h"
 struct DC_motor {
     char power;
     char direction;
@@ -24251,7 +24251,7 @@ void stop(struct DC_motor *mL, struct DC_motor *mR);
 void turnLeft(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_left);
 void turnRight(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_right);
 void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
-void turn180(struct DC_motor *mL, struct DC_motor *mR);
+void calibration(struct DC_motor *mL, struct DC_motor *mR);
 void voltage_read(struct DC_motor *m);
 void voltage_display(struct DC_motor *m);
 # 2 "color.c" 2

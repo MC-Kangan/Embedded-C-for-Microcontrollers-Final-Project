@@ -3,7 +3,11 @@
 #include "ADC.h"
 #include "serial.h"
 #include <stdio.h>
+#include "movement.h"
 // function initialise T2 and PWM for DC motor control
+struct DC_motor motorL, motorR;
+unsigned char SENSITIVITY = 7;
+
 void initDCmotorsPWM(int PWMperiod){
 	//initialise your TRIS and LAT registers for PWM
     
@@ -138,18 +142,23 @@ void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR)
     }
 }
 
-//function to make the robot turn right 180 degree
-void turn180(struct DC_motor *mL, struct DC_motor *mR)
-{
-    mL->direction=1;
-    mR->direction=1;
-    while (mR->power <TURNING_POWER_R + 5){
-        mR->power += 1;
-        mL->power = 0;
-        setMotorPWM(mL);
-        setMotorPWM(mR);                             // set the power to motor
-        __delay_ms(10);
+void calibration(struct DC_motor *mL, struct DC_motor *mR)
+{ 
+    while (1) {  // press both to exit and start buggy
+        if (!PORTFbits.RF2) {               // press RF2 to increase sensitivity
+            __delay_ms(300);                // set the delay time so the buggy know you are only pressing once
+            if (!PORTFbits.RF3) {break;}    // end the infinite while loop if RF3 is also pressed
+            else {SENSITIVITY += 5;}        // increase sensitivity if only RF2 is pressed
+        }
+        
+        if (!PORTFbits.RF3) {               // press RF3 to decrease sensitivity
+            __delay_ms(300);                // set the delay time so the buggy know you are only pressing once
+            if (!PORTFbits.RF2) {break;}    // end the infinite while loop if RF2 is also pressed
+            else {SENSITIVITY -= 5;}        // decrease sensitivity if only RF3 is pressed
+        }
     }
+    test_movement(mL, mR);    
+    __delay_ms(3000);  // prepare
 }
 
 void voltage_read(struct DC_motor *m)

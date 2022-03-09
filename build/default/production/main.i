@@ -24241,7 +24241,7 @@ unsigned char __t3rd16on(void);
 # 9 "main.c" 2
 
 # 1 "./dc_motor.h" 1
-# 12 "./dc_motor.h"
+# 11 "./dc_motor.h"
 struct DC_motor {
     char power;
     char direction;
@@ -24260,7 +24260,7 @@ void stop(struct DC_motor *mL, struct DC_motor *mR);
 void turnLeft(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_left);
 void turnRight(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_right);
 void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
-void turn180(struct DC_motor *mL, struct DC_motor *mR);
+void calibration(struct DC_motor *mL, struct DC_motor *mR);
 void voltage_read(struct DC_motor *m);
 void voltage_display(struct DC_motor *m);
 # 10 "main.c" 2
@@ -24397,6 +24397,8 @@ unsigned char I2C_2_Master_Read(unsigned char ack);
 
 
 void test_movement (struct DC_motor *mL, struct DC_motor *mR);
+void calibration_init(void);
+void goback(struct DC_motor *mL, struct DC_motor *mR);
 # 14 "main.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\c99\\stdio.h" 1 3
@@ -24558,6 +24560,7 @@ void main(void){
     struct DC_motor motorL, motorR;
 
     initDCmotors_parameter(&motorL, &motorR);
+    calibration_init();
 
     TRISFbits.TRISF6 = 0;
     LATFbits.LATF6 = 0;
@@ -24578,8 +24581,9 @@ void main(void){
 
     _delay((unsigned long)((3000)*(64000000/4000.0)));
 
+    calibration(&motorL, &motorR);
     while(1){
         test_movement(&motorL, &motorR);
-# 111 "main.c"
+# 113 "main.c"
     }
 }
