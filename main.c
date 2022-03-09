@@ -15,18 +15,10 @@
 #include <stdio.h>
 
 #define _XTAL_FREQ 64000000 //note intrinsic _delay function is 62.5ns at 64,000,000Hz 
-#define TURNING_POWER_L 40 // This number needs to be adjusted according to different floor condition
-#define TURNING_POWER_R  40 // This number needs to be adjusted according to different floor condition
-#define TURNING_STOPTIME_L 600 
-#define TURNING_STOPTIME_R 700 
-#define TURNING_STOPTIME_180 1700 
  #define TEST 2
 //#define TEST 0 
 
-// Color code: 
-// 1: red; 2: green; 3: blue; 4: yellow; 5:pink; 6:orange; 7:light blue; 8:white; 9: black
-unsigned char color = 0;   
-      
+
 void main(void){
     I2C_2_Master_Init();
     color_click_init();
@@ -49,22 +41,23 @@ void main(void){
     //__delay_ms(3000);
     unsigned char complete = 0;
     //calibration(&motorL, &motorR);
+    fullSpeedBack(&motorL, &motorR);
     while(1){
-        //test_movement(&motorL, &motorR);
-		if (TEST == 1){
-            color = detect_color(&rgb, &white);
-            read_color(&rgb);
-            //check_color_reading(&rgb, &white);
-            color_predict(color);
-            __delay_ms(200);
-            }
-        
-        if (TEST == 2){
-            while (complete == 0){
-                color_data_collection(&rgb);
-                complete = 1;
-            }
-        }
+        //test_action(&motorL, &motorR);
+//		if (TEST == 1){
+//            color = detect_color(&rgb, &white);
+//            read_color(&rgb);
+//            //check_color_reading(&rgb, &white);
+//            color_predict(color);
+//            __delay_ms(200);
+//            }
+//        
+//        if (TEST == 2){
+//            while (complete == 0){
+//                color_data_collection(&rgb);
+//                complete = 1;
+//            }
+//        }
     }
 }
 

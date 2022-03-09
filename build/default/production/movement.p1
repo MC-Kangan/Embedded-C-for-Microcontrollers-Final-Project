@@ -1,16 +1,19 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"11 ./dc_motor.h
-[; ;./dc_motor.h: 11: struct DC_motor {
+"12 ./dc_motor.h
+[; ;./dc_motor.h: 12: struct DC_motor {
 [s S2020 `uc 1 `uc 1 `*uc 1 `*uc 1 `uc 1 `i 1 `uc 1 ]
 [n S2020 DC_motor power direction dutyHighByte dir_LAT dir_pin PWMperiod voltage ]
 "29
-[; ;./dc_motor.h: 29: void fullSpeedAhead_test(struct DC_motor *mL, struct DC_motor *mR);
+[; ;./dc_motor.h: 29: void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
+[v _fullSpeedAhead `(v ~T0 @X0 0 ef2`*S2020`*S2020 ]
+"30
+[; ;./dc_motor.h: 30: void fullSpeedAhead_test(struct DC_motor *mL, struct DC_motor *mR);
 [v _fullSpeedAhead_test `(v ~T0 @X0 0 ef2`*S2020`*S2020 ]
-"26
-[; ;./dc_motor.h: 26: void turnLeft(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_left);
-[v _turnLeft `(v ~T0 @X0 0 ef3`*S2020`*S2020`uc ]
 "27
-[; ;./dc_motor.h: 27: void turnRight(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_right);
+[; ;./dc_motor.h: 27: void turnLeft(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_left);
+[v _turnLeft `(v ~T0 @X0 0 ef3`*S2020`*S2020`uc ]
+"28
+[; ;./dc_motor.h: 28: void turnRight(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_right);
 [v _turnRight `(v ~T0 @X0 0 ef3`*S2020`*S2020`uc ]
 "29946 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 29946:     struct {
@@ -34,6 +37,73 @@ Version 4.0 HI-TECH Software Intermediate Code
 "12320
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 12320: extern volatile ANSELFbits_t ANSELFbits __attribute__((address(0xEB4)));
 [v _ANSELFbits `VS567 ~T0 @X0 0 e@3764 ]
+"29035
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 29035:     struct {
+[s S1355 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1355 . LATF0 LATF1 LATF2 LATF3 LATF4 LATF5 LATF6 LATF7 ]
+"29045
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 29045:     struct {
+[s S1356 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1356 . LF0 LF1 LF2 LF3 LF4 LF5 LF6 LF7 ]
+"29034
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 29034: typedef union {
+[u S1354 `S1355 1 `S1356 1 ]
+[n S1354 . . . ]
+"29056
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 29056: extern volatile LATFbits_t LATFbits __attribute__((address(0xF7E)));
+[v _LATFbits `VS1354 ~T0 @X0 0 e@3966 ]
+"30008
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 30008:     struct {
+[s S1390 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1390 . TRISG0 TRISG1 TRISG2 TRISG3 TRISG4 . TRISG6 TRISG7 ]
+"30007
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 30007: typedef union {
+[u S1389 `S1390 1 ]
+[n S1389 . . ]
+"30019
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 30019: extern volatile TRISGbits_t TRISGbits __attribute__((address(0xF87)));
+[v _TRISGbits `VS1389 ~T0 @X0 0 e@3975 ]
+"29341
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 29341:     struct {
+[s S1368 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1368 . TRISA0 TRISA1 TRISA2 TRISA3 TRISA4 TRISA5 TRISA6 TRISA7 ]
+"29340
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 29340: typedef union {
+[u S1367 `S1368 1 ]
+[n S1367 . . ]
+"29352
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 29352: extern volatile TRISAbits_t TRISAbits __attribute__((address(0xF81)));
+[v _TRISAbits `VS1367 ~T0 @X0 0 e@3969 ]
+"29147
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 29147:     struct {
+[s S1358 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1358 . LATG0 LATG1 LATG2 LATG3 LATG4 . LATG6 LATG7 ]
+"29157
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 29157:     struct {
+[s S1359 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1359 . LG0 LG1 LG2 LG3 LG4 ]
+"29146
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 29146: typedef union {
+[u S1357 `S1358 1 `S1359 1 ]
+[n S1357 . . . ]
+"29165
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 29165: extern volatile LATGbits_t LATGbits __attribute__((address(0xF7F)));
+[v _LATGbits `VS1357 ~T0 @X0 0 e@3967 ]
+"28475
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 28475:     struct {
+[s S1340 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1340 . LATA0 LATA1 LATA2 LATA3 LATA4 LATA5 LATA6 LATA7 ]
+"28485
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 28485:     struct {
+[s S1341 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1341 . LA0 LA1 LA2 LA3 LA4 LA5 LA6 LA7 ]
+"28474
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 28474: typedef union {
+[u S1339 `S1340 1 `S1341 1 ]
+[n S1339 . . . ]
+"28496
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 28496: extern volatile LATAbits_t LATAbits __attribute__((address(0xF79)));
+[v _LATAbits `VS1339 ~T0 @X0 0 e@3961 ]
 "55 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 55: __asm("PPSLOCK equ 0DEFh");
 [; <" PPSLOCK equ 0DEFh ;# ">
@@ -2038,95 +2108,138 @@ Version 4.0 HI-TECH Software Intermediate Code
 [i _TxBufReadCnt
 -> -> 0 `i `uc
 ]
-"15 movement.c
-[; ;movement.c: 15: void test_movement (struct DC_motor *mL, struct DC_motor *mR)
-[v _test_movement `(v ~T0 @X0 1 ef2`*S2020`*S2020 ]
-"16
-[; ;movement.c: 16: { fullSpeedAhead_test(mL, mR);
+"8 movement.c
+[; ;movement.c: 8: void action(struct DC_motor *mL, struct DC_motor *mR)
+[v _action `(v ~T0 @X0 1 ef2`*S2020`*S2020 ]
+"9
+[; ;movement.c: 9: { fullSpeedAhead(mL,mR);
 {
-[e :U _test_movement ]
-"15
-[; ;movement.c: 15: void test_movement (struct DC_motor *mL, struct DC_motor *mR)
+[e :U _action ]
+"8
+[; ;movement.c: 8: void action(struct DC_motor *mL, struct DC_motor *mR)
 [v _mL `*S2020 ~T0 @X0 1 r1 ]
 [v _mR `*S2020 ~T0 @X0 1 r2 ]
-"16
-[; ;movement.c: 16: { fullSpeedAhead_test(mL, mR);
+"9
+[; ;movement.c: 9: { fullSpeedAhead(mL,mR);
 [f ]
-[e ( _fullSpeedAhead_test (2 , _mL _mR ]
-"17
-[; ;movement.c: 17:     turnLeft(mL, mR, 90);
-[e ( _turnLeft (3 , , _mL _mR -> -> 90 `i `uc ]
-"18
-[; ;movement.c: 18:     fullSpeedAhead_test(mL, mR);
-[e ( _fullSpeedAhead_test (2 , _mL _mR ]
-"19
-[; ;movement.c: 19:     turnLeft(mL, mR, 90);
-[e ( _turnLeft (3 , , _mL _mR -> -> 90 `i `uc ]
-"20
-[; ;movement.c: 20:     fullSpeedAhead_test(mL, mR);
-[e ( _fullSpeedAhead_test (2 , _mL _mR ]
-"21
-[; ;movement.c: 21:     turnLeft(mL, mR, 180);
-[e ( _turnLeft (3 , , _mL _mR -> -> 180 `i `uc ]
-"22
-[; ;movement.c: 22:     fullSpeedAhead_test(mL, mR);
-[e ( _fullSpeedAhead_test (2 , _mL _mR ]
-"23
-[; ;movement.c: 23:     turnRight(mL, mR, 90);
-[e ( _turnRight (3 , , _mL _mR -> -> 90 `i `uc ]
-"24
-[; ;movement.c: 24:     fullSpeedAhead_test(mL, mR);
-[e ( _fullSpeedAhead_test (2 , _mL _mR ]
-"25
-[; ;movement.c: 25:     turnRight(mL, mR, 90);
-[e ( _turnRight (3 , , _mL _mR -> -> 90 `i `uc ]
-"26
-[; ;movement.c: 26:     fullSpeedAhead_test(mL, mR);
-[e ( _fullSpeedAhead_test (2 , _mL _mR ]
-"27
-[; ;movement.c: 27: }
+[e ( _fullSpeedAhead (2 , _mL _mR ]
+"10
+[; ;movement.c: 10: }
 [e :UE 2021 ]
 }
-"28
-[; ;movement.c: 28: void calibration_init(void)
-[v _calibration_init `(v ~T0 @X0 1 ef ]
-"29
-[; ;movement.c: 29: { TRISFbits.TRISF2=1;
+"11
+[; ;movement.c: 11: void test_action (struct DC_motor *mL, struct DC_motor *mR)
+[v _test_action `(v ~T0 @X0 1 ef2`*S2020`*S2020 ]
+"12
+[; ;movement.c: 12: { fullSpeedAhead_test(mL,mR);
 {
-[e :U _calibration_init ]
-[f ]
-[e = . . _TRISFbits 0 2 -> -> 1 `i `uc ]
-"30
-[; ;movement.c: 30:     ANSELFbits.ANSELF2=0;
-[e = . . _ANSELFbits 0 2 -> -> 0 `i `uc ]
-"31
-[; ;movement.c: 31:     TRISFbits.TRISF3=1;
-[e = . . _TRISFbits 0 3 -> -> 1 `i `uc ]
-"32
-[; ;movement.c: 32:     ANSELFbits.ANSELF3=0;
-[e = . . _ANSELFbits 0 3 -> -> 0 `i `uc ]
-"33
-[; ;movement.c: 33: }
-[e :UE 2022 ]
-}
-"35
-[; ;movement.c: 35: void goback(struct DC_motor *mL, struct DC_motor *mR)
-[v _goback `(v ~T0 @X0 1 ef2`*S2020`*S2020 ]
-"36
-[; ;movement.c: 36: {
-{
-[e :U _goback ]
-"35
-[; ;movement.c: 35: void goback(struct DC_motor *mL, struct DC_motor *mR)
+[e :U _test_action ]
+"11
+[; ;movement.c: 11: void test_action (struct DC_motor *mL, struct DC_motor *mR)
 [v _mL `*S2020 ~T0 @X0 1 r1 ]
 [v _mR `*S2020 ~T0 @X0 1 r2 ]
-"36
-[; ;movement.c: 36: {
+"12
+[; ;movement.c: 12: { fullSpeedAhead_test(mL,mR);
 [f ]
-"37
-[; ;movement.c: 37:     turnLeft(mL, mR, 180);
+[e ( _fullSpeedAhead_test (2 , _mL _mR ]
+"13
+[; ;movement.c: 13:     turnLeft(mL,mR,90);
+[e ( _turnLeft (3 , , _mL _mR -> -> 90 `i `uc ]
+"14
+[; ;movement.c: 14:     fullSpeedAhead_test(mL,mR);
+[e ( _fullSpeedAhead_test (2 , _mL _mR ]
+"15
+[; ;movement.c: 15:     turnLeft(mL,mR,90);
+[e ( _turnLeft (3 , , _mL _mR -> -> 90 `i `uc ]
+"16
+[; ;movement.c: 16:     fullSpeedAhead_test(mL,mR);
+[e ( _fullSpeedAhead_test (2 , _mL _mR ]
+"17
+[; ;movement.c: 17:     turnLeft(mL,mR,180);
 [e ( _turnLeft (3 , , _mL _mR -> -> 180 `i `uc ]
+"18
+[; ;movement.c: 18:     fullSpeedAhead_test(mL,mR);
+[e ( _fullSpeedAhead_test (2 , _mL _mR ]
+"19
+[; ;movement.c: 19:     turnRight(mL,mR,90);
+[e ( _turnRight (3 , , _mL _mR -> -> 90 `i `uc ]
+"20
+[; ;movement.c: 20:     fullSpeedAhead_test(mL,mR);
+[e ( _fullSpeedAhead_test (2 , _mL _mR ]
+"21
+[; ;movement.c: 21:     turnRight(mL,mR,90);
+[e ( _turnRight (3 , , _mL _mR -> -> 90 `i `uc ]
+"22
+[; ;movement.c: 22:     fullSpeedAhead_test(mL,mR);
+[e ( _fullSpeedAhead_test (2 , _mL _mR ]
+"23
+[; ;movement.c: 23: }
+[e :UE 2022 ]
+}
+"24
+[; ;movement.c: 24: void pin_init(void)
+[v _pin_init `(v ~T0 @X0 1 ef ]
+"25
+[; ;movement.c: 25: { TRISFbits.TRISF2=1;
+{
+[e :U _pin_init ]
+[f ]
+[e = . . _TRISFbits 0 2 -> -> 1 `i `uc ]
+"26
+[; ;movement.c: 26:     ANSELFbits.ANSELF2=0;
+[e = . . _ANSELFbits 0 2 -> -> 0 `i `uc ]
+"27
+[; ;movement.c: 27:     TRISFbits.TRISF3=1;
+[e = . . _TRISFbits 0 3 -> -> 1 `i `uc ]
+"28
+[; ;movement.c: 28:     ANSELFbits.ANSELF3=0;
+[e = . . _ANSELFbits 0 3 -> -> 0 `i `uc ]
+"30
+[; ;movement.c: 30:     TRISFbits.TRISF6 = 0;
+[e = . . _TRISFbits 0 6 -> -> 0 `i `uc ]
+"31
+[; ;movement.c: 31:     LATFbits.LATF6 = 0;
+[e = . . _LATFbits 0 6 -> -> 0 `i `uc ]
+"33
+[; ;movement.c: 33:     TRISGbits.TRISG1 = 0;
+[e = . . _TRISGbits 0 1 -> -> 0 `i `uc ]
+"34
+[; ;movement.c: 34:     TRISFbits.TRISF7 = 0;
+[e = . . _TRISFbits 0 7 -> -> 0 `i `uc ]
+"35
+[; ;movement.c: 35:     TRISAbits.TRISA4 = 0;
+[e = . . _TRISAbits 0 4 -> -> 0 `i `uc ]
+"36
+[; ;movement.c: 36:     LATGbits.LATG1 = 1;
+[e = . . _LATGbits 0 1 -> -> 1 `i `uc ]
+"37
+[; ;movement.c: 37:     LATFbits.LATF7 = 1;
+[e = . . _LATFbits 0 7 -> -> 1 `i `uc ]
 "38
-[; ;movement.c: 38: }
+[; ;movement.c: 38:     LATAbits.LATA4 = 1;
+[e = . . _LATAbits 0 4 -> -> 1 `i `uc ]
+"39
+[; ;movement.c: 39: }
 [e :UE 2023 ]
+}
+"41
+[; ;movement.c: 41: void goback(struct DC_motor *mL, struct DC_motor *mR)
+[v _goback `(v ~T0 @X0 1 ef2`*S2020`*S2020 ]
+"42
+[; ;movement.c: 42: {
+{
+[e :U _goback ]
+"41
+[; ;movement.c: 41: void goback(struct DC_motor *mL, struct DC_motor *mR)
+[v _mL `*S2020 ~T0 @X0 1 r1 ]
+[v _mR `*S2020 ~T0 @X0 1 r2 ]
+"42
+[; ;movement.c: 42: {
+[f ]
+"43
+[; ;movement.c: 43:     turnLeft(mL, mR, 180);
+[e ( _turnLeft (3 , , _mL _mR -> -> 180 `i `uc ]
+"44
+[; ;movement.c: 44: }
+[e :UE 2024 ]
 }

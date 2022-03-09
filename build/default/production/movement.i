@@ -24451,7 +24451,7 @@ void color_data_collection(struct color_rgb *m);
 # 3 "movement.c" 2
 
 # 1 "./dc_motor.h" 1
-# 11 "./dc_motor.h"
+# 12 "./dc_motor.h"
 struct DC_motor {
     char power;
     char direction;
@@ -24470,6 +24470,8 @@ void stop(struct DC_motor *mL, struct DC_motor *mR);
 void turnLeft(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_left);
 void turnRight(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_right);
 void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
+void fullSpeedAhead_test(struct DC_motor *mL, struct DC_motor *mR);
+void fullSpeedBack(struct DC_motor *mL, struct DC_motor *mR);
 void calibration(struct DC_motor *mL, struct DC_motor *mR);
 void voltage_read(struct DC_motor *m);
 void voltage_display(struct DC_motor *m);
@@ -24512,22 +24514,44 @@ void sendTxBuf(void);
 
 
 
-
-void test_movement (struct DC_motor *mL, struct DC_motor *mR);
-void calibration_init(void);
+void action(struct DC_motor *mL, struct DC_motor *mR);
+void test_action (struct DC_motor *mL, struct DC_motor *mR);
+void pin_init(void);
 void goback(struct DC_motor *mL, struct DC_motor *mR);
 # 6 "movement.c" 2
-# 15 "movement.c"
-void test_movement (struct DC_motor *mL, struct DC_motor *mR)
-{
-    turnRight(mL, mR, 90);
-    stop(mL, mR);
+
+
+void action(struct DC_motor *mL, struct DC_motor *mR)
+{ fullSpeedAhead(mL,mR);
 }
-void calibration_init(void)
+void test_action (struct DC_motor *mL, struct DC_motor *mR)
+{ fullSpeedAhead_test(mL,mR);
+    turnLeft(mL,mR,90);
+    fullSpeedAhead_test(mL,mR);
+    turnLeft(mL,mR,90);
+    fullSpeedAhead_test(mL,mR);
+    turnLeft(mL,mR,180);
+    fullSpeedAhead_test(mL,mR);
+    turnRight(mL,mR,90);
+    fullSpeedAhead_test(mL,mR);
+    turnRight(mL,mR,90);
+    fullSpeedAhead_test(mL,mR);
+}
+void pin_init(void)
 { TRISFbits.TRISF2=1;
     ANSELFbits.ANSELF2=0;
     TRISFbits.TRISF3=1;
     ANSELFbits.ANSELF3=0;
+
+    TRISFbits.TRISF6 = 0;
+    LATFbits.LATF6 = 0;
+
+    TRISGbits.TRISG1 = 0;
+    TRISFbits.TRISF7 = 0;
+    TRISAbits.TRISA4 = 0;
+    LATGbits.LATG1 = 1;
+    LATFbits.LATF7 = 1;
+    LATAbits.LATA4 = 1;
 }
 
 void goback(struct DC_motor *mL, struct DC_motor *mR)

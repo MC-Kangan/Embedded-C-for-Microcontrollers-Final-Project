@@ -144,8 +144,6 @@ void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR)
 {
     mL->direction=1;
     mR->direction=1;
-    mL->power = 0; // set the power for both motor to be 0 to start with, otherwise, due to previous movement, they might have different speed.
-    mR->power = 0;
     while (mL->power<FORWARD_POWER && mR->power<FORWARD_POWER){         // when the powers for left and right motors are smaller than 70
         mL->power += 10;                                                // increase the left motor power by 10 for each time (this case the power of motor push to the setting value immediately)
         mR->power += 10;                                                // increase the right motor power by 10 for each time (this case the power of motor push to the setting value immediately)
@@ -161,6 +159,21 @@ void fullSpeedAhead_test(struct DC_motor *mL, struct DC_motor *mR)
     stop(mL,mR);
 }
 
+void fullSpeedBack(struct DC_motor *mL, struct DC_motor *mR)
+{
+    mL->direction=0;
+    mR->direction=0;
+    while (mL->power<BACKWARD_POWER && mR->power<BACKWARD_POWER){         // when the powers for left and right motors are smaller than 70
+        mL->power += 10;                                                // increase the left motor power by 10 for each time (this case the power of motor push to the setting value immediately)
+        mR->power += 10;                                                // increase the right motor power by 10 for each time (this case the power of motor push to the setting value immediately)
+        setMotorPWM(mL);                                                // set the power to motor
+        setMotorPWM(mR);                                                // set the power to motor
+        __delay_ms(10);
+    }
+    __delay_ms(500);
+    stop(mL,mR);
+}
+
 void calibration(struct DC_motor *mL, struct DC_motor *mR)
 { 
     while (1) {  // press both to exit and start buggy
@@ -168,7 +181,7 @@ void calibration(struct DC_motor *mL, struct DC_motor *mR)
         if (!PORTFbits.RF2) {__delay_ms(300);SENSITIVITY -= 5;}       
         if (!PORTFbits.RF3) {__delay_ms(300);SENSITIVITY += 5;}    // end the infinite while loop if RF3 is also pressed
     }
-    test_movement(mL, mR);    
+    test_action(mL, mR);    
     __delay_ms(3000);  // prepare
 }
 

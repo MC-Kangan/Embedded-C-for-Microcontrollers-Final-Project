@@ -24232,7 +24232,7 @@ unsigned char __t3rd16on(void);
 # 1 "dc_motor.c" 2
 
 # 1 "./dc_motor.h" 1
-# 11 "./dc_motor.h"
+# 12 "./dc_motor.h"
 struct DC_motor {
     char power;
     char direction;
@@ -24252,6 +24252,7 @@ void turnLeft(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_left
 void turnRight(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_right);
 void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
 void fullSpeedAhead_test(struct DC_motor *mL, struct DC_motor *mR);
+void fullSpeedBack(struct DC_motor *mL, struct DC_motor *mR);
 void calibration(struct DC_motor *mL, struct DC_motor *mR);
 void voltage_read(struct DC_motor *m);
 void voltage_display(struct DC_motor *m);
@@ -24452,9 +24453,9 @@ char *tempnam(const char *, const char *);
 
 
 
-
-void test_movement (struct DC_motor *mL, struct DC_motor *mR);
-void calibration_init(void);
+void action(struct DC_motor *mL, struct DC_motor *mR);
+void test_action (struct DC_motor *mL, struct DC_motor *mR);
+void pin_init(void);
 void goback(struct DC_motor *mL, struct DC_motor *mR);
 # 6 "dc_motor.c" 2
 
@@ -24598,8 +24599,6 @@ void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR)
 {
     mL->direction=1;
     mR->direction=1;
-    mL->power = 0;
-    mR->power = 0;
     while (mL->power<40 && mR->power<40){
         mL->power += 10;
         mR->power += 10;
@@ -24615,6 +24614,21 @@ void fullSpeedAhead_test(struct DC_motor *mL, struct DC_motor *mR)
     stop(mL,mR);
 }
 
+void fullSpeedBack(struct DC_motor *mL, struct DC_motor *mR)
+{
+    mL->direction=0;
+    mR->direction=0;
+    while (mL->power<50 && mR->power<50){
+        mL->power += 10;
+        mR->power += 10;
+        setMotorPWM(mL);
+        setMotorPWM(mR);
+        _delay((unsigned long)((10)*(64000000/4000.0)));
+    }
+    _delay((unsigned long)((500)*(64000000/4000.0)));
+    stop(mL,mR);
+}
+
 void calibration(struct DC_motor *mL, struct DC_motor *mR)
 {
     while (1) {
@@ -24622,7 +24636,7 @@ void calibration(struct DC_motor *mL, struct DC_motor *mR)
         if (!PORTFbits.RF2) {_delay((unsigned long)((300)*(64000000/4000.0)));SENSITIVITY -= 5;}
         if (!PORTFbits.RF3) {_delay((unsigned long)((300)*(64000000/4000.0)));SENSITIVITY += 5;}
     }
-    test_movement(mL, mR);
+    test_action(mL, mR);
     _delay((unsigned long)((3000)*(64000000/4000.0)));
 }
 

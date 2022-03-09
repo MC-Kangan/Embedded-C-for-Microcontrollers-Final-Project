@@ -4,8 +4,8 @@
 #include <xc.h>
 
 //function prototypes
-//void movement(struct DC_motor *mL, struct DC_motor *mR);
-void test_movement (struct DC_motor *mL, struct DC_motor *mR);
+void action(struct DC_motor *mL, struct DC_motor *mR);
+void test_action (struct DC_motor *mL, struct DC_motor *mR);
 void pin_init(void);
 void goback(struct DC_motor *mL, struct DC_motor *mR);
 

@@ -5,25 +5,22 @@
 #include "serial.h"
 #include "movement.h"
 
-//void movement(struct DC_motor *mL, struct DC_motor *mR)
-//{
-//    turnLeft(mL, mR);
-//    __delay_ms(500);
-//    stop(mL, mR);
-//    __delay_ms(500);
-//}
-void test_movement (struct DC_motor *mL, struct DC_motor *mR)
-{   fullSpeedAhead_test(mL, mR);
-    turnLeft(mL, mR, 90);
-    fullSpeedAhead_test(mL, mR);
-    turnLeft(mL, mR, 90);
-    fullSpeedAhead_test(mL, mR);
-    turnLeft(mL, mR, 180);
-    fullSpeedAhead_test(mL, mR);
-    turnRight(mL, mR, 90);
-    fullSpeedAhead_test(mL, mR);
-    turnRight(mL, mR, 90);
-    fullSpeedAhead_test(mL, mR);
+void action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR)
+{   fullSpeedAhead(mL,mR);
+    if (color != 0){stop(mL,mR);}
+}
+void test_action (struct DC_motor *mL, struct DC_motor *mR)
+{   fullSpeedAhead_test(mL,mR);
+    turnLeft(mL,mR,90);
+    fullSpeedAhead_test(mL,mR);
+    turnLeft(mL,mR,90);
+    fullSpeedAhead_test(mL,mR);
+    turnLeft(mL,mR,180);
+    fullSpeedAhead_test(mL,mR);
+    turnRight(mL,mR,90);
+    fullSpeedAhead_test(mL,mR);
+    turnRight(mL,mR,90);
+    fullSpeedAhead_test(mL,mR);
 }
 void pin_init(void)
 {   TRISFbits.TRISF2=1; //set TRIS value for pin (input)
