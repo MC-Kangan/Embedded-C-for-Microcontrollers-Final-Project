@@ -1,14 +1,39 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"12 ./dc_motor.h
-[; ;./dc_motor.h: 12: struct DC_motor {
+"11 ./dc_motor.h
+[; ;./dc_motor.h: 11: struct DC_motor {
 [s S2020 `uc 1 `uc 1 `*uc 1 `*uc 1 `uc 1 `i 1 `uc 1 ]
 [n S2020 DC_motor power direction dutyHighByte dir_LAT dir_pin PWMperiod voltage ]
 "27
-[; ;./dc_motor.h: 27: void turnLeft(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_left);
-[v _turnLeft `(v ~T0 @X0 0 ef3`*S2020`*S2020`uc ]
-"26
-[; ;./dc_motor.h: 26: void stop(struct DC_motor *mL, struct DC_motor *mR);
+[; ;./dc_motor.h: 27: void turnRight(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_right);
+[v _turnRight `(v ~T0 @X0 0 ef3`*S2020`*S2020`uc ]
+"25
+[; ;./dc_motor.h: 25: void stop(struct DC_motor *mL, struct DC_motor *mR);
 [v _stop `(v ~T0 @X0 0 ef2`*S2020`*S2020 ]
+"29946 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 29946:     struct {
+[s S1388 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1388 . TRISF0 TRISF1 TRISF2 TRISF3 TRISF4 TRISF5 TRISF6 TRISF7 ]
+"29945
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 29945: typedef union {
+[u S1387 `S1388 1 ]
+[n S1387 . . ]
+"29957
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 29957: extern volatile TRISFbits_t TRISFbits __attribute__((address(0xF86)));
+[v _TRISFbits `VS1387 ~T0 @X0 0 e@3974 ]
+"12309
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 12309:     struct {
+[s S568 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S568 . ANSELF0 ANSELF1 ANSELF2 ANSELF3 ANSELF4 ANSELF5 ANSELF6 ANSELF7 ]
+"12308
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 12308: typedef union {
+[u S567 `S568 1 ]
+[n S567 . . ]
+"12320
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 12320: extern volatile ANSELFbits_t ANSELFbits __attribute__((address(0xEB4)));
+[v _ANSELFbits `VS567 ~T0 @X0 0 e@3764 ]
+"26 ./dc_motor.h
+[; ;./dc_motor.h: 26: void turnLeft(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_left);
+[v _turnLeft `(v ~T0 @X0 0 ef3`*S2020`*S2020`uc ]
 "55 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 55: __asm("PPSLOCK equ 0DEFh");
 [; <" PPSLOCK equ 0DEFh ;# ">
@@ -2028,12 +2053,55 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;movement.c: 16: {
 [f ]
 "17
-[; ;movement.c: 17:     turnLeft(mL, mR, 90);
-[e ( _turnLeft (3 , , _mL _mR -> -> 90 `i `uc ]
+[; ;movement.c: 17:     turnRight(mL, mR, 90);
+[e ( _turnRight (3 , , _mL _mR -> -> 90 `i `uc ]
 "18
 [; ;movement.c: 18:     stop(mL, mR);
 [e ( _stop (2 , _mL _mR ]
 "19
 [; ;movement.c: 19: }
 [e :UE 2021 ]
+}
+"20
+[; ;movement.c: 20: void calibration_init(void)
+[v _calibration_init `(v ~T0 @X0 1 ef ]
+"21
+[; ;movement.c: 21: { TRISFbits.TRISF2=1;
+{
+[e :U _calibration_init ]
+[f ]
+[e = . . _TRISFbits 0 2 -> -> 1 `i `uc ]
+"22
+[; ;movement.c: 22:     ANSELFbits.ANSELF2=0;
+[e = . . _ANSELFbits 0 2 -> -> 0 `i `uc ]
+"23
+[; ;movement.c: 23:     TRISFbits.TRISF3=1;
+[e = . . _TRISFbits 0 3 -> -> 1 `i `uc ]
+"24
+[; ;movement.c: 24:     ANSELFbits.ANSELF3=0;
+[e = . . _ANSELFbits 0 3 -> -> 0 `i `uc ]
+"25
+[; ;movement.c: 25: }
+[e :UE 2022 ]
+}
+"27
+[; ;movement.c: 27: void goback(struct DC_motor *mL, struct DC_motor *mR)
+[v _goback `(v ~T0 @X0 1 ef2`*S2020`*S2020 ]
+"28
+[; ;movement.c: 28: {
+{
+[e :U _goback ]
+"27
+[; ;movement.c: 27: void goback(struct DC_motor *mL, struct DC_motor *mR)
+[v _mL `*S2020 ~T0 @X0 1 r1 ]
+[v _mR `*S2020 ~T0 @X0 1 r2 ]
+"28
+[; ;movement.c: 28: {
+[f ]
+"29
+[; ;movement.c: 29:     turnLeft(mL, mR, 180);
+[e ( _turnLeft (3 , , _mL _mR -> -> 180 `i `uc ]
+"30
+[; ;movement.c: 30: }
+[e :UE 2023 ]
 }

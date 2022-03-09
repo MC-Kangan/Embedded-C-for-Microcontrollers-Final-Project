@@ -4,6 +4,9 @@
 #include "color.h"
 #include "i2c.h"
 #include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <fenv.h>
 //#include "movement.h"
 
 void color_click_init(void)
@@ -140,10 +143,11 @@ void color_display(struct color_rgb *m)
 void check_color_reading(struct color_rgb *m, struct white_card *w)
 {
     char buf[100];
-    sprintf(buf,"\t%d\t%d\t%d\r\n", m->R, w->RR, 100*(m->R)/(w->RR));
+    
+    int result = lround((float)(m->R)/(w->RR)*100);
+    sprintf(buf,"\t%d\t%d\t%d\r\n", m->R, w->RR, result);
     sendStringSerial4(buf);
 }
-
 
 void color_predict(unsigned char color)
 {
@@ -168,19 +172,19 @@ void color_predict(unsigned char color)
 void calibrate_white(struct white_card *w)
 {
     LED_R(); // Turn on red light 
-    read_color(w); 
+    //read_color(w); 
     w->RR = color_read_Red(); w->RG = color_read_Green(); w->RB = color_read_Blue();
-    __delay_ms(50);
+    __delay_ms(100);
     
     LED_G(); // Turn on green light
-    read_color(w); 
+    //read_color(w); 
     w->GR = color_read_Red(); w->GG = color_read_Green(); w->GB = color_read_Blue();
-    __delay_ms(50);
+    __delay_ms(100);
     
     LED_B(); // Turn on blue light
-    read_color(w); 
+    //read_color(w); 
     w->BR = color_read_Red(); w->BG = color_read_Green(); w->BB = color_read_Blue();
-    __delay_ms(50);
+    __delay_ms(100);
 }
 
 // Function used to detect color with white light
@@ -193,33 +197,33 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
             
     LED_R(); // Turn on red light 
     read_color(m); 
-    RR = 100*(m->R)/(w->RR); RG = 100*(m->G)/(w->RG); RB = 100*(m->B)/(w->RB);
+    RR = lround((float)(m->R)/(w->RR)*100); RG = lround((float)(m->G)/(w->RG)*100); RB = lround((float)(m->B)/(w->RB)*100);
     __delay_ms(50);
     
     LED_G(); // Turn on green light
     read_color(m); 
-    GR = 100*(m->R)/(w->GR); GG = 100*(m->G)/(w->GG); GB = 100*(m->B)/(w->GB);
+    GR = lround((float)(m->R)/(w->GR)*100); GG = lround((float)(m->G)/(w->GG)*100); GB = lround((float)(m->B)/(w->GB)*100);
     __delay_ms(50);
     
     LED_B(); // Turn on blue light
     read_color(m); 
-    BR = 100*(m->R)/(w->BR); BG = 100*(m->G)/(w->BG); BB = 100*(m->B)/(w->BB);
+    BR = lround((float)(m->R)/(w->BR)*100); BG = lround((float)(m->G)/(w->BG)*100); BB = lround((float)(m->B)/(w->BB)*100);
     __delay_ms(50);
     
     
     if (compare(0, RR, 90)){ // if RR < 90
-        if (compare(0, GG/BB*200, 228)){color = 3;} //Blue
-        else{color = 2;} //Green
+        if (compare(0, lround((float)GG/BB * 200), 228)){color = 3;}// if GG/BB*2 <228 //Blue
+        else{color = 2;} // if GG/BB*2 > 228 //Green
     }
-    else{
-        if (compare(0,RG,80)){
-            if (compare(0, RR/BG*200, 319)){color = 6;}
-            else {color = 1;}
+    else{ // if RR >= 90 
+        if (compare(0, RG, 80)){ // if RG < 80
+            if (compare(0, lround((float)RR/BG * 200), 319)){color = 6;} // if RR/BG*2 < 319
+            else {color = 1;} // if RR/BG*2 >= 319
         }
-        else{
-            if (compare(0, BR, 95)){color = 7;}
-            else{
-                if (BG < BB){color = 5;}
+        else{ // if RG >= 80
+            if (compare(0, BR, 95)){color = 7;} // if BR < 95
+            else{// if BR > = 95
+                if (BG < BB){color = 5;} // if BG < BB
                 else{color = 4;}
             }
         }

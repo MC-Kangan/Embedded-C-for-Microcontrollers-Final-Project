@@ -65,13 +65,15 @@ void main(void){
     calibrate_white(&white);
     __delay_ms(3000);
     
-    calibration(&motorL, &motorR);
+    //calibration(&motorL, &motorR);
     while(1){
         //test_movement(&motorL, &motorR);
 		if (TEST == 1){
             color = detect_color(&rgb, &white);
-            check_color_reading(&rgb, &white);
-            //color_predict(color);
+            //LED_R();
+            read_color(&rgb);
+            //check_color_reading(&rgb, &white);
+            color_predict(color);
             __delay_ms(200);
             }
         
