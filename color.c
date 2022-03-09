@@ -133,6 +133,41 @@ void LED_G(void)//struct color_rgb *m)
     //read_color(m);
 }
 
+
+void color_data_collection(struct color_rgb *m){
+    
+    int i = 0; int j = 0; int k = 0; int x = 0;
+    for (i = 0; i < 1; ++i){
+        LED_C();
+        read_color(m);
+        color_display(m);
+        __delay_ms(500);
+    }  
+    //color_predict(00000);
+    for (j = 0; j < 1; ++j){
+        LED_R();
+        read_color(m);
+        color_display(m);
+        __delay_ms(500);
+    }
+    //color_predict(00000);
+    for (k = 0; k < 1; ++k){
+        LED_G();
+        read_color(m);
+        color_display(m);
+        __delay_ms(500);
+    }
+    //color_predict(00000);
+    for (x = 0; x < 1; ++x){
+        LED_B();
+        read_color(m);
+        color_display(m);
+        __delay_ms(500);
+    }
+    color_predict(00000);
+    LED_C();
+}
+
 void color_display(struct color_rgb *m)
 {
     char buf[100];

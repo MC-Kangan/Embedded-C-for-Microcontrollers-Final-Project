@@ -24447,6 +24447,7 @@ unsigned char check_color(unsigned char color,struct color_rgb *m);
 unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned int upper);
 void movement (unsigned char color,struct DC_motor *mL, struct DC_motor *mR);
 void check_color_reading(struct color_rgb *, struct white_card *w);
+void color_data_collection(struct color_rgb *m);
 # 3 "movement.c" 2
 
 # 1 "./dc_motor.h" 1

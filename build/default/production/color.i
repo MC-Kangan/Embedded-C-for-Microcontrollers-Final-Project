@@ -24356,6 +24356,7 @@ unsigned char check_color(unsigned char color,struct color_rgb *m);
 unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned int upper);
 void movement (unsigned char color,struct DC_motor *mL, struct DC_motor *mR);
 void check_color_reading(struct color_rgb *, struct white_card *w);
+void color_data_collection(struct color_rgb *m);
 # 4 "color.c" 2
 
 # 1 "./i2c.h" 1
@@ -25048,6 +25049,41 @@ void LED_G(void)
     LATAbits.LATA4 = 1;
     _delay((unsigned long)((200)*(64000000/4000.0)));
 
+}
+
+
+void color_data_collection(struct color_rgb *m){
+
+    int i = 0; int j = 0; int k = 0; int x = 0;
+    for (i = 0; i < 1; ++i){
+        LED_C();
+        read_color(m);
+        color_display(m);
+        _delay((unsigned long)((500)*(64000000/4000.0)));
+    }
+
+    for (j = 0; j < 1; ++j){
+        LED_R();
+        read_color(m);
+        color_display(m);
+        _delay((unsigned long)((500)*(64000000/4000.0)));
+    }
+
+    for (k = 0; k < 1; ++k){
+        LED_G();
+        read_color(m);
+        color_display(m);
+        _delay((unsigned long)((500)*(64000000/4000.0)));
+    }
+
+    for (x = 0; x < 1; ++x){
+        LED_B();
+        read_color(m);
+        color_display(m);
+        _delay((unsigned long)((500)*(64000000/4000.0)));
+    }
+    color_predict(00000);
+    LED_C();
 }
 
 void color_display(struct color_rgb *m)

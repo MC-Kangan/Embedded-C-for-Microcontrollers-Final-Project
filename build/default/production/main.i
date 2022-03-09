@@ -24362,6 +24362,7 @@ unsigned char check_color(unsigned char color,struct color_rgb *m);
 unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned int upper);
 void movement (unsigned char color,struct DC_motor *mL, struct DC_motor *mR);
 void check_color_reading(struct color_rgb *, struct white_card *w);
+void color_data_collection(struct color_rgb *m);
 # 13 "main.c" 2
 # 1 "./i2c.h" 1
 # 13 "./i2c.h"
@@ -24584,62 +24585,28 @@ void main(void){
     LATFbits.LATF7 = 1;
     LATAbits.LATA4 = 1;
 
+
+
+
+
+
     unsigned char complete = 0;
-    int i = 0;
-    int j = 0;
-    int k = 0;
-    int x = 0;
-
-    _delay((unsigned long)((3000)*(64000000/4000.0)));
-    calibrate_white(&white);
-    _delay((unsigned long)((3000)*(64000000/4000.0)));
-
 
     while(1){
 
-  if (1 == 1){
+  if (2 == 1){
             color = detect_color(&rgb, &white);
-
             read_color(&rgb);
 
             color_predict(color);
             _delay((unsigned long)((200)*(64000000/4000.0)));
             }
 
-        if (1 == 2){
+        if (2 == 2){
             while (complete == 0){
-                for (i = 0; i < 1; ++i){
-                    LED_C();
-                    read_color(&rgb);
-                    color_display(&rgb);
-                   _delay((unsigned long)((500)*(64000000/4000.0)));
-                }
-
-                for (j = 0; j < 1; ++j){
-                    LED_R();
-                    read_color(&rgb);
-                    color_display(&rgb);
-                    _delay((unsigned long)((500)*(64000000/4000.0)));
-                }
-
-                for (k = 0; k < 1; ++k){
-                    LED_G();
-                    read_color(&rgb);
-                    color_display(&rgb);
-                    _delay((unsigned long)((500)*(64000000/4000.0)));
-                }
-
-                for (x = 0; x < 1; ++x){
-                    LED_B();
-                    read_color(&rgb);
-                    color_display(&rgb);
-                    _delay((unsigned long)((500)*(64000000/4000.0)));
-                }
-                color_predict(00000);
+                color_data_collection(&rgb);
                 complete = 1;
-                LED_C();
             }
         }
-# 125 "main.c"
     }
 }

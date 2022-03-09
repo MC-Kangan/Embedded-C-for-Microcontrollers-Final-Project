@@ -20,7 +20,7 @@
 #define TURNING_STOPTIME_L 600 
 #define TURNING_STOPTIME_R 700 
 #define TURNING_STOPTIME_180 1700 
- #define TEST 1
+ #define TEST 2
 //#define TEST 0 
 
 // Color code: 
@@ -54,22 +54,15 @@ void main(void){
     LATFbits.LATF7 = 1; // output LED_G set on (power)
     LATAbits.LATA4 = 1; // output LED_B set on (power)
         
+    //__delay_ms(3000);
+    //calibrate_white(&white);
+    //__delay_ms(3000);
     unsigned char complete = 0;
-    int i = 0;
-    int j = 0;
-    int k = 0;
-    int x = 0;
-    
-    __delay_ms(3000);
-    calibrate_white(&white);
-    __delay_ms(3000);
-    
     //calibration(&motorL, &motorR);
     while(1){
         //test_movement(&motorL, &motorR);
 		if (TEST == 1){
             color = detect_color(&rgb, &white);
-            //LED_R();
             read_color(&rgb);
             //check_color_reading(&rgb, &white);
             color_predict(color);
@@ -78,50 +71,10 @@ void main(void){
         
         if (TEST == 2){
             while (complete == 0){
-                for (i = 0; i < 1; ++i){
-                    LED_C();
-                    read_color(&rgb);
-                    color_display(&rgb);
-                   __delay_ms(500);
-                }  
-                //color_predict(00000);
-                for (j = 0; j < 1; ++j){
-                    LED_R();
-                    read_color(&rgb);
-                    color_display(&rgb);
-                    __delay_ms(500);
-                }
-                //color_predict(00000);
-                for (k = 0; k < 1; ++k){
-                    LED_G();
-                    read_color(&rgb);
-                    color_display(&rgb);
-                    __delay_ms(500);
-                }
-                //color_predict(00000);
-                for (x = 0; x < 1; ++x){
-                    LED_B();
-                    read_color(&rgb);
-                    color_display(&rgb);
-                    __delay_ms(500);
-                }
-                color_predict(00000);
+                color_data_collection(&rgb);
                 complete = 1;
-                LED_C();
             }
         }
-//
-//        if (TEST == 0){
-            //detect_color_C(&rgb);
-            //while (color == 0){fullSpeedAhead(&motorL, &motorR);}
-            //stop(&motorL, &motorR);
-            //__delay_ms(1000);
-            //movement(color,&motorL,&motorR);
-            //color = 0;
-            //color_predict(00000);
-            //__delay_ms(500);
-            //check_color(color, &rgb);
-//        }
     }
 }
 
