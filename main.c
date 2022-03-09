@@ -42,18 +42,8 @@ void main(void){
     struct DC_motor motorL, motorR;
 
     initDCmotors_parameter(&motorL, &motorR);
-    calibration_init();
+    pin_init(); //initiate RGB pins, RF2 and RF3 pins for motor calibrations, BATVERSE pins for voltage measurement 
     
-    TRISFbits.TRISF6 = 0; //output on RF6 (BAT-VERSE), detects voltage of motor
-    LATFbits.LATF6 = 0; //output on BAT-VERSE set on (power) 
-    
-    TRISGbits.TRISG1 = 0; //output on RG1 (LED_R)
-    TRISFbits.TRISF7 = 0; //output on RF7 (LED_G)
-    TRISAbits.TRISA4 = 0; //output on RA4 (LED_B)
-    LATGbits.LATG1 = 1; // output LED_R set on (power)
-    LATFbits.LATF7 = 1; // output LED_G set on (power)
-    LATAbits.LATA4 = 1; // output LED_B set on (power)
-        
     //__delay_ms(3000);
     //calibrate_white(&white);
     //__delay_ms(3000);

@@ -6,7 +6,8 @@
 #include "movement.h"
 // function initialise T2 and PWM for DC motor control
 struct DC_motor motorL, motorR;
-unsigned char SENSITIVITY = 7;
+unsigned char SENSITIVITY = 11;
+unsigned char CALIBRATION_180 = 40;
 
 void initDCmotorsPWM(int PWMperiod){
 	//initialise your TRIS and LAT registers for PWM
@@ -105,7 +106,13 @@ void turnLeft(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_left
         __delay_ms(10);
     }
     unsigned int delay = angle_left * SENSITIVITY;
-    for(unsigned int i = 0; i < delay; i++){__delay_ms(1);}
+    unsigned int delay_180 = delay + CALIBRATION_180;
+    if (angle_left == 180){
+        for(unsigned int i = 0; i <delay_180; i++){__delay_ms(1);}
+    }
+    else{
+        for(unsigned int i = 0; i < delay; i++){__delay_ms(1);}
+    }
     stop(mL,mR);
 }
 
@@ -122,7 +129,13 @@ void turnRight(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_rig
         __delay_ms(10);
     }
     unsigned int delay = angle_right * SENSITIVITY;
-    for(unsigned int i = 0; i < delay; i++){__delay_ms(1);}
+    unsigned int delay_180 = delay + CALIBRATION_180;
+    if (angle_right == 180){
+        for(unsigned int i = 0; i <delay_180; i++){__delay_ms(1);}
+    }
+    else{
+        for(unsigned int i = 0; i < delay; i++){__delay_ms(1);}
+    }
     stop(mL,mR);
 }
 
@@ -142,20 +155,18 @@ void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR)
     }
 }
 
+void fullSpeedAhead_test(struct DC_motor *mL, struct DC_motor *mR)
+{   fullSpeedAhead(mL, mR);
+    __delay_ms(500);
+    stop(mL,mR);
+}
+
 void calibration(struct DC_motor *mL, struct DC_motor *mR)
 { 
     while (1) {  // press both to exit and start buggy
-        if (!PORTFbits.RF2) {               // press RF2 to increase sensitivity
-            __delay_ms(300);                // set the delay time so the buggy know you are only pressing once
-            if (!PORTFbits.RF3) {break;}    // end the infinite while loop if RF3 is also pressed
-            else {SENSITIVITY += 5;}        // increase sensitivity if only RF2 is pressed
-        }
-        
-        if (!PORTFbits.RF3) {               // press RF3 to decrease sensitivity
-            __delay_ms(300);                // set the delay time so the buggy know you are only pressing once
-            if (!PORTFbits.RF2) {break;}    // end the infinite while loop if RF2 is also pressed
-            else {SENSITIVITY -= 5;}        // decrease sensitivity if only RF3 is pressed
-        }
+        if (!PORTFbits.RF2 && !PORTFbits.RF3) {__delay_ms(300);break;}    // end the infinite while loop if RF3 is also pressed               // set the delay time so the buggy know you are only pressing once
+        if (!PORTFbits.RF2) {__delay_ms(300);SENSITIVITY -= 5;}       
+        if (!PORTFbits.RF3) {__delay_ms(300);SENSITIVITY += 5;}    // end the infinite while loop if RF3 is also pressed
     }
     test_movement(mL, mR);    
     __delay_ms(3000);  // prepare
