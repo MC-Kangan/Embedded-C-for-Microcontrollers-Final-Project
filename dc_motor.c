@@ -6,8 +6,8 @@
 #include "movement.h"
 // function initialise T2 and PWM for DC motor control
 struct DC_motor motorL, motorR;
-unsigned char SENSITIVITY = 11;
-unsigned char CALIBRATION_180 = 40;
+unsigned char SENSITIVITY = 10;
+unsigned char CALIBRATION_180 = 20;
 
 void initDCmotorsPWM(int PWMperiod){
 	//initialise your TRIS and LAT registers for PWM
@@ -90,7 +90,7 @@ void stop(struct DC_motor *mL, struct DC_motor *mR)
         setMotorPWM(mR);                    // set the power to motor
         __delay_ms(10);
     }
-    __delay_ms(1000);
+    __delay_ms(100);
 }
 
 //function to make the robot turn left 

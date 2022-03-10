@@ -111,7 +111,7 @@ void LED_C(void)//struct color_rgb *m)
     LATGbits.LATG1 = 1; // output LED_R set on (power)
     LATFbits.LATF7 = 1; // output LED_B set on (power)
     LATAbits.LATA4 = 1; // output LED_G set on (power)
-    __delay_ms(200);
+    __delay_ms(50); // originally 200
     //read_color(m);
 }
 
@@ -120,7 +120,7 @@ void LED_B(void)//struct color_rgb *m)
     LATGbits.LATG1 = 0; // output LED_R set on (power)
     LATFbits.LATF7 = 1; // output LED_B set on (power)
     LATAbits.LATA4 = 0; // output LED_G set on (power)
-    __delay_ms(200);
+    __delay_ms(200);//200
     //read_color(m);
 }
 
@@ -133,38 +133,37 @@ void LED_G(void)//struct color_rgb *m)
     //read_color(m);
 }
 
-
 void color_data_collection(struct color_rgb *m){
     
     int i = 0; int j = 0; int k = 0; int x = 0;
-    for (i = 0; i < 1; ++i){
+    for (i = 0; i <5; ++i){
         LED_C();
         read_color(m);
         color_display(m);
-        __delay_ms(500);
+        __delay_ms(100);
     }  
-    //color_predict(00000);
-    for (j = 0; j < 1; ++j){
+    color_predict(00000);
+    for (j = 0; j < 5; ++j){
         LED_R();
         read_color(m);
         color_display(m);
-        __delay_ms(500);
+        __delay_ms(100);
     }
-    //color_predict(00000);
-    for (k = 0; k < 1; ++k){
+    color_predict(00000);
+    for (k = 0; k < 5; ++k){
         LED_G();
         read_color(m);
         color_display(m);
-        __delay_ms(500);
+        __delay_ms(100);
     }
-    //color_predict(00000);
-    for (x = 0; x < 1; ++x){
+    color_predict(00000);
+    for (x = 0; x < 5; ++x){
         LED_B();
         read_color(m);
         color_display(m);
-        __delay_ms(500);
+        __delay_ms(100);
     }
-    color_predict(00000);
+    color_predict(1);
     LED_C();
 }
 
@@ -214,6 +213,7 @@ void calibrate_white(struct white_card *w)
     LED_G(); // Turn on green light
     //read_color(w); 
     w->GR = color_read_Red(); w->GG = color_read_Green(); w->GB = color_read_Blue();
+    w->GC = color_read_Clear();
     __delay_ms(100);
     
     LED_B(); // Turn on blue light
@@ -227,18 +227,23 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
 {
     // Color code:
     // 1: red; 2: green; 3: blue; 4: yellow; 5:pink; 6:orange; 7:light blue; 8:white; 0: black
-    unsigned int RR = 0, RG = 0, RB = 0, GR = 0, GG = 0, GB = 0, BR = 0, BG = 0, BB = 0, GR_REAL = 0, GC_REAL = 0, BC = 0;
+    unsigned int RR = 0, RG = 0, RB = 0, GR = 0, GG = 0, GB = 0, BR = 0, BG = 0, BB = 0; //GR_REAL = 0, GC_REAL = 0, BC = 0;
+    unsigned int GC = 0;
     unsigned char color = 0;   
             
     LED_R(); // Turn on red light 
     read_color(m); 
+    //RR = (float)(m->R)/(w->RR)*100; RG = (float)(m->G)/(w->RG)*100; RB =(float)(m->B)/(w->RB)*100;
     RR = lround((float)(m->R)/(w->RR)*100); RG = lround((float)(m->G)/(w->RG)*100); RB = lround((float)(m->B)/(w->RB)*100);
     __delay_ms(50);
     
     LED_G(); // Turn on green light
     read_color(m); 
-    GR_REAL = m->R ;  GC_REAL = m->C;
+    //GR_REAL = m->R ;  GC_REAL = m->C;
+    //GR = (float)(m->R)/(w->GR)*100; GG = (float)(m->G)/(w->GG)*100; GB = (float)(m->B)/(w->GB)*100;
     GR = lround((float)(m->R)/(w->GR)*100); GG = lround((float)(m->G)/(w->GG)*100); GB = lround((float)(m->B)/(w->GB)*100);
+    GC = lround((float)(m->R)/(w->GR)*100);
+    
     __delay_ms(50);
     
     LED_B(); // Turn on blue light
@@ -247,13 +252,15 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
     __delay_ms(50);
     
     
-    if (compare(0, BR, 60)){ // if BR < 55
-        if (compare(0, lround((float)(GG + BG)/BB * 200), 400)){color = 3;}// if (GG+BG)/BB*2 < 391 //Blue
+    if (compare(0, BR, 70)){ // if BR < 55
+        // if (compare(0, (float)(GG + BG)/BB * 200, 414)){color = 3;}// if (GG+BG)/BB*2 < 391 //Blue
+         if (compare(0, lround((float)(GG + BG)/BB * 200), 414)){color = 3;}// if (GG+BG)/BB*2 < 391 //Blue
         else{color = 2;} // if (GG+BG)/BB*2 > 391 //Green
     }
     else{ // if BR > 55
         if (compare(0, BG, 75)){ // if RG < 75
-            if (compare(0, lround((float)RR/BG * 200), 319)){ // if RR/BG * 2 < 313
+            //if (compare(0, (float)RR/RG * 500, 670)){ // if RR/BG * 2 < 313
+            if (compare(0, lround((float)RR/RG * 500), 670)){ // if RR/BG * 2 < 313
                 if (GR > 90){color = 6;} 
                 else {color = 0;}
             }
@@ -279,16 +286,16 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
     
     // This is used to determine distance
     if (color == 2 || color == 3){
-        if (GR_REAL < 60 || GC_REAL <550){color = 0;}
+        if (GR < 50){color = 0;} //  || GC < 70
     }
     if (color == 1 || color == 6){
-        if (GR_REAL < 100 || GC_REAL <550){color = 0;}
+        if (GR < 90){color = 0;} // || GC < 70
     }
     if (color == 4 || color == 5){
-        if (GR_REAL < 120 || GC_REAL <650){color = 0;}
+        if (GR < 100){color = 0;} // || GC < 90
     }
     if (color == 7 || color == 8){
-        if (GR_REAL < 110 || GC_REAL <700){color = 0;}
+        if (GR < 80){color = 0;} // || GC < 90
     }
     
     return color;
@@ -302,12 +309,32 @@ unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned i
 }
 
 // Function used to check the color after detecting the color with white light
-unsigned char check_color(unsigned char color,struct color_rgb *m)
+unsigned char verify_color(unsigned char color,struct color_rgb *m, struct white_card *w)
 {
-    return color;
+    __delay_ms(50);
+    unsigned int color2;
+    color2 = detect_color(m,w);
+    if (color == color2){return color;}
+    else {
+        color = 0;
+        return color;}
 }
 
 void movement (unsigned char color,struct DC_motor *mL, struct DC_motor *mR)
 {
     if (color == 1){turnRight(mL, mR,90); __delay_ms(500);}
+}
+
+unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR) //struct color_rgb *m, 
+{
+    unsigned int CC = 0, CR = 0, CG = 0, CB = 0; 
+    unsigned char stop = 0;
+    LED_C();
+    //read_color(m); 
+    CC = color_read_Clear();//, CR = m->R, CG = m->G, CB = m->B;
+    if (CC >= 1500 ){ // GREEN AND BLUE
+        stop = 1;
+    }
+    return stop;
+       
 }

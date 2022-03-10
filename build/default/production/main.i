@@ -24321,6 +24321,8 @@ struct white_card {
     unsigned int BR ;
     unsigned int BG ;
     unsigned int BB ;
+    unsigned int GC ;
+
 };
 
 
@@ -24362,11 +24364,12 @@ void color_display(struct color_rgb *m);
 void calibrate_white(struct white_card *w);
 void color_predict(unsigned char color);
 unsigned char detect_color(struct color_rgb *m, struct white_card *w);
-unsigned char check_color(unsigned char color,struct color_rgb *m);
+unsigned char verify_color(unsigned char color,struct color_rgb *m, struct white_card *w);
 unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned int upper);
 void movement (unsigned char color,struct DC_motor *mL, struct DC_motor *mR);
 void check_color_reading(struct color_rgb *, struct white_card *w);
 void color_data_collection(struct color_rgb *m);
+unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR);
 # 13 "main.c" 2
 # 1 "./i2c.h" 1
 # 13 "./i2c.h"
@@ -24413,6 +24416,7 @@ void action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR);
 void test_action (struct DC_motor *mL, struct DC_motor *mR);
 void pin_init(void);
 void goback(struct DC_motor *mL, struct DC_motor *mR);
+void short_burst(struct DC_motor *mL, struct DC_motor *mR);
 # 15 "main.c" 2
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\c99\\stdio.h" 1 3
 # 24 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\c99\\stdio.h" 3
@@ -24584,32 +24588,55 @@ void main(void){
     initDCmotors_parameter(&motorL, &motorR);
     pin_init();
 
-    if (1 == 1){
+    if (4 == 1 || 4 == 3){
         _delay((unsigned long)((3000)*(64000000/4000.0)));
         calibrate_white(&white);
         _delay((unsigned long)((3000)*(64000000/4000.0)));
     }
     unsigned char complete = 0;
+    unsigned char stop_signal = 0;
 
 
     while(1){
 
-  if (1 == 1){
+  if (4 == 1){
+            LED_C();
+            read_color(&rgb);
+            color_display(&rgb);
 
 
 
-
-            color = detect_color(&rgb, &white);
-            color_predict(color);
             _delay((unsigned long)((200)*(64000000/4000.0)));
             }
-        action(color, &motorL, &motorR);
 
-        if (1 == 2){
+
+
+        if (4 == 2){
             while (complete == 0){
                 color_data_collection(&rgb);
                 complete = 1;
             }
+        }
+
+        if (4 == 3){
+            while (color == 0){
+                short_burst(&motorL, &motorR);
+                color = detect_color(&rgb, &white);
+            }
+            verify_color(color, &rgb, &white);
+            action(color, &motorL, &motorR);
+            color = 0;
+        }
+        if (4 == 4){
+            read_color(&rgb);
+            color_display(&rgb);
+            while (stop_signal == 0){
+                fullSpeedAhead(&motorL, &motorR);
+                stop_signal = distance_measure(&motorL, &motorR);
+            }
+            stop(&motorL, &motorR);
+            _delay((unsigned long)((1000)*(64000000/4000.0)));
+
         }
     }
 }

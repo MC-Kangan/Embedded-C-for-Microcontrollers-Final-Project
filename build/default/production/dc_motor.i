@@ -24459,12 +24459,13 @@ void action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR);
 void test_action (struct DC_motor *mL, struct DC_motor *mR);
 void pin_init(void);
 void goback(struct DC_motor *mL, struct DC_motor *mR);
+void short_burst(struct DC_motor *mL, struct DC_motor *mR);
 # 6 "dc_motor.c" 2
 
 
 struct DC_motor motorL, motorR;
-unsigned char SENSITIVITY = 11;
-unsigned char CALIBRATION_180 = 40;
+unsigned char SENSITIVITY = 10;
+unsigned char CALIBRATION_180 = 20;
 
 void initDCmotorsPWM(int PWMperiod){
 
@@ -24547,7 +24548,7 @@ void stop(struct DC_motor *mL, struct DC_motor *mR)
         setMotorPWM(mR);
         _delay((unsigned long)((10)*(64000000/4000.0)));
     }
-    _delay((unsigned long)((1000)*(64000000/4000.0)));
+    _delay((unsigned long)((100)*(64000000/4000.0)));
 }
 
 
@@ -24601,7 +24602,7 @@ void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR)
 {
     mL->direction=1;
     mR->direction=1;
-    while (mL->power<40 && mR->power<40){
+    while (mL->power<20 && mR->power<20){
         mL->power += 10;
         mR->power += 10;
         setMotorPWM(mL);

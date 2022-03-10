@@ -1,32 +1,36 @@
 Version 4.0 HI-TECH Software Intermediate Code
 "12 ./dc_motor.h
 [; ;./dc_motor.h: 12: struct DC_motor {
-[s S2020 `uc 1 `uc 1 `*uc 1 `*uc 1 `uc 1 `i 1 `uc 1 ]
-[n S2020 DC_motor power direction dutyHighByte dir_LAT dir_pin PWMperiod voltage ]
+[s S2021 `uc 1 `uc 1 `*uc 1 `*uc 1 `uc 1 `i 1 `uc 1 ]
+[n S2021 DC_motor power direction dutyHighByte dir_LAT dir_pin PWMperiod voltage ]
 "29
 [; ;./dc_motor.h: 29: void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
-[v _fullSpeedAhead `(v ~T0 @X0 0 ef2`*S2020`*S2020 ]
-"26
+[v _fullSpeedAhead `(v ~T0 @X0 0 ef2`*S2021`*S2021 ]
+[v F192 `(v ~T0 @X0 1 tf1`ul ]
+"12 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\builtins.h
+[v __delay `JF192 ~T0 @X0 0 e ]
+[p i __delay ]
+"26 ./dc_motor.h
 [; ;./dc_motor.h: 26: void stop(struct DC_motor *mL, struct DC_motor *mR);
-[v _stop `(v ~T0 @X0 0 ef2`*S2020`*S2020 ]
+[v _stop `(v ~T0 @X0 0 ef2`*S2021`*S2021 ]
 "32
 [; ;./dc_motor.h: 32: void short_reverse(struct DC_motor *mL, struct DC_motor *mR);
-[v _short_reverse `(v ~T0 @X0 0 ef2`*S2020`*S2020 ]
+[v _short_reverse `(v ~T0 @X0 0 ef2`*S2021`*S2021 ]
 "28
 [; ;./dc_motor.h: 28: void turnRight(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_right);
-[v _turnRight `(v ~T0 @X0 0 ef3`*S2020`*S2020`uc ]
+[v _turnRight `(v ~T0 @X0 0 ef3`*S2021`*S2021`uc ]
 "27
 [; ;./dc_motor.h: 27: void turnLeft(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_left);
-[v _turnLeft `(v ~T0 @X0 0 ef3`*S2020`*S2020`uc ]
+[v _turnLeft `(v ~T0 @X0 0 ef3`*S2021`*S2021`uc ]
 "33
 [; ;./dc_motor.h: 33: void reverse_square(struct DC_motor *mL, struct DC_motor *mR);
-[v _reverse_square `(v ~T0 @X0 0 ef2`*S2020`*S2020 ]
+[v _reverse_square `(v ~T0 @X0 0 ef2`*S2021`*S2021 ]
 "10 ./movement.h
 [; ;./movement.h: 10: void goback(struct DC_motor *mL, struct DC_motor *mR);
-[v _goback `(v ~T0 @X0 0 ef2`*S2020`*S2020 ]
+[v _goback `(v ~T0 @X0 0 ef2`*S2021`*S2021 ]
 "30 ./dc_motor.h
 [; ;./dc_motor.h: 30: void fullSpeedAhead_test(struct DC_motor *mL, struct DC_motor *mR);
-[v _fullSpeedAhead_test `(v ~T0 @X0 0 ef2`*S2020`*S2020 ]
+[v _fullSpeedAhead_test `(v ~T0 @X0 0 ef2`*S2021`*S2021 ]
 "29946 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 29946:     struct {
 [s S1388 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -2121,259 +2125,282 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 0 `i `uc
 ]
 "8 movement.c
-[; ;movement.c: 8: void action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR)
-[v _action `(v ~T0 @X0 1 ef3`uc`*S2020`*S2020 ]
+[; ;movement.c: 8: void short_burst(struct DC_motor *mL, struct DC_motor *mR)
+[v _short_burst `(v ~T0 @X0 1 ef2`*S2021`*S2021 ]
 "9
-[; ;movement.c: 9: { fullSpeedAhead(mL,mR);
+[; ;movement.c: 9: {
+{
+[e :U _short_burst ]
+"8
+[; ;movement.c: 8: void short_burst(struct DC_motor *mL, struct DC_motor *mR)
+[v _mL `*S2021 ~T0 @X0 1 r1 ]
+[v _mR `*S2021 ~T0 @X0 1 r2 ]
+"9
+[; ;movement.c: 9: {
+[f ]
+"10
+[; ;movement.c: 10:     fullSpeedAhead(mL,mR);
+[e ( _fullSpeedAhead (2 , _mL _mR ]
+"11
+[; ;movement.c: 11:     _delay((unsigned long)((300)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 300 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"12
+[; ;movement.c: 12:     stop(mL,mR);
+[e ( _stop (2 , _mL _mR ]
+"13
+[; ;movement.c: 13:     _delay((unsigned long)((500)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"14
+[; ;movement.c: 14: }
+[e :UE 2022 ]
+}
+"16
+[; ;movement.c: 16: void action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR)
+[v _action `(v ~T0 @X0 1 ef3`uc`*S2021`*S2021 ]
+"17
+[; ;movement.c: 17: {
 {
 [e :U _action ]
-"8
-[; ;movement.c: 8: void action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR)
-[v _color `uc ~T0 @X0 1 r1 ]
-[v _mL `*S2020 ~T0 @X0 1 r2 ]
-[v _mR `*S2020 ~T0 @X0 1 r3 ]
-"9
-[; ;movement.c: 9: { fullSpeedAhead(mL,mR);
-[f ]
-[e ( _fullSpeedAhead (2 , _mL _mR ]
-"10
-[; ;movement.c: 10:     if (color != 0){stop(mL,mR);
-[e $ ! != -> _color `i -> 0 `i 2022  ]
-{
-[e ( _stop (2 , _mL _mR ]
-"11
-[; ;movement.c: 11:         if (color == 1){
-[e $ ! == -> _color `i -> 1 `i 2023  ]
-{
-"12
-[; ;movement.c: 12:             short_reverse(mL,mR);
-[e ( _short_reverse (2 , _mL _mR ]
-"13
-[; ;movement.c: 13:             turnRight(mL,mR,90);
-[e ( _turnRight (3 , , _mL _mR -> -> 90 `i `uc ]
-"14
-[; ;movement.c: 14:         }
-}
-[e :U 2023 ]
-"15
-[; ;movement.c: 15:         if (color == 2){
-[e $ ! == -> _color `i -> 2 `i 2024  ]
-{
 "16
-[; ;movement.c: 16:             short_reverse(mL,mR);
-[e ( _short_reverse (2 , _mL _mR ]
+[; ;movement.c: 16: void action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR)
+[v _color `uc ~T0 @X0 1 r1 ]
+[v _mL `*S2021 ~T0 @X0 1 r2 ]
+[v _mR `*S2021 ~T0 @X0 1 r3 ]
 "17
-[; ;movement.c: 17:             turnLeft(mL,mR,90);
-[e ( _turnLeft (3 , , _mL _mR -> -> 90 `i `uc ]
-"18
-[; ;movement.c: 18:         }
+[; ;movement.c: 17: {
+[f ]
+"19
+[; ;movement.c: 19:     stop(mL,mR);
+[e ( _stop (2 , _mL _mR ]
+"20
+[; ;movement.c: 20:     if (color == 1){
+[e $ ! == -> _color `i -> 1 `i 2024  ]
+{
+"21
+[; ;movement.c: 21:         short_reverse(mL,mR);
+[e ( _short_reverse (2 , _mL _mR ]
+"22
+[; ;movement.c: 22:         turnRight(mL,mR,90);
+[e ( _turnRight (3 , , _mL _mR -> -> 90 `i `uc ]
+"23
+[; ;movement.c: 23:     }
 }
 [e :U 2024 ]
-"19
-[; ;movement.c: 19:         if (color == 3){
-[e $ ! == -> _color `i -> 3 `i 2025  ]
+"24
+[; ;movement.c: 24:     if (color == 2){
+[e $ ! == -> _color `i -> 2 `i 2025  ]
 {
-"20
-[; ;movement.c: 20:             short_reverse(mL,mR);
+"25
+[; ;movement.c: 25:         short_reverse(mL,mR);
 [e ( _short_reverse (2 , _mL _mR ]
-"21
-[; ;movement.c: 21:             turnLeft(mL,mR,180);
-[e ( _turnLeft (3 , , _mL _mR -> -> 180 `i `uc ]
-"22
-[; ;movement.c: 22:         }
+"26
+[; ;movement.c: 26:         turnLeft(mL,mR,90);
+[e ( _turnLeft (3 , , _mL _mR -> -> 90 `i `uc ]
+"27
+[; ;movement.c: 27:     }
 }
 [e :U 2025 ]
-"23
-[; ;movement.c: 23:         if (color == 4){
-[e $ ! == -> _color `i -> 4 `i 2026  ]
+"28
+[; ;movement.c: 28:     if (color == 3){
+[e $ ! == -> _color `i -> 3 `i 2026  ]
 {
-"24
-[; ;movement.c: 24:             reverse_square(mL,mR);
-[e ( _reverse_square (2 , _mL _mR ]
-"25
-[; ;movement.c: 25:             turnRight(mL,mR,90);
-[e ( _turnRight (3 , , _mL _mR -> -> 90 `i `uc ]
-"26
-[; ;movement.c: 26:         }
+"29
+[; ;movement.c: 29:         short_reverse(mL,mR);
+[e ( _short_reverse (2 , _mL _mR ]
+"30
+[; ;movement.c: 30:         turnLeft(mL,mR,180);
+[e ( _turnLeft (3 , , _mL _mR -> -> 180 `i `uc ]
+"31
+[; ;movement.c: 31:     }
 }
 [e :U 2026 ]
-"27
-[; ;movement.c: 27:         if (color == 5){
-[e $ ! == -> _color `i -> 5 `i 2027  ]
+"32
+[; ;movement.c: 32:     if (color == 4){
+[e $ ! == -> _color `i -> 4 `i 2027  ]
 {
-"28
-[; ;movement.c: 28:             reverse_square(mL,mR);
+"33
+[; ;movement.c: 33:         reverse_square(mL,mR);
 [e ( _reverse_square (2 , _mL _mR ]
-"29
-[; ;movement.c: 29:             turnLeft(mL,mR,90);
-[e ( _turnLeft (3 , , _mL _mR -> -> 90 `i `uc ]
-"30
-[; ;movement.c: 30:         }
+"34
+[; ;movement.c: 34:         turnRight(mL,mR,90);
+[e ( _turnRight (3 , , _mL _mR -> -> 90 `i `uc ]
+"35
+[; ;movement.c: 35:     }
 }
 [e :U 2027 ]
-"31
-[; ;movement.c: 31:         if (color == 6){
-[e $ ! == -> _color `i -> 6 `i 2028  ]
+"36
+[; ;movement.c: 36:     if (color == 5){
+[e $ ! == -> _color `i -> 5 `i 2028  ]
 {
-"32
-[; ;movement.c: 32:             short_reverse(mL,mR);
-[e ( _short_reverse (2 , _mL _mR ]
-"33
-[; ;movement.c: 33:             turnRight(mL,mR,135);
-[e ( _turnRight (3 , , _mL _mR -> -> 135 `i `uc ]
-"34
-[; ;movement.c: 34:         }
+"37
+[; ;movement.c: 37:         reverse_square(mL,mR);
+[e ( _reverse_square (2 , _mL _mR ]
+"38
+[; ;movement.c: 38:         turnLeft(mL,mR,90);
+[e ( _turnLeft (3 , , _mL _mR -> -> 90 `i `uc ]
+"39
+[; ;movement.c: 39:     }
 }
 [e :U 2028 ]
-"35
-[; ;movement.c: 35:         if (color == 7){
-[e $ ! == -> _color `i -> 7 `i 2029  ]
-{
-"36
-[; ;movement.c: 36:             short_reverse(mL,mR);
-[e ( _short_reverse (2 , _mL _mR ]
-"37
-[; ;movement.c: 37:             turnLeft(mL,mR,135);
-[e ( _turnLeft (3 , , _mL _mR -> -> 135 `i `uc ]
-"38
-[; ;movement.c: 38:         }
-}
-[e :U 2029 ]
-"39
-[; ;movement.c: 39:         if (color == 8){
-[e $ ! == -> _color `i -> 8 `i 2030  ]
-{
 "40
-[; ;movement.c: 40:             short_reverse(mL,mR);
-[e ( _short_reverse (2 , _mL _mR ]
+[; ;movement.c: 40:     if (color == 6){
+[e $ ! == -> _color `i -> 6 `i 2029  ]
+{
 "41
-[; ;movement.c: 41:             goback(mL,mR);
-[e ( _goback (2 , _mL _mR ]
+[; ;movement.c: 41:         short_reverse(mL,mR);
+[e ( _short_reverse (2 , _mL _mR ]
 "42
-[; ;movement.c: 42:         }
-}
-[e :U 2030 ]
+[; ;movement.c: 42:         turnRight(mL,mR,135);
+[e ( _turnRight (3 , , _mL _mR -> -> 135 `i `uc ]
 "43
 [; ;movement.c: 43:     }
 }
-[e :U 2022 ]
+[e :U 2029 ]
 "44
-[; ;movement.c: 44: }
-[e :UE 2021 ]
-}
+[; ;movement.c: 44:     if (color == 7){
+[e $ ! == -> _color `i -> 7 `i 2030  ]
+{
 "45
-[; ;movement.c: 45: void test_action (struct DC_motor *mL, struct DC_motor *mR)
-[v _test_action `(v ~T0 @X0 1 ef2`*S2020`*S2020 ]
+[; ;movement.c: 45:         short_reverse(mL,mR);
+[e ( _short_reverse (2 , _mL _mR ]
 "46
-[; ;movement.c: 46: { fullSpeedAhead_test(mL,mR);
+[; ;movement.c: 46:         turnLeft(mL,mR,135);
+[e ( _turnLeft (3 , , _mL _mR -> -> 135 `i `uc ]
+"47
+[; ;movement.c: 47:     }
+}
+[e :U 2030 ]
+"48
+[; ;movement.c: 48:     if (color == 8){
+[e $ ! == -> _color `i -> 8 `i 2031  ]
+{
+"49
+[; ;movement.c: 49:         short_reverse(mL,mR);
+[e ( _short_reverse (2 , _mL _mR ]
+"50
+[; ;movement.c: 50:         goback(mL,mR);
+[e ( _goback (2 , _mL _mR ]
+"51
+[; ;movement.c: 51:     }
+}
+[e :U 2031 ]
+"52
+[; ;movement.c: 52: }
+[e :UE 2023 ]
+}
+"53
+[; ;movement.c: 53: void test_action (struct DC_motor *mL, struct DC_motor *mR)
+[v _test_action `(v ~T0 @X0 1 ef2`*S2021`*S2021 ]
+"54
+[; ;movement.c: 54: { fullSpeedAhead_test(mL,mR);
 {
 [e :U _test_action ]
-"45
-[; ;movement.c: 45: void test_action (struct DC_motor *mL, struct DC_motor *mR)
-[v _mL `*S2020 ~T0 @X0 1 r1 ]
-[v _mR `*S2020 ~T0 @X0 1 r2 ]
-"46
-[; ;movement.c: 46: { fullSpeedAhead_test(mL,mR);
+"53
+[; ;movement.c: 53: void test_action (struct DC_motor *mL, struct DC_motor *mR)
+[v _mL `*S2021 ~T0 @X0 1 r1 ]
+[v _mR `*S2021 ~T0 @X0 1 r2 ]
+"54
+[; ;movement.c: 54: { fullSpeedAhead_test(mL,mR);
 [f ]
 [e ( _fullSpeedAhead_test (2 , _mL _mR ]
-"47
-[; ;movement.c: 47:     turnLeft(mL,mR,90);
-[e ( _turnLeft (3 , , _mL _mR -> -> 90 `i `uc ]
-"48
-[; ;movement.c: 48:     fullSpeedAhead_test(mL,mR);
-[e ( _fullSpeedAhead_test (2 , _mL _mR ]
-"49
-[; ;movement.c: 49:     turnLeft(mL,mR,90);
-[e ( _turnLeft (3 , , _mL _mR -> -> 90 `i `uc ]
-"50
-[; ;movement.c: 50:     fullSpeedAhead_test(mL,mR);
-[e ( _fullSpeedAhead_test (2 , _mL _mR ]
-"51
-[; ;movement.c: 51:     turnLeft(mL,mR,180);
-[e ( _turnLeft (3 , , _mL _mR -> -> 180 `i `uc ]
-"52
-[; ;movement.c: 52:     fullSpeedAhead_test(mL,mR);
-[e ( _fullSpeedAhead_test (2 , _mL _mR ]
-"53
-[; ;movement.c: 53:     turnRight(mL,mR,90);
-[e ( _turnRight (3 , , _mL _mR -> -> 90 `i `uc ]
-"54
-[; ;movement.c: 54:     fullSpeedAhead_test(mL,mR);
-[e ( _fullSpeedAhead_test (2 , _mL _mR ]
 "55
-[; ;movement.c: 55:     turnRight(mL,mR,90);
-[e ( _turnRight (3 , , _mL _mR -> -> 90 `i `uc ]
+[; ;movement.c: 55:     turnLeft(mL,mR,90);
+[e ( _turnLeft (3 , , _mL _mR -> -> 90 `i `uc ]
 "56
 [; ;movement.c: 56:     fullSpeedAhead_test(mL,mR);
 [e ( _fullSpeedAhead_test (2 , _mL _mR ]
 "57
-[; ;movement.c: 57: }
-[e :UE 2031 ]
-}
+[; ;movement.c: 57:     turnLeft(mL,mR,90);
+[e ( _turnLeft (3 , , _mL _mR -> -> 90 `i `uc ]
 "58
-[; ;movement.c: 58: void pin_init(void)
-[v _pin_init `(v ~T0 @X0 1 ef ]
+[; ;movement.c: 58:     fullSpeedAhead_test(mL,mR);
+[e ( _fullSpeedAhead_test (2 , _mL _mR ]
 "59
-[; ;movement.c: 59: { TRISFbits.TRISF2=1;
+[; ;movement.c: 59:     turnLeft(mL,mR,180);
+[e ( _turnLeft (3 , , _mL _mR -> -> 180 `i `uc ]
+"60
+[; ;movement.c: 60:     fullSpeedAhead_test(mL,mR);
+[e ( _fullSpeedAhead_test (2 , _mL _mR ]
+"61
+[; ;movement.c: 61:     turnRight(mL,mR,90);
+[e ( _turnRight (3 , , _mL _mR -> -> 90 `i `uc ]
+"62
+[; ;movement.c: 62:     fullSpeedAhead_test(mL,mR);
+[e ( _fullSpeedAhead_test (2 , _mL _mR ]
+"63
+[; ;movement.c: 63:     turnRight(mL,mR,90);
+[e ( _turnRight (3 , , _mL _mR -> -> 90 `i `uc ]
+"64
+[; ;movement.c: 64:     fullSpeedAhead_test(mL,mR);
+[e ( _fullSpeedAhead_test (2 , _mL _mR ]
+"65
+[; ;movement.c: 65: }
+[e :UE 2032 ]
+}
+"66
+[; ;movement.c: 66: void pin_init(void)
+[v _pin_init `(v ~T0 @X0 1 ef ]
+"67
+[; ;movement.c: 67: { TRISFbits.TRISF2=1;
 {
 [e :U _pin_init ]
 [f ]
 [e = . . _TRISFbits 0 2 -> -> 1 `i `uc ]
-"60
-[; ;movement.c: 60:     ANSELFbits.ANSELF2=0;
-[e = . . _ANSELFbits 0 2 -> -> 0 `i `uc ]
-"61
-[; ;movement.c: 61:     TRISFbits.TRISF3=1;
-[e = . . _TRISFbits 0 3 -> -> 1 `i `uc ]
-"62
-[; ;movement.c: 62:     ANSELFbits.ANSELF3=0;
-[e = . . _ANSELFbits 0 3 -> -> 0 `i `uc ]
-"64
-[; ;movement.c: 64:     TRISFbits.TRISF6 = 0;
-[e = . . _TRISFbits 0 6 -> -> 0 `i `uc ]
-"65
-[; ;movement.c: 65:     LATFbits.LATF6 = 0;
-[e = . . _LATFbits 0 6 -> -> 0 `i `uc ]
-"67
-[; ;movement.c: 67:     TRISGbits.TRISG1 = 0;
-[e = . . _TRISGbits 0 1 -> -> 0 `i `uc ]
 "68
-[; ;movement.c: 68:     TRISFbits.TRISF7 = 0;
-[e = . . _TRISFbits 0 7 -> -> 0 `i `uc ]
+[; ;movement.c: 68:     ANSELFbits.ANSELF2=0;
+[e = . . _ANSELFbits 0 2 -> -> 0 `i `uc ]
 "69
-[; ;movement.c: 69:     TRISAbits.TRISA4 = 0;
-[e = . . _TRISAbits 0 4 -> -> 0 `i `uc ]
+[; ;movement.c: 69:     TRISFbits.TRISF3=1;
+[e = . . _TRISFbits 0 3 -> -> 1 `i `uc ]
 "70
-[; ;movement.c: 70:     LATGbits.LATG1 = 1;
-[e = . . _LATGbits 0 1 -> -> 1 `i `uc ]
-"71
-[; ;movement.c: 71:     LATFbits.LATF7 = 1;
-[e = . . _LATFbits 0 7 -> -> 1 `i `uc ]
+[; ;movement.c: 70:     ANSELFbits.ANSELF3=0;
+[e = . . _ANSELFbits 0 3 -> -> 0 `i `uc ]
 "72
-[; ;movement.c: 72:     LATAbits.LATA4 = 1;
-[e = . . _LATAbits 0 4 -> -> 1 `i `uc ]
+[; ;movement.c: 72:     TRISFbits.TRISF6 = 0;
+[e = . . _TRISFbits 0 6 -> -> 0 `i `uc ]
 "73
-[; ;movement.c: 73: }
-[e :UE 2032 ]
-}
+[; ;movement.c: 73:     LATFbits.LATF6 = 0;
+[e = . . _LATFbits 0 6 -> -> 0 `i `uc ]
 "75
-[; ;movement.c: 75: void goback(struct DC_motor *mL, struct DC_motor *mR)
-[v _goback `(v ~T0 @X0 1 ef2`*S2020`*S2020 ]
+[; ;movement.c: 75:     TRISGbits.TRISG1 = 0;
+[e = . . _TRISGbits 0 1 -> -> 0 `i `uc ]
 "76
-[; ;movement.c: 76: {
+[; ;movement.c: 76:     TRISFbits.TRISF7 = 0;
+[e = . . _TRISFbits 0 7 -> -> 0 `i `uc ]
+"77
+[; ;movement.c: 77:     TRISAbits.TRISA4 = 0;
+[e = . . _TRISAbits 0 4 -> -> 0 `i `uc ]
+"78
+[; ;movement.c: 78:     LATGbits.LATG1 = 1;
+[e = . . _LATGbits 0 1 -> -> 1 `i `uc ]
+"79
+[; ;movement.c: 79:     LATFbits.LATF7 = 1;
+[e = . . _LATFbits 0 7 -> -> 1 `i `uc ]
+"80
+[; ;movement.c: 80:     LATAbits.LATA4 = 1;
+[e = . . _LATAbits 0 4 -> -> 1 `i `uc ]
+"81
+[; ;movement.c: 81: }
+[e :UE 2033 ]
+}
+"83
+[; ;movement.c: 83: void goback(struct DC_motor *mL, struct DC_motor *mR)
+[v _goback `(v ~T0 @X0 1 ef2`*S2021`*S2021 ]
+"84
+[; ;movement.c: 84: {
 {
 [e :U _goback ]
-"75
-[; ;movement.c: 75: void goback(struct DC_motor *mL, struct DC_motor *mR)
-[v _mL `*S2020 ~T0 @X0 1 r1 ]
-[v _mR `*S2020 ~T0 @X0 1 r2 ]
-"76
-[; ;movement.c: 76: {
+"83
+[; ;movement.c: 83: void goback(struct DC_motor *mL, struct DC_motor *mR)
+[v _mL `*S2021 ~T0 @X0 1 r1 ]
+[v _mR `*S2021 ~T0 @X0 1 r2 ]
+"84
+[; ;movement.c: 84: {
 [f ]
-"77
-[; ;movement.c: 77:     turnLeft(mL, mR, 180);
+"85
+[; ;movement.c: 85:     turnLeft(mL, mR, 180);
 [e ( _turnLeft (3 , , _mL _mR -> -> 180 `i `uc ]
-"78
-[; ;movement.c: 78: }
-[e :UE 2033 ]
+"86
+[; ;movement.c: 86: }
+[e :UE 2034 ]
 }

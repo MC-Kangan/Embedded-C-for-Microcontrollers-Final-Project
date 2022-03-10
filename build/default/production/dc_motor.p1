@@ -2241,16 +2241,16 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _motorL `S2015 ~T0 @X0 1 e ]
 [v _motorR `S2015 ~T0 @X0 1 e ]
 "9
-[; ;dc_motor.c: 9: unsigned char SENSITIVITY = 11;
+[; ;dc_motor.c: 9: unsigned char SENSITIVITY = 10;
 [v _SENSITIVITY `uc ~T0 @X0 1 e ]
 [i _SENSITIVITY
--> -> 11 `i `uc
+-> -> 10 `i `uc
 ]
 "10
-[; ;dc_motor.c: 10: unsigned char CALIBRATION_180 = 40;
+[; ;dc_motor.c: 10: unsigned char CALIBRATION_180 = 20;
 [v _CALIBRATION_180 `uc ~T0 @X0 1 e ]
 [i _CALIBRATION_180
--> -> 40 `i `uc
+-> -> 20 `i `uc
 ]
 "12
 [; ;dc_motor.c: 12: void initDCmotorsPWM(int PWMperiod){
@@ -2484,8 +2484,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ || > -> . *U _mL 0 `i -> 0 `i > -> . *U _mR 0 `i -> 0 `i 2027  ]
 [e :U 2028 ]
 "93
-[; ;dc_motor.c: 93:     _delay((unsigned long)((1000)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+[; ;dc_motor.c: 93:     _delay((unsigned long)((100)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "94
 [; ;dc_motor.c: 94: }
 [e :UE 2025 ]
@@ -2731,7 +2731,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;dc_motor.c: 146:     mR->direction=1;
 [e = . *U _mR 1 -> -> 1 `i `uc ]
 "147
-[; ;dc_motor.c: 147:     while (mL->power<40 && mR->power<40){
+[; ;dc_motor.c: 147:     while (mL->power<20 && mR->power<20){
 [e $U 2060  ]
 [e :U 2061 ]
 {
@@ -2755,8 +2755,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e :U 2060 ]
 "147
-[; ;dc_motor.c: 147:     while (mL->power<40 && mR->power<40){
-[e $ && < -> . *U _mL 0 `i -> 40 `i < -> . *U _mR 0 `i -> 40 `i 2061  ]
+[; ;dc_motor.c: 147:     while (mL->power<20 && mR->power<20){
+[e $ && < -> . *U _mL 0 `i -> 20 `i < -> . *U _mR 0 `i -> 20 `i 2061  ]
 [e :U 2062 ]
 "154
 [; ;dc_motor.c: 154: }

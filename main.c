@@ -15,7 +15,7 @@
 #include <stdio.h>
 
 #define _XTAL_FREQ 64000000 //note intrinsic _delay function is 62.5ns at 64,000,000Hz 
- #define TEST 1
+ #define TEST 4
 //#define TEST 0 
 // Color code: 
 // 1: red; 2: green; 3: blue; 4: yellow; 5:pink; 6:orange; 7:light blue; 8:white; 9: black
@@ -38,32 +38,55 @@ void main(void){
     initDCmotors_parameter(&motorL, &motorR);
     pin_init(); //initiate RGB pins, RF2 and RF3 pins for motor calibrations, BATVERSE pins for voltage measurement 
     
-    if (TEST == 1){
+    if (TEST == 1 || TEST == 3){
         __delay_ms(3000);
         calibrate_white(&white);
         __delay_ms(3000);
     }
     unsigned char complete = 0;
+    unsigned char stop_signal = 0;
     //calibration(&motorL, &motorR);
     //action(color, &motorL, &motorR);
     while(1){
         //test_action(&motorL, &motorR);
 		if (TEST == 1){
-            //LED_G();
-            //read_color(&rgb);
-            //color_display(&rgb);
+            LED_C();
+            read_color(&rgb);
+            color_display(&rgb);
             
-            color = detect_color(&rgb, &white);
-            color_predict(color);
+            //color = detect_color(&rgb, &white);
+            //color_predict(color);
             __delay_ms(200);
             }
-        action(color, &motorL, &motorR);
+        //stop(&motorL, &motorR);
+        //action(color, &motorL, &motorR);
         
         if (TEST == 2){
             while (complete == 0){
                 color_data_collection(&rgb);
                 complete = 1;
             }
+        }
+        
+        if (TEST == 3){
+            while (color == 0){
+                short_burst(&motorL, &motorR);
+                color = detect_color(&rgb, &white);
+            }
+            verify_color(color, &rgb, &white);
+            action(color, &motorL, &motorR);
+            color = 0;
+        }
+        if (TEST == 4){
+            read_color(&rgb);
+            color_display(&rgb);
+            while (stop_signal == 0){
+                fullSpeedAhead(&motorL, &motorR);
+                stop_signal = distance_measure(&motorL, &motorR);
+            }
+            stop(&motorL, &motorR);
+            __delay_ms(1000);
+            //stop_signal = 0;
         }
     }
 }

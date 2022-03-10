@@ -24315,6 +24315,8 @@ struct white_card {
     unsigned int BR ;
     unsigned int BG ;
     unsigned int BB ;
+    unsigned int GC ;
+
 };
 
 
@@ -24356,11 +24358,12 @@ void color_display(struct color_rgb *m);
 void calibrate_white(struct white_card *w);
 void color_predict(unsigned char color);
 unsigned char detect_color(struct color_rgb *m, struct white_card *w);
-unsigned char check_color(unsigned char color,struct color_rgb *m);
+unsigned char verify_color(unsigned char color,struct color_rgb *m, struct white_card *w);
 unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned int upper);
 void movement (unsigned char color,struct DC_motor *mL, struct DC_motor *mR);
 void check_color_reading(struct color_rgb *, struct white_card *w);
 void color_data_collection(struct color_rgb *m);
+unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR);
 # 4 "color.c" 2
 
 # 1 "./i2c.h" 1
@@ -25033,7 +25036,7 @@ void LED_C(void)
     LATGbits.LATG1 = 1;
     LATFbits.LATF7 = 1;
     LATAbits.LATA4 = 1;
-    _delay((unsigned long)((200)*(64000000/4000.0)));
+    _delay((unsigned long)((50)*(64000000/4000.0)));
 
 }
 
@@ -25055,38 +25058,37 @@ void LED_G(void)
 
 }
 
-
 void color_data_collection(struct color_rgb *m){
 
     int i = 0; int j = 0; int k = 0; int x = 0;
-    for (i = 0; i < 1; ++i){
+    for (i = 0; i <5; ++i){
         LED_C();
         read_color(m);
         color_display(m);
-        _delay((unsigned long)((500)*(64000000/4000.0)));
+        _delay((unsigned long)((100)*(64000000/4000.0)));
     }
-
-    for (j = 0; j < 1; ++j){
+    color_predict(00000);
+    for (j = 0; j < 5; ++j){
         LED_R();
         read_color(m);
         color_display(m);
-        _delay((unsigned long)((500)*(64000000/4000.0)));
+        _delay((unsigned long)((100)*(64000000/4000.0)));
     }
-
-    for (k = 0; k < 1; ++k){
+    color_predict(00000);
+    for (k = 0; k < 5; ++k){
         LED_G();
         read_color(m);
         color_display(m);
-        _delay((unsigned long)((500)*(64000000/4000.0)));
+        _delay((unsigned long)((100)*(64000000/4000.0)));
     }
-
-    for (x = 0; x < 1; ++x){
+    color_predict(00000);
+    for (x = 0; x < 5; ++x){
         LED_B();
         read_color(m);
         color_display(m);
-        _delay((unsigned long)((500)*(64000000/4000.0)));
+        _delay((unsigned long)((100)*(64000000/4000.0)));
     }
-    color_predict(00000);
+    color_predict(1);
     LED_C();
 }
 
@@ -25136,6 +25138,7 @@ void calibrate_white(struct white_card *w)
     LED_G();
 
     w->GR = color_read_Red(); w->GG = color_read_Green(); w->GB = color_read_Blue();
+    w->GC = color_read_Clear();
     _delay((unsigned long)((100)*(64000000/4000.0)));
 
     LED_B();
@@ -25149,18 +25152,23 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
 {
 
 
-    unsigned int RR = 0, RG = 0, RB = 0, GR = 0, GG = 0, GB = 0, BR = 0, BG = 0, BB = 0, GR_REAL = 0, GC_REAL = 0, BC = 0;
+    unsigned int RR = 0, RG = 0, RB = 0, GR = 0, GG = 0, GB = 0, BR = 0, BG = 0, BB = 0;
+    unsigned int GC = 0;
     unsigned char color = 0;
 
     LED_R();
     read_color(m);
+
     RR = lroundf((float)(m->R)/(w->RR)*100); RG = lroundf((float)(m->G)/(w->RG)*100); RB = lroundf((float)(m->B)/(w->RB)*100);
     _delay((unsigned long)((50)*(64000000/4000.0)));
 
     LED_G();
     read_color(m);
-    GR_REAL = m->R ; GC_REAL = m->C;
+
+
     GR = lroundf((float)(m->R)/(w->GR)*100); GG = lroundf((float)(m->G)/(w->GG)*100); GB = lroundf((float)(m->B)/(w->GB)*100);
+    GC = lroundf((float)(m->R)/(w->GR)*100);
+
     _delay((unsigned long)((50)*(64000000/4000.0)));
 
     LED_B();
@@ -25169,13 +25177,15 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
     _delay((unsigned long)((50)*(64000000/4000.0)));
 
 
-    if (compare(0, BR, 60)){
-        if (compare(0, lroundf((float)(GG + BG)/BB * 200), 400)){color = 3;}
+    if (compare(0, BR, 70)){
+
+         if (compare(0, lroundf((float)(GG + BG)/BB * 200), 414)){color = 3;}
         else{color = 2;}
     }
     else{
         if (compare(0, BG, 75)){
-            if (compare(0, lroundf((float)RR/BG * 200), 319)){
+
+            if (compare(0, lroundf((float)RR/RG * 500), 670)){
                 if (GR > 90){color = 6;}
                 else {color = 0;}
             }
@@ -25201,16 +25211,16 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
 
 
     if (color == 2 || color == 3){
-        if (GR_REAL < 60 || GC_REAL <550){color = 0;}
+        if (GR < 50){color = 0;}
     }
     if (color == 1 || color == 6){
-        if (GR_REAL < 100 || GC_REAL <550){color = 0;}
+        if (GR < 90){color = 0;}
     }
     if (color == 4 || color == 5){
-        if (GR_REAL < 120 || GC_REAL <650){color = 0;}
+        if (GR < 100){color = 0;}
     }
     if (color == 7 || color == 8){
-        if (GR_REAL < 110 || GC_REAL <700){color = 0;}
+        if (GR < 80){color = 0;}
     }
 
     return color;
@@ -25224,12 +25234,32 @@ unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned i
 }
 
 
-unsigned char check_color(unsigned char color,struct color_rgb *m)
+unsigned char verify_color(unsigned char color,struct color_rgb *m, struct white_card *w)
 {
-    return color;
+    _delay((unsigned long)((50)*(64000000/4000.0)));
+    unsigned int color2;
+    color2 = detect_color(m,w);
+    if (color == color2){return color;}
+    else {
+        color = 0;
+        return color;}
 }
 
 void movement (unsigned char color,struct DC_motor *mL, struct DC_motor *mR)
 {
     if (color == 1){turnRight(mL, mR,90); _delay((unsigned long)((500)*(64000000/4000.0)));}
+}
+
+unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR)
+{
+    unsigned int CC = 0, CR = 0, CG = 0, CB = 0;
+    unsigned char stop = 0;
+    LED_C();
+
+    CC = color_read_Clear();
+    if (CC >= 1500 ){
+        stop = 1;
+    }
+    return stop;
+
 }

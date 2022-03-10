@@ -6,7 +6,7 @@
 #define _XTAL_FREQ 64000000
 #define TURNING_POWER_L 25 // This number needs to be adjusted according to different floor condition
 #define TURNING_POWER_R 25 // This number needs to be adjusted according to different floor condition
-#define FORWARD_POWER 40
+#define FORWARD_POWER 20
 #define BACKWARD_POWER 50
 
 struct DC_motor { //definition of DC_motor structure

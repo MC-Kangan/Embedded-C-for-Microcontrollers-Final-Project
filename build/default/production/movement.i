@@ -24402,6 +24402,8 @@ struct white_card {
     unsigned int BR ;
     unsigned int BG ;
     unsigned int BB ;
+    unsigned int GC ;
+
 };
 
 
@@ -24443,11 +24445,12 @@ void color_display(struct color_rgb *m);
 void calibrate_white(struct white_card *w);
 void color_predict(unsigned char color);
 unsigned char detect_color(struct color_rgb *m, struct white_card *w);
-unsigned char check_color(unsigned char color,struct color_rgb *m);
+unsigned char verify_color(unsigned char color,struct color_rgb *m, struct white_card *w);
 unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned int upper);
 void movement (unsigned char color,struct DC_motor *mL, struct DC_motor *mR);
 void check_color_reading(struct color_rgb *, struct white_card *w);
 void color_data_collection(struct color_rgb *m);
+unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR);
 # 3 "movement.c" 2
 
 # 1 "./dc_motor.h" 1
@@ -24520,44 +24523,53 @@ void action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR);
 void test_action (struct DC_motor *mL, struct DC_motor *mR);
 void pin_init(void);
 void goback(struct DC_motor *mL, struct DC_motor *mR);
+void short_burst(struct DC_motor *mL, struct DC_motor *mR);
 # 6 "movement.c" 2
 
 
+void short_burst(struct DC_motor *mL, struct DC_motor *mR)
+{
+    fullSpeedAhead(mL,mR);
+    _delay((unsigned long)((300)*(64000000/4000.0)));
+    stop(mL,mR);
+    _delay((unsigned long)((500)*(64000000/4000.0)));
+}
+
 void action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR)
-{ fullSpeedAhead(mL,mR);
-    if (color != 0){stop(mL,mR);
-        if (color == 1){
-            short_reverse(mL,mR);
-            turnRight(mL,mR,90);
-        }
-        if (color == 2){
-            short_reverse(mL,mR);
-            turnLeft(mL,mR,90);
-        }
-        if (color == 3){
-            short_reverse(mL,mR);
-            turnLeft(mL,mR,180);
-        }
-        if (color == 4){
-            reverse_square(mL,mR);
-            turnRight(mL,mR,90);
-        }
-        if (color == 5){
-            reverse_square(mL,mR);
-            turnLeft(mL,mR,90);
-        }
-        if (color == 6){
-            short_reverse(mL,mR);
-            turnRight(mL,mR,135);
-        }
-        if (color == 7){
-            short_reverse(mL,mR);
-            turnLeft(mL,mR,135);
-        }
-        if (color == 8){
-            short_reverse(mL,mR);
-            goback(mL,mR);
-        }
+{
+
+    stop(mL,mR);
+    if (color == 1){
+        short_reverse(mL,mR);
+        turnRight(mL,mR,90);
+    }
+    if (color == 2){
+        short_reverse(mL,mR);
+        turnLeft(mL,mR,90);
+    }
+    if (color == 3){
+        short_reverse(mL,mR);
+        turnLeft(mL,mR,180);
+    }
+    if (color == 4){
+        reverse_square(mL,mR);
+        turnRight(mL,mR,90);
+    }
+    if (color == 5){
+        reverse_square(mL,mR);
+        turnLeft(mL,mR,90);
+    }
+    if (color == 6){
+        short_reverse(mL,mR);
+        turnRight(mL,mR,135);
+    }
+    if (color == 7){
+        short_reverse(mL,mR);
+        turnLeft(mL,mR,135);
+    }
+    if (color == 8){
+        short_reverse(mL,mR);
+        goback(mL,mR);
     }
 }
 void test_action (struct DC_motor *mL, struct DC_motor *mR)

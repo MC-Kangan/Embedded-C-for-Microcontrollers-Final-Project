@@ -22,6 +22,8 @@ struct white_card { //definition of white_card structure
     unsigned int BR ;         //Red color reading when blue light on
     unsigned int BG ;         //Green color reading when blue light on
     unsigned int BB ;         //Blue color reading when blue light on
+    unsigned int GC ;         //Clear color reading when green light on
+    
 };
 
 /********************************************//**
@@ -63,9 +65,11 @@ void color_display(struct color_rgb *m);
 void calibrate_white(struct white_card *w);
 void color_predict(unsigned char color);
 unsigned char detect_color(struct color_rgb *m, struct white_card *w);
-unsigned char check_color(unsigned char color,struct color_rgb *m);
+unsigned char verify_color(unsigned char color,struct color_rgb *m, struct white_card *w);
 unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned int upper);
 void movement (unsigned char color,struct DC_motor *mL, struct DC_motor *mR);
 void check_color_reading(struct color_rgb *, struct white_card *w);
 void color_data_collection(struct color_rgb *m);
+unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR);
+
 #endif
