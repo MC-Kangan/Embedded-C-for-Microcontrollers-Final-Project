@@ -24584,15 +24584,17 @@ void main(void){
     initDCmotors_parameter(&motorL, &motorR);
     pin_init();
 
-    _delay((unsigned long)((3000)*(64000000/4000.0)));
-    calibrate_white(&white);
-    _delay((unsigned long)((3000)*(64000000/4000.0)));
+    if (2 == 1){
+        _delay((unsigned long)((3000)*(64000000/4000.0)));
+        calibrate_white(&white);
+        _delay((unsigned long)((3000)*(64000000/4000.0)));
+    }
     unsigned char complete = 0;
 
 
     while(1){
 
-  if (1 == 1){
+  if (2 == 1){
 
 
 
@@ -24602,7 +24604,7 @@ void main(void){
             _delay((unsigned long)((200)*(64000000/4000.0)));
             }
 
-        if (1 == 2){
+        if (2 == 2){
             while (complete == 0){
                 color_data_collection(&rgb);
                 complete = 1;

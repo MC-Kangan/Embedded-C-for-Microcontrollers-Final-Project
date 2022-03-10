@@ -101,7 +101,7 @@
 [v _calibrate_white calibrate_white `(v  1 e 1 0 ]
 "226
 [v _detect_color detect_color `(uc  1 e 1 0 ]
-"290
+"294
 [v _compare compare `(uc  1 e 1 0 ]
 "12 C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
 [v _initDCmotorsPWM initDCmotorsPWM `(v  1 e 1 0 ]
@@ -711,15 +711,17 @@
 {
 [s S202 white_card 18 `ui 1 RR 2 0 `ui 1 RG 2 2 `ui 1 RB 2 4 `ui 1 GR 2 6 `ui 1 GG 2 8 `ui 1 GB 2 10 `ui 1 BR 2 12 `ui 1 BG 2 14 `ui 1 BB 2 16 ]
 "32
-[v main@white white `S202  1 a 18 28 ]
+[v main@white white `S202  1 a 18 29 ]
 [s S224 DC_motor 10 `uc 1 power 1 0 `uc 1 direction 1 1 `*.39uc 1 dutyHighByte 2 2 `*.39uc 1 dir_LAT 2 4 `uc 1 dir_pin 1 6 `i 1 PWMperiod 2 7 `uc 1 voltage 1 9 ]
 "36
-[v main@motorR motorR `S224  1 a 10 10 ]
-[v main@motorL motorL `S224  1 a 10 0 ]
+[v main@motorR motorR `S224  1 a 10 11 ]
+[v main@motorL motorL `S224  1 a 10 1 ]
 [s S62 color_rgb 8 `ui 1 R 2 0 `ui 1 G 2 2 `ui 1 B 2 4 `ui 1 C 2 6 ]
 "31
-[v main@rgb rgb `S62  1 a 8 20 ]
-"66
+[v main@rgb rgb `S62  1 a 8 21 ]
+"46
+[v main@complete complete `uc  1 a 1 0 ]
+"68
 } 0
 "58 C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\movement.c
 [v _pin_init pin_init `(v  1 e 1 0 ]
@@ -768,7 +770,7 @@
 [v detect_color@m m `*.39S62  1 p 2 16 ]
 [s S202 white_card 18 `ui 1 RR 2 0 `ui 1 RG 2 2 `ui 1 RB 2 4 `ui 1 GR 2 6 `ui 1 GG 2 8 `ui 1 GB 2 10 `ui 1 BR 2 12 `ui 1 BG 2 14 `ui 1 BB 2 16 ]
 [v detect_color@w w `*.39S202  1 p 2 18 ]
-"288
+"292
 } 0
 "3 C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\lroundf.c
 [v _lroundf lroundf `(l  1 e 4 0 ]
@@ -863,16 +865,16 @@
 [v ___fltol@f1 f1 `d  1 p 4 90 ]
 "70
 } 0
-"290 C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+"294 C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
 [v _compare compare `(uc  1 e 1 0 ]
 {
-"292
+"296
 [v compare@result result `uc  1 a 1 94 ]
-"290
+"294
 [v compare@lower lower `ui  1 p 2 10 ]
 [v compare@value2compare value2compare `ui  1 p 2 12 ]
 [v compare@upper upper `ui  1 p 2 14 ]
-"295
+"299
 } 0
 "10 C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\xxtofl.c
 [v ___xxtofl __xxtofl `(d  1 e 4 0 ]

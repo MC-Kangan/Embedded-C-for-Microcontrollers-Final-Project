@@ -15,7 +15,7 @@
 #include <stdio.h>
 
 #define _XTAL_FREQ 64000000 //note intrinsic _delay function is 62.5ns at 64,000,000Hz 
- #define TEST 1
+ #define TEST 2
 //#define TEST 0 
 // Color code: 
 // 1: red; 2: green; 3: blue; 4: yellow; 5:pink; 6:orange; 7:light blue; 8:white; 9: black
@@ -38,9 +38,11 @@ void main(void){
     initDCmotors_parameter(&motorL, &motorR);
     pin_init(); //initiate RGB pins, RF2 and RF3 pins for motor calibrations, BATVERSE pins for voltage measurement 
     
-    __delay_ms(3000);
-    calibrate_white(&white);
-    __delay_ms(3000);
+    if (TEST == 1){
+        __delay_ms(3000);
+        calibrate_white(&white);
+        __delay_ms(3000);
+    }
     unsigned char complete = 0;
     //calibration(&motorL, &motorR);
     //action(color, &motorL, &motorR);

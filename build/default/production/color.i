@@ -25175,26 +25175,30 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
     }
     else{
         if (compare(0, BG, 75)){
-            if (compare(0, lroundf((float)RR/BG * 200), 285)){
+            if (compare(0, lroundf((float)RR/BG * 200), 313)){
                 if (GR > 90){color = 6;}
                 else {color = 0;}
             }
             else {color = 1;}
         }
         else{
-            if (compare(0, BR, 90)){
+            if (compare(0, BR, 85)){
                 if (BG > 90){color = 7;}
                 else {color = 0;}
             }
             else{
                 if (BG < BB){color = 5;}
-                else{color = 4;}
+                else{
+                    if (compare(0, BB, 90)){color = 4;}
+                    else{color = 0;}
+                }
             }
         }
     }
 
     if (compare(95, BR, 105) && compare(95,BG,105)){color = 8;}
     if (compare(0, BR, 25) && compare(0,RR,90)){color = 0;}
+
 
     if (color == 2 || color == 3){
         if (GR_REAL < 50 || GC_REAL <520){color = 0;}
