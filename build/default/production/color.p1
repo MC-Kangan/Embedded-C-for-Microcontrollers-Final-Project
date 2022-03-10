@@ -2889,12 +2889,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;color.c: 247:     _delay((unsigned long)((50)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 50 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "250
-[; ;color.c: 250:     if (compare(0, BR, 55)){
-[e $ ! != -> ( _compare (3 , , -> -> 0 `i `ui _BR -> -> 55 `i `ui `i -> 0 `i 2060  ]
+[; ;color.c: 250:     if (compare(0, BR, 60)){
+[e $ ! != -> ( _compare (3 , , -> -> 0 `i `ui _BR -> -> 60 `i `ui `i -> 0 `i 2060  ]
 {
 "251
-[; ;color.c: 251:         if (compare(0, lroundf((float)(GG + BG)/BB * 200), 391)){color = 3;}
-[e $ ! != -> ( _compare (3 , , -> -> 0 `i `ui -> ( _lroundf (1 * / -> + _GG _BG `f -> _BB `f -> -> 200 `i `f `ui -> -> 391 `i `ui `i -> 0 `i 2061  ]
+[; ;color.c: 251:         if (compare(0, lroundf((float)(GG + BG)/BB * 200), 400)){color = 3;}
+[e $ ! != -> ( _compare (3 , , -> -> 0 `i `ui -> ( _lroundf (1 * / -> + _GG _BG `f -> _BB `f -> -> 200 `i `f `ui -> -> 400 `i `ui `i -> 0 `i 2061  ]
 {
 [e = _color -> -> 3 `i `uc ]
 }
@@ -2919,8 +2919,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ ! != -> ( _compare (3 , , -> -> 0 `i `ui _BG -> -> 75 `i `ui `i -> 0 `i 2064  ]
 {
 "256
-[; ;color.c: 256:             if (compare(0, lroundf((float)RR/BG * 200), 313)){
-[e $ ! != -> ( _compare (3 , , -> -> 0 `i `ui -> ( _lroundf (1 * / -> _RR `f -> _BG `f -> -> 200 `i `f `ui -> -> 313 `i `ui `i -> 0 `i 2065  ]
+[; ;color.c: 256:             if (compare(0, lroundf((float)RR/BG * 200), 319)){
+[e $ ! != -> ( _compare (3 , , -> -> 0 `i `ui -> ( _lroundf (1 * / -> _RR `f -> _BG `f -> -> 200 `i `f `ui -> -> 319 `i `ui `i -> 0 `i 2065  ]
 {
 "257
 [; ;color.c: 257:                 if (GR > 90){color = 6;}
@@ -2956,8 +2956,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 2064 ]
 {
 "263
-[; ;color.c: 263:             if (compare(0, BR, 85)){
-[e $ ! != -> ( _compare (3 , , -> -> 0 `i `ui _BR -> -> 85 `i `ui `i -> 0 `i 2070  ]
+[; ;color.c: 263:             if (compare(0, BR, 90)){
+[e $ ! != -> ( _compare (3 , , -> -> 0 `i `ui _BR -> -> 90 `i `ui `i -> 0 `i 2070  ]
 {
 "264
 [; ;color.c: 264:                 if (BG > 90){color = 7;}
@@ -3041,8 +3041,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ ! || == -> _color `i -> 2 `i == -> _color `i -> 3 `i 2080  ]
 {
 "282
-[; ;color.c: 282:         if (GR_REAL < 50 || GC_REAL <520){color = 0;}
-[e $ ! || < _GR_REAL -> -> 50 `i `ui < _GC_REAL -> -> 520 `i `ui 2081  ]
+[; ;color.c: 282:         if (GR_REAL < 60 || GC_REAL <550){color = 0;}
+[e $ ! || < _GR_REAL -> -> 60 `i `ui < _GC_REAL -> -> 550 `i `ui 2081  ]
 {
 [e = _color -> -> 0 `i `uc ]
 }
@@ -3056,8 +3056,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ ! || == -> _color `i -> 1 `i == -> _color `i -> 6 `i 2082  ]
 {
 "285
-[; ;color.c: 285:         if (GR_REAL < 60 || GC_REAL <500){color = 0;}
-[e $ ! || < _GR_REAL -> -> 60 `i `ui < _GC_REAL -> -> 500 `i `ui 2083  ]
+[; ;color.c: 285:         if (GR_REAL < 100 || GC_REAL <550){color = 0;}
+[e $ ! || < _GR_REAL -> -> 100 `i `ui < _GC_REAL -> -> 550 `i `ui 2083  ]
 {
 [e = _color -> -> 0 `i `uc ]
 }
@@ -3067,12 +3067,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e :U 2082 ]
 "287
-[; ;color.c: 287:     if (color == 7 || color == 4 || color == 5 || color == 8){
-[e $ ! || || || == -> _color `i -> 7 `i == -> _color `i -> 4 `i == -> _color `i -> 5 `i == -> _color `i -> 8 `i 2084  ]
+[; ;color.c: 287:     if (color == 4 || color == 5){
+[e $ ! || == -> _color `i -> 4 `i == -> _color `i -> 5 `i 2084  ]
 {
 "288
-[; ;color.c: 288:         if (GR_REAL < 70 || GC_REAL <560){color = 0;}
-[e $ ! || < _GR_REAL -> -> 70 `i `ui < _GC_REAL -> -> 560 `i `ui 2085  ]
+[; ;color.c: 288:         if (GR_REAL < 120 || GC_REAL <650){color = 0;}
+[e $ ! || < _GR_REAL -> -> 120 `i `ui < _GC_REAL -> -> 650 `i `ui 2085  ]
 {
 [e = _color -> -> 0 `i `uc ]
 }
@@ -3081,96 +3081,111 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;color.c: 289:     }
 }
 [e :U 2084 ]
+"290
+[; ;color.c: 290:     if (color == 7 || color == 8){
+[e $ ! || == -> _color `i -> 7 `i == -> _color `i -> 8 `i 2086  ]
+{
 "291
-[; ;color.c: 291:     return color;
+[; ;color.c: 291:         if (GR_REAL < 110 || GC_REAL <700){color = 0;}
+[e $ ! || < _GR_REAL -> -> 110 `i `ui < _GC_REAL -> -> 700 `i `ui 2087  ]
+{
+[e = _color -> -> 0 `i `uc ]
+}
+[e :U 2087 ]
+"292
+[; ;color.c: 292:     }
+}
+[e :U 2086 ]
+"294
+[; ;color.c: 294:     return color;
 [e ) _color ]
 [e $UE 2059  ]
-"292
-[; ;color.c: 292: }
+"295
+[; ;color.c: 295: }
 [e :UE 2059 ]
 }
-"294
-[; ;color.c: 294: unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned int upper)
+"297
+[; ;color.c: 297: unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned int upper)
 [v _compare `(uc ~T0 @X0 1 ef3`ui`ui`ui ]
-"295
-[; ;color.c: 295: {
+"298
+[; ;color.c: 298: {
 {
 [e :U _compare ]
-"294
-[; ;color.c: 294: unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned int upper)
+"297
+[; ;color.c: 297: unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned int upper)
 [v _lower `ui ~T0 @X0 1 r1 ]
 [v _value2compare `ui ~T0 @X0 1 r2 ]
 [v _upper `ui ~T0 @X0 1 r3 ]
-"295
-[; ;color.c: 295: {
+"298
+[; ;color.c: 298: {
 [f ]
-"296
-[; ;color.c: 296:     unsigned char result = 0;
+"299
+[; ;color.c: 299:     unsigned char result = 0;
 [v _result `uc ~T0 @X0 1 a ]
 [e = _result -> -> 0 `i `uc ]
-"297
-[; ;color.c: 297:     if (lower < value2compare && value2compare <= upper){result = 1;}
-[e $ ! && < _lower _value2compare <= _value2compare _upper 2087  ]
+"300
+[; ;color.c: 300:     if (lower < value2compare && value2compare <= upper){result = 1;}
+[e $ ! && < _lower _value2compare <= _value2compare _upper 2089  ]
 {
 [e = _result -> -> 1 `i `uc ]
 }
-[e :U 2087 ]
-"298
-[; ;color.c: 298:     return result;
+[e :U 2089 ]
+"301
+[; ;color.c: 301:     return result;
 [e ) _result ]
-[e $UE 2086  ]
-"299
-[; ;color.c: 299: }
-[e :UE 2086 ]
-}
-"302
-[; ;color.c: 302: unsigned char check_color(unsigned char color,struct color_rgb *m)
-[v _check_color `(uc ~T0 @X0 1 ef2`uc`*S2016 ]
-"303
-[; ;color.c: 303: {
-{
-[e :U _check_color ]
-"302
-[; ;color.c: 302: unsigned char check_color(unsigned char color,struct color_rgb *m)
-[v _color `uc ~T0 @X0 1 r1 ]
-[v _m `*S2016 ~T0 @X0 1 r2 ]
-"303
-[; ;color.c: 303: {
-[f ]
-"304
-[; ;color.c: 304:     return color;
-[e ) _color ]
 [e $UE 2088  ]
-"305
-[; ;color.c: 305: }
+"302
+[; ;color.c: 302: }
 [e :UE 2088 ]
 }
+"305
+[; ;color.c: 305: unsigned char check_color(unsigned char color,struct color_rgb *m)
+[v _check_color `(uc ~T0 @X0 1 ef2`uc`*S2016 ]
+"306
+[; ;color.c: 306: {
+{
+[e :U _check_color ]
+"305
+[; ;color.c: 305: unsigned char check_color(unsigned char color,struct color_rgb *m)
+[v _color `uc ~T0 @X0 1 r1 ]
+[v _m `*S2016 ~T0 @X0 1 r2 ]
+"306
+[; ;color.c: 306: {
+[f ]
 "307
-[; ;color.c: 307: void movement (unsigned char color,struct DC_motor *mL, struct DC_motor *mR)
-[v _movement `(v ~T0 @X0 1 ef3`uc`*S2015`*S2015 ]
+[; ;color.c: 307:     return color;
+[e ) _color ]
+[e $UE 2090  ]
 "308
-[; ;color.c: 308: {
+[; ;color.c: 308: }
+[e :UE 2090 ]
+}
+"310
+[; ;color.c: 310: void movement (unsigned char color,struct DC_motor *mL, struct DC_motor *mR)
+[v _movement `(v ~T0 @X0 1 ef3`uc`*S2015`*S2015 ]
+"311
+[; ;color.c: 311: {
 {
 [e :U _movement ]
-"307
-[; ;color.c: 307: void movement (unsigned char color,struct DC_motor *mL, struct DC_motor *mR)
+"310
+[; ;color.c: 310: void movement (unsigned char color,struct DC_motor *mL, struct DC_motor *mR)
 [v _color `uc ~T0 @X0 1 r1 ]
 [v _mL `*S2015 ~T0 @X0 1 r2 ]
 [v _mR `*S2015 ~T0 @X0 1 r3 ]
-"308
-[; ;color.c: 308: {
+"311
+[; ;color.c: 311: {
 [f ]
-"309
-[; ;color.c: 309:     if (color == 1){turnRight(mL, mR,90); _delay((unsigned long)((500)*(64000000/4000.0)));}
-[e $ ! == -> _color `i -> 1 `i 2090  ]
+"312
+[; ;color.c: 312:     if (color == 1){turnRight(mL, mR,90); _delay((unsigned long)((500)*(64000000/4000.0)));}
+[e $ ! == -> _color `i -> 1 `i 2092  ]
 {
 [e ( _turnRight (3 , , _mL _mR -> -> 90 `i `uc ]
 [e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 }
-[e :U 2090 ]
-"310
-[; ;color.c: 310: }
-[e :UE 2089 ]
+[e :U 2092 ]
+"313
+[; ;color.c: 313: }
+[e :UE 2091 ]
 }
 [p f _sprintf 8388736 ]
 [a 7C 89 101 108 108 111 119 0 ]

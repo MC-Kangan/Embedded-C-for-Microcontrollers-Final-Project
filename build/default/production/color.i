@@ -25169,20 +25169,20 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
     _delay((unsigned long)((50)*(64000000/4000.0)));
 
 
-    if (compare(0, BR, 55)){
-        if (compare(0, lroundf((float)(GG + BG)/BB * 200), 391)){color = 3;}
+    if (compare(0, BR, 60)){
+        if (compare(0, lroundf((float)(GG + BG)/BB * 200), 400)){color = 3;}
         else{color = 2;}
     }
     else{
         if (compare(0, BG, 75)){
-            if (compare(0, lroundf((float)RR/BG * 200), 313)){
+            if (compare(0, lroundf((float)RR/BG * 200), 319)){
                 if (GR > 90){color = 6;}
                 else {color = 0;}
             }
             else {color = 1;}
         }
         else{
-            if (compare(0, BR, 85)){
+            if (compare(0, BR, 90)){
                 if (BG > 90){color = 7;}
                 else {color = 0;}
             }
@@ -25201,13 +25201,16 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
 
 
     if (color == 2 || color == 3){
-        if (GR_REAL < 50 || GC_REAL <520){color = 0;}
+        if (GR_REAL < 60 || GC_REAL <550){color = 0;}
     }
     if (color == 1 || color == 6){
-        if (GR_REAL < 60 || GC_REAL <500){color = 0;}
+        if (GR_REAL < 100 || GC_REAL <550){color = 0;}
     }
-    if (color == 7 || color == 4 || color == 5 || color == 8){
-        if (GR_REAL < 70 || GC_REAL <560){color = 0;}
+    if (color == 4 || color == 5){
+        if (GR_REAL < 120 || GC_REAL <650){color = 0;}
+    }
+    if (color == 7 || color == 8){
+        if (GR_REAL < 110 || GC_REAL <700){color = 0;}
     }
 
     return color;

@@ -43,7 +43,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "64
 [; ;./color.h: 64: void color_predict(unsigned char color);
 [v _color_predict `(v ~T0 @X0 0 ef1`uc ]
-"70
+"7 ./movement.h
+[; ;./movement.h: 7: void action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR);
+[v _action `(v ~T0 @X0 0 ef3`uc`*S2015`*S2015 ]
+"70 ./color.h
 [; ;./color.h: 70: void color_data_collection(struct color_rgb *m);
 [v _color_data_collection `(v ~T0 @X0 0 ef1`*S2016 ]
 "2 main.c
@@ -2100,8 +2103,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 39:     pin_init();
 [e ( _pin_init ..  ]
 "41
-[; ;main.c: 41:     if (2 == 1){
-[e $ ! == -> 2 `i -> 1 `i 2021  ]
+[; ;main.c: 41:     if (1 == 1){
+[e $ ! == -> 1 `i -> 1 `i 2021  ]
 {
 "42
 [; ;main.c: 42:         _delay((unsigned long)((3000)*(64000000/4000.0)));
@@ -2125,8 +2128,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 2023 ]
 {
 "51
-[; ;main.c: 51:   if (2 == 1){
-[e $ ! == -> 2 `i -> 1 `i 2025  ]
+[; ;main.c: 51:   if (1 == 1){
+[e $ ! == -> 1 `i -> 1 `i 2025  ]
 {
 "56
 [; ;main.c: 56:             color = detect_color(&rgb, &white);
@@ -2141,40 +2144,43 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 59:             }
 }
 [e :U 2025 ]
-"61
-[; ;main.c: 61:         if (2 == 2){
-[e $ ! == -> 2 `i -> 2 `i 2026  ]
-{
+"60
+[; ;main.c: 60:         action(color, &motorL, &motorR);
+[e ( _action (3 , , _color &U _motorL &U _motorR ]
 "62
-[; ;main.c: 62:             while (complete == 0){
+[; ;main.c: 62:         if (1 == 2){
+[e $ ! == -> 1 `i -> 2 `i 2026  ]
+{
+"63
+[; ;main.c: 63:             while (complete == 0){
 [e $U 2027  ]
 [e :U 2028 ]
 {
-"63
-[; ;main.c: 63:                 color_data_collection(&rgb);
-[e ( _color_data_collection (1 &U _rgb ]
 "64
-[; ;main.c: 64:                 complete = 1;
-[e = _complete -> -> 1 `i `uc ]
+[; ;main.c: 64:                 color_data_collection(&rgb);
+[e ( _color_data_collection (1 &U _rgb ]
 "65
-[; ;main.c: 65:             }
+[; ;main.c: 65:                 complete = 1;
+[e = _complete -> -> 1 `i `uc ]
+"66
+[; ;main.c: 66:             }
 }
 [e :U 2027 ]
-"62
-[; ;main.c: 62:             while (complete == 0){
+"63
+[; ;main.c: 63:             while (complete == 0){
 [e $ == -> _complete `i -> 0 `i 2028  ]
 [e :U 2029 ]
-"66
-[; ;main.c: 66:         }
+"67
+[; ;main.c: 67:         }
 }
 [e :U 2026 ]
-"67
-[; ;main.c: 67:     }
+"68
+[; ;main.c: 68:     }
 }
 [e :U 2022 ]
 [e $U 2023  ]
 [e :U 2024 ]
-"68
-[; ;main.c: 68: }
+"69
+[; ;main.c: 69: }
 [e :UE 2020 ]
 }
