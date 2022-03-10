@@ -5,6 +5,8 @@
 #include "serial.h"
 #include "movement.h"
 
+unsigned int second = 0;
+
 void short_burst(struct DC_motor *mL, struct DC_motor *mR)
 {
     fullSpeedAhead(mL,mR);
@@ -79,6 +81,9 @@ void pin_init(void)
     LATFbits.LATF7 = 1; // output LED_G set on (power)
     LATAbits.LATA4 = 1; // output LED_B set on (power)
 }
+
+void count_time(void)
+{   second ++;}
 
 void goback(struct DC_motor *mL, struct DC_motor *mR)
 {
