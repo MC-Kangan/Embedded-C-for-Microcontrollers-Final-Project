@@ -24238,7 +24238,8 @@ __attribute__((__unsupported__("The READTIMER" "0" "() macro is not available wi
 unsigned char __t1rd16on(void);
 unsigned char __t3rd16on(void);
 # 34 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\\pic\\include\\xc.h" 2 3
-# 10 "main.c" 2
+# 9 "main.c" 2
+
 # 1 "./dc_motor.h" 1
 # 12 "./dc_motor.h"
 struct DC_motor {
@@ -24264,9 +24265,8 @@ void fullSpeedBack(struct DC_motor *mL, struct DC_motor *mR);
 void short_reverse(struct DC_motor *mL, struct DC_motor *mR);
 void reverse_square(struct DC_motor *mL, struct DC_motor *mR);
 void calibration(struct DC_motor *mL, struct DC_motor *mR);
-void voltage_read(struct DC_motor *m);
-void voltage_display(struct DC_motor *m);
-# 11 "main.c" 2
+# 10 "main.c" 2
+
 # 1 "./serial.h" 1
 # 13 "./serial.h"
 volatile char EUSART4RXbuf[20];
@@ -24295,7 +24295,8 @@ void putCharToTxBuf(char byte);
 char isDataInTxBuf (void);
 void TxBufferedString(char *string);
 void sendTxBuf(void);
-# 12 "main.c" 2
+# 11 "main.c" 2
+
 # 1 "./color.h" 1
 
 
@@ -24370,7 +24371,8 @@ void movement (unsigned char color,struct DC_motor *mL, struct DC_motor *mR);
 void check_color_reading(struct color_rgb *, struct white_card *w);
 void color_data_collection(struct color_rgb *m);
 unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR);
-# 13 "main.c" 2
+# 12 "main.c" 2
+
 # 1 "./i2c.h" 1
 # 13 "./i2c.h"
 void I2C_2_Master_Init(void);
@@ -24404,20 +24406,51 @@ void I2C_2_Master_Write(unsigned char data_byte);
 
 
 unsigned char I2C_2_Master_Read(unsigned char ack);
-# 14 "main.c" 2
+# 13 "main.c" 2
+
 # 1 "./movement.h" 1
 
 
 
 
 
+unsigned int second = 0;
+unsigned int memory[20];
+unsigned char array_index = 0;
+unsigned int start_move;
+unsigned int stop_move;
 
+
+void short_burst(struct DC_motor *mL, struct DC_motor *mR);
 void action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR);
 void test_action (struct DC_motor *mL, struct DC_motor *mR);
 void pin_init(void);
 void goback(struct DC_motor *mL, struct DC_motor *mR);
-void short_burst(struct DC_motor *mL, struct DC_motor *mR);
+# 14 "main.c" 2
+
+# 1 "./interrupts.h" 1
+
+
+
+
+
+
+
+void Interrupts_init(void);
+void __attribute__((picinterrupt(("high_priority")))) HighISR();
 # 15 "main.c" 2
+
+# 1 "./timers.h" 1
+
+
+
+
+
+
+
+void Timer0_init(void);
+# 16 "main.c" 2
+
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\c99\\stdio.h" 1 3
 # 24 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\c99\\stdio.h" 3
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\c99\\bits/alltypes.h" 1 3
@@ -24562,7 +24595,8 @@ char *ctermid(char *);
 
 
 char *tempnam(const char *, const char *);
-# 16 "main.c" 2
+# 17 "main.c" 2
+
 
 
 
@@ -24572,6 +24606,9 @@ char *tempnam(const char *, const char *);
 unsigned char color = 0;
 
 void main(void){
+    Interrupts_init();
+    Timer0_init();
+
     I2C_2_Master_Init();
     color_click_init();
     initDCmotorsPWM(199);
@@ -24588,7 +24625,7 @@ void main(void){
     initDCmotors_parameter(&motorL, &motorR);
     pin_init();
 
-    if (4 == 1 || 4 == 3){
+    if (3 == 1 || 3 == 3){
         _delay((unsigned long)((3000)*(64000000/4000.0)));
         calibrate_white(&white);
         _delay((unsigned long)((3000)*(64000000/4000.0)));
@@ -24599,7 +24636,8 @@ void main(void){
 
     while(1){
 
-  if (4 == 1){
+
+  if (3 == 1){
             LED_C();
             read_color(&rgb);
             color_display(&rgb);
@@ -24611,14 +24649,14 @@ void main(void){
 
 
 
-        if (4 == 2){
+        if (3 == 2){
             while (complete == 0){
                 color_data_collection(&rgb);
                 complete = 1;
             }
         }
 
-        if (4 == 3){
+        if (3 == 3){
             while (color == 0){
                 short_burst(&motorL, &motorR);
                 color = detect_color(&rgb, &white);
@@ -24627,7 +24665,7 @@ void main(void){
             action(color, &motorL, &motorR);
             color = 0;
         }
-        if (4 == 4){
+        if (3 == 4){
             read_color(&rgb);
             color_display(&rgb);
             while (stop_signal == 0){

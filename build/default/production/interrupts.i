@@ -1,4 +1,4 @@
-# 1 "timers.c"
+# 1 "interrupts.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,7 +6,7 @@
 # 1 "<built-in>" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "timers.c" 2
+# 1 "interrupts.c" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -24229,7 +24229,39 @@ __attribute__((__unsupported__("The READTIMER" "0" "() macro is not available wi
 unsigned char __t1rd16on(void);
 unsigned char __t3rd16on(void);
 # 34 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\\pic\\include\\xc.h" 2 3
-# 1 "timers.c" 2
+# 1 "interrupts.c" 2
+
+# 1 "./interrupts.h" 1
+
+
+
+
+
+
+
+void Interrupts_init(void);
+void __attribute__((picinterrupt(("high_priority")))) HighISR();
+# 2 "interrupts.c" 2
+
+# 1 "./movement.h" 1
+
+
+
+
+
+unsigned int second = 0;
+unsigned int memory[20];
+unsigned char array_index = 0;
+unsigned int start_move;
+unsigned int stop_move;
+
+
+void short_burst(struct DC_motor *mL, struct DC_motor *mR);
+void action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR);
+void test_action (struct DC_motor *mL, struct DC_motor *mR);
+void pin_init(void);
+void goback(struct DC_motor *mL, struct DC_motor *mR);
+# 3 "interrupts.c" 2
 
 # 1 "./timers.h" 1
 
@@ -24240,21 +24272,27 @@ unsigned char __t3rd16on(void);
 
 
 void Timer0_init(void);
-# 2 "timers.c" 2
+# 4 "interrupts.c" 2
 
 
 
 
 
-void Timer0_init(void)
+void Interrupts_init(void)
+{ INTCONbits.GIE=1;
+    INTCONbits.IPEN=1;
+    INTCONbits.GIEL=1;
+ PIE0bits.TMR0IE = 1;
+}
+
+
+
+
+
+void __attribute__((picinterrupt(("high_priority")))) HighISR()
 {
-    T0CON1bits.T0CS=0b010;
-    T0CON1bits.T0ASYNC=1;
-    T0CON1bits.T0CKPS=0b1000;
-    T0CON0bits.T016BIT=1;
-
-
-
-    TMR0H=0b00001011;
-    TMR0L=0b11011011;
+    if(PIR0bits.TMR0IF){
+        second ++;
+        PIR0bits.TMR0IF = 0;
+    }
 }

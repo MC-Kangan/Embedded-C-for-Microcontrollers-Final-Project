@@ -12,16 +12,21 @@
 #include "color.h"
 #include "i2c.h"
 #include "movement.h"
+#include "interrupts.h"
+#include "timers.h"
 #include <stdio.h>
 
 #define _XTAL_FREQ 64000000 //note intrinsic _delay function is 62.5ns at 64,000,000Hz 
- #define TEST 4
+ #define TEST 3
 //#define TEST 0 
 // Color code: 
 // 1: red; 2: green; 3: blue; 4: yellow; 5:pink; 6:orange; 7:light blue; 8:white; 9: black
 unsigned char color = 0;  
 
 void main(void){
+    Interrupts_init();
+    Timer0_init();
+    
     I2C_2_Master_Init();
     color_click_init();
     initDCmotorsPWM(199);
@@ -46,8 +51,9 @@ void main(void){
     unsigned char complete = 0;
     unsigned char stop_signal = 0;
     //calibration(&motorL, &motorR);
-    //action(color, &motorL, &motorR);
+    
     while(1){
+        //action(color, &motorL, &motorR);
         //test_action(&motorL, &motorR);
 		if (TEST == 1){
             LED_C();

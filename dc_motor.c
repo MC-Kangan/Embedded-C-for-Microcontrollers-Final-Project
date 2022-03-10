@@ -1,6 +1,5 @@
 #include <xc.h>
 #include "dc_motor.h"
-#include "ADC.h"
 #include "serial.h"
 #include <stdio.h>
 #include "movement.h"
@@ -197,13 +196,3 @@ void calibration(struct DC_motor *mL, struct DC_motor *mR)
     __delay_ms(3000);  // prepare
 }
 
-void voltage_read(struct DC_motor *m)
-{   m->voltage = ADC_getval();
-}
-
-void voltage_display(struct DC_motor *m)
-{
-    char buf[80];
-    sprintf(buf,"%d\r\n", m->voltage);
-    sendStringSerial4(buf);
-}

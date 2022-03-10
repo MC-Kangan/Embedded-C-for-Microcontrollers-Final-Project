@@ -24256,21 +24256,7 @@ void fullSpeedBack(struct DC_motor *mL, struct DC_motor *mR);
 void short_reverse(struct DC_motor *mL, struct DC_motor *mR);
 void reverse_square(struct DC_motor *mL, struct DC_motor *mR);
 void calibration(struct DC_motor *mL, struct DC_motor *mR);
-void voltage_read(struct DC_motor *m);
-void voltage_display(struct DC_motor *m);
 # 2 "dc_motor.c" 2
-
-# 1 "./ADC.h" 1
-
-
-
-
-
-
-
-void ADC_init(void);
-unsigned int ADC_getval(void);
-# 3 "dc_motor.c" 2
 
 # 1 "./serial.h" 1
 # 13 "./serial.h"
@@ -24300,7 +24286,7 @@ void putCharToTxBuf(char byte);
 char isDataInTxBuf (void);
 void TxBufferedString(char *string);
 void sendTxBuf(void);
-# 4 "dc_motor.c" 2
+# 3 "dc_motor.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\c99\\stdio.h" 1 3
 # 24 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\c99\\stdio.h" 3
@@ -24446,7 +24432,7 @@ char *ctermid(char *);
 
 
 char *tempnam(const char *, const char *);
-# 5 "dc_motor.c" 2
+# 4 "dc_motor.c" 2
 
 # 1 "./movement.h" 1
 
@@ -24454,13 +24440,19 @@ char *tempnam(const char *, const char *);
 
 
 
+unsigned int second = 0;
+unsigned int memory[20];
+unsigned char array_index = 0;
+unsigned int start_move;
+unsigned int stop_move;
 
+
+void short_burst(struct DC_motor *mL, struct DC_motor *mR);
 void action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR);
 void test_action (struct DC_motor *mL, struct DC_motor *mR);
 void pin_init(void);
 void goback(struct DC_motor *mL, struct DC_motor *mR);
-void short_burst(struct DC_motor *mL, struct DC_motor *mR);
-# 6 "dc_motor.c" 2
+# 5 "dc_motor.c" 2
 
 
 struct DC_motor motorL, motorR;
@@ -24653,15 +24645,4 @@ void calibration(struct DC_motor *mL, struct DC_motor *mR)
     }
     test_action(mL, mR);
     _delay((unsigned long)((3000)*(64000000/4000.0)));
-}
-
-void voltage_read(struct DC_motor *m)
-{ m->voltage = ADC_getval();
-}
-
-void voltage_display(struct DC_motor *m)
-{
-    char buf[80];
-    sprintf(buf,"%d\r\n", m->voltage);
-    sendStringSerial4(buf);
 }

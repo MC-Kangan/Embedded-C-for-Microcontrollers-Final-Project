@@ -24256,8 +24256,6 @@ void fullSpeedBack(struct DC_motor *mL, struct DC_motor *mR);
 void short_reverse(struct DC_motor *mL, struct DC_motor *mR);
 void reverse_square(struct DC_motor *mL, struct DC_motor *mR);
 void calibration(struct DC_motor *mL, struct DC_motor *mR);
-void voltage_read(struct DC_motor *m);
-void voltage_display(struct DC_motor *m);
 # 2 "color.c" 2
 
 # 1 "./serial.h" 1

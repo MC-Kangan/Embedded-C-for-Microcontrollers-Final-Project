@@ -15,5 +15,4 @@ void Timer0_init(void)
     // 3035 in binary(16bits) = 0000101111011011
     TMR0H=0b00001011;            // More significant 8 bits in 0000101111011011
     TMR0L=0b11011011;            // Less significant 8 bits in 0000101111011011
-    T0CON0bits.T0EN=1;	//start the timer
 }

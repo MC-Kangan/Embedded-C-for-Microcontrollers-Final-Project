@@ -1,6 +1,6 @@
 #include <xc.h>
 #include "interrupts.h"
-#include "time.h"
+#include "movement.h"
 #include "timers.h"
 /************************************
  * Function to turn on interrupts and set if priority is used
@@ -19,12 +19,8 @@ void Interrupts_init(void)
 ************************************/
 void __interrupt(high_priority) HighISR()
 {
-}
-
-void __interrupt(low_priority) LowISR()
-{
     if(PIR0bits.TMR0IF){       
-        count_time();                    // when overflow occurs, 1 minute passes
+        second ++;                  // when overflow occurs, 1 second passes
         PIR0bits.TMR0IF = 0;             // clear the flag
     }
 }

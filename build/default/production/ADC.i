@@ -24251,13 +24251,13 @@ unsigned int ADC_getval(void);
 
 void ADC_init(void)
 {
-    TRISFbits.TRISF6=1;
-    ANSELFbits.ANSELF6=1;
+    TRISAbits.TRISA3=1;
+    ANSELAbits.ANSELA3=1;
 
 
     ADREFbits.ADNREF = 0;
     ADREFbits.ADPREF = 0b00;
-    ADPCH=0b101110;
+    ADPCH=0b11;
     ADCON0bits.ADFM = 0;
     ADCON0bits.ADCS = 1;
     ADCON0bits.ADON = 1;

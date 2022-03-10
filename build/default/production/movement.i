@@ -24478,8 +24478,6 @@ void fullSpeedBack(struct DC_motor *mL, struct DC_motor *mR);
 void short_reverse(struct DC_motor *mL, struct DC_motor *mR);
 void reverse_square(struct DC_motor *mL, struct DC_motor *mR);
 void calibration(struct DC_motor *mL, struct DC_motor *mR);
-void voltage_read(struct DC_motor *m);
-void voltage_display(struct DC_motor *m);
 # 4 "movement.c" 2
 
 # 1 "./serial.h" 1
@@ -24518,13 +24516,32 @@ void sendTxBuf(void);
 
 
 
+unsigned int second = 0;
+unsigned int memory[20];
+unsigned char array_index = 0;
+unsigned int start_move;
+unsigned int stop_move;
 
+
+void short_burst(struct DC_motor *mL, struct DC_motor *mR);
 void action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR);
 void test_action (struct DC_motor *mL, struct DC_motor *mR);
 void pin_init(void);
 void goback(struct DC_motor *mL, struct DC_motor *mR);
-void short_burst(struct DC_motor *mL, struct DC_motor *mR);
 # 6 "movement.c" 2
+
+# 1 "./timers.h" 1
+
+
+
+
+
+
+
+void Timer0_init(void);
+# 7 "movement.c" 2
+
+
 
 
 void short_burst(struct DC_motor *mL, struct DC_motor *mR)
@@ -24536,42 +24553,64 @@ void short_burst(struct DC_motor *mL, struct DC_motor *mR)
 }
 
 void action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR)
-{
-
-    stop(mL,mR);
-    if (color == 1){
-        short_reverse(mL,mR);
-        turnRight(mL,mR,90);
-    }
-    if (color == 2){
-        short_reverse(mL,mR);
-        turnLeft(mL,mR,90);
-    }
-    if (color == 3){
-        short_reverse(mL,mR);
-        turnLeft(mL,mR,180);
-    }
-    if (color == 4){
-        reverse_square(mL,mR);
-        turnRight(mL,mR,90);
-    }
-    if (color == 5){
-        reverse_square(mL,mR);
-        turnLeft(mL,mR,90);
-    }
-    if (color == 6){
-        short_reverse(mL,mR);
-        turnRight(mL,mR,135);
-    }
-    if (color == 7){
-        short_reverse(mL,mR);
-        turnLeft(mL,mR,135);
-    }
-    if (color == 8){
-        short_reverse(mL,mR);
-        goback(mL,mR);
+{ T0CON0bits.T0EN=1;
+    start_move = second;
+    fullSpeedAhead(mL,mR);
+    if (color != 0){
+        T0CON0bits.T0EN=0;
+        stop_move = second;
+        memory[array_index] = (start_move-stop_move);
+        array_index++;
+        stop(mL,mR);
+        if (color == 1){
+            short_reverse(mL,mR);
+            turnRight(mL,mR,90);
+            memory[array_index] = 1;
+            array_index++;
+        }
+        if (color == 2){
+            short_reverse(mL,mR);
+            turnLeft(mL,mR,90);
+            memory[array_index] = 2;
+            array_index++;
+        }
+        if (color == 3){
+            short_reverse(mL,mR);
+            turnLeft(mL,mR,180);
+            memory[array_index] = 3;
+            array_index++;
+        }
+        if (color == 4){
+            reverse_square(mL,mR);
+            turnRight(mL,mR,90);
+            memory[array_index] = 4;
+            array_index++;
+        }
+        if (color == 5){
+            reverse_square(mL,mR);
+            turnLeft(mL,mR,90);
+            memory[array_index] = 5;
+            array_index++;
+        }
+        if (color == 6){
+            short_reverse(mL,mR);
+            turnRight(mL,mR,135);
+            memory[array_index] = 6;
+            array_index++;
+        }
+        if (color == 7){
+            short_reverse(mL,mR);
+            turnLeft(mL,mR,135);
+            memory[array_index] = 7;
+            array_index++;
+        }
+        if (color == 8){
+            short_reverse(mL,mR);
+            goback(mL,mR);
+        }
     }
 }
+
 void test_action (struct DC_motor *mL, struct DC_motor *mR)
 { fullSpeedAhead_test(mL,mR);
     turnLeft(mL,mR,90);
@@ -24603,6 +24642,20 @@ void pin_init(void)
 }
 
 void goback(struct DC_motor *mL, struct DC_motor *mR)
-{
-    turnLeft(mL, mR, 180);
+{ turnLeft(mL,mR,180);
+    while(array_index > 0){
+        fullSpeedAhead(mL,mR);
+        for (unsigned int i=0; i<memory[array_index]; i++) {_delay((unsigned long)((1000)*(64000000/4000.0)));}
+        stop(mL,mR);
+        if (array_index == 0){break;}
+        array_index--;
+
+        if (memory[array_index] == 1){turnLeft(mL,mR,90);array_index--;}
+        if (memory[array_index] == 2){turnRight(mL,mR,90);array_index--;}
+        if (memory[array_index] == 3){turnLeft(mL,mR,180);array_index--;}
+        if (memory[array_index] == 4){reverse_square(mL,mR);turnLeft(mL,mR,90);array_index--;}
+        if (memory[array_index] == 5){reverse_square(mL,mR);turnRight(mL,mR,90);array_index--;}
+        if (memory[array_index] == 6){turnLeft(mL,mR,135);array_index--;}
+        if (memory[array_index] == 7){turnRight(mL, mR, -135);array_index--;}
+    }
 }
