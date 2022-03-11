@@ -77,9 +77,11 @@ void color_predict(unsigned char color);
 unsigned char detect_color(struct color_rgb *m, struct white_card *w);
 unsigned char verify_color(unsigned char color,struct color_rgb *m, struct white_card *w);
 unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned int upper);
-void movement (unsigned char color,struct DC_motor *mL, struct DC_motor *mR);
+
 void check_color_reading(struct color_rgb *, struct white_card *w);
 void color_data_collection(struct color_rgb *m);
-unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR, struct white_card *w);
+//unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR, struct white_card *w);
+unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light) ;
+unsigned amb_light_measure(struct color_rgb *amb);
 
 #endif

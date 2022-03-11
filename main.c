@@ -32,7 +32,7 @@ void main(void){
     buggylight_init();
     initUSART4();
     
-    struct color_rgb rgb;
+    struct color_rgb rgb, amb;
     struct white_card white;
     //white.RR = 627; white.RG = 43; white.RB = 88;
     //white.GR = 98; white.GG = 347; white.GB = 126;
@@ -57,7 +57,9 @@ void main(void){
     unsigned char stop_signal = 0;
 //    calibration(&motorL, &motorR);
     
-    
+    unsigned int amb_light = 0;
+    amb_light = amb_light_measure(&amb);
+        
     
     while(1){
         //action(color, &motorL, &motorR);
@@ -65,7 +67,7 @@ void main(void){
 		if (TEST == 1){
             LED_C();
             read_color(&rgb);
-            color_display(&rgb);
+            //color_display(&rgb);
             
             //color = detect_color(&rgb, &white);
             //color_predict(color);
@@ -88,21 +90,22 @@ void main(void){
             color = 0;
         }
         if (TEST == 4){
-            read_color(&rgb);
-            color_display(&rgb);
+            
+            //read_color(&rgb);
+            //color_display(&rgb);
             while (stop_signal == 0){
                 fullSpeedAhead(&motorL, &motorR);
-                stop_signal = distance_measure(&motorL, &motorR, &white);
+                stop_signal = distance_measure(&motorL, &motorR, amb_light);
             }
             
             stop(&motorL, &motorR);
             __delay_ms(1000);
-            //color = detect_color(&rgb, &white);
-            //color = verify_color(color, &rgb, &white);
-            //action(color, &motorL, &motorR);
-            //color = 0;
+            color = detect_color(&rgb, &white);
+            color = verify_color(color, &rgb, &white);
+            action(color, &motorL, &motorR);
+            color = 0;
             stop_signal = 0;
-            //stop_signal = 0;
+            stop_signal = 0;
         }
     }
 }

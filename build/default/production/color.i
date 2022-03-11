@@ -24373,10 +24373,12 @@ void color_predict(unsigned char color);
 unsigned char detect_color(struct color_rgb *m, struct white_card *w);
 unsigned char verify_color(unsigned char color,struct color_rgb *m, struct white_card *w);
 unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned int upper);
-void movement (unsigned char color,struct DC_motor *mL, struct DC_motor *mR);
+
 void check_color_reading(struct color_rgb *, struct white_card *w);
 void color_data_collection(struct color_rgb *m);
-unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR, struct white_card *w);
+
+unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light) ;
+unsigned amb_light_measure(struct color_rgb *amb);
 # 4 "color.c" 2
 
 # 1 "./i2c.h" 1
@@ -25319,20 +25321,43 @@ unsigned char verify_color(unsigned char color,struct color_rgb *m, struct white
         return color;}
 }
 
-void movement (unsigned char color,struct DC_motor *mL, struct DC_motor *mR)
+
+
+unsigned amb_light_measure(struct color_rgb *amb)
 {
-    if (color == 1){turnRight(mL, mR,90); _delay((unsigned long)((500)*(64000000/4000.0)));}
+    unsigned int CC_amb_1 = 0, CC_amb_2 = 0, CC_amb_3 = 0, CC_amb_ave, upper_bound = 0;
+    toggle_light(2,2);
+    LED_C();
+    _delay((unsigned long)((500)*(64000000/4000.0)));
+
+    CC_amb_1 = color_read_Clear();
+    _delay((unsigned long)((200)*(64000000/4000.0)));
+
+    CC_amb_2 = color_read_Clear();
+    _delay((unsigned long)((200)*(64000000/4000.0)));
+
+    CC_amb_3 = color_read_Clear();
+    _delay((unsigned long)((200)*(64000000/4000.0)));
+
+    CC_amb_ave = lroundf((float)(CC_amb_1 + CC_amb_2 + CC_amb_3)/3);
+
+    toggle_light(2,2);
+
+    return CC_amb_ave;
 }
 
-unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR, struct white_card *w)
+unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light)
 {
     unsigned int CC_amb = 0, CG_amb = 0;
     unsigned char stop = 0;
     unsigned int threshold = 0;
     LED_C();
+    _delay((unsigned long)((100)*(64000000/4000.0)));
     CC_amb = color_read_Clear();
     CG_amb = color_read_Green();
-    threshold = lroundf((float)(w->CC)/ 105 * 100);
-    if (CC_amb >= 2500 ){stop = 1;}
+    threshold = lroundf((float)amb_light * 1.1);
+
+
+    if (CC_amb >= threshold){stop = 1;}
     return stop;
 }

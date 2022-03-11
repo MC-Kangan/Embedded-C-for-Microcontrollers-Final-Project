@@ -178,9 +178,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./dc_motor.h: 16: struct DC_motor {
 [s S2015 `uc 1 `uc 1 `*uc 1 `*uc 1 `uc 1 `i 1 `uc 1 ]
 [n S2015 DC_motor power direction dutyHighByte dir_LAT dir_pin PWMperiod voltage ]
-"32
-[; ;./dc_motor.h: 32: void turnRight(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_right);
-[v _turnRight `(v ~T0 @X0 0 ef3`*S2015`*S2015`uc ]
 "55 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 55: __asm("PPSLOCK equ 0DEFh");
 [; <" PPSLOCK equ 0DEFh ;# ">
@@ -3400,88 +3397,129 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;color.c: 377: }
 [e :UE 2084 ]
 }
-"379
-[; ;color.c: 379: void movement (unsigned char color,struct DC_motor *mL, struct DC_motor *mR)
-[v _movement `(v ~T0 @X0 1 ef3`uc`*S2015`*S2015 ]
-"380
-[; ;color.c: 380: {
-{
-[e :U _movement ]
-"379
-[; ;color.c: 379: void movement (unsigned char color,struct DC_motor *mL, struct DC_motor *mR)
-[v _color `uc ~T0 @X0 1 r1 ]
-[v _mL `*S2015 ~T0 @X0 1 r2 ]
-[v _mR `*S2015 ~T0 @X0 1 r3 ]
-"380
-[; ;color.c: 380: {
-[f ]
 "381
-[; ;color.c: 381:     if (color == 1){turnRight(mL, mR,90); _delay((unsigned long)((500)*(64000000/4000.0)));}
-[e $ ! == -> _color `i -> 1 `i 2088  ]
-{
-[e ( _turnRight (3 , , _mL _mR -> -> 90 `i `uc ]
-[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-}
-[e :U 2088 ]
+[; ;color.c: 381: unsigned amb_light_measure(struct color_rgb *amb)
+[v _amb_light_measure `(ui ~T0 @X0 1 ef1`*S2016 ]
 "382
-[; ;color.c: 382: }
+[; ;color.c: 382: {
+{
+[e :U _amb_light_measure ]
+"381
+[; ;color.c: 381: unsigned amb_light_measure(struct color_rgb *amb)
+[v _amb `*S2016 ~T0 @X0 1 r1 ]
+"382
+[; ;color.c: 382: {
+[f ]
+"383
+[; ;color.c: 383:     unsigned int CC_amb_1 = 0, CC_amb_2 = 0, CC_amb_3 = 0, CC_amb_ave, upper_bound = 0;
+[v _CC_amb_1 `ui ~T0 @X0 1 a ]
+[e = _CC_amb_1 -> -> 0 `i `ui ]
+[v _CC_amb_2 `ui ~T0 @X0 1 a ]
+[e = _CC_amb_2 -> -> 0 `i `ui ]
+[v _CC_amb_3 `ui ~T0 @X0 1 a ]
+[e = _CC_amb_3 -> -> 0 `i `ui ]
+[v _CC_amb_ave `ui ~T0 @X0 1 a ]
+[v _upper_bound `ui ~T0 @X0 1 a ]
+[e = _upper_bound -> -> 0 `i `ui ]
+"384
+[; ;color.c: 384:     toggle_light(2,2);
+[e ( _toggle_light (2 , -> -> 2 `i `uc -> -> 2 `i `uc ]
+"385
+[; ;color.c: 385:     LED_C();
+[e ( _LED_C ..  ]
+"386
+[; ;color.c: 386:     _delay((unsigned long)((500)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"388
+[; ;color.c: 388:     CC_amb_1 = color_read_Clear();
+[e = _CC_amb_1 ( _color_read_Clear ..  ]
+"389
+[; ;color.c: 389:     _delay((unsigned long)((200)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"391
+[; ;color.c: 391:     CC_amb_2 = color_read_Clear();
+[e = _CC_amb_2 ( _color_read_Clear ..  ]
+"392
+[; ;color.c: 392:     _delay((unsigned long)((200)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"394
+[; ;color.c: 394:     CC_amb_3 = color_read_Clear();
+[e = _CC_amb_3 ( _color_read_Clear ..  ]
+"395
+[; ;color.c: 395:     _delay((unsigned long)((200)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"397
+[; ;color.c: 397:     CC_amb_ave = lroundf((float)(CC_amb_1 + CC_amb_2 + CC_amb_3)/3);
+[e = _CC_amb_ave -> ( _lroundf (1 / -> + + _CC_amb_1 _CC_amb_2 _CC_amb_3 `f -> -> 3 `i `f `ui ]
+"399
+[; ;color.c: 399:     toggle_light(2,2);
+[e ( _toggle_light (2 , -> -> 2 `i `uc -> -> 2 `i `uc ]
+"401
+[; ;color.c: 401:     return CC_amb_ave;
+[e ) _CC_amb_ave ]
+[e $UE 2087  ]
+"402
+[; ;color.c: 402: }
 [e :UE 2087 ]
 }
-"384
-[; ;color.c: 384: unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR, struct white_card *w)
-[v _distance_measure `(uc ~T0 @X0 1 ef3`*S2015`*S2015`*S2017 ]
-"385
-[; ;color.c: 385: {
+"404
+[; ;color.c: 404: unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light)
+[v _distance_measure `(uc ~T0 @X0 1 ef3`*S2015`*S2015`ui ]
+"405
+[; ;color.c: 405: {
 {
 [e :U _distance_measure ]
-"384
-[; ;color.c: 384: unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR, struct white_card *w)
+"404
+[; ;color.c: 404: unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light)
 [v _mL `*S2015 ~T0 @X0 1 r1 ]
 [v _mR `*S2015 ~T0 @X0 1 r2 ]
-[v _w `*S2017 ~T0 @X0 1 r3 ]
-"385
-[; ;color.c: 385: {
+[v _amb_light `ui ~T0 @X0 1 r3 ]
+"405
+[; ;color.c: 405: {
 [f ]
-"386
-[; ;color.c: 386:     unsigned int CC_amb = 0, CG_amb = 0;
+"406
+[; ;color.c: 406:     unsigned int CC_amb = 0, CG_amb = 0;
 [v _CC_amb `ui ~T0 @X0 1 a ]
 [e = _CC_amb -> -> 0 `i `ui ]
 [v _CG_amb `ui ~T0 @X0 1 a ]
 [e = _CG_amb -> -> 0 `i `ui ]
-"387
-[; ;color.c: 387:     unsigned char stop = 0;
+"407
+[; ;color.c: 407:     unsigned char stop = 0;
 [v _stop `uc ~T0 @X0 1 a ]
 [e = _stop -> -> 0 `i `uc ]
-"388
-[; ;color.c: 388:     unsigned int threshold = 0;
+"408
+[; ;color.c: 408:     unsigned int threshold = 0;
 [v _threshold `ui ~T0 @X0 1 a ]
 [e = _threshold -> -> 0 `i `ui ]
-"389
-[; ;color.c: 389:     LED_C();
+"409
+[; ;color.c: 409:     LED_C();
 [e ( _LED_C ..  ]
-"390
-[; ;color.c: 390:     CC_amb = color_read_Clear();
+"410
+[; ;color.c: 410:     _delay((unsigned long)((100)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"411
+[; ;color.c: 411:     CC_amb = color_read_Clear();
 [e = _CC_amb ( _color_read_Clear ..  ]
-"391
-[; ;color.c: 391:     CG_amb = color_read_Green();
+"412
+[; ;color.c: 412:     CG_amb = color_read_Green();
 [e = _CG_amb ( _color_read_Green ..  ]
-"392
-[; ;color.c: 392:     threshold = lroundf((float)(w->CC)/ 105 * 100);
-[e = _threshold -> ( _lroundf (1 * / -> . *U _w 12 `f -> -> 105 `i `f -> -> 100 `i `f `ui ]
-"393
-[; ;color.c: 393:     if (CC_amb >= 2500 ){stop = 1;}
-[e $ ! >= _CC_amb -> -> 2500 `i `ui 2090  ]
+"413
+[; ;color.c: 413:     threshold = lroundf((float)amb_light * 1.1);
+[e = _threshold -> ( _lroundf (1 -> * -> -> _amb_light `f `d .1.1 `f `ui ]
+"416
+[; ;color.c: 416:     if (CC_amb >= threshold){stop = 1;}
+[e $ ! >= _CC_amb _threshold 2089  ]
 {
 [e = _stop -> -> 1 `i `uc ]
 }
-[e :U 2090 ]
-"394
-[; ;color.c: 394:     return stop;
+[e :U 2089 ]
+"417
+[; ;color.c: 417:     return stop;
 [e ) _stop ]
-[e $UE 2089  ]
-"395
-[; ;color.c: 395: }
-[e :UE 2089 ]
+[e $UE 2088  ]
+"418
+[; ;color.c: 418: }
+[e :UE 2088 ]
 }
 [p f _sprintf 8388736 ]
 [a 1C 37 100 9 37 100 9 37 100 9 37 100 13 10 0 ]

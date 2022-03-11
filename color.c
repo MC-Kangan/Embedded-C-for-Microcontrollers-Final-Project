@@ -376,20 +376,43 @@ unsigned char verify_color(unsigned char color,struct color_rgb *m, struct white
         return color;}
 }
 
-void movement (unsigned char color,struct DC_motor *mL, struct DC_motor *mR)
+
+
+unsigned amb_light_measure(struct color_rgb *amb)
 {
-    if (color == 1){turnRight(mL, mR,90); __delay_ms(500);}
+    unsigned int CC_amb_1 = 0, CC_amb_2 = 0, CC_amb_3 = 0, CC_amb_ave, upper_bound = 0;
+    toggle_light(2,2);
+    LED_C();
+    __delay_ms(500);
+       
+    CC_amb_1 = color_read_Clear();
+    __delay_ms(200);
+    
+    CC_amb_2 = color_read_Clear();
+    __delay_ms(200);
+
+    CC_amb_3 = color_read_Clear();
+    __delay_ms(200);
+    
+    CC_amb_ave = lround((float)(CC_amb_1 + CC_amb_2 + CC_amb_3)/3);
+
+    toggle_light(2,2);
+    
+    return CC_amb_ave;  
 }
 
-unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR, struct white_card *w) 
+unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light) 
 {
     unsigned int CC_amb = 0, CG_amb = 0; 
     unsigned char stop = 0;
     unsigned int threshold = 0; // should be CC 
     LED_C();
+    __delay_ms(100);
     CC_amb = color_read_Clear();
     CG_amb = color_read_Green();//, CR = m->R, CG = m->G, CB = m->B;
-    threshold = lround((float)(w->CC)/ 105 * 100);
-    if (CC_amb >= 2500 ){stop = 1;}
+    threshold = lround((float)amb_light * 1.1);
+    //threshold = lround((float)(w->CC)/ 105 * 100);
+
+    if (CC_amb >= threshold){stop = 1;}
     return stop;
 }
