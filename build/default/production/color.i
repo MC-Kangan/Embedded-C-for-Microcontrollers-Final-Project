@@ -24313,9 +24313,18 @@ struct white_card {
     unsigned int BR ;
     unsigned int BG ;
     unsigned int BB ;
-    unsigned int GC ;
+
+    unsigned int CR ;
+    unsigned int CG ;
+    unsigned int CB ;
+    unsigned int CC ;
 
 };
+
+
+void buggylight_init(void);
+
+void toggle_light(unsigned char lightnumber, unsigned char toggletime);
 
 
 
@@ -24348,6 +24357,7 @@ unsigned int color_read_Blue(void);
 unsigned int color_read_Green(void);
 unsigned int color_read_Clear(void);
 void read_color (struct color_rgb *m);
+void LED_OFF(void);
 void LED_R(void);
 void LED_C(void);
 void LED_B(void);
@@ -24361,7 +24371,7 @@ unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned i
 void movement (unsigned char color,struct DC_motor *mL, struct DC_motor *mR);
 void check_color_reading(struct color_rgb *, struct white_card *w);
 void color_data_collection(struct color_rgb *m);
-unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR);
+unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR, struct white_card *w);
 # 4 "color.c" 2
 
 # 1 "./i2c.h" 1
@@ -24930,7 +24940,79 @@ typedef struct {
 # 10 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\c99\\fenv.h" 2 3
 # 9 "color.c" 2
 
+# 1 "./movement.h" 1
 
+
+
+
+
+unsigned int second = 0;
+unsigned int memory[20];
+unsigned char array_index = 0;
+unsigned int start_move;
+unsigned int stop_move;
+
+
+void short_burst(struct DC_motor *mL, struct DC_motor *mR);
+void action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR);
+void test_action (struct DC_motor *mL, struct DC_motor *mR);
+void pin_init(void);
+void goback(struct DC_motor *mL, struct DC_motor *mR);
+# 10 "color.c" 2
+
+
+void buggylight_init(void)
+{
+    TRISHbits.TRISH1=0;
+    TRISDbits.TRISD4=0;
+    TRISDbits.TRISD3=0;
+    TRISFbits.TRISF0=0;
+    TRISHbits.TRISH0=0;
+
+    LATHbits.LATH1 = 0;
+    LATDbits.LATD4 = 0;
+    LATDbits.LATD3 = 0;
+    LATFbits.LATF0 = 0;
+    LATHbits.LATH0 = 0;
+}
+
+void toggle_light(unsigned char lightnumber, unsigned char toggletime)
+{
+    unsigned char i = 0;
+
+    for (i = 0; i < toggletime; i++){
+        if (lightnumber == 1){
+            LATHbits.LATH1 = !LATHbits.LATH1;
+            _delay((unsigned long)((500)*(64000000/4000.0)));
+            LATHbits.LATH1 = !LATHbits.LATH1;
+            _delay((unsigned long)((500)*(64000000/4000.0)));
+        }
+        if (lightnumber == 2){
+            LATDbits.LATD4 = !LATDbits.LATD4;
+            _delay((unsigned long)((500)*(64000000/4000.0)));
+            LATDbits.LATD4 = !LATDbits.LATD4;
+            _delay((unsigned long)((500)*(64000000/4000.0)));
+        }
+        if (lightnumber == 3){
+            LATDbits.LATD3 = !LATDbits.LATD3;
+            _delay((unsigned long)((500)*(64000000/4000.0)));
+            LATDbits.LATD3 = !LATDbits.LATD3;
+            _delay((unsigned long)((500)*(64000000/4000.0)));
+        }
+        if (lightnumber == 4){
+            LATFbits.LATF0 = !LATFbits.LATF0;
+            _delay((unsigned long)((500)*(64000000/4000.0)));
+            LATFbits.LATF0 = !LATFbits.LATF0;
+            _delay((unsigned long)((500)*(64000000/4000.0)));
+        }
+        if (lightnumber == 3){
+            LATHbits.LATH0 = !LATHbits.LATH0;
+            _delay((unsigned long)((500)*(64000000/4000.0)));
+            LATHbits.LATH0 = !LATHbits.LATH0;
+            _delay((unsigned long)((500)*(64000000/4000.0)));
+        }
+    }
+}
 
 void color_click_init(void)
 {
@@ -24938,7 +25020,7 @@ void color_click_init(void)
     I2C_2_Master_Init();
 
 
-  color_writetoaddr(0x00, 0x01);
+ color_writetoaddr(0x00, 0x01);
     _delay((unsigned long)((3)*(64000000/4000.0)));
 
 
@@ -25018,6 +25100,15 @@ void read_color (struct color_rgb *m)
     m->B = color_read_Blue();
     m->G = color_read_Green();
     m->C = color_read_Clear();
+}
+
+void LED_OFF(void)
+{
+    LATGbits.LATG1 = 0;
+    LATFbits.LATF7 = 0;
+    LATAbits.LATA4 = 0;
+    _delay((unsigned long)((200)*(64000000/4000.0)));
+
 }
 
 void LED_R(void)
@@ -25109,18 +25200,6 @@ void check_color_reading(struct color_rgb *m, struct white_card *w)
 void color_predict(unsigned char color)
 {
     char buf[100];
-    char color_name;
-    if (color == 0){color_name = "Error";}
-    if (color == 1){color_name = "Red";}
-    if (color == 2){color_name = "Green";}
-    if (color == 3){color_name = "Blue";}
-    if (color == 4){color_name = "Yellow";}
-    if (color == 5){color_name = "Pink";}
-    if (color == 6){color_name = "Orange";}
-    if (color == 7){color_name = "Light blue";}
-    if (color == 8){color_name = "White";}
-    if (color == 9){color_name = "Black";}
-
     sprintf(buf,"\t%d\r\n", color);
     sendStringSerial4(buf);
 
@@ -25136,12 +25215,16 @@ void calibrate_white(struct white_card *w)
     LED_G();
 
     w->GR = color_read_Red(); w->GG = color_read_Green(); w->GB = color_read_Blue();
-    w->GC = color_read_Clear();
+
     _delay((unsigned long)((100)*(64000000/4000.0)));
 
     LED_B();
 
     w->BR = color_read_Red(); w->BG = color_read_Green(); w->BB = color_read_Blue();
+    _delay((unsigned long)((100)*(64000000/4000.0)));
+
+    LED_C();
+    w->CR = color_read_Red(); w->CG = color_read_Green(); w->CB = color_read_Blue(); w->CC = color_read_Clear();
     _delay((unsigned long)((100)*(64000000/4000.0)));
 }
 
@@ -25204,23 +25287,9 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
         }
     }
 
-    if (compare(95, BR, 105) && compare(95,BG,105)){color = 8;}
+    if (compare(95, BR, 105) && compare(95,BG,105) && compare(95,BB,105)){color = 8;}
     if (compare(0, BR, 25) && compare(0,RR,90)){color = 0;}
-
-
-    if (color == 2 || color == 3){
-        if (GR < 50){color = 0;}
-    }
-    if (color == 1 || color == 6){
-        if (GR < 90){color = 0;}
-    }
-    if (color == 4 || color == 5){
-        if (GR < 100){color = 0;}
-    }
-    if (color == 7 || color == 8){
-        if (GR < 80){color = 0;}
-    }
-
+# 355 "color.c"
     return color;
 }
 
@@ -25235,9 +25304,11 @@ unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned i
 unsigned char verify_color(unsigned char color,struct color_rgb *m, struct white_card *w)
 {
     _delay((unsigned long)((50)*(64000000/4000.0)));
-    unsigned int color2;
+    unsigned int color2, color3;
     color2 = detect_color(m,w);
-    if (color == color2){return color;}
+    _delay((unsigned long)((50)*(64000000/4000.0)));
+    color3 = detect_color(m,w);
+    if (color == color2 && color2 == color3){return color;}
     else {
         color = 0;
         return color;}
@@ -25248,16 +25319,15 @@ void movement (unsigned char color,struct DC_motor *mL, struct DC_motor *mR)
     if (color == 1){turnRight(mL, mR,90); _delay((unsigned long)((500)*(64000000/4000.0)));}
 }
 
-unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR)
+unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR, struct white_card *w)
 {
-    unsigned int CC = 0, CR = 0, CG = 0, CB = 0;
+    unsigned int CC_amb = 0, CG_amb = 0;
     unsigned char stop = 0;
+    unsigned int threshold = 0;
     LED_C();
-
-    CC = color_read_Clear();
-    if (CC >= 1500 ){
-        stop = 1;
-    }
+    CC_amb = color_read_Clear();
+    CG_amb = color_read_Green();
+    threshold = lroundf((float)(w->CC)/ 105 * 100);
+    if (CC_amb >= 2500 ){stop = 1;}
     return stop;
-
 }

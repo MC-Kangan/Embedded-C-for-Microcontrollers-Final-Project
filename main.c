@@ -17,7 +17,7 @@
 #include <stdio.h>
 
 #define _XTAL_FREQ 64000000 //note intrinsic _delay function is 62.5ns at 64,000,000Hz 
- #define TEST 3
+ #define TEST 4
 //#define TEST 0 
 // Color code: 
 // 1: red; 2: green; 3: blue; 4: yellow; 5:pink; 6:orange; 7:light blue; 8:white; 9: black
@@ -26,11 +26,10 @@ unsigned char color = 0;
 void main(void){
     Interrupts_init();
     Timer0_init();
-    
     I2C_2_Master_Init();
     color_click_init();
     initDCmotorsPWM(199);
-    
+    buggylight_init();
     initUSART4();
     
     struct color_rgb rgb;
@@ -43,14 +42,22 @@ void main(void){
     initDCmotors_parameter(&motorL, &motorR);
     pin_init(); //initiate RGB pins, RF2 and RF3 pins for motor calibrations, BATVERSE pins for voltage measurement 
     
-    if (TEST == 1 || TEST == 3){
-        __delay_ms(3000);
+    
+    if (TEST == 1 || TEST == 3 || TEST == 4){
+        LED_OFF();
+        toggle_light(1,2);
+        __delay_ms(1000);
         calibrate_white(&white);
-        __delay_ms(3000);
+        __delay_ms(1000);
+        LED_OFF();
+        toggle_light(1,2);
     }
+    
     unsigned char complete = 0;
     unsigned char stop_signal = 0;
     //calibration(&motorL, &motorR);
+    
+    
     
     while(1){
         //action(color, &motorL, &motorR);
@@ -62,10 +69,7 @@ void main(void){
             
             //color = detect_color(&rgb, &white);
             //color_predict(color);
-            __delay_ms(200);
             }
-        //stop(&motorL, &motorR);
-        //action(color, &motorL, &motorR);
         
         if (TEST == 2){
             while (complete == 0){
@@ -88,10 +92,16 @@ void main(void){
             color_display(&rgb);
             while (stop_signal == 0){
                 fullSpeedAhead(&motorL, &motorR);
-                stop_signal = distance_measure(&motorL, &motorR);
+                stop_signal = distance_measure(&motorL, &motorR, &white);
             }
+            
             stop(&motorL, &motorR);
             __delay_ms(1000);
+            //color = detect_color(&rgb, &white);
+            //color = verify_color(color, &rgb, &white);
+            //action(color, &motorL, &motorR);
+            //color = 0;
+            stop_signal = 0;
             //stop_signal = 0;
         }
     }

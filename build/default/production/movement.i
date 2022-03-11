@@ -24402,9 +24402,18 @@ struct white_card {
     unsigned int BR ;
     unsigned int BG ;
     unsigned int BB ;
-    unsigned int GC ;
+
+    unsigned int CR ;
+    unsigned int CG ;
+    unsigned int CB ;
+    unsigned int CC ;
 
 };
+
+
+void buggylight_init(void);
+
+void toggle_light(unsigned char lightnumber, unsigned char toggletime);
 
 
 
@@ -24437,6 +24446,7 @@ unsigned int color_read_Blue(void);
 unsigned int color_read_Green(void);
 unsigned int color_read_Clear(void);
 void read_color (struct color_rgb *m);
+void LED_OFF(void);
 void LED_R(void);
 void LED_C(void);
 void LED_B(void);
@@ -24450,7 +24460,7 @@ unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned i
 void movement (unsigned char color,struct DC_motor *mL, struct DC_motor *mR);
 void check_color_reading(struct color_rgb *, struct white_card *w);
 void color_data_collection(struct color_rgb *m);
-unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR);
+unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR, struct white_card *w);
 # 3 "movement.c" 2
 
 # 1 "./dc_motor.h" 1
@@ -24555,7 +24565,7 @@ void short_burst(struct DC_motor *mL, struct DC_motor *mR)
 void action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR)
 { T0CON0bits.T0EN=1;
     start_move = second;
-    fullSpeedAhead(mL,mR);
+
     if (color != 0){
         T0CON0bits.T0EN=0;
         stop_move = second;

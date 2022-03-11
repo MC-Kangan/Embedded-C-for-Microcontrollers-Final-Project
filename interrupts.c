@@ -17,7 +17,12 @@ void Interrupts_init(void)
  * High priority interrupt service routine
  * Make sure all enabled interrupts are checked and flags cleared
 ************************************/
+
 void __interrupt(high_priority) HighISR()
+{
+}
+
+void __interrupt(low_priority) LowISR()
 {
     if(PIR0bits.TMR0IF){       
         second ++;                  // when overflow occurs, 1 second passes

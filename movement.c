@@ -19,7 +19,7 @@ void short_burst(struct DC_motor *mL, struct DC_motor *mR)
 void action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR)
 {   T0CON0bits.T0EN=1;	//start the timer
     start_move = second;
-    fullSpeedAhead(mL,mR);
+    //fullSpeedAhead(mL,mR);
     if (color != 0){
         T0CON0bits.T0EN=0;//stop the timer
         stop_move = second;

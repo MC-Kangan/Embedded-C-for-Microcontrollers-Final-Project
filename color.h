@@ -22,9 +22,18 @@ struct white_card { //definition of white_card structure
     unsigned int BR ;         //Red color reading when blue light on
     unsigned int BG ;         //Green color reading when blue light on
     unsigned int BB ;         //Blue color reading when blue light on
-    unsigned int GC ;         //Clear color reading when green light on
+    //unsigned int GC ;         //Clear color reading when green light on
+    unsigned int CR ;         //Red color reading when white light on
+    unsigned int CG ;         //Green color reading when white light on
+    unsigned int CB ;         //Blue color reading when white light on
+    unsigned int CC ;         //White color reading when white light on
     
 };
+
+
+void buggylight_init(void);
+
+void toggle_light(unsigned char lightnumber, unsigned char toggletime);
 
 /********************************************//**
  *  Function to initialise the colour click module using I2C
@@ -57,6 +66,7 @@ unsigned int color_read_Blue(void);
 unsigned int color_read_Green(void);
 unsigned int color_read_Clear(void);
 void read_color (struct color_rgb *m);
+void LED_OFF(void);
 void LED_R(void);//struct color_rgb *m);
 void LED_C(void);//(struct color_rgb *m);
 void LED_B(void);//(struct color_rgb *m);
@@ -70,6 +80,6 @@ unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned i
 void movement (unsigned char color,struct DC_motor *mL, struct DC_motor *mR);
 void check_color_reading(struct color_rgb *, struct white_card *w);
 void color_data_collection(struct color_rgb *m);
-unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR);
+unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR, struct white_card *w);
 
 #endif

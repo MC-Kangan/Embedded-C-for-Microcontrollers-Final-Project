@@ -7,7 +7,60 @@
 #include <stdlib.h>
 #include <math.h>
 #include <fenv.h>
-//#include "movement.h"
+#include "movement.h"
+
+void buggylight_init(void) //initiations for buggy lights
+{
+    TRISHbits.TRISH1=0; // Head lamps
+    TRISDbits.TRISD4=0; // Brake
+    TRISDbits.TRISD3=0; // Main beam 
+    TRISFbits.TRISF0=0; // Turn L
+    TRISHbits.TRISH0=0; // Turn R  
+    
+    LATHbits.LATH1 = 0; // front white and rear red (reduced)
+    LATDbits.LATD4 = 0; // rear red (full)
+    LATDbits.LATD3 = 0; // front white (full)
+    LATFbits.LATF0 = 0; // TURN-L light
+    LATHbits.LATH0 = 0; // TURN-R light
+}
+
+void toggle_light(unsigned char lightnumber, unsigned char toggletime)
+{
+    unsigned char i = 0;
+    
+    for (i = 0; i < toggletime; i++){
+        if (lightnumber == 1){
+            LATHbits.LATH1 = !LATHbits.LATH1; 
+            __delay_ms(500);
+            LATHbits.LATH1 = !LATHbits.LATH1;
+            __delay_ms(500);
+        }
+        if (lightnumber == 2){
+            LATDbits.LATD4 = !LATDbits.LATD4; 
+            __delay_ms(500);
+            LATDbits.LATD4 = !LATDbits.LATD4;
+            __delay_ms(500);
+        }
+        if (lightnumber == 3){
+            LATDbits.LATD3 = !LATDbits.LATD3; 
+            __delay_ms(500);
+            LATDbits.LATD3 = !LATDbits.LATD3;
+            __delay_ms(500);
+        }        
+        if (lightnumber == 4){
+            LATFbits.LATF0 = !LATFbits.LATF0; 
+            __delay_ms(500);
+            LATFbits.LATF0 = !LATFbits.LATF0;
+            __delay_ms(500);
+        }        
+        if (lightnumber == 3){
+            LATHbits.LATH0 = !LATHbits.LATH0; 
+            __delay_ms(500);
+            LATHbits.LATH0 = !LATHbits.LATH0;
+            __delay_ms(500);
+        }    
+    }
+}
 
 void color_click_init(void)
 {   
@@ -15,7 +68,7 @@ void color_click_init(void)
     I2C_2_Master_Init();      //Initialise i2c Master
 
      //set device PON
-	 color_writetoaddr(0x00, 0x01);
+	color_writetoaddr(0x00, 0x01);
     __delay_ms(3); //need to wait 3ms for everthing to start up
     
     //turn on device ADC
@@ -95,6 +148,15 @@ void read_color (struct color_rgb *m)
     m->B = color_read_Blue();
     m->G = color_read_Green();
     m->C = color_read_Clear();
+}
+
+void LED_OFF(void)
+{    
+    LATGbits.LATG1 = 0; // output LED_R set on (power)
+    LATFbits.LATF7 = 0; // output LED_B set on (power)
+    LATAbits.LATA4 = 0; // output LED_G set on (power)
+    __delay_ms(200);
+    //read_color(m);
 }
 
 void LED_R(void)//struct color_rgb *m)
@@ -186,18 +248,6 @@ void check_color_reading(struct color_rgb *m, struct white_card *w)
 void color_predict(unsigned char color)
 {
     char buf[100];
-    char color_name;
-    if (color == 0){color_name = "Error";}
-    if (color == 1){color_name = "Red";}
-    if (color == 2){color_name = "Green";}
-    if (color == 3){color_name = "Blue";}
-    if (color == 4){color_name = "Yellow";}
-    if (color == 5){color_name = "Pink";}
-    if (color == 6){color_name = "Orange";}
-    if (color == 7){color_name = "Light blue";}
-    if (color == 8){color_name = "White";}
-    if (color == 9){color_name = "Black";}
-    
     sprintf(buf,"\t%d\r\n", color);
     sendStringSerial4(buf);
     //sendStringSerial4(color_name);
@@ -213,12 +263,16 @@ void calibrate_white(struct white_card *w)
     LED_G(); // Turn on green light
     //read_color(w); 
     w->GR = color_read_Red(); w->GG = color_read_Green(); w->GB = color_read_Blue();
-    w->GC = color_read_Clear();
+    //w->GC = color_read_Clear();
     __delay_ms(100);
     
     LED_B(); // Turn on blue light
     //read_color(w); 
     w->BR = color_read_Red(); w->BG = color_read_Green(); w->BB = color_read_Blue(); 
+    __delay_ms(100);
+    
+    LED_C();
+    w->CR = color_read_Red(); w->CG = color_read_Green(); w->CB = color_read_Blue(); w->CC = color_read_Clear();
     __delay_ms(100);
 }
 
@@ -281,22 +335,22 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
         }
     }
     // Group 0 (black and white)
-    if (compare(95, BR, 105) && compare(95,BG,105)){color = 8;}
+    if (compare(95, BR, 105) && compare(95,BG,105) && compare(95,BB,105)){color = 8;}
     if (compare(0, BR, 25) && compare(0,RR,90)){color = 0;}
     
-    // This is used to determine distance
-    if (color == 2 || color == 3){
-        if (GR < 50){color = 0;} //  || GC < 70
-    }
-    if (color == 1 || color == 6){
-        if (GR < 90){color = 0;} // || GC < 70
-    }
-    if (color == 4 || color == 5){
-        if (GR < 100){color = 0;} // || GC < 90
-    }
-    if (color == 7 || color == 8){
-        if (GR < 80){color = 0;} // || GC < 90
-    }
+//    // This is used to determine distance
+//    if (color == 2 || color == 3){
+//        if (GR < 50){color = 0;} //  || GC < 70
+//    }
+//    if (color == 1 || color == 6){
+//        if (GR < 90){color = 0;} // || GC < 70
+//    }
+//    if (color == 4 || color == 5){
+//        if (GR < 100){color = 0;} // || GC < 90
+//    }
+//    if (color == 7 || color == 8){
+//        if (GR < 80){color = 0;} // || GC < 90
+//    }
     
     return color;
 }
@@ -312,9 +366,11 @@ unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned i
 unsigned char verify_color(unsigned char color,struct color_rgb *m, struct white_card *w)
 {
     __delay_ms(50);
-    unsigned int color2;
+    unsigned int color2, color3;
     color2 = detect_color(m,w);
-    if (color == color2){return color;}
+    __delay_ms(50);
+    color3 = detect_color(m,w);
+    if (color == color2 && color2 == color3){return color;}
     else {
         color = 0;
         return color;}
@@ -325,16 +381,15 @@ void movement (unsigned char color,struct DC_motor *mL, struct DC_motor *mR)
     if (color == 1){turnRight(mL, mR,90); __delay_ms(500);}
 }
 
-unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR) //struct color_rgb *m, 
+unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR, struct white_card *w) 
 {
-    unsigned int CC = 0, CR = 0, CG = 0, CB = 0; 
+    unsigned int CC_amb = 0, CG_amb = 0; 
     unsigned char stop = 0;
+    unsigned int threshold = 0; // should be CC 
     LED_C();
-    //read_color(m); 
-    CC = color_read_Clear();//, CR = m->R, CG = m->G, CB = m->B;
-    if (CC >= 1500 ){ // GREEN AND BLUE
-        stop = 1;
-    }
+    CC_amb = color_read_Clear();
+    CG_amb = color_read_Green();//, CR = m->R, CG = m->G, CB = m->B;
+    threshold = lround((float)(w->CC)/ 105 * 100);
+    if (CC_amb >= 2500 ){stop = 1;}
     return stop;
-       
 }

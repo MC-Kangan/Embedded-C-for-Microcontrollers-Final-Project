@@ -2209,9 +2209,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "21
 [; ;movement.c: 21:     start_move = second;
 [e = _start_move _second ]
-"22
-[; ;movement.c: 22:     fullSpeedAhead(mL,mR);
-[e ( _fullSpeedAhead (2 , _mL _mR ]
 "23
 [; ;movement.c: 23:     if (color != 0){
 [e $ ! != -> _color `i -> 0 `i 2024  ]

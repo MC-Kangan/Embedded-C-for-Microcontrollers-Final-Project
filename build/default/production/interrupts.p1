@@ -30,7 +30,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 4558: extern volatile PIE0bits_t PIE0bits __attribute__((address(0xE29)));
 [v _PIE0bits `VS261 ~T0 @X0 0 e@3625 ]
 [t ~ __interrupt . k ]
-[t T2 __interrupt high_priority ]
+[t T3 __interrupt high_priority ]
+[t T4 __interrupt low_priority ]
 "5094
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 5094:     struct {
 [s S286 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -2060,29 +2061,42 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :UE 2019 ]
 }
 [v $root$_HighISR `(v ~T0 @X0 0 e ]
-"20
-[; ;interrupts.c: 20: void __attribute__((picinterrupt(("high_priority")))) HighISR()
-[v _HighISR `(v ~T2 @X0 1 ef ]
 "21
-[; ;interrupts.c: 21: {
+[; ;interrupts.c: 21: void __attribute__((picinterrupt(("high_priority")))) HighISR()
+[v _HighISR `(v ~T3 @X0 1 ef ]
+"22
+[; ;interrupts.c: 22: {
 {
 [e :U _HighISR ]
 [f ]
-"22
-[; ;interrupts.c: 22:     if(PIR0bits.TMR0IF){
-[e $ ! != -> . . _PIR0bits 0 5 `i -> 0 `i 2021  ]
-{
 "23
-[; ;interrupts.c: 23:         second ++;
-[e ++ _second -> -> 1 `i `ui ]
-"24
-[; ;interrupts.c: 24:         PIR0bits.TMR0IF = 0;
-[e = . . _PIR0bits 0 5 -> -> 0 `i `uc ]
-"25
-[; ;interrupts.c: 25:     }
-}
-[e :U 2021 ]
-"26
-[; ;interrupts.c: 26: }
+[; ;interrupts.c: 23: }
 [e :UE 2020 ]
+}
+[v $root$_LowISR `(v ~T0 @X0 0 e ]
+"25
+[; ;interrupts.c: 25: void __attribute__((picinterrupt(("low_priority")))) LowISR()
+[v _LowISR `(v ~T4 @X0 1 ef ]
+"26
+[; ;interrupts.c: 26: {
+{
+[e :U _LowISR ]
+[f ]
+"27
+[; ;interrupts.c: 27:     if(PIR0bits.TMR0IF){
+[e $ ! != -> . . _PIR0bits 0 5 `i -> 0 `i 2022  ]
+{
+"28
+[; ;interrupts.c: 28:         second ++;
+[e ++ _second -> -> 1 `i `ui ]
+"29
+[; ;interrupts.c: 29:         PIR0bits.TMR0IF = 0;
+[e = . . _PIR0bits 0 5 -> -> 0 `i `uc ]
+"30
+[; ;interrupts.c: 30:     }
+}
+[e :U 2022 ]
+"31
+[; ;interrupts.c: 31: }
+[e :UE 2021 ]
 }
