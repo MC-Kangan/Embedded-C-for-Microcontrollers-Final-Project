@@ -55,7 +55,7 @@ void main(void){
     
     unsigned char complete = 0;
     unsigned char stop_signal = 0;
-    //calibration(&motorL, &motorR);
+//    calibration(&motorL, &motorR);
     
     
     

@@ -24232,7 +24232,12 @@ unsigned char __t3rd16on(void);
 # 1 "color.c" 2
 
 # 1 "./dc_motor.h" 1
-# 12 "./dc_motor.h"
+# 11 "./dc_motor.h"
+unsigned char CALIBRATION_135 = 10;
+unsigned char CALIBRATION_180 = 20;
+
+unsigned char SENSITIVITY = 10;
+
 struct DC_motor {
     char power;
     char direction;

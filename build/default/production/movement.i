@@ -24464,7 +24464,12 @@ unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR, struct 
 # 3 "movement.c" 2
 
 # 1 "./dc_motor.h" 1
-# 12 "./dc_motor.h"
+# 11 "./dc_motor.h"
+unsigned char CALIBRATION_135 = 10;
+unsigned char CALIBRATION_180 = 20;
+
+unsigned char SENSITIVITY = 10;
+
 struct DC_motor {
     char power;
     char direction;
@@ -24640,8 +24645,8 @@ void pin_init(void)
     TRISFbits.TRISF3=1;
     ANSELFbits.ANSELF3=0;
 
-    TRISFbits.TRISF6 = 0;
-    LATFbits.LATF6 = 0;
+
+
 
     TRISGbits.TRISG1 = 0;
     TRISFbits.TRISF7 = 0;
@@ -24649,6 +24654,12 @@ void pin_init(void)
     LATGbits.LATG1 = 1;
     LATFbits.LATF7 = 1;
     LATAbits.LATA4 = 1;
+
+
+    TRISDbits.TRISD7 = 0;
+    LATDbits.LATD7 = 0;
+    TRISHbits.TRISH3 = 0;
+    LATHbits.LATH3 = 0;
 }
 
 void goback(struct DC_motor *mL, struct DC_motor *mR)

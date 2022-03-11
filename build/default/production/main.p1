@@ -12,8 +12,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "41 ./color.h
 [; ;./color.h: 41: void color_click_init(void);
 [v _color_click_init `(v ~T0 @X0 0 ef ]
-"23 ./dc_motor.h
-[; ;./dc_motor.h: 23: void initDCmotorsPWM(int PWMperiod);
+"27 ./dc_motor.h
+[; ;./dc_motor.h: 27: void initDCmotorsPWM(int PWMperiod);
 [v _initDCmotorsPWM `(v ~T0 @X0 0 ef1`i ]
 "34 ./color.h
 [; ;./color.h: 34: void buggylight_init(void);
@@ -29,12 +29,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./color.h: 15: struct white_card {
 [s S2017 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 ]
 [n S2017 white_card RR RG RB GR GG GB BR BG BB CR CG CB CC ]
-"12 ./dc_motor.h
-[; ;./dc_motor.h: 12: struct DC_motor {
+"16 ./dc_motor.h
+[; ;./dc_motor.h: 16: struct DC_motor {
 [s S2015 `uc 1 `uc 1 `*uc 1 `*uc 1 `uc 1 `i 1 `uc 1 ]
 [n S2015 DC_motor power direction dutyHighByte dir_LAT dir_pin PWMperiod voltage ]
-"24
-[; ;./dc_motor.h: 24: void initDCmotors_parameter(struct DC_motor *motorL, struct DC_motor *motorR);
+"28
+[; ;./dc_motor.h: 28: void initDCmotors_parameter(struct DC_motor *motorL, struct DC_motor *motorR);
 [v _initDCmotors_parameter `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
 "16 ./movement.h
 [; ;./movement.h: 16: void pin_init(void);
@@ -52,7 +52,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "75 ./color.h
 [; ;./color.h: 75: void calibrate_white(struct white_card *w);
 [v _calibrate_white `(v ~T0 @X0 0 ef1`*S2017 ]
-"71
+"38 ./dc_motor.h
+[; ;./dc_motor.h: 38: void calibration(struct DC_motor *mL, struct DC_motor *mR);
+[v _calibration `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
+"71 ./color.h
 [; ;./color.h: 71: void LED_C(void);
 [v _LED_C `(v ~T0 @X0 0 ef ]
 "68
@@ -76,14 +79,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 "14 ./movement.h
 [; ;./movement.h: 14: void action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR);
 [v _action `(v ~T0 @X0 0 ef3`uc`*S2015`*S2015 ]
-"29 ./dc_motor.h
-[; ;./dc_motor.h: 29: void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
+"33 ./dc_motor.h
+[; ;./dc_motor.h: 33: void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
 [v _fullSpeedAhead `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
 "83 ./color.h
 [; ;./color.h: 83: unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR, struct white_card *w);
 [v _distance_measure `(uc ~T0 @X0 0 ef3`*S2015`*S2015`*S2017 ]
-"26 ./dc_motor.h
-[; ;./dc_motor.h: 26: void stop(struct DC_motor *mL, struct DC_motor *mR);
+"30 ./dc_motor.h
+[; ;./dc_motor.h: 30: void stop(struct DC_motor *mL, struct DC_motor *mR);
 [v _stop `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
 "2 main.c
 [p x FEXTOSC  =  HS      ]
@@ -2067,6 +2070,24 @@ Version 4.0 HI-TECH Software Intermediate Code
 "40928
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 40928: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
+"11 ./dc_motor.h
+[; ;./dc_motor.h: 11: unsigned char CALIBRATION_135 = 10;
+[v _CALIBRATION_135 `uc ~T0 @X0 1 e ]
+[i _CALIBRATION_135
+-> -> 10 `i `uc
+]
+"12
+[; ;./dc_motor.h: 12: unsigned char CALIBRATION_180 = 20;
+[v _CALIBRATION_180 `uc ~T0 @X0 1 e ]
+[i _CALIBRATION_180
+-> -> 20 `i `uc
+]
+"14
+[; ;./dc_motor.h: 14: unsigned char SENSITIVITY = 10;
+[v _SENSITIVITY `uc ~T0 @X0 1 e ]
+[i _SENSITIVITY
+-> -> 10 `i `uc
+]
 "13 ./serial.h
 [; ;./serial.h: 13: volatile char EUSART4RXbuf[20];
 [v _EUSART4RXbuf `Vuc ~T0 @X0 -> 20 `i e ]
@@ -2205,6 +2226,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 57:     unsigned char stop_signal = 0;
 [v _stop_signal `uc ~T0 @X0 1 a ]
 [e = _stop_signal -> -> 0 `i `uc ]
+"58
+[; ;main.c: 58:     calibration(&motorL, &motorR);
+[e ( _calibration (2 , &U _motorL &U _motorR ]
 "62
 [; ;main.c: 62:     while(1){
 [e :U 2023 ]

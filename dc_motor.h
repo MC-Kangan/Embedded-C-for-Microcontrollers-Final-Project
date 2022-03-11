@@ -8,6 +8,10 @@
 #define TURNING_POWER_R 25 // This number needs to be adjusted according to different floor condition
 #define FORWARD_POWER 20
 #define BACKWARD_POWER 50
+unsigned char CALIBRATION_135 = 10;
+unsigned char CALIBRATION_180 = 20;
+
+unsigned char SENSITIVITY = 10;
 
 struct DC_motor { //definition of DC_motor structure
     char power;         //motor power, out of 100

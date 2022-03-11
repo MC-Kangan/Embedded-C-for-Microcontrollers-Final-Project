@@ -174,12 +174,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 "79 ./color.h
 [; ;./color.h: 79: unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned int upper);
 [v _compare `(uc ~T0 @X0 0 ef3`ui`ui`ui ]
-"12 ./dc_motor.h
-[; ;./dc_motor.h: 12: struct DC_motor {
+"16 ./dc_motor.h
+[; ;./dc_motor.h: 16: struct DC_motor {
 [s S2015 `uc 1 `uc 1 `*uc 1 `*uc 1 `uc 1 `i 1 `uc 1 ]
 [n S2015 DC_motor power direction dutyHighByte dir_LAT dir_pin PWMperiod voltage ]
-"28
-[; ;./dc_motor.h: 28: void turnRight(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_right);
+"32
+[; ;./dc_motor.h: 32: void turnRight(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_right);
 [v _turnRight `(v ~T0 @X0 0 ef3`*S2015`*S2015`uc ]
 "55 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 55: __asm("PPSLOCK equ 0DEFh");
@@ -2155,6 +2155,24 @@ Version 4.0 HI-TECH Software Intermediate Code
 "40928
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 40928: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
+"11 ./dc_motor.h
+[; ;./dc_motor.h: 11: unsigned char CALIBRATION_135 = 10;
+[v _CALIBRATION_135 `uc ~T0 @X0 1 e ]
+[i _CALIBRATION_135
+-> -> 10 `i `uc
+]
+"12
+[; ;./dc_motor.h: 12: unsigned char CALIBRATION_180 = 20;
+[v _CALIBRATION_180 `uc ~T0 @X0 1 e ]
+[i _CALIBRATION_180
+-> -> 20 `i `uc
+]
+"14
+[; ;./dc_motor.h: 14: unsigned char SENSITIVITY = 10;
+[v _SENSITIVITY `uc ~T0 @X0 1 e ]
+[i _SENSITIVITY
+-> -> 10 `i `uc
+]
 "13 ./serial.h
 [; ;./serial.h: 13: volatile char EUSART4RXbuf[20];
 [v _EUSART4RXbuf `Vuc ~T0 @X0 -> 20 `i e ]

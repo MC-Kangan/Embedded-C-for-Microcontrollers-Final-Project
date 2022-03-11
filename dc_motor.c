@@ -5,8 +5,6 @@
 #include "movement.h"
 // function initialise T2 and PWM for DC motor control
 struct DC_motor motorL, motorR;
-unsigned char SENSITIVITY = 10;
-unsigned char CALIBRATION_180 = 20;
 
 void initDCmotorsPWM(int PWMperiod){
 	//initialise your TRIS and LAT registers for PWM
@@ -105,9 +103,13 @@ void turnLeft(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_left
         __delay_ms(10);
     }
     unsigned int delay = angle_left * SENSITIVITY;
+    unsigned int delay_135 = delay + CALIBRATION_135;
     unsigned int delay_180 = delay + CALIBRATION_180;
     if (angle_left == 180){
         for(unsigned int i = 0; i <delay_180; i++){__delay_ms(1);}
+    }
+    if (angle_left == 135){
+        for(unsigned int i = 0; i <delay_135; i++){__delay_ms(1);}
     }
     else{
         for(unsigned int i = 0; i < delay; i++){__delay_ms(1);}
@@ -128,9 +130,13 @@ void turnRight(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_rig
         __delay_ms(10);
     }
     unsigned int delay = angle_right * SENSITIVITY;
+    unsigned int delay_135 = delay + CALIBRATION_135;
     unsigned int delay_180 = delay + CALIBRATION_180;
     if (angle_right == 180){
         for(unsigned int i = 0; i <delay_180; i++){__delay_ms(1);}
+    }
+    if (angle_right == 135){
+        for(unsigned int i = 0; i <delay_135; i++){__delay_ms(1);}
     }
     else{
         for(unsigned int i = 0; i < delay; i++){__delay_ms(1);}
@@ -188,11 +194,22 @@ void reverse_square(struct DC_motor *mL, struct DC_motor *mR)
 void calibration(struct DC_motor *mL, struct DC_motor *mR)
 { 
     while (1) {  // press both to exit and start buggy
-        if (!PORTFbits.RF2 && !PORTFbits.RF3) {__delay_ms(300);break;}    // end the infinite while loop if RF3 is also pressed               // set the delay time so the buggy know you are only pressing once
-        if (!PORTFbits.RF2) {__delay_ms(300);SENSITIVITY -= 5;}       
-        if (!PORTFbits.RF3) {__delay_ms(300);SENSITIVITY += 5;}    // end the infinite while loop if RF3 is also pressed
+        LATDbits.LATD7 = 1;
+        LATHbits.LATH3 = 1;
+        
+        if (!PORTFbits.RF2) {
+            __delay_ms(300);
+            if (!PORTFbits.RF2){LATDbits.LATD7 = 0; __delay_ms(300); SENSITIVITY += 5; }
+            if (!PORTFbits.RF3){break;}    // end the infinite while loop if RF3 is also pressed
+        }
+        if (!PORTFbits.RF3) {
+            __delay_ms(300);
+            if (!PORTFbits.RF2){break;}
+            if (!PORTFbits.RF3){LATHbits.LATH3 = 0; __delay_ms(300); SENSITIVITY -= 5; }    // end the infinite while loop if RF3 is also pressed
+            }
     }
-    test_action(mL, mR);    
-    __delay_ms(3000);  // prepare
+    LATDbits.LATD7 = 0;
+    LATHbits.LATH3 = 0;
+    test_action(mL, mR);
 }
 

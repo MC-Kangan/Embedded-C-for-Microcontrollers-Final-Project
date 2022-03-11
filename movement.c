@@ -94,8 +94,8 @@ void pin_init(void)
     TRISFbits.TRISF3=1; //set TRIS value for pin (input)
     ANSELFbits.ANSELF3=0; //turn off analogue input on pin  
     
-    TRISFbits.TRISF6 = 0; //output on RF6 (BAT-VERSE), detects voltage of motor
-    LATFbits.LATF6 = 0; //output on BAT-VERSE set on (power) 
+//    TRISFbits.TRISF6 = 0; //output on RF6 (BAT-VERSE), detects voltage of motor
+//    LATFbits.LATF6 = 0; //output on BAT-VERSE set on (power) 
     
     TRISGbits.TRISG1 = 0; //output on RG1 (LED_R)
     TRISFbits.TRISF7 = 0; //output on RF7 (LED_G)
@@ -103,6 +103,12 @@ void pin_init(void)
     LATGbits.LATG1 = 1; // output LED_R set on (power)
     LATFbits.LATF7 = 1; // output LED_G set on (power)
     LATAbits.LATA4 = 1; // output LED_B set on (power)
+    
+    // pins connected to buttons
+    TRISDbits.TRISD7 = 0;
+    LATDbits.LATD7 = 0;
+    TRISHbits.TRISH3 = 0;
+    LATHbits.LATH3 = 0;
 }
 
 void goback(struct DC_motor *mL, struct DC_motor *mR)

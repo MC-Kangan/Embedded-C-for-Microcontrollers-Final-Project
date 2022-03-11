@@ -24232,7 +24232,12 @@ unsigned char __t3rd16on(void);
 # 1 "dc_motor.c" 2
 
 # 1 "./dc_motor.h" 1
-# 12 "./dc_motor.h"
+# 11 "./dc_motor.h"
+unsigned char CALIBRATION_135 = 10;
+unsigned char CALIBRATION_180 = 20;
+
+unsigned char SENSITIVITY = 10;
+
 struct DC_motor {
     char power;
     char direction;
@@ -24456,8 +24461,6 @@ void goback(struct DC_motor *mL, struct DC_motor *mR);
 
 
 struct DC_motor motorL, motorR;
-unsigned char SENSITIVITY = 10;
-unsigned char CALIBRATION_180 = 20;
 
 void initDCmotorsPWM(int PWMperiod){
 
@@ -24556,9 +24559,13 @@ void turnLeft(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_left
         _delay((unsigned long)((10)*(64000000/4000.0)));
     }
     unsigned int delay = angle_left * SENSITIVITY;
+    unsigned int delay_135 = delay + CALIBRATION_135;
     unsigned int delay_180 = delay + CALIBRATION_180;
     if (angle_left == 180){
         for(unsigned int i = 0; i <delay_180; i++){_delay((unsigned long)((1)*(64000000/4000.0)));}
+    }
+    if (angle_left == 135){
+        for(unsigned int i = 0; i <delay_135; i++){_delay((unsigned long)((1)*(64000000/4000.0)));}
     }
     else{
         for(unsigned int i = 0; i < delay; i++){_delay((unsigned long)((1)*(64000000/4000.0)));}
@@ -24579,9 +24586,13 @@ void turnRight(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_rig
         _delay((unsigned long)((10)*(64000000/4000.0)));
     }
     unsigned int delay = angle_right * SENSITIVITY;
+    unsigned int delay_135 = delay + CALIBRATION_135;
     unsigned int delay_180 = delay + CALIBRATION_180;
     if (angle_right == 180){
         for(unsigned int i = 0; i <delay_180; i++){_delay((unsigned long)((1)*(64000000/4000.0)));}
+    }
+    if (angle_right == 135){
+        for(unsigned int i = 0; i <delay_135; i++){_delay((unsigned long)((1)*(64000000/4000.0)));}
     }
     else{
         for(unsigned int i = 0; i < delay; i++){_delay((unsigned long)((1)*(64000000/4000.0)));}
@@ -24639,10 +24650,21 @@ void reverse_square(struct DC_motor *mL, struct DC_motor *mR)
 void calibration(struct DC_motor *mL, struct DC_motor *mR)
 {
     while (1) {
-        if (!PORTFbits.RF2 && !PORTFbits.RF3) {_delay((unsigned long)((300)*(64000000/4000.0)));break;}
-        if (!PORTFbits.RF2) {_delay((unsigned long)((300)*(64000000/4000.0)));SENSITIVITY -= 5;}
-        if (!PORTFbits.RF3) {_delay((unsigned long)((300)*(64000000/4000.0)));SENSITIVITY += 5;}
+        LATDbits.LATD7 = 1;
+        LATHbits.LATH3 = 1;
+
+        if (!PORTFbits.RF2) {
+            _delay((unsigned long)((300)*(64000000/4000.0)));
+            if (!PORTFbits.RF2){LATDbits.LATD7 = 0; _delay((unsigned long)((300)*(64000000/4000.0))); SENSITIVITY += 5; }
+            if (!PORTFbits.RF3){break;}
+        }
+        if (!PORTFbits.RF3) {
+            _delay((unsigned long)((300)*(64000000/4000.0)));
+            if (!PORTFbits.RF2){break;}
+            if (!PORTFbits.RF3){LATHbits.LATH3 = 0; _delay((unsigned long)((300)*(64000000/4000.0))); SENSITIVITY -= 5; }
+            }
     }
+    LATDbits.LATD7 = 0;
+    LATHbits.LATH3 = 0;
     test_action(mL, mR);
-    _delay((unsigned long)((3000)*(64000000/4000.0)));
 }
