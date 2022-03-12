@@ -7,7 +7,6 @@
 #include "timers.h"
 
 
-
 void short_burst(struct DC_motor *mL, struct DC_motor *mR)
 {
     fullSpeedAhead(mL,mR);

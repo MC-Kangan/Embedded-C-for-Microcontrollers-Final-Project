@@ -8,6 +8,7 @@
 #include <math.h>
 #include <fenv.h>
 #include "movement.h"
+#include "test_and_calibration.h"
 
 void buggylight_init(void) //initiations for buggy lights
 {
@@ -24,47 +25,6 @@ void buggylight_init(void) //initiations for buggy lights
     LATHbits.LATH0 = 0; // TURN-R light
 }
 
-void test_function(unsigned char test_code, struct color_rgb *m, struct white_card *w, struct DC_motor *mL, struct DC_motor *mR)
-{
-    unsigned char complete = 0;
-    unsigned char color = 0;
-    unsigned char stop_signal = 0;
-    unsigned int amb_light = 0;
-    
-    if (test_code == 2){calibrate_white(w);}
-    if (test_code == 4){amb_light = amb_light_measure(m);}
-    
-    while(1){
-        // Test 1: Read RGBC data in white light
-        if (test_code == 1){
-            LED_C(); // Turn on White light
-            read_color(m); 
-            color_display(m);
-        }
-        // Test 2: Detect color in RGB light and predict it via serial port
-        if (test_code == 2){
-            color = detect_color(m,w);
-            color_predict(color);
-        }
-        // Test 3: Collect data for different color cards
-        if (test_code == 3){
-            while (complete == 0){
-                color_data_collection(m);
-                complete = 1;
-            }
-        }   
-        // Test 4: Distance measure
-        if (test_code == 4){
-            while (stop_signal == 0){
-                fullSpeedAhead(mL, mR);
-                stop_signal = distance_measure(mL, mR, amb_light);
-            }
-            stop(mL, mR);
-            __delay_ms(1000);
-            stop_signal = 0;
-        }
-    }
-}
 
 void toggle_light(unsigned char lightnumber, unsigned char toggletime)
 {
@@ -408,8 +368,6 @@ unsigned char verify_color(unsigned char color,struct color_rgb *m, struct white
         return color;}
 }
 
-
-
 unsigned amb_light_measure(struct color_rgb *amb)
 {
     unsigned int CC_amb_1 = 0, CC_amb_2 = 0, CC_amb_3 = 0, CC_amb_ave, upper_bound = 0;
@@ -442,7 +400,7 @@ unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR, unsigne
     __delay_ms(100);
     CC_amb = color_read_Clear();
     CG_amb = color_read_Green();//, CR = m->R, CG = m->G, CB = m->B;
-    threshold = lround((float)amb_light * 1.1);
+    threshold = lround((float)amb_light * 1.05);
     //threshold = lround((float)(w->CC)/ 105 * 100);
 
     if (CC_amb >= threshold){stop = 1;}

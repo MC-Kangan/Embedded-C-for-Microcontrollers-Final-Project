@@ -1,4 +1,4 @@
-# 1 "main.c"
+# 1 "test_and_calibration.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,14 +6,11 @@
 # 1 "<built-in>" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "main.c" 2
-
-#pragma config FEXTOSC = HS
-#pragma config RSTOSC = EXTOSC_4PLL
+# 1 "test_and_calibration.c" 2
 
 
-#pragma config WDTCPS = WDTCPS_31
-#pragma config WDTE = OFF
+
+
 
 
 # 1 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\\pic\\include\\xc.h" 1 3
@@ -24238,7 +24235,8 @@ __attribute__((__unsupported__("The READTIMER" "0" "() macro is not available wi
 unsigned char __t1rd16on(void);
 unsigned char __t3rd16on(void);
 # 34 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\\pic\\include\\xc.h" 2 3
-# 10 "main.c" 2
+# 7 "test_and_calibration.c" 2
+
 # 1 "./dc_motor.h" 1
 # 11 "./dc_motor.h"
 unsigned char CALIBRATION_135 = 10;
@@ -24268,7 +24266,8 @@ void fullSpeedAhead_test(struct DC_motor *mL, struct DC_motor *mR);
 void fullSpeedBack(struct DC_motor *mL, struct DC_motor *mR);
 void short_reverse(struct DC_motor *mL, struct DC_motor *mR);
 void reverse_square(struct DC_motor *mL, struct DC_motor *mR);
-# 11 "main.c" 2
+# 8 "test_and_calibration.c" 2
+
 # 1 "./serial.h" 1
 # 13 "./serial.h"
 volatile char EUSART4RXbuf[20];
@@ -24297,174 +24296,8 @@ void putCharToTxBuf(char byte);
 char isDataInTxBuf (void);
 void TxBufferedString(char *string);
 void sendTxBuf(void);
-# 12 "main.c" 2
-# 1 "./color.h" 1
+# 9 "test_and_calibration.c" 2
 
-
-
-
-
-
-
-
-struct color_rgb {
-    unsigned int R ;
-    unsigned int G ;
-    unsigned int B ;
-    unsigned int C ;
-};
-
-struct white_card {
-    unsigned int RR ;
-    unsigned int RG ;
-    unsigned int RB;
-    unsigned int GR ;
-    unsigned int GG ;
-    unsigned int GB ;
-    unsigned int BR ;
-    unsigned int BG ;
-    unsigned int BB ;
-
-    unsigned int CR ;
-    unsigned int CG ;
-    unsigned int CB ;
-    unsigned int CC ;
-
-};
-
-
-void buggylight_init(void);
-void toggle_light(unsigned char lightnumber, unsigned char toggletime);
-
-
-
-
-void color_click_init(void);
-
-
-
-
-
-
-void color_writetoaddr(char address, char value);
-
-
-
-
-
-unsigned int color_read_Red(void);
-
-
-
-
-
-unsigned int color_read_Blue(void);
-
-
-
-
-
-unsigned int color_read_Green(void);
-unsigned int color_read_Clear(void);
-void read_color (struct color_rgb *m);
-void LED_OFF(void);
-void LED_R(void);
-void LED_C(void);
-void LED_B(void);
-void LED_G(void);
-void color_display(struct color_rgb *m);
-void calibrate_white(struct white_card *w);
-void color_predict(unsigned char color);
-unsigned char detect_color(struct color_rgb *m, struct white_card *w);
-unsigned char verify_color(unsigned char color,struct color_rgb *m, struct white_card *w);
-unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned int upper);
-
-void check_color_reading(struct color_rgb *, struct white_card *w);
-void color_data_collection(struct color_rgb *m);
-
-unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light) ;
-unsigned amb_light_measure(struct color_rgb *amb);
-# 13 "main.c" 2
-# 1 "./i2c.h" 1
-# 13 "./i2c.h"
-void I2C_2_Master_Init(void);
-
-
-
-
-void I2C_2_Master_Idle(void);
-
-
-
-
-void I2C_2_Master_Start(void);
-
-
-
-
-void I2C_2_Master_RepStart(void);
-
-
-
-
-void I2C_2_Master_Stop(void);
-
-
-
-
-void I2C_2_Master_Write(unsigned char data_byte);
-
-
-
-
-unsigned char I2C_2_Master_Read(unsigned char ack);
-# 14 "main.c" 2
-# 1 "./movement.h" 1
-
-
-
-
-
-unsigned int second = 0;
-unsigned int memory[20];
-unsigned char array_index = 0;
-unsigned int start_move;
-unsigned int stop_move;
-
-
-void short_burst(struct DC_motor *mL, struct DC_motor *mR);
-void action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR);
-void test_action (struct DC_motor *mL, struct DC_motor *mR);
-void pin_init(void);
-void goback(struct DC_motor *mL, struct DC_motor *mR);
-# 15 "main.c" 2
-# 1 "./interrupts.h" 1
-
-
-
-
-
-
-
-void Interrupts_init(void);
-void __attribute__((picinterrupt(("high_priority")))) HighISR();
-void __attribute__((picinterrupt(("low_priority")))) LowISR();
-# 16 "main.c" 2
-# 1 "./timers.h" 1
-
-
-
-
-
-
-
-void Timer0_init(void);
-# 17 "main.c" 2
-# 1 "./test_and_calibration.h" 1
-# 17 "./test_and_calibration.h"
-void calibration(struct DC_motor *mL, struct DC_motor *mR);
-void test_function(unsigned char test_code, struct color_rgb *m, struct white_card *w, struct DC_motor *mL, struct DC_motor *mR);
-# 18 "main.c" 2
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\c99\\stdio.h" 1 3
 # 24 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\c99\\stdio.h" 3
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\c99\\bits/alltypes.h" 1 3
@@ -24609,61 +24442,188 @@ char *ctermid(char *);
 
 
 char *tempnam(const char *, const char *);
-# 19 "main.c" 2
+# 10 "test_and_calibration.c" 2
+
+# 1 "./movement.h" 1
+
+
+
+
+
+unsigned int second = 0;
+unsigned int memory[20];
+unsigned char array_index = 0;
+unsigned int start_move;
+unsigned int stop_move;
+
+
+void short_burst(struct DC_motor *mL, struct DC_motor *mR);
+void action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR);
+void test_action (struct DC_motor *mL, struct DC_motor *mR);
+void pin_init(void);
+void goback(struct DC_motor *mL, struct DC_motor *mR);
+# 11 "test_and_calibration.c" 2
+
+# 1 "./test_and_calibration.h" 1
+# 13 "./test_and_calibration.h"
+# 1 "./color.h" 1
 
 
 
 
 
 
-unsigned char color = 0;
-
-void main(void){
-    Interrupts_init();
-    Timer0_init();
-    I2C_2_Master_Init();
-    color_click_init();
-    initDCmotorsPWM(199);
-    buggylight_init();
-    initUSART4();
-
-    struct color_rgb rgb, amb;
-    struct white_card white;
 
 
+struct color_rgb {
+    unsigned int R ;
+    unsigned int G ;
+    unsigned int B ;
+    unsigned int C ;
+};
 
-    struct DC_motor motorL, motorR;
-    pin_init();
-    initDCmotors_parameter(&motorL, &motorR);
+struct white_card {
+    unsigned int RR ;
+    unsigned int RG ;
+    unsigned int RB;
+    unsigned int GR ;
+    unsigned int GG ;
+    unsigned int GB ;
+    unsigned int BR ;
+    unsigned int BG ;
+    unsigned int BB ;
 
+    unsigned int CR ;
+    unsigned int CG ;
+    unsigned int CB ;
+    unsigned int CC ;
+
+};
+
+
+void buggylight_init(void);
+void toggle_light(unsigned char lightnumber, unsigned char toggletime);
+
+
+
+
+void color_click_init(void);
+
+
+
+
+
+
+void color_writetoaddr(char address, char value);
+
+
+
+
+
+unsigned int color_read_Red(void);
+
+
+
+
+
+unsigned int color_read_Blue(void);
+
+
+
+
+
+unsigned int color_read_Green(void);
+unsigned int color_read_Clear(void);
+void read_color (struct color_rgb *m);
+void LED_OFF(void);
+void LED_R(void);
+void LED_C(void);
+void LED_B(void);
+void LED_G(void);
+void color_display(struct color_rgb *m);
+void calibrate_white(struct white_card *w);
+void color_predict(unsigned char color);
+unsigned char detect_color(struct color_rgb *m, struct white_card *w);
+unsigned char verify_color(unsigned char color,struct color_rgb *m, struct white_card *w);
+unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned int upper);
+
+void check_color_reading(struct color_rgb *, struct white_card *w);
+void color_data_collection(struct color_rgb *m);
+
+unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light) ;
+unsigned amb_light_measure(struct color_rgb *amb);
+# 13 "./test_and_calibration.h" 2
+
+
+
+
+void calibration(struct DC_motor *mL, struct DC_motor *mR);
+void test_function(unsigned char test_code, struct color_rgb *m, struct white_card *w, struct DC_motor *mL, struct DC_motor *mR);
+# 12 "test_and_calibration.c" 2
+
+
+
+
+void test_function(unsigned char test_code, struct color_rgb *m, struct white_card *w, struct DC_motor *mL, struct DC_motor *mR)
+{
+    unsigned char complete = 0;
+    unsigned char color = 0;
     unsigned char stop_signal = 0;
-
     unsigned int amb_light = 0;
 
-    if (1 == 0){
-        calibrate_white(&white);
-        amb_light = amb_light_measure(&amb);
-    }
+    if (test_code == 2){calibrate_white(w);}
+    if (test_code == 4){amb_light = amb_light_measure(m);}
 
     while(1){
 
-  if (1 == 1){
-            test_function(2, &rgb, &white, &motorL, &motorR);
+        if (test_code == 1){
+            LED_C();
+            read_color(m);
+            color_display(m);
         }
-        if (1 == 0){
 
+        if (test_code == 2){
+            color = detect_color(m,w);
+            color_predict(color);
+        }
 
-            while (stop_signal == 0){
-                fullSpeedAhead(&motorL, &motorR);
-                stop_signal = distance_measure(&motorL, &motorR, amb_light);
+        if (test_code == 3){
+            while (complete == 0){
+                color_data_collection(m);
+                complete = 1;
             }
-            stop(&motorL, &motorR);
+        }
+
+        if (test_code == 4){
+            while (stop_signal == 0){
+                fullSpeedAhead(mL, mR);
+                stop_signal = distance_measure(mL, mR, amb_light);
+            }
+            stop(mL, mR);
             _delay((unsigned long)((1000)*(64000000/4000.0)));
-            color = detect_color(&rgb, &white);
-            color = verify_color(color, &rgb, &white);
-            action(color, &motorL, &motorR);
-            color = 0;
             stop_signal = 0;
         }
     }
+}
+
+void calibration(struct DC_motor *mL, struct DC_motor *mR)
+{
+    while (1) {
+        LATDbits.LATD7 = 1;
+        LATHbits.LATH3 = 1;
+
+        if (!PORTFbits.RF2) {
+            _delay((unsigned long)((300)*(64000000/4000.0)));
+            if (!PORTFbits.RF2){LATDbits.LATD7 = 0; _delay((unsigned long)((300)*(64000000/4000.0))); SENSITIVITY += 5; }
+            if (!PORTFbits.RF3){break;}
+        }
+        if (!PORTFbits.RF3) {
+            _delay((unsigned long)((300)*(64000000/4000.0)));
+            if (!PORTFbits.RF2){break;}
+            if (!PORTFbits.RF3){LATHbits.LATH3 = 0; _delay((unsigned long)((300)*(64000000/4000.0))); SENSITIVITY -= 5; }
+            }
+    }
+    LATDbits.LATD7 = 0;
+    LATHbits.LATH3 = 0;
+    test_action(mL, mR);
 }

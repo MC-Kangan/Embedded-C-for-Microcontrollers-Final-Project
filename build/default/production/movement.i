@@ -24382,6 +24382,37 @@ char *tempnam(const char *, const char *);
 
 
 
+# 1 "./dc_motor.h" 1
+# 11 "./dc_motor.h"
+unsigned char CALIBRATION_135 = 10;
+unsigned char CALIBRATION_180 = 20;
+
+unsigned char SENSITIVITY = 10;
+
+struct DC_motor {
+    char power;
+    char direction;
+    unsigned char *dutyHighByte;
+    unsigned char *dir_LAT;
+    char dir_pin;
+    int PWMperiod;
+    char voltage;
+};
+
+
+void initDCmotorsPWM(int PWMperiod);
+void initDCmotors_parameter(struct DC_motor *motorL, struct DC_motor *motorR);
+void setMotorPWM(struct DC_motor *m);
+void stop(struct DC_motor *mL, struct DC_motor *mR);
+void turnLeft(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_left);
+void turnRight(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_right);
+void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
+void fullSpeedAhead_test(struct DC_motor *mL, struct DC_motor *mR);
+void fullSpeedBack(struct DC_motor *mL, struct DC_motor *mR);
+void short_reverse(struct DC_motor *mL, struct DC_motor *mR);
+void reverse_square(struct DC_motor *mL, struct DC_motor *mR);
+# 5 "./color.h" 2
+
 
 
 
@@ -24412,7 +24443,6 @@ struct white_card {
 
 
 void buggylight_init(void);
-void test_function(unsigned char test_code, struct color_rgb *m, struct white_card *w, struct DC_motor *mL, struct DC_motor *mR);
 void toggle_light(unsigned char lightnumber, unsigned char toggletime);
 
 
@@ -24465,37 +24495,6 @@ unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR, unsigne
 unsigned amb_light_measure(struct color_rgb *amb);
 # 3 "movement.c" 2
 
-# 1 "./dc_motor.h" 1
-# 11 "./dc_motor.h"
-unsigned char CALIBRATION_135 = 10;
-unsigned char CALIBRATION_180 = 20;
-
-unsigned char SENSITIVITY = 10;
-
-struct DC_motor {
-    char power;
-    char direction;
-    unsigned char *dutyHighByte;
-    unsigned char *dir_LAT;
-    char dir_pin;
-    int PWMperiod;
-    char voltage;
-};
-
-
-void initDCmotorsPWM(int PWMperiod);
-void initDCmotors_parameter(struct DC_motor *motorL, struct DC_motor *motorR);
-void setMotorPWM(struct DC_motor *m);
-void stop(struct DC_motor *mL, struct DC_motor *mR);
-void turnLeft(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_left);
-void turnRight(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_right);
-void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
-void fullSpeedAhead_test(struct DC_motor *mL, struct DC_motor *mR);
-void fullSpeedBack(struct DC_motor *mL, struct DC_motor *mR);
-void short_reverse(struct DC_motor *mL, struct DC_motor *mR);
-void reverse_square(struct DC_motor *mL, struct DC_motor *mR);
-void calibration(struct DC_motor *mL, struct DC_motor *mR);
-# 4 "movement.c" 2
 
 # 1 "./serial.h" 1
 # 13 "./serial.h"
@@ -24557,7 +24556,6 @@ void goback(struct DC_motor *mL, struct DC_motor *mR);
 
 void Timer0_init(void);
 # 7 "movement.c" 2
-
 
 
 

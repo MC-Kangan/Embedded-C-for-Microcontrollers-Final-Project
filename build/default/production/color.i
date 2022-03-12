@@ -24260,7 +24260,6 @@ void fullSpeedAhead_test(struct DC_motor *mL, struct DC_motor *mR);
 void fullSpeedBack(struct DC_motor *mL, struct DC_motor *mR);
 void short_reverse(struct DC_motor *mL, struct DC_motor *mR);
 void reverse_square(struct DC_motor *mL, struct DC_motor *mR);
-void calibration(struct DC_motor *mL, struct DC_motor *mR);
 # 2 "color.c" 2
 
 # 1 "./serial.h" 1
@@ -24301,6 +24300,7 @@ void sendTxBuf(void);
 
 
 
+
 struct color_rgb {
     unsigned int R ;
     unsigned int G ;
@@ -24328,7 +24328,6 @@ struct white_card {
 
 
 void buggylight_init(void);
-void test_function(unsigned char test_code, struct color_rgb *m, struct white_card *w, struct DC_motor *mL, struct DC_motor *mR);
 void toggle_light(unsigned char lightnumber, unsigned char toggletime);
 
 
@@ -24967,6 +24966,12 @@ void pin_init(void);
 void goback(struct DC_motor *mL, struct DC_motor *mR);
 # 10 "color.c" 2
 
+# 1 "./test_and_calibration.h" 1
+# 17 "./test_and_calibration.h"
+void calibration(struct DC_motor *mL, struct DC_motor *mR);
+void test_function(unsigned char test_code, struct color_rgb *m, struct white_card *w, struct DC_motor *mL, struct DC_motor *mR);
+# 11 "color.c" 2
+
 
 void buggylight_init(void)
 {
@@ -24983,47 +24988,6 @@ void buggylight_init(void)
     LATHbits.LATH0 = 0;
 }
 
-void test_function(unsigned char test_code, struct color_rgb *m, struct white_card *w, struct DC_motor *mL, struct DC_motor *mR)
-{
-    unsigned char complete = 0;
-    unsigned char color = 0;
-    unsigned char stop_signal = 0;
-    unsigned int amb_light = 0;
-
-    if (test_code == 2){calibrate_white(w);}
-    if (test_code == 4){amb_light = amb_light_measure(m);}
-
-    while(1){
-
-        if (test_code == 1){
-            LED_C();
-            read_color(m);
-            color_display(m);
-        }
-
-        if (test_code == 2){
-            color = detect_color(m,w);
-            color_predict(color);
-        }
-
-        if (test_code == 3){
-            while (complete == 0){
-                color_data_collection(m);
-                complete = 1;
-            }
-        }
-
-        if (test_code == 4){
-            while (stop_signal == 0){
-                fullSpeedAhead(mL, mR);
-                stop_signal = distance_measure(mL, mR, amb_light);
-            }
-            stop(mL, mR);
-            _delay((unsigned long)((1000)*(64000000/4000.0)));
-            stop_signal = 0;
-        }
-    }
-}
 
 void toggle_light(unsigned char lightnumber, unsigned char toggletime)
 {
@@ -25367,8 +25331,6 @@ unsigned char verify_color(unsigned char color,struct color_rgb *m, struct white
         return color;}
 }
 
-
-
 unsigned amb_light_measure(struct color_rgb *amb)
 {
     unsigned int CC_amb_1 = 0, CC_amb_2 = 0, CC_amb_3 = 0, CC_amb_ave, upper_bound = 0;
@@ -25401,7 +25363,7 @@ unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR, unsigne
     _delay((unsigned long)((100)*(64000000/4000.0)));
     CC_amb = color_read_Clear();
     CG_amb = color_read_Green();
-    threshold = lroundf((float)amb_light * 1.1);
+    threshold = lroundf((float)amb_light * 1.05);
 
 
     if (CC_amb >= threshold){stop = 1;}

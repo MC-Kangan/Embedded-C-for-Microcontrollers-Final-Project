@@ -4,4 +4,5 @@ dc_motor.h  \
 serial.h  \
 color.h  \
 i2c.h  \
-movement.h 
+movement.h  \
+test_and_calibration.h 

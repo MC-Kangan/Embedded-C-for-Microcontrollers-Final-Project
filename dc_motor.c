@@ -3,6 +3,7 @@
 #include "serial.h"
 #include <stdio.h>
 #include "movement.h"
+#include "test_and_calibration.h"
 // function initialise T2 and PWM for DC motor control
 struct DC_motor motorL, motorR;
 
@@ -191,25 +192,5 @@ void reverse_square(struct DC_motor *mL, struct DC_motor *mR)
     stop(mL,mR);
 }
 
-void calibration(struct DC_motor *mL, struct DC_motor *mR)
-{ 
-    while (1) {  // press both to exit and start buggy
-        LATDbits.LATD7 = 1;
-        LATHbits.LATH3 = 1;
-        
-        if (!PORTFbits.RF2) {
-            __delay_ms(300);
-            if (!PORTFbits.RF2){LATDbits.LATD7 = 0; __delay_ms(300); SENSITIVITY += 5; }
-            if (!PORTFbits.RF3){break;}    // end the infinite while loop if RF3 is also pressed
-        }
-        if (!PORTFbits.RF3) {
-            __delay_ms(300);
-            if (!PORTFbits.RF2){break;}
-            if (!PORTFbits.RF3){LATHbits.LATH3 = 0; __delay_ms(300); SENSITIVITY -= 5; }    // end the infinite while loop if RF3 is also pressed
-            }
-    }
-    LATDbits.LATD7 = 0;
-    LATHbits.LATH3 = 0;
-    test_action(mL, mR);
-}
+
 

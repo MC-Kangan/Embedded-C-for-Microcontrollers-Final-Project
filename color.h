@@ -2,6 +2,7 @@
 #define _color_H
 
 #include <xc.h>
+#include "dc_motor.h"
 
 #define _XTAL_FREQ 64000000 //note intrinsic _delay function is 62.5ns at 64,000,000Hz  
 
@@ -32,7 +33,6 @@ struct white_card { //definition of white_card structure
 
 
 void buggylight_init(void);
-void test_function(unsigned char test_code, struct color_rgb *m, struct white_card *w, struct DC_motor *mL, struct DC_motor *mR);
 void toggle_light(unsigned char lightnumber, unsigned char toggletime);
 
 /********************************************//**
@@ -67,10 +67,10 @@ unsigned int color_read_Green(void);
 unsigned int color_read_Clear(void);
 void read_color (struct color_rgb *m);
 void LED_OFF(void);
-void LED_R(void);//struct color_rgb *m);
-void LED_C(void);//(struct color_rgb *m);
-void LED_B(void);//(struct color_rgb *m);
-void LED_G(void);//(struct color_rgb *m);
+void LED_R(void);
+void LED_C(void);
+void LED_B(void);
+void LED_G(void);
 void color_display(struct color_rgb *m);
 void calibrate_white(struct white_card *w);
 void color_predict(unsigned char color);

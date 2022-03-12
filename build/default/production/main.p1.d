@@ -6,4 +6,5 @@ color.h  \
 i2c.h  \
 movement.h  \
 interrupts.h  \
-timers.h 
+timers.h  \
+test_and_calibration.h 

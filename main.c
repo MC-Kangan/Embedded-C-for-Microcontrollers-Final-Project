@@ -14,6 +14,7 @@
 #include "movement.h"
 #include "interrupts.h"
 #include "timers.h"
+#include "test_and_calibration.h"
 #include <stdio.h>
 
 #define _XTAL_FREQ 64000000 //note intrinsic _delay function is 62.5ns at 64,000,000Hz 
@@ -53,7 +54,7 @@ void main(void){
     while(1){
 
 		if (TEST == 1){
-            test_function(4, &rgb, &white, &motorL, &motorR);
+            test_function(2, &rgb, &white, &motorL, &motorR);
         }
         if (TEST == 0){
             //read_color(&rgb);

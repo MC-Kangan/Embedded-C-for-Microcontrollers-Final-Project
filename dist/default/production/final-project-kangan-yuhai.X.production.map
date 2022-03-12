@@ -5,10 +5,10 @@ Linker command line:
 -W-3 --edf=C:\Program Files\Microchip\xc8\v2.35\pic\dat\en_msgs.txt -cn \
   -h+dist/default/production\final-project-kangan-yuhai.X.production.sym \
   --cmf=dist/default/production\final-project-kangan-yuhai.X.production.cmf \
-  -z -Q18F67K40 -oC:\Users\KANGAN~1\AppData\Local\Temp\xcAs2loo.4 \
+  -z -Q18F67K40 -oC:\Users\KANGAN~1\AppData\Local\Temp\xcAs3un0.4 \
   --defsym=__MPLAB_BUILD=1 \
   -Mdist/default/production/final-project-kangan-yuhai.X.production.map \
-  --md=C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2loo.dat -E1 \
+  --md=C:\Users\KANGAN~1\AppData\Local\Temp\xcAs3un0.dat -E1 \
   -ver=XC8 Compiler --acfsm=1493 -ACODE=00h-01FFFFh -ACONST=00h-01FFFFh \
   -ASMALLCONST=0E00h-0EFFhx498 -AMEDIUMCONST=0E00h-0FFFFh,010E00h-01FFFFh \
   -ACOMRAM=01h-05Fh -AABS1=00h-0DE9h -ABIGRAM=01h-0DE9h \
@@ -28,7 +28,7 @@ Linker command line:
   -pfarbss=FARRAM,fardata=FARRAM,nvFARRAM=FARRAM \
   -pintsave_regs=BIGRAM,bigbss=BIGRAM,bigdata=BIGRAM -pbss=RAM \
   -pidata=CODE,irdata=CODE,ibigdata=CODE,ifardata=CODE -prparam=COMRAM \
-  C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2loo.o \
+  C:\Users\KANGAN~1\AppData\Local\Temp\xcAs3un0.o \
   dist/default/production\final-project-kangan-yuhai.X.production.o 
 
 Object code version is 3.11
@@ -38,7 +38,7 @@ Machine type is 18F67K40
 
 
                 Name                               Link     Load   Length Selector   Space Scale
-C:\Users\KANGAN~1\AppData\Local\Temp\xcAs2loo.o
+C:\Users\KANGAN~1\AppData\Local\Temp\xcAs3un0.o
                 idloc                            200000   200000       10        0       5
                 config                           300000   300000        C        0       4
                 init                                 48       48        4        C       0
@@ -1022,11 +1022,11 @@ _color_writetoaddr              text53       0056FC
 _compare                        text5        005450
 _dbuf                           bssBANK1     00019D
 _detect_color                   text4        000E14
-_detect_color$3215              cstackBANK0  000097
+_detect_color$3250              cstackBANK0  000097
 _distance_measure               text3        004AB0
-_distance_measure$3216          cstackBANK0  000082
+_distance_measure$3251          cstackBANK0  000082
 _dtoa                           text13       002C90
-_dtoa$2865                      cstackCOMRAM 000030
+_dtoa$2882                      cstackCOMRAM 000030
 _flags                          bssBANK0     0000F5
 _fputc                          text17       004920
 _fputs                          text16       0052C4
@@ -1049,8 +1049,8 @@ _putch                          text18       0057C2
 _read_color                     text7        005036
 _reverse_square                 text65       0053CE
 _roundf                         text35       002240
-_roundf$3217                    cstackBANK0  000066
-_roundf$3218                    cstackBANK0  000060
+_roundf$3252                    cstackBANK0  000066
+_roundf$3253                    cstackBANK0  000060
 _second                         bssBANK1     00019A
 _sendCharSerial4                text23       005758
 _sendStringSerial4              text22       005566
@@ -1207,8 +1207,8 @@ turnLeft@delay                  cstackCOMRAM 000032
 turnLeft@delay_135              cstackCOMRAM 000028
 turnLeft@delay_180              cstackCOMRAM 00002A
 turnLeft@i                      cstackCOMRAM 00002C
-turnLeft@i_1476                 cstackCOMRAM 00002E
-turnLeft@i_1477                 cstackCOMRAM 000030
+turnLeft@i_1332                 cstackCOMRAM 00002E
+turnLeft@i_1333                 cstackCOMRAM 000030
 turnLeft@mL                     cstackCOMRAM 000022
 turnLeft@mR                     cstackCOMRAM 000024
 turnRight@angle_right           cstackCOMRAM 000026
@@ -1216,8 +1216,8 @@ turnRight@delay                 cstackCOMRAM 000032
 turnRight@delay_135             cstackCOMRAM 000028
 turnRight@delay_180             cstackCOMRAM 00002A
 turnRight@i                     cstackCOMRAM 00002C
-turnRight@i_1500                cstackCOMRAM 00002E
-turnRight@i_1501                cstackCOMRAM 000030
+turnRight@i_1357                cstackCOMRAM 00002E
+turnRight@i_1358                cstackCOMRAM 000030
 turnRight@mL                    cstackCOMRAM 000022
 turnRight@mR                    cstackCOMRAM 000024
 verify_color@color              cstackBANK0  0000A3
@@ -1268,7 +1268,6 @@ color.c
 		_color_click_init		CODE           	5532	0000	52
 		_detect_color  		CODE           	0E14	0000	2882
 		_color_data_collection		CODE           	387E	0000	446
-		_test_function 		CODE           	3DA4	0000	394
 		_color_read_Green		CODE           	518E	0000	80
 		_color_read_Clear		CODE           	522E	0000	80
 		_LED_R         		CODE           	563C	0000	32
@@ -1282,7 +1281,7 @@ color.c
 		_color_read_Blue		CODE           	51DE	0000	80
 		_LED_C         		CODE           	56BC	0000	32
 
-color.c estimated size: 6468
+color.c estimated size: 6074
 
 C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\aodiv.c
 		___aodiv       		CODE           	3F2E	0000	392
@@ -1392,6 +1391,11 @@ C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\xxtofl.c
 		___xxtofl      		CODE           	3BF0	0000	436
 
 C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\xxtofl.c estimated size: 436
+
+test_and_calibration.c
+		_test_function 		CODE           	3DA4	0000	394
+
+test_and_calibration.c estimated size: 394
 
 C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\strlen.c
 		_strlen        		CODE           	54FC	0000	54
