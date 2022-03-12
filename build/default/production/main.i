@@ -24334,7 +24334,7 @@ struct white_card {
 
 
 void buggylight_init(void);
-
+void test_function(unsigned char test_code, struct color_rgb *m, struct white_card *w, struct DC_motor *mL, struct DC_motor *mR);
 void toggle_light(unsigned char lightnumber, unsigned char toggletime);
 
 
@@ -24629,73 +24629,36 @@ void main(void){
 
 
     struct DC_motor motorL, motorR;
-
-    initDCmotors_parameter(&motorL, &motorR);
     pin_init();
+    initDCmotors_parameter(&motorL, &motorR);
 
-
-    if (4 == 1 || 4 == 3 || 4 == 4){
-        LED_OFF();
-        toggle_light(1,2);
-        _delay((unsigned long)((1000)*(64000000/4000.0)));
-        calibrate_white(&white);
-        _delay((unsigned long)((1000)*(64000000/4000.0)));
-        LED_OFF();
-        toggle_light(1,2);
-    }
-
-    unsigned char complete = 0;
     unsigned char stop_signal = 0;
 
-
     unsigned int amb_light = 0;
-    amb_light = amb_light_measure(&amb);
 
+    if (1 == 0){
+        calibrate_white(&white);
+        amb_light = amb_light_measure(&amb);
+    }
 
     while(1){
 
-
-  if (4 == 1){
-            LED_C();
-            read_color(&rgb);
-
-
-
-
-            }
-
-        if (4 == 2){
-            while (complete == 0){
-                color_data_collection(&rgb);
-                complete = 1;
-            }
+  if (1 == 1){
+            test_function(4, &rgb, &white, &motorL, &motorR);
         }
-
-        if (4 == 3){
-            while (color == 0){
-                short_burst(&motorL, &motorR);
-                color = detect_color(&rgb, &white);
-            }
-            verify_color(color, &rgb, &white);
-            action(color, &motorL, &motorR);
-            color = 0;
-        }
-        if (4 == 4){
-
+        if (1 == 0){
 
 
             while (stop_signal == 0){
                 fullSpeedAhead(&motorL, &motorR);
                 stop_signal = distance_measure(&motorL, &motorR, amb_light);
             }
-
             stop(&motorL, &motorR);
             _delay((unsigned long)((1000)*(64000000/4000.0)));
             color = detect_color(&rgb, &white);
             color = verify_color(color, &rgb, &white);
             action(color, &motorL, &motorR);
             color = 0;
-            stop_signal = 0;
             stop_signal = 0;
         }
     }

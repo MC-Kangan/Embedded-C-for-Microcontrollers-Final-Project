@@ -24328,7 +24328,7 @@ struct white_card {
 
 
 void buggylight_init(void);
-
+void test_function(unsigned char test_code, struct color_rgb *m, struct white_card *w, struct DC_motor *mL, struct DC_motor *mR);
 void toggle_light(unsigned char lightnumber, unsigned char toggletime);
 
 
@@ -24983,6 +24983,48 @@ void buggylight_init(void)
     LATHbits.LATH0 = 0;
 }
 
+void test_function(unsigned char test_code, struct color_rgb *m, struct white_card *w, struct DC_motor *mL, struct DC_motor *mR)
+{
+    unsigned char complete = 0;
+    unsigned char color = 0;
+    unsigned char stop_signal = 0;
+    unsigned int amb_light = 0;
+
+    if (test_code == 2){calibrate_white(w);}
+    if (test_code == 4){amb_light = amb_light_measure(m);}
+
+    while(1){
+
+        if (test_code == 1){
+            LED_C();
+            read_color(m);
+            color_display(m);
+        }
+
+        if (test_code == 2){
+            color = detect_color(m,w);
+            color_predict(color);
+        }
+
+        if (test_code == 3){
+            while (complete == 0){
+                color_data_collection(m);
+                complete = 1;
+            }
+        }
+
+        if (test_code == 4){
+            while (stop_signal == 0){
+                fullSpeedAhead(mL, mR);
+                stop_signal = distance_measure(mL, mR, amb_light);
+            }
+            stop(mL, mR);
+            _delay((unsigned long)((1000)*(64000000/4000.0)));
+            stop_signal = 0;
+        }
+    }
+}
+
 void toggle_light(unsigned char lightnumber, unsigned char toggletime)
 {
     unsigned char i = 0;
@@ -25214,25 +25256,30 @@ void color_predict(unsigned char color)
 
 void calibrate_white(struct white_card *w)
 {
-    LED_R();
+    LED_OFF();
+    toggle_light(1,2);
+    _delay((unsigned long)((500)*(64000000/4000.0)));
 
+    LED_R();
     w->RR = color_read_Red(); w->RG = color_read_Green(); w->RB = color_read_Blue();
     _delay((unsigned long)((100)*(64000000/4000.0)));
 
     LED_G();
-
     w->GR = color_read_Red(); w->GG = color_read_Green(); w->GB = color_read_Blue();
 
     _delay((unsigned long)((100)*(64000000/4000.0)));
 
     LED_B();
-
     w->BR = color_read_Red(); w->BG = color_read_Green(); w->BB = color_read_Blue();
     _delay((unsigned long)((100)*(64000000/4000.0)));
 
     LED_C();
     w->CR = color_read_Red(); w->CG = color_read_Green(); w->CB = color_read_Blue(); w->CC = color_read_Clear();
-    _delay((unsigned long)((100)*(64000000/4000.0)));
+    _delay((unsigned long)((500)*(64000000/4000.0)));
+
+    LED_OFF();
+    _delay((unsigned long)((500)*(64000000/4000.0)));
+    toggle_light(1,2);
 }
 
 
@@ -25241,7 +25288,6 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
 
 
     unsigned int RR = 0, RG = 0, RB = 0, GR = 0, GG = 0, GB = 0, BR = 0, BG = 0, BB = 0;
-    unsigned int GC = 0;
     unsigned char color = 0;
 
     LED_R();
@@ -25255,7 +25301,6 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
 
 
     GR = lroundf((float)(m->R)/(w->GR)*100); GG = lroundf((float)(m->G)/(w->GG)*100); GB = lroundf((float)(m->B)/(w->GB)*100);
-    GC = lroundf((float)(m->R)/(w->GR)*100);
 
     _delay((unsigned long)((50)*(64000000/4000.0)));
 
@@ -25296,7 +25341,8 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
 
     if (compare(95, BR, 105) && compare(95,BG,105) && compare(95,BB,105)){color = 8;}
     if (compare(0, BR, 25) && compare(0,RR,90)){color = 0;}
-# 355 "color.c"
+
+
     return color;
 }
 

@@ -24,6 +24,48 @@ void buggylight_init(void) //initiations for buggy lights
     LATHbits.LATH0 = 0; // TURN-R light
 }
 
+void test_function(unsigned char test_code, struct color_rgb *m, struct white_card *w, struct DC_motor *mL, struct DC_motor *mR)
+{
+    unsigned char complete = 0;
+    unsigned char color = 0;
+    unsigned char stop_signal = 0;
+    unsigned int amb_light = 0;
+    
+    if (test_code == 2){calibrate_white(w);}
+    if (test_code == 4){amb_light = amb_light_measure(m);}
+    
+    while(1){
+        // Test 1: Read RGBC data in white light
+        if (test_code == 1){
+            LED_C(); // Turn on White light
+            read_color(m); 
+            color_display(m);
+        }
+        // Test 2: Detect color in RGB light and predict it via serial port
+        if (test_code == 2){
+            color = detect_color(m,w);
+            color_predict(color);
+        }
+        // Test 3: Collect data for different color cards
+        if (test_code == 3){
+            while (complete == 0){
+                color_data_collection(m);
+                complete = 1;
+            }
+        }   
+        // Test 4: Distance measure
+        if (test_code == 4){
+            while (stop_signal == 0){
+                fullSpeedAhead(mL, mR);
+                stop_signal = distance_measure(mL, mR, amb_light);
+            }
+            stop(mL, mR);
+            __delay_ms(1000);
+            stop_signal = 0;
+        }
+    }
+}
+
 void toggle_light(unsigned char lightnumber, unsigned char toggletime)
 {
     unsigned char i = 0;
@@ -254,26 +296,31 @@ void color_predict(unsigned char color)
 }
 
 void calibrate_white(struct white_card *w)
-{
+{   
+    LED_OFF();
+    toggle_light(1,2);
+    __delay_ms(500);
+    
     LED_R(); // Turn on red light 
-    //read_color(w); 
     w->RR = color_read_Red(); w->RG = color_read_Green(); w->RB = color_read_Blue();
     __delay_ms(100);
     
     LED_G(); // Turn on green light
-    //read_color(w); 
     w->GR = color_read_Red(); w->GG = color_read_Green(); w->GB = color_read_Blue();
     //w->GC = color_read_Clear();
     __delay_ms(100);
     
-    LED_B(); // Turn on blue light
-    //read_color(w); 
+    LED_B(); // Turn on blue light 
     w->BR = color_read_Red(); w->BG = color_read_Green(); w->BB = color_read_Blue(); 
     __delay_ms(100);
     
-    LED_C();
+    LED_C(); // Turn on white light
     w->CR = color_read_Red(); w->CG = color_read_Green(); w->CB = color_read_Blue(); w->CC = color_read_Clear();
-    __delay_ms(100);
+    __delay_ms(500);
+    
+    LED_OFF();
+    __delay_ms(500);
+    toggle_light(1,2);
 }
 
 // Function used to detect color with white light
@@ -282,7 +329,6 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
     // Color code:
     // 1: red; 2: green; 3: blue; 4: yellow; 5:pink; 6:orange; 7:light blue; 8:white; 0: black
     unsigned int RR = 0, RG = 0, RB = 0, GR = 0, GG = 0, GB = 0, BR = 0, BG = 0, BB = 0; //GR_REAL = 0, GC_REAL = 0, BC = 0;
-    unsigned int GC = 0;
     unsigned char color = 0;   
             
     LED_R(); // Turn on red light 
@@ -296,7 +342,6 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
     //GR_REAL = m->R ;  GC_REAL = m->C;
     //GR = (float)(m->R)/(w->GR)*100; GG = (float)(m->G)/(w->GG)*100; GB = (float)(m->B)/(w->GB)*100;
     GR = lround((float)(m->R)/(w->GR)*100); GG = lround((float)(m->G)/(w->GG)*100); GB = lround((float)(m->B)/(w->GB)*100);
-    GC = lround((float)(m->R)/(w->GR)*100);
     
     __delay_ms(50);
     
@@ -338,19 +383,6 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
     if (compare(95, BR, 105) && compare(95,BG,105) && compare(95,BB,105)){color = 8;}
     if (compare(0, BR, 25) && compare(0,RR,90)){color = 0;}
     
-//    // This is used to determine distance
-//    if (color == 2 || color == 3){
-//        if (GR < 50){color = 0;} //  || GC < 70
-//    }
-//    if (color == 1 || color == 6){
-//        if (GR < 90){color = 0;} // || GC < 70
-//    }
-//    if (color == 4 || color == 5){
-//        if (GR < 100){color = 0;} // || GC < 90
-//    }
-//    if (color == 7 || color == 8){
-//        if (GR < 80){color = 0;} // || GC < 90
-//    }
     
     return color;
 }

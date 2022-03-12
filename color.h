@@ -32,7 +32,7 @@ struct white_card { //definition of white_card structure
 
 
 void buggylight_init(void);
-
+void test_function(unsigned char test_code, struct color_rgb *m, struct white_card *w, struct DC_motor *mL, struct DC_motor *mR);
 void toggle_light(unsigned char lightnumber, unsigned char toggletime);
 
 /********************************************//**
