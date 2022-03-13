@@ -3310,119 +3310,126 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _color -> -> 0 `i `uc ]
 }
 [e :U 2081 ]
-"347
-[; ;color.c: 347:     return color;
+"346
+[; ;color.c: 346:     if (color == 8) {toggle_light(2,1);}
+[e $ ! == -> _color `i -> 8 `i 2082  ]
+{
+[e ( _toggle_light (2 , -> -> 2 `i `uc -> -> 1 `i `uc ]
+}
+[e :U 2082 ]
+"348
+[; ;color.c: 348:     return color;
 [e ) _color ]
 [e $UE 2061  ]
-"348
-[; ;color.c: 348: }
+"349
+[; ;color.c: 349: }
 [e :UE 2061 ]
 }
-"350
-[; ;color.c: 350: unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned int upper)
-[v _compare `(uc ~T0 @X0 1 ef3`ui`ui`ui ]
 "351
-[; ;color.c: 351: {
+[; ;color.c: 351: unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned int upper)
+[v _compare `(uc ~T0 @X0 1 ef3`ui`ui`ui ]
+"352
+[; ;color.c: 352: {
 {
 [e :U _compare ]
-"350
-[; ;color.c: 350: unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned int upper)
+"351
+[; ;color.c: 351: unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned int upper)
 [v _lower `ui ~T0 @X0 1 r1 ]
 [v _value2compare `ui ~T0 @X0 1 r2 ]
 [v _upper `ui ~T0 @X0 1 r3 ]
-"351
-[; ;color.c: 351: {
-[f ]
 "352
-[; ;color.c: 352:     unsigned char result = 0;
+[; ;color.c: 352: {
+[f ]
+"353
+[; ;color.c: 353:     unsigned char result = 0;
 [v _result `uc ~T0 @X0 1 a ]
 [e = _result -> -> 0 `i `uc ]
-"353
-[; ;color.c: 353:     if (lower < value2compare && value2compare <= upper){result = 1;}
-[e $ ! && < _lower _value2compare <= _value2compare _upper 2083  ]
+"354
+[; ;color.c: 354:     if (lower < value2compare && value2compare <= upper){result = 1;}
+[e $ ! && < _lower _value2compare <= _value2compare _upper 2084  ]
 {
 [e = _result -> -> 1 `i `uc ]
 }
-[e :U 2083 ]
-"354
-[; ;color.c: 354:     return result;
-[e ) _result ]
-[e $UE 2082  ]
+[e :U 2084 ]
 "355
-[; ;color.c: 355: }
-[e :UE 2082 ]
+[; ;color.c: 355:     return result;
+[e ) _result ]
+[e $UE 2083  ]
+"356
+[; ;color.c: 356: }
+[e :UE 2083 ]
 }
-"358
-[; ;color.c: 358: unsigned char verify_color(unsigned char color,struct color_rgb *m, struct white_card *w)
-[v _verify_color `(uc ~T0 @X0 1 ef3`uc`*S2016`*S2017 ]
 "359
-[; ;color.c: 359: {
+[; ;color.c: 359: unsigned char verify_color(unsigned char color,struct color_rgb *m, struct white_card *w)
+[v _verify_color `(uc ~T0 @X0 1 ef3`uc`*S2016`*S2017 ]
+"360
+[; ;color.c: 360: {
 {
 [e :U _verify_color ]
-"358
-[; ;color.c: 358: unsigned char verify_color(unsigned char color,struct color_rgb *m, struct white_card *w)
+"359
+[; ;color.c: 359: unsigned char verify_color(unsigned char color,struct color_rgb *m, struct white_card *w)
 [v _color `uc ~T0 @X0 1 r1 ]
 [v _m `*S2016 ~T0 @X0 1 r2 ]
 [v _w `*S2017 ~T0 @X0 1 r3 ]
-"359
-[; ;color.c: 359: {
-[f ]
 "360
-[; ;color.c: 360:     _delay((unsigned long)((50)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 50 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+[; ;color.c: 360: {
+[f ]
 "361
-[; ;color.c: 361:     unsigned int color2, color3;
+[; ;color.c: 361:     _delay((unsigned long)((50)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 50 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"362
+[; ;color.c: 362:     unsigned int color2, color3;
 [v _color2 `ui ~T0 @X0 1 a ]
 [v _color3 `ui ~T0 @X0 1 a ]
-"362
-[; ;color.c: 362:     color2 = detect_color(m,w);
-[e = _color2 -> ( _detect_color (2 , _m _w `ui ]
 "363
-[; ;color.c: 363:     _delay((unsigned long)((50)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 50 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+[; ;color.c: 363:     color2 = detect_color(m,w);
+[e = _color2 -> ( _detect_color (2 , _m _w `ui ]
 "364
-[; ;color.c: 364:     color3 = detect_color(m,w);
-[e = _color3 -> ( _detect_color (2 , _m _w `ui ]
+[; ;color.c: 364:     _delay((unsigned long)((50)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 50 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "365
-[; ;color.c: 365:     if (color == color2 && color2 == color3){return color;}
-[e $ ! && == -> _color `ui _color2 == _color2 _color3 2085  ]
-{
-[e ) _color ]
-[e $UE 2084  ]
-}
-[e $U 2086  ]
+[; ;color.c: 365:     color3 = detect_color(m,w);
+[e = _color3 -> ( _detect_color (2 , _m _w `ui ]
 "366
-[; ;color.c: 366:     else {
-[e :U 2085 ]
+[; ;color.c: 366:     if (color == color2 && color2 == color3){return color;}
+[e $ ! && == -> _color `ui _color2 == _color2 _color3 2086  ]
 {
-"367
-[; ;color.c: 367:         color = 0;
-[e = _color -> -> 0 `i `uc ]
-"368
-[; ;color.c: 368:         return color;}
 [e ) _color ]
-[e $UE 2084  ]
+[e $UE 2085  ]
 }
+[e $U 2087  ]
+"367
+[; ;color.c: 367:     else {
 [e :U 2086 ]
+{
+"368
+[; ;color.c: 368:         color = 0;
+[e = _color -> -> 0 `i `uc ]
 "369
-[; ;color.c: 369: }
-[e :UE 2084 ]
+[; ;color.c: 369:         return color;}
+[e ) _color ]
+[e $UE 2085  ]
 }
-"371
-[; ;color.c: 371: unsigned amb_light_measure(struct color_rgb *amb)
-[v _amb_light_measure `(ui ~T0 @X0 1 ef1`*S2016 ]
+[e :U 2087 ]
+"370
+[; ;color.c: 370: }
+[e :UE 2085 ]
+}
 "372
-[; ;color.c: 372: {
+[; ;color.c: 372: unsigned amb_light_measure(struct color_rgb *amb)
+[v _amb_light_measure `(ui ~T0 @X0 1 ef1`*S2016 ]
+"373
+[; ;color.c: 373: {
 {
 [e :U _amb_light_measure ]
-"371
-[; ;color.c: 371: unsigned amb_light_measure(struct color_rgb *amb)
-[v _amb `*S2016 ~T0 @X0 1 r1 ]
 "372
-[; ;color.c: 372: {
-[f ]
+[; ;color.c: 372: unsigned amb_light_measure(struct color_rgb *amb)
+[v _amb `*S2016 ~T0 @X0 1 r1 ]
 "373
-[; ;color.c: 373:     unsigned int CC_amb_1 = 0, CC_amb_2 = 0, CC_amb_3 = 0, CC_amb_ave, upper_bound = 0;
+[; ;color.c: 373: {
+[f ]
+"374
+[; ;color.c: 374:     unsigned int CC_amb_1 = 0, CC_amb_2 = 0, CC_amb_3 = 0, CC_amb_ave, upper_bound = 0;
 [v _CC_amb_1 `ui ~T0 @X0 1 a ]
 [e = _CC_amb_1 -> -> 0 `i `ui ]
 [v _CC_amb_2 `ui ~T0 @X0 1 a ]
@@ -3432,105 +3439,105 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _CC_amb_ave `ui ~T0 @X0 1 a ]
 [v _upper_bound `ui ~T0 @X0 1 a ]
 [e = _upper_bound -> -> 0 `i `ui ]
-"374
-[; ;color.c: 374:     toggle_light(2,2);
-[e ( _toggle_light (2 , -> -> 2 `i `uc -> -> 2 `i `uc ]
 "375
-[; ;color.c: 375:     LED_C();
-[e ( _LED_C ..  ]
-"376
-[; ;color.c: 376:     _delay((unsigned long)((500)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"378
-[; ;color.c: 378:     CC_amb_1 = color_read_Clear();
-[e = _CC_amb_1 ( _color_read_Clear ..  ]
-"379
-[; ;color.c: 379:     _delay((unsigned long)((200)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"381
-[; ;color.c: 381:     CC_amb_2 = color_read_Clear();
-[e = _CC_amb_2 ( _color_read_Clear ..  ]
-"382
-[; ;color.c: 382:     _delay((unsigned long)((200)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"384
-[; ;color.c: 384:     CC_amb_3 = color_read_Clear();
-[e = _CC_amb_3 ( _color_read_Clear ..  ]
-"385
-[; ;color.c: 385:     _delay((unsigned long)((200)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"387
-[; ;color.c: 387:     CC_amb_ave = lroundf((float)(CC_amb_1 + CC_amb_2 + CC_amb_3)/3);
-[e = _CC_amb_ave -> ( _lroundf (1 / -> + + _CC_amb_1 _CC_amb_2 _CC_amb_3 `f -> -> 3 `i `f `ui ]
-"389
-[; ;color.c: 389:     toggle_light(2,2);
+[; ;color.c: 375:     toggle_light(2,2);
 [e ( _toggle_light (2 , -> -> 2 `i `uc -> -> 2 `i `uc ]
-"391
-[; ;color.c: 391:     return CC_amb_ave;
-[e ) _CC_amb_ave ]
-[e $UE 2087  ]
+"376
+[; ;color.c: 376:     LED_C();
+[e ( _LED_C ..  ]
+"377
+[; ;color.c: 377:     _delay((unsigned long)((500)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"379
+[; ;color.c: 379:     CC_amb_1 = color_read_Clear();
+[e = _CC_amb_1 ( _color_read_Clear ..  ]
+"380
+[; ;color.c: 380:     _delay((unsigned long)((200)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"382
+[; ;color.c: 382:     CC_amb_2 = color_read_Clear();
+[e = _CC_amb_2 ( _color_read_Clear ..  ]
+"383
+[; ;color.c: 383:     _delay((unsigned long)((200)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"385
+[; ;color.c: 385:     CC_amb_3 = color_read_Clear();
+[e = _CC_amb_3 ( _color_read_Clear ..  ]
+"386
+[; ;color.c: 386:     _delay((unsigned long)((200)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 200 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+"388
+[; ;color.c: 388:     CC_amb_ave = lroundf((float)(CC_amb_1 + CC_amb_2 + CC_amb_3)/3);
+[e = _CC_amb_ave -> ( _lroundf (1 / -> + + _CC_amb_1 _CC_amb_2 _CC_amb_3 `f -> -> 3 `i `f `ui ]
+"390
+[; ;color.c: 390:     toggle_light(2,2);
+[e ( _toggle_light (2 , -> -> 2 `i `uc -> -> 2 `i `uc ]
 "392
-[; ;color.c: 392: }
-[e :UE 2087 ]
+[; ;color.c: 392:     return CC_amb_ave;
+[e ) _CC_amb_ave ]
+[e $UE 2088  ]
+"393
+[; ;color.c: 393: }
+[e :UE 2088 ]
 }
-"394
-[; ;color.c: 394: unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light)
-[v _distance_measure `(uc ~T0 @X0 1 ef3`*S2015`*S2015`ui ]
 "395
-[; ;color.c: 395: {
+[; ;color.c: 395: unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light)
+[v _distance_measure `(uc ~T0 @X0 1 ef3`*S2015`*S2015`ui ]
+"396
+[; ;color.c: 396: {
 {
 [e :U _distance_measure ]
-"394
-[; ;color.c: 394: unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light)
+"395
+[; ;color.c: 395: unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light)
 [v _mL `*S2015 ~T0 @X0 1 r1 ]
 [v _mR `*S2015 ~T0 @X0 1 r2 ]
 [v _amb_light `ui ~T0 @X0 1 r3 ]
-"395
-[; ;color.c: 395: {
-[f ]
 "396
-[; ;color.c: 396:     unsigned int CC_amb = 0, CG_amb = 0;
+[; ;color.c: 396: {
+[f ]
+"397
+[; ;color.c: 397:     unsigned int CC_amb = 0, CG_amb = 0;
 [v _CC_amb `ui ~T0 @X0 1 a ]
 [e = _CC_amb -> -> 0 `i `ui ]
 [v _CG_amb `ui ~T0 @X0 1 a ]
 [e = _CG_amb -> -> 0 `i `ui ]
-"397
-[; ;color.c: 397:     unsigned char stop = 0;
+"398
+[; ;color.c: 398:     unsigned char stop = 0;
 [v _stop `uc ~T0 @X0 1 a ]
 [e = _stop -> -> 0 `i `uc ]
-"398
-[; ;color.c: 398:     unsigned int threshold = 0;
+"399
+[; ;color.c: 399:     unsigned int threshold = 0;
 [v _threshold `ui ~T0 @X0 1 a ]
 [e = _threshold -> -> 0 `i `ui ]
-"399
-[; ;color.c: 399:     LED_C();
-[e ( _LED_C ..  ]
 "400
-[; ;color.c: 400:     _delay((unsigned long)((100)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+[; ;color.c: 400:     LED_C();
+[e ( _LED_C ..  ]
 "401
-[; ;color.c: 401:     CC_amb = color_read_Clear();
-[e = _CC_amb ( _color_read_Clear ..  ]
+[; ;color.c: 401:     _delay((unsigned long)((100)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "402
-[; ;color.c: 402:     CG_amb = color_read_Green();
-[e = _CG_amb ( _color_read_Green ..  ]
+[; ;color.c: 402:     CC_amb = color_read_Clear();
+[e = _CC_amb ( _color_read_Clear ..  ]
 "403
-[; ;color.c: 403:     threshold = lroundf((float)amb_light * 1.05);
+[; ;color.c: 403:     CG_amb = color_read_Green();
+[e = _CG_amb ( _color_read_Green ..  ]
+"404
+[; ;color.c: 404:     threshold = lroundf((float)amb_light * 1.05);
 [e = _threshold -> ( _lroundf (1 -> * -> -> _amb_light `f `d .1.05 `f `ui ]
-"406
-[; ;color.c: 406:     if (CC_amb >= threshold){stop = 1;}
-[e $ ! >= _CC_amb _threshold 2089  ]
+"407
+[; ;color.c: 407:     if (CC_amb >= threshold){stop = 1;}
+[e $ ! >= _CC_amb _threshold 2090  ]
 {
 [e = _stop -> -> 1 `i `uc ]
 }
-[e :U 2089 ]
-"407
-[; ;color.c: 407:     return stop;
-[e ) _stop ]
-[e $UE 2088  ]
+[e :U 2090 ]
 "408
-[; ;color.c: 408: }
-[e :UE 2088 ]
+[; ;color.c: 408:     return stop;
+[e ) _stop ]
+[e $UE 2089  ]
+"409
+[; ;color.c: 409: }
+[e :UE 2089 ]
 }
 [p f _sprintf 8388736 ]
 [a 1C 37 100 9 37 100 9 37 100 9 37 100 13 10 0 ]

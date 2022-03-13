@@ -20,10 +20,6 @@ void Interrupts_init(void)
 
 void __interrupt(high_priority) HighISR()
 {
-}
-
-void __interrupt(low_priority) LowISR()
-{
     if(PIR0bits.TMR0IF){       
         second ++;                  // when overflow occurs, 1 second passes
         PIR0bits.TMR0IF = 0;             // clear the flag

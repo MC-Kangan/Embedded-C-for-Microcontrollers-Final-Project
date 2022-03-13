@@ -16,15 +16,12 @@ void short_burst(struct DC_motor *mL, struct DC_motor *mR)
 }
 
 void action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR)
-{   T0CON0bits.T0EN=1;	//start the timer
-    start_move = second;
+{   //T0CON0bits.T0EN=1;	//start the timer
+    
     //fullSpeedAhead(mL,mR);
     if (color != 0){
-        T0CON0bits.T0EN=0;//stop the timer
-        stop_move = second;
-        memory[array_index] = (start_move-stop_move);
-        array_index++;
-        stop(mL,mR);
+        //T0CON0bits.T0EN=0;//stop the timer
+        
         if (color == 1){            //Red
             short_reverse(mL,mR);   //Reverse moving for a small distance to leave space for turning
             turnRight(mL,mR,90);    //Turn Right 90 degrees
@@ -68,8 +65,10 @@ void action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR)
             array_index++;
         }
         if (color == 8){            //white
+            toggle_light(2,1);
+            turnRight(mL,mR,180);
             short_reverse(mL,mR);   //Reverse moving for a small distance to leave space for turning
-            goback(mL,mR);          //Go back to origin
+            //goback(mL,mR);          //Go back to origin
         }
     }
 }
@@ -111,7 +110,7 @@ void pin_init(void)
 }
 
 void goback(struct DC_motor *mL, struct DC_motor *mR)
-{   turnLeft(mL,mR,180);
+{   turnRight(mL,mR,180);
     while(array_index > 0){ 
         fullSpeedAhead(mL,mR);
         for (unsigned int i=0; i<memory[array_index]; i++) {__delay_ms(1000);}

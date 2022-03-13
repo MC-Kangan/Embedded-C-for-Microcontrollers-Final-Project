@@ -25,13 +25,15 @@
 unsigned char color = 0;  
 
 void main(void){
-    Interrupts_init();
-    Timer0_init();
+    
+    
     I2C_2_Master_Init();
     color_click_init();
     initDCmotorsPWM(199);
     buggylight_init();
     initUSART4();
+    Timer0_init();
+    Interrupts_init();
     
     struct color_rgb rgb, amb;
     struct white_card white;
@@ -59,10 +61,17 @@ void main(void){
         if (TEST == 0){
             //read_color(&rgb);
             //color_display(&rgb);
+            T0CON0bits.T0EN=1;	//start the timer
+            start_move = second;
             while (stop_signal == 0){
                 fullSpeedAhead(&motorL, &motorR);
                 stop_signal = distance_measure(&motorL, &motorR, amb_light);
             }
+            T0CON0bits.T0EN=0;  //stop the timer
+            stop_move = second;
+            memory[array_index] = (start_move-stop_move);
+            array_index++;
+            
             stop(&motorL, &motorR);
             __delay_ms(1000);
             color = detect_color(&rgb, &white);

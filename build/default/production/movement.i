@@ -24570,12 +24570,10 @@ void short_burst(struct DC_motor *mL, struct DC_motor *mR)
 void action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR)
 {
 
+
     if (color != 0){
-        T0CON0bits.T0EN=0;
-        stop_move = second;
-        memory[array_index] = (start_move-stop_move);
-        array_index++;
-        stop(mL,mR);
+
+
         if (color == 1){
             short_reverse(mL,mR);
             turnRight(mL,mR,90);
@@ -24619,8 +24617,10 @@ void action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR)
             array_index++;
         }
         if (color == 8){
+            toggle_light(2,1);
+            turnRight(mL,mR,180);
             short_reverse(mL,mR);
-            goback(mL,mR);
+
         }
     }
 }
@@ -24662,7 +24662,7 @@ void pin_init(void)
 }
 
 void goback(struct DC_motor *mL, struct DC_motor *mR)
-{ turnLeft(mL,mR,180);
+{ turnRight(mL,mR,180);
     while(array_index > 0){
         fullSpeedAhead(mL,mR);
         for (unsigned int i=0; i<memory[array_index]; i++) {_delay((unsigned long)((1000)*(64000000/4000.0)));}

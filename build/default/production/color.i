@@ -25306,6 +25306,7 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
     if (compare(95, BR, 105) && compare(95,BG,105) && compare(95,BB,105)){color = 8;}
     if (compare(0, BR, 25) && compare(0,RR,90)){color = 0;}
 
+    if (color == 8) {toggle_light(2,1);}
 
     return color;
 }

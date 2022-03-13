@@ -24629,13 +24629,15 @@ char *tempnam(const char *, const char *);
 unsigned char color = 0;
 
 void main(void){
-    Interrupts_init();
-    Timer0_init();
+
+
     I2C_2_Master_Init();
     color_click_init();
     initDCmotorsPWM(199);
     buggylight_init();
     initUSART4();
+    Timer0_init();
+    Interrupts_init();
 
     struct color_rgb rgb, amb;
     struct white_card white;
@@ -24669,6 +24671,11 @@ void main(void){
                 fullSpeedAhead(&motorL, &motorR);
                 stop_signal = distance_measure(&motorL, &motorR, amb_light);
             }
+            T0CON0bits.T0EN=0;
+            stop_move = second;
+            memory[array_index] = (start_move-stop_move);
+            array_index++;
+
             stop(&motorL, &motorR);
             _delay((unsigned long)((1000)*(64000000/4000.0)));
             color = detect_color(&rgb, &white);

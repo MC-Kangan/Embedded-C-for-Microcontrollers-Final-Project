@@ -24293,10 +24293,6 @@ void Interrupts_init(void)
 
 void __attribute__((picinterrupt(("high_priority")))) HighISR()
 {
-}
-
-void __attribute__((picinterrupt(("low_priority")))) LowISR()
-{
     if(PIR0bits.TMR0IF){
         second ++;
         PIR0bits.TMR0IF = 0;

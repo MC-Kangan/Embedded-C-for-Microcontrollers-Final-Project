@@ -13,22 +13,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "30 ./dc_motor.h
 [; ;./dc_motor.h: 30: void stop(struct DC_motor *mL, struct DC_motor *mR);
 [v _stop `(v ~T0 @X0 0 ef2`*S2017`*S2017 ]
-"39587 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 39587:     struct {
-[s S1922 :4 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1922 . T0OUTPS T016BIT T0OUT . T0EN ]
-"39594
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 39594:     struct {
-[s S1923 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1923 . T0OUTPS0 T0OUTPS1 T0OUTPS2 T0OUTPS3 ]
-"39586
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 39586: typedef union {
-[u S1921 `S1922 1 `S1923 1 ]
-[n S1921 . . . ]
-"39601
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 39601: extern volatile T0CON0bits_t T0CON0bits __attribute__((address(0xFD5)));
-[v _T0CON0bits `VS1921 ~T0 @X0 0 e@4053 ]
-"36 ./dc_motor.h
+"36
 [; ;./dc_motor.h: 36: void short_reverse(struct DC_motor *mL, struct DC_motor *mR);
 [v _short_reverse `(v ~T0 @X0 0 ef2`*S2017`*S2017 ]
 "32
@@ -40,9 +25,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "37
 [; ;./dc_motor.h: 37: void reverse_square(struct DC_motor *mL, struct DC_motor *mR);
 [v _reverse_square `(v ~T0 @X0 0 ef2`*S2017`*S2017 ]
-"17 ./movement.h
-[; ;./movement.h: 17: void goback(struct DC_motor *mL, struct DC_motor *mR);
-[v _goback `(v ~T0 @X0 0 ef2`*S2017`*S2017 ]
+"36 ./color.h
+[; ;./color.h: 36: void toggle_light(unsigned char lightnumber, unsigned char toggletime);
+[v _toggle_light `(v ~T0 @X0 0 ef2`uc`uc ]
 "34 ./dc_motor.h
 [; ;./dc_motor.h: 34: void fullSpeedAhead_test(struct DC_motor *mL, struct DC_motor *mR);
 [v _fullSpeedAhead_test `(v ~T0 @X0 0 ef2`*S2017`*S2017 ]
@@ -2291,175 +2276,163 @@ Version 4.0 HI-TECH Software Intermediate Code
 "19
 [; ;movement.c: 19: {
 [f ]
-"21
-[; ;movement.c: 21:     if (color != 0){
+"22
+[; ;movement.c: 22:     if (color != 0){
 [e $ ! != -> _color `i -> 0 `i 2022  ]
 {
-"22
-[; ;movement.c: 22:         T0CON0bits.T0EN=0;
-[e = . . _T0CON0bits 0 4 -> -> 0 `i `uc ]
-"23
-[; ;movement.c: 23:         stop_move = second;
-[e = _stop_move _second ]
-"24
-[; ;movement.c: 24:         memory[array_index] = (start_move-stop_move);
-[e = *U + &U _memory * -> _array_index `ux -> -> # *U &U _memory `ui `ux - _start_move _stop_move ]
 "25
-[; ;movement.c: 25:         array_index++;
-[e ++ _array_index -> -> 1 `i `uc ]
-"26
-[; ;movement.c: 26:         stop(mL,mR);
-[e ( _stop (2 , _mL _mR ]
-"27
-[; ;movement.c: 27:         if (color == 1){
+[; ;movement.c: 25:         if (color == 1){
 [e $ ! == -> _color `i -> 1 `i 2023  ]
 {
-"28
-[; ;movement.c: 28:             short_reverse(mL,mR);
+"26
+[; ;movement.c: 26:             short_reverse(mL,mR);
 [e ( _short_reverse (2 , _mL _mR ]
-"29
-[; ;movement.c: 29:             turnRight(mL,mR,90);
+"27
+[; ;movement.c: 27:             turnRight(mL,mR,90);
 [e ( _turnRight (3 , , _mL _mR -> -> 90 `i `uc ]
-"30
-[; ;movement.c: 30:             memory[array_index] = 1;
+"28
+[; ;movement.c: 28:             memory[array_index] = 1;
 [e = *U + &U _memory * -> _array_index `ux -> -> # *U &U _memory `ui `ux -> -> 1 `i `ui ]
-"31
-[; ;movement.c: 31:             array_index++;
+"29
+[; ;movement.c: 29:             array_index++;
 [e ++ _array_index -> -> 1 `i `uc ]
-"32
-[; ;movement.c: 32:         }
+"30
+[; ;movement.c: 30:         }
 }
 [e :U 2023 ]
-"33
-[; ;movement.c: 33:         if (color == 2){
+"31
+[; ;movement.c: 31:         if (color == 2){
 [e $ ! == -> _color `i -> 2 `i 2024  ]
 {
-"34
-[; ;movement.c: 34:             short_reverse(mL,mR);
+"32
+[; ;movement.c: 32:             short_reverse(mL,mR);
 [e ( _short_reverse (2 , _mL _mR ]
-"35
-[; ;movement.c: 35:             turnLeft(mL,mR,90);
+"33
+[; ;movement.c: 33:             turnLeft(mL,mR,90);
 [e ( _turnLeft (3 , , _mL _mR -> -> 90 `i `uc ]
-"36
-[; ;movement.c: 36:             memory[array_index] = 2;
+"34
+[; ;movement.c: 34:             memory[array_index] = 2;
 [e = *U + &U _memory * -> _array_index `ux -> -> # *U &U _memory `ui `ux -> -> 2 `i `ui ]
-"37
-[; ;movement.c: 37:             array_index++;
+"35
+[; ;movement.c: 35:             array_index++;
 [e ++ _array_index -> -> 1 `i `uc ]
-"38
-[; ;movement.c: 38:         }
+"36
+[; ;movement.c: 36:         }
 }
 [e :U 2024 ]
-"39
-[; ;movement.c: 39:         if (color == 3){
+"37
+[; ;movement.c: 37:         if (color == 3){
 [e $ ! == -> _color `i -> 3 `i 2025  ]
 {
-"40
-[; ;movement.c: 40:             short_reverse(mL,mR);
+"38
+[; ;movement.c: 38:             short_reverse(mL,mR);
 [e ( _short_reverse (2 , _mL _mR ]
-"41
-[; ;movement.c: 41:             turnLeft(mL,mR,180);
+"39
+[; ;movement.c: 39:             turnLeft(mL,mR,180);
 [e ( _turnLeft (3 , , _mL _mR -> -> 180 `i `uc ]
-"42
-[; ;movement.c: 42:             memory[array_index] = 3;
+"40
+[; ;movement.c: 40:             memory[array_index] = 3;
 [e = *U + &U _memory * -> _array_index `ux -> -> # *U &U _memory `ui `ux -> -> 3 `i `ui ]
-"43
-[; ;movement.c: 43:             array_index++;
+"41
+[; ;movement.c: 41:             array_index++;
 [e ++ _array_index -> -> 1 `i `uc ]
-"44
-[; ;movement.c: 44:         }
+"42
+[; ;movement.c: 42:         }
 }
 [e :U 2025 ]
-"45
-[; ;movement.c: 45:         if (color == 4){
+"43
+[; ;movement.c: 43:         if (color == 4){
 [e $ ! == -> _color `i -> 4 `i 2026  ]
 {
-"46
-[; ;movement.c: 46:             reverse_square(mL,mR);
+"44
+[; ;movement.c: 44:             reverse_square(mL,mR);
 [e ( _reverse_square (2 , _mL _mR ]
-"47
-[; ;movement.c: 47:             turnRight(mL,mR,90);
+"45
+[; ;movement.c: 45:             turnRight(mL,mR,90);
 [e ( _turnRight (3 , , _mL _mR -> -> 90 `i `uc ]
-"48
-[; ;movement.c: 48:             memory[array_index] = 4;
+"46
+[; ;movement.c: 46:             memory[array_index] = 4;
 [e = *U + &U _memory * -> _array_index `ux -> -> # *U &U _memory `ui `ux -> -> 4 `i `ui ]
-"49
-[; ;movement.c: 49:             array_index++;
+"47
+[; ;movement.c: 47:             array_index++;
 [e ++ _array_index -> -> 1 `i `uc ]
-"50
-[; ;movement.c: 50:         }
+"48
+[; ;movement.c: 48:         }
 }
 [e :U 2026 ]
-"51
-[; ;movement.c: 51:         if (color == 5){
+"49
+[; ;movement.c: 49:         if (color == 5){
 [e $ ! == -> _color `i -> 5 `i 2027  ]
 {
-"52
-[; ;movement.c: 52:             reverse_square(mL,mR);
+"50
+[; ;movement.c: 50:             reverse_square(mL,mR);
 [e ( _reverse_square (2 , _mL _mR ]
-"53
-[; ;movement.c: 53:             turnLeft(mL,mR,90);
+"51
+[; ;movement.c: 51:             turnLeft(mL,mR,90);
 [e ( _turnLeft (3 , , _mL _mR -> -> 90 `i `uc ]
-"54
-[; ;movement.c: 54:             memory[array_index] = 5;
+"52
+[; ;movement.c: 52:             memory[array_index] = 5;
 [e = *U + &U _memory * -> _array_index `ux -> -> # *U &U _memory `ui `ux -> -> 5 `i `ui ]
-"55
-[; ;movement.c: 55:             array_index++;
+"53
+[; ;movement.c: 53:             array_index++;
 [e ++ _array_index -> -> 1 `i `uc ]
-"56
-[; ;movement.c: 56:         }
+"54
+[; ;movement.c: 54:         }
 }
 [e :U 2027 ]
-"57
-[; ;movement.c: 57:         if (color == 6){
+"55
+[; ;movement.c: 55:         if (color == 6){
 [e $ ! == -> _color `i -> 6 `i 2028  ]
 {
-"58
-[; ;movement.c: 58:             short_reverse(mL,mR);
+"56
+[; ;movement.c: 56:             short_reverse(mL,mR);
 [e ( _short_reverse (2 , _mL _mR ]
-"59
-[; ;movement.c: 59:             turnRight(mL,mR,135);
+"57
+[; ;movement.c: 57:             turnRight(mL,mR,135);
 [e ( _turnRight (3 , , _mL _mR -> -> 135 `i `uc ]
-"60
-[; ;movement.c: 60:             memory[array_index] = 6;
+"58
+[; ;movement.c: 58:             memory[array_index] = 6;
 [e = *U + &U _memory * -> _array_index `ux -> -> # *U &U _memory `ui `ux -> -> 6 `i `ui ]
-"61
-[; ;movement.c: 61:             array_index++;
+"59
+[; ;movement.c: 59:             array_index++;
 [e ++ _array_index -> -> 1 `i `uc ]
-"62
-[; ;movement.c: 62:         }
+"60
+[; ;movement.c: 60:         }
 }
 [e :U 2028 ]
-"63
-[; ;movement.c: 63:         if (color == 7){
+"61
+[; ;movement.c: 61:         if (color == 7){
 [e $ ! == -> _color `i -> 7 `i 2029  ]
 {
-"64
-[; ;movement.c: 64:             short_reverse(mL,mR);
+"62
+[; ;movement.c: 62:             short_reverse(mL,mR);
 [e ( _short_reverse (2 , _mL _mR ]
-"65
-[; ;movement.c: 65:             turnLeft(mL,mR,135);
+"63
+[; ;movement.c: 63:             turnLeft(mL,mR,135);
 [e ( _turnLeft (3 , , _mL _mR -> -> 135 `i `uc ]
-"66
-[; ;movement.c: 66:             memory[array_index] = 7;
+"64
+[; ;movement.c: 64:             memory[array_index] = 7;
 [e = *U + &U _memory * -> _array_index `ux -> -> # *U &U _memory `ui `ux -> -> 7 `i `ui ]
-"67
-[; ;movement.c: 67:             array_index++;
+"65
+[; ;movement.c: 65:             array_index++;
 [e ++ _array_index -> -> 1 `i `uc ]
-"68
-[; ;movement.c: 68:         }
+"66
+[; ;movement.c: 66:         }
 }
 [e :U 2029 ]
-"69
-[; ;movement.c: 69:         if (color == 8){
+"67
+[; ;movement.c: 67:         if (color == 8){
 [e $ ! == -> _color `i -> 8 `i 2030  ]
 {
+"68
+[; ;movement.c: 68:             toggle_light(2,1);
+[e ( _toggle_light (2 , -> -> 2 `i `uc -> -> 1 `i `uc ]
+"69
+[; ;movement.c: 69:             turnRight(mL,mR,180);
+[e ( _turnRight (3 , , _mL _mR -> -> 180 `i `uc ]
 "70
 [; ;movement.c: 70:             short_reverse(mL,mR);
 [e ( _short_reverse (2 , _mL _mR ]
-"71
-[; ;movement.c: 71:             goback(mL,mR);
-[e ( _goback (2 , _mL _mR ]
 "72
 [; ;movement.c: 72:         }
 }
@@ -2577,7 +2550,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;movement.c: 112: void goback(struct DC_motor *mL, struct DC_motor *mR)
 [v _goback `(v ~T0 @X0 1 ef2`*S2017`*S2017 ]
 "113
-[; ;movement.c: 113: { turnLeft(mL,mR,180);
+[; ;movement.c: 113: { turnRight(mL,mR,180);
 {
 [e :U _goback ]
 "112
@@ -2585,9 +2558,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _mL `*S2017 ~T0 @X0 1 r1 ]
 [v _mR `*S2017 ~T0 @X0 1 r2 ]
 "113
-[; ;movement.c: 113: { turnLeft(mL,mR,180);
+[; ;movement.c: 113: { turnRight(mL,mR,180);
 [f ]
-[e ( _turnLeft (3 , , _mL _mR -> -> 180 `i `uc ]
+[e ( _turnRight (3 , , _mL _mR -> -> 180 `i `uc ]
 "114
 [; ;movement.c: 114:     while(array_index > 0){
 [e $U 2034  ]
