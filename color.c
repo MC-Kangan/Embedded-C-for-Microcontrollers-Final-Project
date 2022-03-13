@@ -271,7 +271,7 @@ void calibrate_white(struct white_card *w)
     __delay_ms(100);
     
     LED_B(); // Turn on blue light 
-    w->BR = color_read_Red(); w->BG = color_read_Green(); w->BB = color_read_Blue(); 
+    w->BR = color_read_Red(); w->BG = color_read_Green(); w->BB = color_read_Blue(); w->BC = color_read_Clear(); 
     __delay_ms(100);
     
     LED_C(); // Turn on white light
@@ -288,7 +288,7 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
 {
     // Color code:
     // 1: red; 2: green; 3: blue; 4: yellow; 5:pink; 6:orange; 7:light blue; 8:white; 0: black
-    unsigned int RR = 0, RG = 0, RB = 0, GR = 0, GG = 0, GB = 0, BR = 0, BG = 0, BB = 0; //GR_REAL = 0, GC_REAL = 0, BC = 0;
+    unsigned int RR = 0, RG = 0, RB = 0, GR = 0, GG = 0, GB = 0, BR = 0, BG = 0, BB = 0, BC = 0; //GR_REAL = 0, GC_REAL = 0, BC = 0;
     unsigned char color = 0;   
             
     LED_R(); // Turn on red light 
@@ -308,15 +308,16 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
     LED_B(); // Turn on blue light
     read_color(m); 
     BR = lround((float)(m->R)/(w->BR)*100); BG = lround((float)(m->G)/(w->BG)*100); BB = lround((float)(m->B)/(w->BB)*100);
+    BC = lround((float)(m->C)/(w->BC)*100);
     __delay_ms(50);
     
     
-    if (compare(0, BR, 70)){ // if BR < 55
+    if (compare(0, BR, 70)){ // if BR < 70
         // if (compare(0, (float)(GG + BG)/BB * 200, 414)){color = 3;}// if (GG+BG)/BB*2 < 391 //Blue
-         if (compare(0, lround((float)(GG + BG)/BB * 200), 414)){color = 3;}// if (GG+BG)/BB*2 < 391 //Blue
+         if (compare(0, lround((float)(GG + BG)/BB * 200), 411)){color = 3;}// if (GG+BG)/BB*2 < 391 //Blue
         else{color = 2;} // if (GG+BG)/BB*2 > 391 //Green
     }
-    else{ // if BR > 55
+    else{ // if BR > 70
         if (compare(0, BG, 75)){ // if RG < 75
             //if (compare(0, (float)RR/RG * 500, 670)){ // if RR/BG * 2 < 313
             if (compare(0, lround((float)RR/RG * 500), 670)){ // if RR/BG * 2 < 313
@@ -326,21 +327,18 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
             else {color = 1;} // if RR/BG*2 >= 313
         }
         else{ // if RG >= 75
-            if (compare(0, BR, 90)){
+            if (compare(0, lround((float)(BR + BG)/BB * 100), 100)){
                 if (BG > 90){color = 7;} // if BR < 85
                 else {color = 0;}
             }
             else{// if BR > = 85
-                if (BG < BB){color = 5;} // if BG < BB
-                else{
-                    if (compare(0, BB, 90)){color = 4;}
-                    else{color = 0;}
-                }
+                if (BG > BB && lround((float)BB / BC * 100) < 90){color = 4;} // if BG < BB
+                else{color = 5;}
             }
         }
     }
     // Group 0 (black and white)
-    if (compare(90, BR, 110) && compare(95,BG,105) && compare(95,BB,105)){color = 8;}
+    if (compare(90, BR, 110) && compare(90,BG,110)){color = 8;}
     if (compare(0, BR, 25) && compare(0,RR,90)){color = 0;}
     
     if (color == 8) {toggle_light(2,1);}

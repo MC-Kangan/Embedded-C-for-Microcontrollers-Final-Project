@@ -7,6 +7,5 @@
 
 void Interrupts_init(void);
 void __interrupt(high_priority) HighISR();
-void __interrupt(low_priority) LowISR();
 
 #endif

@@ -30,7 +30,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 4558: extern volatile PIE0bits_t PIE0bits __attribute__((address(0xE29)));
 [v _PIE0bits `VS261 ~T0 @X0 0 e@3625 ]
 [t ~ __interrupt . k ]
-[t T3 __interrupt high_priority ]
+[t T2 __interrupt high_priority ]
 "5094
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 5094:     struct {
 [s S286 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -2056,7 +2056,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v $root$_HighISR `(v ~T0 @X0 0 e ]
 "21
 [; ;interrupts.c: 21: void __attribute__((picinterrupt(("high_priority")))) HighISR()
-[v _HighISR `(v ~T3 @X0 1 ef ]
+[v _HighISR `(v ~T2 @X0 1 ef ]
 "22
 [; ;interrupts.c: 22: {
 {

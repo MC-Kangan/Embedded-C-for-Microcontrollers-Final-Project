@@ -24241,7 +24241,6 @@ unsigned char __t3rd16on(void);
 
 void Interrupts_init(void);
 void __attribute__((picinterrupt(("high_priority")))) HighISR();
-void __attribute__((picinterrupt(("low_priority")))) LowISR();
 # 2 "interrupts.c" 2
 
 # 1 "./movement.h" 1

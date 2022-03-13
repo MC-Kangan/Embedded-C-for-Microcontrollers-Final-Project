@@ -24238,7 +24238,7 @@ unsigned char __t3rd16on(void);
 # 7 "test_and_calibration.c" 2
 
 # 1 "./dc_motor.h" 1
-# 11 "./dc_motor.h"
+# 13 "./dc_motor.h"
 unsigned char CALIBRATION_135 = 10;
 unsigned char CALIBRATION_180 = 20;
 
@@ -24465,14 +24465,7 @@ void goback(struct DC_motor *mL, struct DC_motor *mR);
 # 1 "./test_and_calibration.h" 1
 # 13 "./test_and_calibration.h"
 # 1 "./color.h" 1
-
-
-
-
-
-
-
-
+# 10 "./color.h"
 struct color_rgb {
     unsigned int R ;
     unsigned int G ;
@@ -24495,6 +24488,7 @@ struct white_card {
     unsigned int CG ;
     unsigned int CB ;
     unsigned int CC ;
+    unsigned int BC;
 
 };
 
@@ -24582,7 +24576,8 @@ void test_function(unsigned char test_code, struct color_rgb *m, struct white_ca
 
         if (test_code == 2){
             color = detect_color(m,w);
-            color_predict(color);
+
+
         }
 
         if (test_code == 3){

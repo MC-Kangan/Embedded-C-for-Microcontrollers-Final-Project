@@ -1,6 +1,6 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"16 ./dc_motor.h
-[; ;./dc_motor.h: 16: struct DC_motor {
+"18 ./dc_motor.h
+[; ;./dc_motor.h: 18: struct DC_motor {
 [s S2015 `uc 1 `uc 1 `*uc 1 `*uc 1 `uc 1 `i 1 `uc 1 ]
 [n S2015 DC_motor power direction dutyHighByte dir_LAT dir_pin PWMperiod voltage ]
 "29829 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h
@@ -2179,20 +2179,20 @@ Version 4.0 HI-TECH Software Intermediate Code
 "40928
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 40928: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"11 ./dc_motor.h
-[; ;./dc_motor.h: 11: unsigned char CALIBRATION_135 = 10;
+"13 ./dc_motor.h
+[; ;./dc_motor.h: 13: unsigned char CALIBRATION_135 = 10;
 [v _CALIBRATION_135 `uc ~T0 @X0 1 e ]
 [i _CALIBRATION_135
 -> -> 10 `i `uc
 ]
-"12
-[; ;./dc_motor.h: 12: unsigned char CALIBRATION_180 = 20;
+"14
+[; ;./dc_motor.h: 14: unsigned char CALIBRATION_180 = 20;
 [v _CALIBRATION_180 `uc ~T0 @X0 1 e ]
 [i _CALIBRATION_180
 -> -> 20 `i `uc
 ]
-"14
-[; ;./dc_motor.h: 14: unsigned char SENSITIVITY = 10;
+"16
+[; ;./dc_motor.h: 16: unsigned char SENSITIVITY = 10;
 [v _SENSITIVITY `uc ~T0 @X0 1 e ]
 [i _SENSITIVITY
 -> -> 10 `i `uc

@@ -2,6 +2,8 @@
 #define _DC_MOTOR_H
 
 #include <xc.h>
+//#include "test_and_calibration.h"
+//#include "color.h"
 
 #define _XTAL_FREQ 64000000
 #define TURNING_POWER_L 25 // This number needs to be adjusted according to different floor condition

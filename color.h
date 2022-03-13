@@ -2,7 +2,8 @@
 #define _color_H
 
 #include <xc.h>
-#include "dc_motor.h"
+//#include "dc_motor.h"
+//#include "test_and_calibration.h"
 
 #define _XTAL_FREQ 64000000 //note intrinsic _delay function is 62.5ns at 64,000,000Hz  
 
@@ -28,6 +29,7 @@ struct white_card { //definition of white_card structure
     unsigned int CG ;         //Green color reading when white light on
     unsigned int CB ;         //Blue color reading when white light on
     unsigned int CC ;         //White color reading when white light on
+    unsigned int BC;          //White color reading when blue light on
     
 };
 

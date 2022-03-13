@@ -24241,7 +24241,7 @@ unsigned char __t3rd16on(void);
 # 9 "main.c" 2
 
 # 1 "./dc_motor.h" 1
-# 11 "./dc_motor.h"
+# 13 "./dc_motor.h"
 unsigned char CALIBRATION_135 = 10;
 unsigned char CALIBRATION_180 = 20;
 
@@ -24302,14 +24302,7 @@ void sendTxBuf(void);
 # 11 "main.c" 2
 
 # 1 "./color.h" 1
-
-
-
-
-
-
-
-
+# 10 "./color.h"
 struct color_rgb {
     unsigned int R ;
     unsigned int G ;
@@ -24332,6 +24325,7 @@ struct white_card {
     unsigned int CG ;
     unsigned int CB ;
     unsigned int CC ;
+    unsigned int BC;
 
 };
 
@@ -24452,7 +24446,6 @@ void goback(struct DC_motor *mL, struct DC_motor *mR);
 
 void Interrupts_init(void);
 void __attribute__((picinterrupt(("high_priority")))) HighISR();
-void __attribute__((picinterrupt(("low_priority")))) LowISR();
 # 15 "main.c" 2
 
 # 1 "./timers.h" 1
