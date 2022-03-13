@@ -27,8 +27,8 @@
       <itemPath>interrupts.h</itemPath>
       <itemPath>timers.c</itemPath>
       <itemPath>timers.h</itemPath>
-      <itemPath>test_and_calibration.h</itemPath>
       <itemPath>test_and_calibration.c</itemPath>
+      <itemPath>test_and_calibration.h</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

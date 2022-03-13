@@ -48,6 +48,21 @@ Version 4.0 HI-TECH Software Intermediate Code
 "18 ./test_and_calibration.h
 [; ;./test_and_calibration.h: 18: void test_function(unsigned char test_code, struct color_rgb *m, struct white_card *w, struct DC_motor *mL, struct DC_motor *mR);
 [v _test_function `(v ~T0 @X0 0 ef5`uc`*S2016`*S2017`*S2015`*S2015 ]
+"39587 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 39587:     struct {
+[s S1922 :4 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1922 . T0OUTPS T016BIT T0OUT . T0EN ]
+"39594
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 39594:     struct {
+[s S1923 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S1923 . T0OUTPS0 T0OUTPS1 T0OUTPS2 T0OUTPS3 ]
+"39586
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 39586: typedef union {
+[u S1921 `S1922 1 `S1923 1 ]
+[n S1921 . . . ]
+"39601
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 39601: extern volatile T0CON0bits_t T0CON0bits __attribute__((address(0xFD5)));
+[v _T0CON0bits `VS1921 ~T0 @X0 0 e@4053 ]
 "33 ./dc_motor.h
 [; ;./dc_motor.h: 33: void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
 [v _fullSpeedAhead `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
@@ -2181,8 +2196,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _amb_light `ui ~T0 @X0 1 a ]
 [e = _amb_light -> -> 0 `i `ui ]
 "49
-[; ;main.c: 49:     if (1 == 0){
-[e $ ! == -> 1 `i -> 0 `i 2021  ]
+[; ;main.c: 49:     if (0 == 0){
+[e $ ! == -> 0 `i -> 0 `i 2021  ]
 {
 "50
 [; ;main.c: 50:         calibrate_white(&white);
@@ -2199,8 +2214,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 2023 ]
 {
 "56
-[; ;main.c: 56:   if (1 == 1){
-[e $ ! == -> 1 `i -> 1 `i 2025  ]
+[; ;main.c: 56:   if (0 == 1){
+[e $ ! == -> 0 `i -> 1 `i 2025  ]
 {
 "57
 [; ;main.c: 57:             test_function(2, &rgb, &white, &motorL, &motorR);
@@ -2210,60 +2225,66 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e :U 2025 ]
 "59
-[; ;main.c: 59:         if (1 == 0){
-[e $ ! == -> 1 `i -> 0 `i 2026  ]
+[; ;main.c: 59:         if (0 == 0){
+[e $ ! == -> 0 `i -> 0 `i 2026  ]
 {
 "62
-[; ;main.c: 62:             while (stop_signal == 0){
+[; ;main.c: 62:             T0CON0bits.T0EN=1;
+[e = . . _T0CON0bits 0 4 -> -> 1 `i `uc ]
+"63
+[; ;main.c: 63:             start_move = second;
+[e = _start_move _second ]
+"64
+[; ;main.c: 64:             while (stop_signal == 0){
 [e $U 2027  ]
 [e :U 2028 ]
 {
-"63
-[; ;main.c: 63:                 fullSpeedAhead(&motorL, &motorR);
-[e ( _fullSpeedAhead (2 , &U _motorL &U _motorR ]
-"64
-[; ;main.c: 64:                 stop_signal = distance_measure(&motorL, &motorR, amb_light);
-[e = _stop_signal ( _distance_measure (3 , , &U _motorL &U _motorR _amb_light ]
 "65
-[; ;main.c: 65:             }
+[; ;main.c: 65:                 fullSpeedAhead(&motorL, &motorR);
+[e ( _fullSpeedAhead (2 , &U _motorL &U _motorR ]
+"66
+[; ;main.c: 66:                 stop_signal = distance_measure(&motorL, &motorR, amb_light);
+[e = _stop_signal ( _distance_measure (3 , , &U _motorL &U _motorR _amb_light ]
+"67
+[; ;main.c: 67:             }
 }
 [e :U 2027 ]
-"62
-[; ;main.c: 62:             while (stop_signal == 0){
+"64
+[; ;main.c: 64:             while (stop_signal == 0){
 [e $ == -> _stop_signal `i -> 0 `i 2028  ]
 [e :U 2029 ]
-"66
-[; ;main.c: 66:             stop(&motorL, &motorR);
-[e ( _stop (2 , &U _motorL &U _motorR ]
-"67
-[; ;main.c: 67:             _delay((unsigned long)((1000)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "68
-[; ;main.c: 68:             color = detect_color(&rgb, &white);
-[e = _color ( _detect_color (2 , &U _rgb &U _white ]
+[; ;main.c: 68:             stop(&motorL, &motorR);
+[e ( _stop (2 , &U _motorL &U _motorR ]
 "69
-[; ;main.c: 69:             color = verify_color(color, &rgb, &white);
-[e = _color ( _verify_color (3 , , _color &U _rgb &U _white ]
+[; ;main.c: 69:             _delay((unsigned long)((1000)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "70
-[; ;main.c: 70:             action(color, &motorL, &motorR);
-[e ( _action (3 , , _color &U _motorL &U _motorR ]
+[; ;main.c: 70:             color = detect_color(&rgb, &white);
+[e = _color ( _detect_color (2 , &U _rgb &U _white ]
 "71
-[; ;main.c: 71:             color = 0;
-[e = _color -> -> 0 `i `uc ]
+[; ;main.c: 71:             color = verify_color(color, &rgb, &white);
+[e = _color ( _verify_color (3 , , _color &U _rgb &U _white ]
 "72
-[; ;main.c: 72:             stop_signal = 0;
-[e = _stop_signal -> -> 0 `i `uc ]
+[; ;main.c: 72:             action(color, &motorL, &motorR);
+[e ( _action (3 , , _color &U _motorL &U _motorR ]
 "73
-[; ;main.c: 73:         }
+[; ;main.c: 73:             color = 0;
+[e = _color -> -> 0 `i `uc ]
+"74
+[; ;main.c: 74:             stop_signal = 0;
+[e = _stop_signal -> -> 0 `i `uc ]
+"75
+[; ;main.c: 75:         }
 }
 [e :U 2026 ]
-"74
-[; ;main.c: 74:     }
+"76
+[; ;main.c: 76:     }
 }
 [e :U 2022 ]
 [e $U 2023  ]
 [e :U 2024 ]
-"75
-[; ;main.c: 75: }
+"77
+[; ;main.c: 77: }
 [e :UE 2020 ]
 }

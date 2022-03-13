@@ -24568,8 +24568,7 @@ void short_burst(struct DC_motor *mL, struct DC_motor *mR)
 }
 
 void action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR)
-{ T0CON0bits.T0EN=1;
-    start_move = second;
+{
 
     if (color != 0){
         T0CON0bits.T0EN=0;
