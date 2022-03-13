@@ -66,9 +66,8 @@ void action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR)
         }
         if (color == 8){            //white
             toggle_light(2,1);
-            turnRight(mL,mR,180);
             short_reverse(mL,mR);   //Reverse moving for a small distance to leave space for turning
-            //goback(mL,mR);          //Go back to origin
+            goback(mL,mR);          //Go back to origin
         }
     }
 }
@@ -111,12 +110,17 @@ void pin_init(void)
 
 void goback(struct DC_motor *mL, struct DC_motor *mR)
 {   turnRight(mL,mR,180);
-    while(array_index > 0){ 
+    array_index--; 
+    while(array_index >= 0){
         fullSpeedAhead(mL,mR);
+        color_predict(array_index);
+        color_predict(201);
         for (unsigned int i=0; i<memory[array_index]; i++) {__delay_ms(1000);}
         stop(mL,mR);
         if (array_index == 0){break;}     
-        array_index--;
+        array_index--; 
+        color_predict(array_index);
+        color_predict(201);
         
         if (memory[array_index] == 1){turnLeft(mL,mR,90);array_index--;}
         if (memory[array_index] == 2){turnRight(mL,mR,90);array_index--;}
@@ -126,4 +130,5 @@ void goback(struct DC_motor *mL, struct DC_motor *mR)
         if (memory[array_index] == 6){turnLeft(mL,mR,135);array_index--;}
         if (memory[array_index] == 7){turnRight(mL, mR, -135);array_index--;}
     }
+    while(1){stop(mL,mR);}
 }

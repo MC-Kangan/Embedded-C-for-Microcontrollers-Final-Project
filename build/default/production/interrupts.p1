@@ -2031,12 +2031,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 [i _array_index
 -> -> 0 `i `uc
 ]
-"9
-[; ;./movement.h: 9: unsigned int start_move;
-[v _start_move `ui ~T0 @X0 1 e ]
-"10
-[; ;./movement.h: 10: unsigned int stop_move;
-[v _stop_move `ui ~T0 @X0 1 e ]
 "9 interrupts.c
 [; ;interrupts.c: 9: void Interrupts_init(void)
 [v _Interrupts_init `(v ~T0 @X0 1 ef ]

@@ -2215,12 +2215,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 [i _array_index
 -> -> 0 `i `uc
 ]
-"9
-[; ;./movement.h: 9: unsigned int start_move;
-[v _start_move `ui ~T0 @X0 1 e ]
-"10
-[; ;./movement.h: 10: unsigned int stop_move;
-[v _stop_move `ui ~T0 @X0 1 e ]
 "13 color.c
 [; ;color.c: 13: void buggylight_init(void)
 [v _buggylight_init `(v ~T0 @X0 1 ef ]
@@ -3297,8 +3291,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e :U 2065 ]
 "343
-[; ;color.c: 343:     if (compare(95, BR, 105) && compare(95,BG,105) && compare(95,BB,105)){color = 8;}
-[e $ ! && && != -> ( _compare (3 , , -> -> 95 `i `ui _BR -> -> 105 `i `ui `i -> 0 `i != -> ( _compare (3 , , -> -> 95 `i `ui _BG -> -> 105 `i `ui `i -> 0 `i != -> ( _compare (3 , , -> -> 95 `i `ui _BB -> -> 105 `i `ui `i -> 0 `i 2080  ]
+[; ;color.c: 343:     if (compare(90, BR, 110) && compare(95,BG,105) && compare(95,BB,105)){color = 8;}
+[e $ ! && && != -> ( _compare (3 , , -> -> 90 `i `ui _BR -> -> 110 `i `ui `i -> 0 `i != -> ( _compare (3 , , -> -> 95 `i `ui _BG -> -> 105 `i `ui `i -> 0 `i != -> ( _compare (3 , , -> -> 95 `i `ui _BB -> -> 105 `i `ui `i -> 0 `i 2080  ]
 {
 [e = _color -> -> 8 `i `uc ]
 }
@@ -3387,12 +3381,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "364
 [; ;color.c: 364:     _delay((unsigned long)((50)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 50 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"365
-[; ;color.c: 365:     color3 = detect_color(m,w);
-[e = _color3 -> ( _detect_color (2 , _m _w `ui ]
 "366
-[; ;color.c: 366:     if (color == color2 && color2 == color3){return color;}
-[e $ ! && == -> _color `ui _color2 == _color2 _color3 2086  ]
+[; ;color.c: 366:     if (color == color2){return color;}
+[e $ ! == -> _color `ui _color2 2086  ]
 {
 [e ) _color ]
 [e $UE 2085  ]

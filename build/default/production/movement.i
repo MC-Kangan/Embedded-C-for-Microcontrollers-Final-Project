@@ -24535,8 +24535,6 @@ void sendTxBuf(void);
 unsigned int second = 0;
 unsigned int memory[20];
 unsigned char array_index = 0;
-unsigned int start_move;
-unsigned int stop_move;
 
 
 void short_burst(struct DC_motor *mL, struct DC_motor *mR);
@@ -24618,9 +24616,8 @@ void action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR)
         }
         if (color == 8){
             toggle_light(2,1);
-            turnRight(mL,mR,180);
             short_reverse(mL,mR);
-
+            goback(mL,mR);
         }
     }
 }
@@ -24663,12 +24660,17 @@ void pin_init(void)
 
 void goback(struct DC_motor *mL, struct DC_motor *mR)
 { turnRight(mL,mR,180);
-    while(array_index > 0){
+    array_index--;
+    while(array_index >= 0){
         fullSpeedAhead(mL,mR);
+        color_predict(array_index);
+        color_predict(201);
         for (unsigned int i=0; i<memory[array_index]; i++) {_delay((unsigned long)((1000)*(64000000/4000.0)));}
         stop(mL,mR);
         if (array_index == 0){break;}
         array_index--;
+        color_predict(array_index);
+        color_predict(201);
 
         if (memory[array_index] == 1){turnLeft(mL,mR,90);array_index--;}
         if (memory[array_index] == 2){turnRight(mL,mR,90);array_index--;}
@@ -24678,4 +24680,5 @@ void goback(struct DC_motor *mL, struct DC_motor *mR)
         if (memory[array_index] == 6){turnLeft(mL,mR,135);array_index--;}
         if (memory[array_index] == 7){turnRight(mL, mR, -135);array_index--;}
     }
+    while(1){stop(mL,mR);}
 }

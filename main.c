@@ -23,6 +23,8 @@
 // Color code: 
 // 1: red; 2: green; 3: blue; 4: yellow; 5:pink; 6:orange; 7:light blue; 8:white; 9: black
 unsigned char color = 0;  
+unsigned int start_move;
+unsigned int stop_move;
 
 void main(void){
     
@@ -69,13 +71,18 @@ void main(void){
             }
             T0CON0bits.T0EN=0;  //stop the timer
             stop_move = second;
-            memory[array_index] = (start_move-stop_move);
+            memory[array_index] = (stop_move-start_move);
             array_index++;
+            color_predict(stop_move-start_move);
+            color_predict(array_index);
+            color_predict(200);
             
             stop(&motorL, &motorR);
             __delay_ms(1000);
             color = detect_color(&rgb, &white);
             color = verify_color(color, &rgb, &white);
+            //if (stop_move-start_move)
+            
             action(color, &motorL, &motorR);
             color = 0;
             stop_signal = 0;

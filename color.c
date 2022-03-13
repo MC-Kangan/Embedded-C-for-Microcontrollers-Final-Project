@@ -340,7 +340,7 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
         }
     }
     // Group 0 (black and white)
-    if (compare(95, BR, 105) && compare(95,BG,105) && compare(95,BB,105)){color = 8;}
+    if (compare(90, BR, 110) && compare(95,BG,105) && compare(95,BB,105)){color = 8;}
     if (compare(0, BR, 25) && compare(0,RR,90)){color = 0;}
     
     if (color == 8) {toggle_light(2,1);}
@@ -362,8 +362,8 @@ unsigned char verify_color(unsigned char color,struct color_rgb *m, struct white
     unsigned int color2, color3;
     color2 = detect_color(m,w);
     __delay_ms(50);
-    color3 = detect_color(m,w);
-    if (color == color2 && color2 == color3){return color;}
+//    color3 = detect_color(m,w);
+    if (color == color2){return color;}
     else {
         color = 0;
         return color;}

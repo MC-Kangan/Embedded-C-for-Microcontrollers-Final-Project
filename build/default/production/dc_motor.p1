@@ -2242,12 +2242,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 [i _array_index
 -> -> 0 `i `uc
 ]
-"9
-[; ;./movement.h: 9: unsigned int start_move;
-[v _start_move `ui ~T0 @X0 1 e ]
-"10
-[; ;./movement.h: 10: unsigned int stop_move;
-[v _stop_move `ui ~T0 @X0 1 e ]
 "8 dc_motor.c
 [; ;dc_motor.c: 8: struct DC_motor motorL, motorR;
 [v _motorL `S2015 ~T0 @X0 1 e ]

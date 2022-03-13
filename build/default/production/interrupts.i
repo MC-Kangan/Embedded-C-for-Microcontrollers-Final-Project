@@ -24253,8 +24253,6 @@ void __attribute__((picinterrupt(("low_priority")))) LowISR();
 unsigned int second = 0;
 unsigned int memory[20];
 unsigned char array_index = 0;
-unsigned int start_move;
-unsigned int stop_move;
 
 
 void short_burst(struct DC_motor *mL, struct DC_motor *mR);

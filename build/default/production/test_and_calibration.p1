@@ -109,8 +109,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "30602
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 30602: extern volatile PORTFbits_t PORTFbits __attribute__((address(0xF8E)));
 [v _PORTFbits `VS1411 ~T0 @X0 0 e@3982 ]
-"15 ./movement.h
-[; ;./movement.h: 15: void test_action (struct DC_motor *mL, struct DC_motor *mR);
+"13 ./movement.h
+[; ;./movement.h: 13: void test_action (struct DC_motor *mL, struct DC_motor *mR);
 [v _test_action `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
 "55 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 55: __asm("PPSLOCK equ 0DEFh");
@@ -2149,12 +2149,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 [i _array_index
 -> -> 0 `i `uc
 ]
-"9
-[; ;./movement.h: 9: unsigned int start_move;
-[v _start_move `ui ~T0 @X0 1 e ]
-"10
-[; ;./movement.h: 10: unsigned int stop_move;
-[v _stop_move `ui ~T0 @X0 1 e ]
 "16 test_and_calibration.c
 [; ;test_and_calibration.c: 16: void test_function(unsigned char test_code, struct color_rgb *m, struct white_card *w, struct DC_motor *mL, struct DC_motor *mR)
 [v _test_function `(v ~T0 @X0 1 ef5`uc`*S2018`*S2019`*S2015`*S2015 ]
