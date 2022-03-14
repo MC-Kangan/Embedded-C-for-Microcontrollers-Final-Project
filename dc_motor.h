@@ -21,7 +21,6 @@ struct DC_motor { //definition of DC_motor structure
     unsigned char *dir_LAT; //LAT for dir pin
     char dir_pin; // pin number that controls direction on LAT
     int PWMperiod; //base period of PWM cycle
-    char voltage;
 };
 
 //function prototypes

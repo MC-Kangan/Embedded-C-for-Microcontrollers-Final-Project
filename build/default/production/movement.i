@@ -24526,7 +24526,7 @@ void sendTxBuf(void);
 
 
 
-unsigned int second = 0;
+unsigned int centisecond = 0;
 unsigned int memory[20];
 unsigned char array_index = 0;
 
@@ -24556,8 +24556,7 @@ void short_burst_back(struct DC_motor *mL, struct DC_motor *mR)
     fullSpeedAhead(mL,mR);
     _delay((unsigned long)((600)*(64000000/4000.0)));
 
-
-
+    stop(mL,mR);
 }
 
 void action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR)
@@ -24678,7 +24677,7 @@ void goback(struct DC_motor *mL, struct DC_motor *mR)
         color_predict(memory[array_index]);
         color_predict(200);
         fullSpeedAhead(mL,mR);
-        for (unsigned int i=0; i<memory[array_index]; i++) {_delay((unsigned long)((1000)*(64000000/4000.0)));}
+        for (unsigned int i=0; i<memory[array_index]; i++) {_delay((unsigned long)((100)*(64000000/4000.0)));}
         stop(mL,mR);
         if (array_index == 0){break;}
         array_index--;

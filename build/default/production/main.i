@@ -24424,7 +24424,7 @@ unsigned char I2C_2_Master_Read(unsigned char ack);
 
 
 
-unsigned int second = 0;
+unsigned int centisecond = 0;
 unsigned int memory[20];
 unsigned char array_index = 0;
 
@@ -24645,27 +24645,27 @@ void main(void){
 
     unsigned int amb_light = 0;
 
-    if (1 == 0){
+    if (0 == 0){
         calibrate_white(&white);
         amb_light = amb_light_measure(&amb);
     }
 
     while(1){
 
-  if (1 == 1){
+  if (0 == 1){
             test_function(3, &rgb, &white, &motorL, &motorR);
         }
-        if (1 == 0){
+        if (0 == 0){
 
 
             T0CON0bits.T0EN=1;
-            start_move = second;
+            start_move = centisecond;
             while (stop_signal == 0){
                 fullSpeedAhead(&motorL, &motorR);
                 stop_signal = distance_measure(&motorL, &motorR, amb_light);
             }
             T0CON0bits.T0EN=0;
-            stop_move = second;
+            stop_move = centisecond;
             if ((stop_move-start_move)>1){
                 memory[array_index] = (stop_move-start_move);
                 color_predict(array_index);

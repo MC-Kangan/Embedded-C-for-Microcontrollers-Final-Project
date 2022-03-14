@@ -340,7 +340,7 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
             // Distinguish yellow (4), pink (5) and light blue (7)
             if (BG >= BR) {color = 7;}
             else{
-                if (BR < 48){color = 4;}
+                if (BG < 48){color = 4;}
                 else {color = 5;}
             }    
         }

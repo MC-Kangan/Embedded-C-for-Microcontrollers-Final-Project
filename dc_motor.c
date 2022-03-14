@@ -180,22 +180,6 @@ void fullSpeedBack(struct DC_motor *mL, struct DC_motor *mR)
     stop(mL,mR);
 }
 
-void halfSpeedBack(struct DC_motor *mL, struct DC_motor *mR)
-{
-    mL->direction=0;
-    mR->direction=0;
-    while (mL->power<40 && mR->power<40){         // when the powers for left and right motors are smaller than 70
-        mL->power += 10;                                                // increase the left motor power by 10 for each time (this case the power of motor push to the setting value immediately)
-        mR->power += 10;                                                // increase the right motor power by 10 for each time (this case the power of motor push to the setting value immediately)
-        setMotorPWM(mL);                                                // set the power to motor
-        setMotorPWM(mR);                                                // set the power to motor
-        __delay_ms(10);
-    }
-    __delay_ms(100);
-    stop(mL,mR);
-}
-
-
 void short_reverse(struct DC_motor *mL, struct DC_motor *mR)
 {   fullSpeedBack(mL, mR);
     __delay_ms(300);

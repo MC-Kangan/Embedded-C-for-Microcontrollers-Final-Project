@@ -21,7 +21,9 @@ void Interrupts_init(void)
 void __interrupt(high_priority) HighISR()
 {
     if(PIR0bits.TMR0IF){       
-        second ++;                  // when overflow occurs, 1 second passes
+        TMR0H=0b00111100;            // More significant 8 bits in 0011110010101111
+        TMR0L=0b10101111;            // Less significant 8 bits in 0011110010101111
+        centisecond ++;                  // when overflow occurs, 0.1 second passes
         PIR0bits.TMR0IF = 0;             // clear the flag
     }
 }

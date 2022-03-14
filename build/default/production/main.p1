@@ -2122,9 +2122,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 0 `i `uc
 ]
 "6 ./movement.h
-[; ;./movement.h: 6: unsigned int second = 0;
-[v _second `ui ~T0 @X0 1 e ]
-[i _second
+[; ;./movement.h: 6: unsigned int centisecond = 0;
+[v _centisecond `ui ~T0 @X0 1 e ]
+[i _centisecond
 -> -> 0 `i `ui
 ]
 "7
@@ -2202,8 +2202,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _amb_light `ui ~T0 @X0 1 a ]
 [e = _amb_light -> -> 0 `i `ui ]
 "53
-[; ;main.c: 53:     if (1 == 0){
-[e $ ! == -> 1 `i -> 0 `i 2021  ]
+[; ;main.c: 53:     if (0 == 0){
+[e $ ! == -> 0 `i -> 0 `i 2021  ]
 {
 "54
 [; ;main.c: 54:         calibrate_white(&white);
@@ -2220,8 +2220,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 2023 ]
 {
 "60
-[; ;main.c: 60:   if (1 == 1){
-[e $ ! == -> 1 `i -> 1 `i 2025  ]
+[; ;main.c: 60:   if (0 == 1){
+[e $ ! == -> 0 `i -> 1 `i 2025  ]
 {
 "61
 [; ;main.c: 61:             test_function(3, &rgb, &white, &motorL, &motorR);
@@ -2231,15 +2231,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e :U 2025 ]
 "63
-[; ;main.c: 63:         if (1 == 0){
-[e $ ! == -> 1 `i -> 0 `i 2026  ]
+[; ;main.c: 63:         if (0 == 0){
+[e $ ! == -> 0 `i -> 0 `i 2026  ]
 {
 "66
 [; ;main.c: 66:             T0CON0bits.T0EN=1;
 [e = . . _T0CON0bits 0 4 -> -> 1 `i `uc ]
 "67
-[; ;main.c: 67:             start_move = second;
-[e = _start_move _second ]
+[; ;main.c: 67:             start_move = centisecond;
+[e = _start_move _centisecond ]
 "68
 [; ;main.c: 68:             while (stop_signal == 0){
 [e $U 2027  ]
@@ -2263,8 +2263,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 72:             T0CON0bits.T0EN=0;
 [e = . . _T0CON0bits 0 4 -> -> 0 `i `uc ]
 "73
-[; ;main.c: 73:             stop_move = second;
-[e = _stop_move _second ]
+[; ;main.c: 73:             stop_move = centisecond;
+[e = _stop_move _centisecond ]
 "74
 [; ;main.c: 74:             if ((stop_move-start_move)>1){
 [e $ ! > - _stop_move _start_move -> -> 1 `i `ui 2030  ]

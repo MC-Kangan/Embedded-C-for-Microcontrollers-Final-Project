@@ -24946,7 +24946,7 @@ typedef struct {
 
 
 
-unsigned int second = 0;
+unsigned int centisecond = 0;
 unsigned int memory[20];
 unsigned char array_index = 0;
 
@@ -25295,7 +25295,7 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
 
             if (BG >= BR) {color = 7;}
             else{
-                if (BR < 48){color = 4;}
+                if (BG < 48){color = 4;}
                 else {color = 5;}
             }
         }

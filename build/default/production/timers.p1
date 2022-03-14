@@ -2032,17 +2032,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;timers.c: 10:     T0CON1bits.T0ASYNC=1;
 [e = . . _T0CON1bits 0 1 -> -> 1 `i `uc ]
 "11
-[; ;timers.c: 11:     T0CON1bits.T0CKPS=0b1000;
-[e = . . _T0CON1bits 0 0 -> -> 8 `i `uc ]
+[; ;timers.c: 11:     T0CON1bits.T0CKPS=0b0101;
+[e = . . _T0CON1bits 0 0 -> -> 5 `i `uc ]
 "12
 [; ;timers.c: 12:     T0CON0bits.T016BIT=1;
 [e = . . _T0CON0bits 0 1 -> -> 1 `i `uc ]
 "16
-[; ;timers.c: 16:     TMR0H=0b00001011;
-[e = _TMR0H -> -> 11 `i `uc ]
+[; ;timers.c: 16:     TMR0H=0b00111100;
+[e = _TMR0H -> -> 60 `i `uc ]
 "17
-[; ;timers.c: 17:     TMR0L=0b11011011;
-[e = _TMR0L -> -> 219 `i `uc ]
+[; ;timers.c: 17:     TMR0L=0b10101111;
+[e = _TMR0L -> -> 175 `i `uc ]
 "18
 [; ;timers.c: 18: }
 [e :UE 2015 ]

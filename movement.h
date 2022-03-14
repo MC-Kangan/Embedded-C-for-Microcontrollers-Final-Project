@@ -3,7 +3,7 @@
 
 #include <xc.h>
 
-unsigned int second = 0;
+unsigned int centisecond = 0; //1 centisecond = 100ms
 unsigned int memory[20];
 unsigned char array_index = 0;
 

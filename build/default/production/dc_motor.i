@@ -24444,7 +24444,7 @@ char *tempnam(const char *, const char *);
 
 
 
-unsigned int second = 0;
+unsigned int centisecond = 0;
 unsigned int memory[20];
 unsigned char array_index = 0;
 

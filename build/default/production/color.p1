@@ -2201,9 +2201,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 0 `i `uc
 ]
 "6 ./movement.h
-[; ;./movement.h: 6: unsigned int second = 0;
-[v _second `ui ~T0 @X0 1 e ]
-[i _second
+[; ;./movement.h: 6: unsigned int centisecond = 0;
+[v _centisecond `ui ~T0 @X0 1 e ]
+[i _centisecond
 -> -> 0 `i `ui
 ]
 "7
@@ -3215,8 +3215,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 2071 ]
 {
 "343
-[; ;color.c: 343:                 if (BR < 48){color = 4;}
-[e $ ! < _BR -> -> 48 `i `ui 2073  ]
+[; ;color.c: 343:                 if (BG < 48){color = 4;}
+[e $ ! < _BG -> -> 48 `i `ui 2073  ]
 {
 [e = _color -> -> 4 `i `uc ]
 }

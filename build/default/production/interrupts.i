@@ -24249,7 +24249,7 @@ void __attribute__((picinterrupt(("high_priority")))) HighISR();
 
 
 
-unsigned int second = 0;
+unsigned int centisecond = 0;
 unsigned int memory[20];
 unsigned char array_index = 0;
 
@@ -24291,7 +24291,7 @@ void Interrupts_init(void)
 void __attribute__((picinterrupt(("high_priority")))) HighISR()
 {
     if(PIR0bits.TMR0IF){
-        second ++;
+        centisecond ++;
         PIR0bits.TMR0IF = 0;
     }
 }

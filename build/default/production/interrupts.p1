@@ -2017,9 +2017,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 40928: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
 "6 ./movement.h
-[; ;./movement.h: 6: unsigned int second = 0;
-[v _second `ui ~T0 @X0 1 e ]
-[i _second
+[; ;./movement.h: 6: unsigned int centisecond = 0;
+[v _centisecond `ui ~T0 @X0 1 e ]
+[i _centisecond
 -> -> 0 `i `ui
 ]
 "7
@@ -2067,8 +2067,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ ! != -> . . _PIR0bits 0 5 `i -> 0 `i 2021  ]
 {
 "24
-[; ;interrupts.c: 24:         second ++;
-[e ++ _second -> -> 1 `i `ui ]
+[; ;interrupts.c: 24:         centisecond ++;
+[e ++ _centisecond -> -> 1 `i `ui ]
 "25
 [; ;interrupts.c: 25:         PIR0bits.TMR0IF = 0;
 [e = . . _PIR0bits 0 5 -> -> 0 `i `uc ]
