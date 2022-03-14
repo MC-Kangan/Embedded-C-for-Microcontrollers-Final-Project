@@ -1,4 +1,4 @@
-#include <xc.h>
+ #include <xc.h>
 #include <stdio.h>
 #include "color.h"
 #include "dc_motor.h"
@@ -11,9 +11,9 @@ void short_burst_back(struct DC_motor *mL, struct DC_motor *mR)
 {
     fullSpeedAhead(mL,mR);
     __delay_ms(500);
+    halfSpeedBack(mL,mR);
     stop(mL,mR);
-    fullSpeedBack(mL, mR);
-    __delay_ms(10);
+
 }
 
 void action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR)

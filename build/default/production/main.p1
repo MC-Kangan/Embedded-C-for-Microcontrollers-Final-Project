@@ -63,8 +63,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "39601
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 39601: extern volatile T0CON0bits_t T0CON0bits __attribute__((address(0xFD5)));
 [v _T0CON0bits `VS1921 ~T0 @X0 0 e@4053 ]
-"34 ./dc_motor.h
-[; ;./dc_motor.h: 34: void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
+"35 ./dc_motor.h
+[; ;./dc_motor.h: 35: void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
 [v _fullSpeedAhead `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
 "86 ./color.h
 [; ;./color.h: 86: unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light) ;

@@ -24480,6 +24480,7 @@ void initDCmotorsPWM(int PWMperiod);
 void initDCmotors_parameter(struct DC_motor *motorL, struct DC_motor *motorR);
 void setMotorPWM(struct DC_motor *m);
 void stop(struct DC_motor *mL, struct DC_motor *mR);
+void halfSpeedBack(struct DC_motor *mL, struct DC_motor *mR);
 void turnLeft(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_left);
 void turnRight(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_right);
 void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
@@ -24554,9 +24555,9 @@ void short_burst_back(struct DC_motor *mL, struct DC_motor *mR)
 {
     fullSpeedAhead(mL,mR);
     _delay((unsigned long)((500)*(64000000/4000.0)));
+    halfSpeedBack(mL,mR);
     stop(mL,mR);
-    fullSpeedBack(mL, mR);
-    _delay((unsigned long)((50)*(64000000/4000.0)));
+
 }
 
 void action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR)
