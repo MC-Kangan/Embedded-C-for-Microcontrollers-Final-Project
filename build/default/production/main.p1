@@ -2202,8 +2202,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _amb_light `ui ~T0 @X0 1 a ]
 [e = _amb_light -> -> 0 `i `ui ]
 "53
-[; ;main.c: 53:     if (0 == 0){
-[e $ ! == -> 0 `i -> 0 `i 2021  ]
+[; ;main.c: 53:     if (1 == 0){
+[e $ ! == -> 1 `i -> 0 `i 2021  ]
 {
 "54
 [; ;main.c: 54:         calibrate_white(&white);
@@ -2220,19 +2220,19 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 2023 ]
 {
 "60
-[; ;main.c: 60:   if (0 == 1){
-[e $ ! == -> 0 `i -> 1 `i 2025  ]
+[; ;main.c: 60:   if (1 == 1){
+[e $ ! == -> 1 `i -> 1 `i 2025  ]
 {
 "61
-[; ;main.c: 61:             test_function(2, &rgb, &white, &motorL, &motorR);
-[e ( _test_function (4 , , , , -> -> 2 `i `uc &U _rgb &U _white &U _motorL &U _motorR ]
+[; ;main.c: 61:             test_function(3, &rgb, &white, &motorL, &motorR);
+[e ( _test_function (4 , , , , -> -> 3 `i `uc &U _rgb &U _white &U _motorL &U _motorR ]
 "62
 [; ;main.c: 62:         }
 }
 [e :U 2025 ]
 "63
-[; ;main.c: 63:         if (0 == 0){
-[e $ ! == -> 0 `i -> 0 `i 2026  ]
+[; ;main.c: 63:         if (1 == 0){
+[e $ ! == -> 1 `i -> 0 `i 2026  ]
 {
 "66
 [; ;main.c: 66:             T0CON0bits.T0EN=1;

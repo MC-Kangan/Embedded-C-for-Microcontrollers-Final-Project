@@ -25130,7 +25130,7 @@ void LED_C(void)
     LATGbits.LATG1 = 1;
     LATFbits.LATF7 = 1;
     LATAbits.LATA4 = 1;
-    _delay((unsigned long)((50)*(64000000/4000.0)));
+    _delay((unsigned long)((200)*(64000000/4000.0)));
 
 }
 
@@ -25155,32 +25155,32 @@ void LED_G(void)
 void color_data_collection(struct color_rgb *m){
 
     int i = 0; int j = 0; int k = 0; int x = 0;
-    for (i = 0; i <5; ++i){
+    for (i = 0; i <1; ++i){
         LED_C();
+        _delay((unsigned long)((100)*(64000000/4000.0)));
         read_color(m);
         color_display(m);
-        _delay((unsigned long)((100)*(64000000/4000.0)));
     }
-    color_predict(00000);
-    for (j = 0; j < 5; ++j){
+
+    for (j = 0; j < 1; ++j){
         LED_R();
+        _delay((unsigned long)((100)*(64000000/4000.0)));
         read_color(m);
         color_display(m);
-        _delay((unsigned long)((100)*(64000000/4000.0)));
     }
-    color_predict(00000);
-    for (k = 0; k < 5; ++k){
+
+    for (k = 0; k < 1; ++k){
         LED_G();
+        _delay((unsigned long)((100)*(64000000/4000.0)));
         read_color(m);
         color_display(m);
-        _delay((unsigned long)((100)*(64000000/4000.0)));
     }
-    color_predict(00000);
-    for (x = 0; x < 5; ++x){
+
+    for (x = 0; x < 1; ++x){
         LED_B();
+        _delay((unsigned long)((100)*(64000000/4000.0)));
         read_color(m);
         color_display(m);
-        _delay((unsigned long)((100)*(64000000/4000.0)));
     }
     color_predict(1);
     LED_C();
@@ -25217,21 +25217,24 @@ void calibrate_white(struct white_card *w)
     _delay((unsigned long)((500)*(64000000/4000.0)));
 
     LED_R();
-    w->RR = color_read_Red(); w->RG = color_read_Green(); w->RB = color_read_Blue();
     _delay((unsigned long)((100)*(64000000/4000.0)));
+    w->RR = color_read_Red(); w->RG = color_read_Green(); w->RB = color_read_Blue();
+
 
     LED_G();
+    _delay((unsigned long)((100)*(64000000/4000.0)));
     w->GR = color_read_Red(); w->GG = color_read_Green(); w->GB = color_read_Blue();
 
-    _delay((unsigned long)((100)*(64000000/4000.0)));
+
 
     LED_B();
-    w->BR = color_read_Red(); w->BG = color_read_Green(); w->BB = color_read_Blue(); w->BC = color_read_Clear();
     _delay((unsigned long)((100)*(64000000/4000.0)));
+    w->BR = color_read_Red(); w->BG = color_read_Green(); w->BB = color_read_Blue(); w->BC = color_read_Clear();
+
 
     LED_C();
+    _delay((unsigned long)((100)*(64000000/4000.0)));
     w->CR = color_read_Red(); w->CG = color_read_Green(); w->CB = color_read_Blue(); w->CC = color_read_Clear();
-    _delay((unsigned long)((500)*(64000000/4000.0)));
 
     LED_OFF();
     _delay((unsigned long)((500)*(64000000/4000.0)));
@@ -25244,35 +25247,35 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
 
 
 
-
     unsigned int RR = 0, RG = 0, RB = 0, GR = 0, GG = 0, GB = 0, BR = 0, BG = 0, BB = 0, BC = 0;
     unsigned char color = 0;
 
     LED_R();
+    _delay((unsigned long)((100)*(64000000/4000.0)));
     read_color(m);
 
     RR = lroundf((float)(m->R)/(w->RR)*100); RG = lroundf((float)(m->G)/(w->RG)*100); RB = lroundf((float)(m->B)/(w->RB)*100);
     _delay((unsigned long)((50)*(64000000/4000.0)));
-    char buf[100];
+
 
 
 
 
     LED_G();
+    _delay((unsigned long)((100)*(64000000/4000.0)));
     read_color(m);
 
 
     GR = lroundf((float)(m->R)/(w->GR)*100); GG = lroundf((float)(m->G)/(w->GG)*100); GB = lroundf((float)(m->B)/(w->GB)*100);
-    _delay((unsigned long)((50)*(64000000/4000.0)));
 
 
 
 
     LED_B();
+    _delay((unsigned long)((100)*(64000000/4000.0)));
     read_color(m);
     BR = lroundf((float)(m->R)/(w->BR)*100); BG = lroundf((float)(m->G)/(w->BG)*100); BB = lroundf((float)(m->B)/(w->BB)*100);
     BC = lroundf((float)(m->C)/(w->BC)*100);
-    _delay((unsigned long)((50)*(64000000/4000.0)));
 
 
 

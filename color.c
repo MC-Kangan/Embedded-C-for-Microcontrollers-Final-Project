@@ -175,7 +175,7 @@ void LED_C(void)//struct color_rgb *m)
     LATGbits.LATG1 = 1; // output LED_R set on (power)
     LATFbits.LATF7 = 1; // output LED_B set on (power)
     LATAbits.LATA4 = 1; // output LED_G set on (power)
-    __delay_ms(50); // originally 200
+    __delay_ms(200); // originally 200
     //read_color(m);
 }
 
@@ -200,32 +200,32 @@ void LED_G(void)//struct color_rgb *m)
 void color_data_collection(struct color_rgb *m){
     
     int i = 0; int j = 0; int k = 0; int x = 0;
-    for (i = 0; i <5; ++i){
+    for (i = 0; i <1; ++i){
         LED_C();
+        __delay_ms(100);
         read_color(m);
         color_display(m);
-        __delay_ms(100);
     }  
-    color_predict(00000);
-    for (j = 0; j < 5; ++j){
+    //color_predict(00000);
+    for (j = 0; j < 1; ++j){
         LED_R();
+        __delay_ms(100);
         read_color(m);
         color_display(m);
-        __delay_ms(100);
     }
-    color_predict(00000);
-    for (k = 0; k < 5; ++k){
+    //color_predict(00000);
+    for (k = 0; k < 1; ++k){
         LED_G();
+        __delay_ms(100);
         read_color(m);
         color_display(m);
-        __delay_ms(100);
     }
-    color_predict(00000);
-    for (x = 0; x < 5; ++x){
+    //color_predict(00000);
+    for (x = 0; x < 1; ++x){
         LED_B();
+        __delay_ms(100);
         read_color(m);
         color_display(m);
-        __delay_ms(100);
     }
     color_predict(1);
     LED_C();
@@ -262,21 +262,24 @@ void calibrate_white(struct white_card *w)
     __delay_ms(500);
     
     LED_R(); // Turn on red light 
-    w->RR = color_read_Red(); w->RG = color_read_Green(); w->RB = color_read_Blue();
     __delay_ms(100);
+    w->RR = color_read_Red(); w->RG = color_read_Green(); w->RB = color_read_Blue();
+    
     
     LED_G(); // Turn on green light
+    __delay_ms(100);
     w->GR = color_read_Red(); w->GG = color_read_Green(); w->GB = color_read_Blue();
     //w->GC = color_read_Clear();
-    __delay_ms(100);
+    
     
     LED_B(); // Turn on blue light 
-    w->BR = color_read_Red(); w->BG = color_read_Green(); w->BB = color_read_Blue(); w->BC = color_read_Clear(); 
     __delay_ms(100);
+    w->BR = color_read_Red(); w->BG = color_read_Green(); w->BB = color_read_Blue(); w->BC = color_read_Clear(); 
+    
     
     LED_C(); // Turn on white light
+    __delay_ms(100);
     w->CR = color_read_Red(); w->CG = color_read_Green(); w->CB = color_read_Blue(); w->CC = color_read_Clear();
-    __delay_ms(500);
     
     LED_OFF();
     __delay_ms(500);
@@ -287,37 +290,37 @@ void calibrate_white(struct white_card *w)
 unsigned char detect_color(struct color_rgb *m, struct white_card *w)
 {
     
-    
     // Color code:
     // 1: red; 2: green; 3: blue; 4: yellow; 5:pink; 6:orange; 7:light blue; 8:white; 0: black
     unsigned int RR = 0, RG = 0, RB = 0, GR = 0, GG = 0, GB = 0, BR = 0, BG = 0, BB = 0, BC = 0; //GR_REAL = 0, GC_REAL = 0, BC = 0;
     unsigned char color = 0;   
             
     LED_R(); // Turn on red light 
+    __delay_ms(100);
     read_color(m); 
     //RR = (float)(m->R)/(w->RR)*100; RG = (float)(m->G)/(w->RG)*100; RB =(float)(m->B)/(w->RB)*100;
     RR = lround((float)(m->R)/(w->RR)*100); RG = lround((float)(m->G)/(w->RG)*100); RB = lround((float)(m->B)/(w->RB)*100);
     __delay_ms(50);
-    char buf[100];
     
+    //char buf[100];  
     //sprintf(buf,"%d\t%d\t%d\r\n", RR, RG, RB);
     //sendStringSerial4(buf);
     
     LED_G(); // Turn on green light
+    __delay_ms(100);
     read_color(m); 
     //GR_REAL = m->R ;  GC_REAL = m->C;
     //GR = (float)(m->R)/(w->GR)*100; GG = (float)(m->G)/(w->GG)*100; GB = (float)(m->B)/(w->GB)*100;
     GR = lround((float)(m->R)/(w->GR)*100); GG = lround((float)(m->G)/(w->GG)*100); GB = lround((float)(m->B)/(w->GB)*100);
-    __delay_ms(50);
 
     //sprintf(buf,"%d\t%d\t%d\r\n", GR, GG, GB);
     //sendStringSerial4(buf);
     
     LED_B(); // Turn on blue light
+    __delay_ms(100);
     read_color(m); 
     BR = lround((float)(m->R)/(w->BR)*100); BG = lround((float)(m->G)/(w->BG)*100); BB = lround((float)(m->B)/(w->BB)*100);
     BC = lround((float)(m->C)/(w->BC)*100);
-    __delay_ms(50);
 
     //sprintf(buf,"%d\t%d\t%d\r\n", BR, BG, BB);
     //sendStringSerial4(buf);

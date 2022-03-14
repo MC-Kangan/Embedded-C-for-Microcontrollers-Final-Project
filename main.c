@@ -18,7 +18,7 @@
 #include <stdio.h>
 
 #define _XTAL_FREQ 64000000 //note intrinsic _delay function is 62.5ns at 64,000,000Hz 
-#define TEST 0
+#define TEST 1
 
 // Color code: 
 // 1: red; 2: green; 3: blue; 4: yellow; 5:pink; 6:orange; 7:light blue; 8:white; 9: black
@@ -58,7 +58,7 @@ void main(void){
     while(1){
 
 		if (TEST == 1){
-            test_function(2, &rgb, &white, &motorL, &motorR);
+            test_function(3, &rgb, &white, &motorL, &motorR);
         }
         if (TEST == 0){
             //read_color(&rgb);

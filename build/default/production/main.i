@@ -24645,17 +24645,17 @@ void main(void){
 
     unsigned int amb_light = 0;
 
-    if (0 == 0){
+    if (1 == 0){
         calibrate_white(&white);
         amb_light = amb_light_measure(&amb);
     }
 
     while(1){
 
-  if (0 == 1){
-            test_function(2, &rgb, &white, &motorL, &motorR);
+  if (1 == 1){
+            test_function(3, &rgb, &white, &motorL, &motorR);
         }
-        if (0 == 0){
+        if (1 == 0){
 
 
             T0CON0bits.T0EN=1;
