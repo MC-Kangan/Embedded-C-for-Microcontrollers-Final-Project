@@ -243,8 +243,8 @@ void check_color_reading(struct color_rgb *m, struct white_card *w)
     char buf[100];
     
     int result = lround((float)(m->R)/(w->RR)*100);
-    sprintf(buf,"\t%d\t%d\t%d\r\n", m->R, w->RR, result);
-    sendStringSerial4(buf);
+    //sprintf(buf,"\t%d\t%d\t%d\r\n", m->R, w->RR, result);
+    //sendStringSerial4(buf);
 }
 
 void color_predict(unsigned char color)
@@ -300,8 +300,8 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
     __delay_ms(50);
     char buf[100];
     
-    sprintf(buf,"%d\t%d\t%d\r\n", RR, RG, RB);
-    sendStringSerial4(buf);
+    //sprintf(buf,"%d\t%d\t%d\r\n", RR, RG, RB);
+    //sendStringSerial4(buf);
     
     LED_G(); // Turn on green light
     read_color(m); 
@@ -310,8 +310,8 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
     GR = lround((float)(m->R)/(w->GR)*100); GG = lround((float)(m->G)/(w->GG)*100); GB = lround((float)(m->B)/(w->GB)*100);
     __delay_ms(50);
 
-    sprintf(buf,"%d\t%d\t%d\r\n", GR, GG, GB);
-    sendStringSerial4(buf);
+    //sprintf(buf,"%d\t%d\t%d\r\n", GR, GG, GB);
+    //sendStringSerial4(buf);
     
     LED_B(); // Turn on blue light
     read_color(m); 
@@ -319,8 +319,8 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
     BC = lround((float)(m->C)/(w->BC)*100);
     __delay_ms(50);
 
-    sprintf(buf,"%d\t%d\t%d\r\n", BR, BG, BB);
-    sendStringSerial4(buf);
+    //sprintf(buf,"%d\t%d\t%d\r\n", BR, BG, BB);
+    //sendStringSerial4(buf);
     
     // Distinguish green (2) and blue (3)
     if (compare(0, BR, 70)){ // if BR < 70
@@ -337,14 +337,13 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
             // Distinguish yellow (4), pink (5) and light blue (7)
             if (BG > BR) {color = 7;}
             else{
-                if (compare(490, lround((float)BG / BB * 500), 520)){color = 5;}
-                if (lround((float)BG / BB * 500) > 520) {color = 4;}
-                else {color = 0;}
+                if (compare(0, lround((float)BG / BB * 500), 550)){color = 5;}
+                else {color = 4;}
             }    
         }
     }
     // Group 0 (black and white)
-    if (compare(90, BR, BR * 30) && compare(90, BB, BR * 30)){color = 8;}
+    if (compare(90, BR, BR * 30) && compare(90, GG, GG * 30)){color = 8;}
     if (compare(0, BR, 25) && compare(0,RR,90)){color = 0;}
     
     if (color == 8) {toggle_light(2,1);}

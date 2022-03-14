@@ -7,12 +7,13 @@
 #include "timers.h"
 
 
-void short_burst(struct DC_motor *mL, struct DC_motor *mR)
+void short_burst_back(struct DC_motor *mL, struct DC_motor *mR)
 {
     fullSpeedAhead(mL,mR);
-    __delay_ms(300);
-    stop(mL,mR);
     __delay_ms(500);
+    stop(mL,mR);
+    fullSpeedBack(mL, mR);
+    __delay_ms(10);
 }
 
 void action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR)
@@ -21,7 +22,9 @@ void action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR)
     //fullSpeedAhead(mL,mR);
     if (color != 0){
         //T0CON0bits.T0EN=0;//stop the timer
-        
+        char buf[100];
+        sprintf(buf,"result: %d\r\n", color);
+        sendStringSerial4(buf);
         if (color == 1){            //Red
             short_reverse(mL,mR);   //Reverse moving for a small distance to leave space for turning
             turnRight(mL,mR,90);    //Turn Right 90 degrees
@@ -120,25 +123,34 @@ void pin_init(void)
 void goback(struct DC_motor *mL, struct DC_motor *mR)
 {   turnRight(mL,mR,180);
     array_index--; 
+    char buf[100];
+    sprintf(buf,"go back\r\n");
+    sendStringSerial4(buf);
     while(array_index >= 0){
+        char buf3[100];
+        sprintf(buf3,"repeat\r\n");
+        sendStringSerial4(buf3);
         color_predict(array_index);
         color_predict(memory[array_index]);
         color_predict(200);
         fullSpeedAhead(mL,mR);
         for (unsigned int i=0; i<memory[array_index]; i++) {__delay_ms(1000);}
         stop(mL,mR);
-        if (array_index == 0){break;}     
-        array_index--; 
+        if (array_index == 0){break;}   
+        array_index--;   
         color_predict(array_index);
         color_predict(memory[array_index]);
-        color_predict(200);
+        color_predict(200); 
         if (memory[array_index] == 1){turnLeft(mL,mR,90);array_index--;}
-        if (memory[array_index] == 2){turnRight(mL,mR,90);array_index--;}
-        if (memory[array_index] == 3){turnLeft(mL,mR,180);array_index--;}
-        if (memory[array_index] == 4){reverse_square(mL,mR);turnLeft(mL,mR,90);array_index--;}
-        if (memory[array_index] == 5){reverse_square(mL,mR);turnRight(mL,mR,90);array_index--;}
-        if (memory[array_index] == 6){turnLeft(mL,mR,135);array_index--;}
-        if (memory[array_index] == 7){turnRight(mL, mR, -135);array_index--;}
+        else if (memory[array_index] == 2){turnRight(mL,mR,90);array_index--;}
+        else if (memory[array_index] == 3){turnLeft(mL,mR,180);array_index--;}
+        else if (memory[array_index] == 4){reverse_square(mL,mR);turnLeft(mL,mR,90);array_index--;}
+        else if (memory[array_index] == 5){reverse_square(mL,mR);turnRight(mL,mR,90);array_index--;}
+        else if (memory[array_index] == 6){turnLeft(mL,mR,135);array_index--;}
+        else if (memory[array_index] == 7){turnRight(mL,mR,135);array_index--;}
     }
+    char buf2[100];
+    sprintf(buf2,"go back finish\r\n");
+    sendStringSerial4(buf2);
     while(1){stop(mL,mR);}
 }

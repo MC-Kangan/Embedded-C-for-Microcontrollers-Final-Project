@@ -18,7 +18,7 @@
 #include <stdio.h>
 
 #define _XTAL_FREQ 64000000 //note intrinsic _delay function is 62.5ns at 64,000,000Hz 
-#define TEST 1
+#define TEST 0
 
 // Color code: 
 // 1: red; 2: green; 3: blue; 4: yellow; 5:pink; 6:orange; 7:light blue; 8:white; 9: black
@@ -49,7 +49,7 @@ void main(void){
     unsigned char stop_signal = 0;
 //    calibration(&motorL, &motorR);
     unsigned int amb_light = 0;
-    test_action(&motorL, &motorR);  
+//    test_action(&motorL, &motorR);  
     if (TEST == 0){
         calibrate_white(&white);
         amb_light = amb_light_measure(&amb);
@@ -68,17 +68,19 @@ void main(void){
             while (stop_signal == 0){
                 fullSpeedAhead(&motorL, &motorR);
                 stop_signal = distance_measure(&motorL, &motorR, amb_light);
-            }
+            }            
             T0CON0bits.T0EN=0;  //stop the timer
             stop_move = second;
-            memory[array_index] = (stop_move-start_move);
-            array_index++;
-            color_predict(stop_move-start_move);
-            color_predict(array_index);
-            color_predict(200);
-            
+            if ((stop_move-start_move)>1){
+                memory[array_index] = (stop_move-start_move);
+                color_predict(array_index);
+                color_predict(memory[array_index]);
+                color_predict(200);
+                array_index++;
+            }
             stop(&motorL, &motorR);
             __delay_ms(1000);
+            short_burst_back(&motorL, &motorR);
             color = detect_color(&rgb, &white);
             color = verify_color(color, &rgb, &white);
             //if (stop_move-start_move)

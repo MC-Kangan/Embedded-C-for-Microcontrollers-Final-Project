@@ -182,7 +182,7 @@ void fullSpeedBack(struct DC_motor *mL, struct DC_motor *mR)
 
 void short_reverse(struct DC_motor *mL, struct DC_motor *mR)
 {   fullSpeedBack(mL, mR);
-    __delay_ms(500);
+    __delay_ms(300);
     stop(mL,mR);
 }
 

@@ -2856,7 +2856,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;dc_motor.c: 171:     mR->direction=0;
 [e = . *U _mR 1 -> -> 0 `i `uc ]
 "172
-[; ;dc_motor.c: 172:     while (mL->power<50 && mR->power<50){
+[; ;dc_motor.c: 172:     while (mL->power<40 && mR->power<40){
 [e $U 2077  ]
 [e :U 2078 ]
 {
@@ -2880,8 +2880,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e :U 2077 ]
 "172
-[; ;dc_motor.c: 172:     while (mL->power<50 && mR->power<50){
-[e $ && < -> . *U _mL 0 `i -> 50 `i < -> . *U _mR 0 `i -> 50 `i 2078  ]
+[; ;dc_motor.c: 172:     while (mL->power<40 && mR->power<40){
+[e $ && < -> . *U _mL 0 `i -> 40 `i < -> . *U _mR 0 `i -> 40 `i 2078  ]
 [e :U 2079 ]
 "179
 [; ;dc_motor.c: 179:     _delay((unsigned long)((500)*(64000000/4000.0)));
@@ -2909,8 +2909,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 [e ( _fullSpeedBack (2 , _mL _mR ]
 "185
-[; ;dc_motor.c: 185:     _delay((unsigned long)((500)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+[; ;dc_motor.c: 185:     _delay((unsigned long)((300)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 300 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "186
 [; ;dc_motor.c: 186:     stop(mL,mR);
 [e ( _stop (2 , _mL _mR ]

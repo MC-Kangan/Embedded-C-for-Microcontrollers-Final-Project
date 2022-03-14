@@ -24428,7 +24428,7 @@ unsigned int memory[20];
 unsigned char array_index = 0;
 
 
-void short_burst(struct DC_motor *mL, struct DC_motor *mR);
+void short_burst_back(struct DC_motor *mL, struct DC_motor *mR);
 void action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR);
 void test_action (struct DC_motor *mL, struct DC_motor *mR);
 void pin_init(void);
@@ -24643,18 +24643,18 @@ void main(void){
     unsigned char stop_signal = 0;
 
     unsigned int amb_light = 0;
-    test_action(&motorL, &motorR);
-    if (1 == 0){
+
+    if (0 == 0){
         calibrate_white(&white);
         amb_light = amb_light_measure(&amb);
     }
 
     while(1){
 
-  if (1 == 1){
+  if (0 == 1){
             test_function(2, &rgb, &white, &motorL, &motorR);
         }
-        if (1 == 0){
+        if (0 == 0){
 
 
             T0CON0bits.T0EN=1;
@@ -24665,14 +24665,16 @@ void main(void){
             }
             T0CON0bits.T0EN=0;
             stop_move = second;
-            memory[array_index] = (stop_move-start_move);
-            array_index++;
-            color_predict(stop_move-start_move);
-            color_predict(array_index);
-            color_predict(200);
-
+            if ((stop_move-start_move)>1){
+                memory[array_index] = (stop_move-start_move);
+                color_predict(array_index);
+                color_predict(memory[array_index]);
+                color_predict(200);
+                array_index++;
+            }
             stop(&motorL, &motorR);
             _delay((unsigned long)((1000)*(64000000/4000.0)));
+            short_burst_back(&motorL, &motorR);
             color = detect_color(&rgb, &white);
             color = verify_color(color, &rgb, &white);
 

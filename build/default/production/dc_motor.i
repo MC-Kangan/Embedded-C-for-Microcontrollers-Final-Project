@@ -24448,7 +24448,7 @@ unsigned int memory[20];
 unsigned char array_index = 0;
 
 
-void short_burst(struct DC_motor *mL, struct DC_motor *mR);
+void short_burst_back(struct DC_motor *mL, struct DC_motor *mR);
 void action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR);
 void test_action (struct DC_motor *mL, struct DC_motor *mR);
 void pin_init(void);
@@ -24711,7 +24711,7 @@ void fullSpeedBack(struct DC_motor *mL, struct DC_motor *mR)
 {
     mL->direction=0;
     mR->direction=0;
-    while (mL->power<50 && mR->power<50){
+    while (mL->power<40 && mR->power<40){
         mL->power += 10;
         mR->power += 10;
         setMotorPWM(mL);
@@ -24724,7 +24724,7 @@ void fullSpeedBack(struct DC_motor *mL, struct DC_motor *mR)
 
 void short_reverse(struct DC_motor *mL, struct DC_motor *mR)
 { fullSpeedBack(mL, mR);
-    _delay((unsigned long)((500)*(64000000/4000.0)));
+    _delay((unsigned long)((300)*(64000000/4000.0)));
     stop(mL,mR);
 }
 
