@@ -25155,7 +25155,7 @@ void LED_G(void)
 void color_data_collection(struct color_rgb *m){
 
     int i = 0; int j = 0; int k = 0; int x = 0;
-    for (i = 0; i <1; ++i){
+    for (i = 0; i < 1; ++i){
         LED_C();
         _delay((unsigned long)((100)*(64000000/4000.0)));
         read_color(m);
@@ -25281,31 +25281,30 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
 
 
 
-    if (compare(0, BR, 70)){
-         if (compare(0, lroundf((float)(GG + BG)/BB * 200), 411)){color = 3;}
+    if (compare(0, RR, 45)){
+         if (compare(0, lroundf((float)(GG + BG)/BB * 200), 467)){color = 3;}
         else{color = 2;}
     }
     else{
-        if (compare(0, BG, 75)){
+        if (GG <= 30 && GB <= 30){
 
-            if (compare(480, lroundf((float)GR/RR * 500), 520)){color = 6;}
-            else {color = 1;}
+            if (compare(0, lroundf((float)GR/RR * 500), 150)){color = 1;}
+            else {color = 6;}
         }
-        else{
+        else if (GG > 30 && GB > 30){
 
-            if (BG > BR) {color = 7;}
+            if (BG >= BR) {color = 7;}
             else{
-                if (compare(0, lroundf((float)BG / BB * 500), 550)){color = 5;}
-                else {color = 4;}
+                if (BR < 48){color = 4;}
+                else {color = 5;}
             }
         }
     }
 
-    if (compare(90, BR, BR * 30) && compare(90, GG, GG * 30)){color = 8;}
-    if (compare(0, BR, 25) && compare(0,RR,90)){color = 0;}
+    if (compare(90, RR, RR * 2) && compare(90, RB, RB * 2) && compare(90, BG, BG * 2)){color = 8;}
+    if (compare(0, BR, 25) && compare(0,RR,30)){color = 0;}
 
     if (color == 8) {toggle_light(2,1);}
-
     return color;
 }
 

@@ -24554,9 +24554,9 @@ void Timer0_init(void);
 void short_burst_back(struct DC_motor *mL, struct DC_motor *mR)
 {
     fullSpeedAhead(mL,mR);
-    _delay((unsigned long)((500)*(64000000/4000.0)));
-    halfSpeedBack(mL,mR);
-    stop(mL,mR);
+    _delay((unsigned long)((600)*(64000000/4000.0)));
+
+
 
 }
 

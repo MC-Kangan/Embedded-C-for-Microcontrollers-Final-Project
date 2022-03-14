@@ -10,12 +10,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "12 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\builtins.h
 [v __delay `JF192 ~T0 @X0 0 e ]
 [p i __delay ]
-"32 ./dc_motor.h
-[; ;./dc_motor.h: 32: void halfSpeedBack(struct DC_motor *mL, struct DC_motor *mR);
-[v _halfSpeedBack `(v ~T0 @X0 0 ef2`*S2020`*S2020 ]
-"31
-[; ;./dc_motor.h: 31: void stop(struct DC_motor *mL, struct DC_motor *mR);
-[v _stop `(v ~T0 @X0 0 ef2`*S2020`*S2020 ]
 "109 C:\Program Files\Microchip\xc8\v2.35\pic\include\c99\stdio.h
 [; ;C:\Program Files\Microchip\xc8\v2.35\pic\include\c99\stdio.h: 109: int sprintf(char *restrict, const char *restrict, ...);
 [v _sprintf `(i ~T0 @X0 0 e1v`*uc`*Cuc ]
@@ -203,6 +197,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "78 ./color.h
 [; ;./color.h: 78: void color_predict(unsigned char color);
 [v _color_predict `(v ~T0 @X0 0 ef1`uc ]
+"31 ./dc_motor.h
+[; ;./dc_motor.h: 31: void stop(struct DC_motor *mL, struct DC_motor *mR);
+[v _stop `(v ~T0 @X0 0 ef2`*S2020`*S2020 ]
 "55 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 55: __asm("PPSLOCK equ 0DEFh");
 [; <" PPSLOCK equ 0DEFh ;# ">
@@ -2258,14 +2255,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;movement.c: 12:     fullSpeedAhead(mL,mR);
 [e ( _fullSpeedAhead (2 , _mL _mR ]
 "13
-[; ;movement.c: 13:     _delay((unsigned long)((500)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"14
-[; ;movement.c: 14:     halfSpeedBack(mL,mR);
-[e ( _halfSpeedBack (2 , _mL _mR ]
-"15
-[; ;movement.c: 15:     stop(mL,mR);
-[e ( _stop (2 , _mL _mR ]
+[; ;movement.c: 13:     _delay((unsigned long)((600)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 600 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "17
 [; ;movement.c: 17: }
 [e :UE 2021 ]

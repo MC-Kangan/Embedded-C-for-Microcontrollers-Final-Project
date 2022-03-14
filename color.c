@@ -200,7 +200,7 @@ void LED_G(void)//struct color_rgb *m)
 void color_data_collection(struct color_rgb *m){
     
     int i = 0; int j = 0; int k = 0; int x = 0;
-    for (i = 0; i <1; ++i){
+    for (i = 0; i < 1; ++i){
         LED_C();
         __delay_ms(100);
         read_color(m);
@@ -326,31 +326,30 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
     //sendStringSerial4(buf);
     
     // Distinguish green (2) and blue (3)
-    if (compare(0, BR, 70)){ // if BR < 70
-         if (compare(0, lround((float)(GG + BG)/BB * 200), 411)){color = 3;}// if (GG+BG)/BB*2 < 391 //Blue
+    if (compare(0, RR, 45)){ 
+         if (compare(0, lround((float)(GG + BG)/BB * 200), 467)){color = 3;} //Blue
         else{color = 2;} // if (GG+BG)/BB*2 > 391 //Green
     }
     else{
-        if (compare(0, BG, 75)){ // if RG < 75
+        if (GG <= 30 && GB <= 30){ // if RG < 75
             // Distinguish red (1) and orange (6)
-            if (compare(480, lround((float)GR/RR * 500), 520)){color = 6;}
-            else {color = 1;} // if RR/BG*2 >= 313
+            if (compare(0, lround((float)GR/RR * 500), 150)){color = 1;}
+            else {color = 6;} // if RR/BG*2 >= 313
         }
-        else{ 
+        else if (GG > 30 && GB > 30){
             // Distinguish yellow (4), pink (5) and light blue (7)
-            if (BG > BR) {color = 7;}
+            if (BG >= BR) {color = 7;}
             else{
-                if (compare(0, lround((float)BG / BB * 500), 550)){color = 5;}
-                else {color = 4;}
+                if (BR < 48){color = 4;}
+                else {color = 5;}
             }    
         }
     }
     // Group 0 (black and white)
-    if (compare(90, BR, BR * 30) && compare(90, GG, GG * 30)){color = 8;}
-    if (compare(0, BR, 25) && compare(0,RR,90)){color = 0;}
+    if (compare(90, RR, RR * 2) && compare(90, RB, RB * 2) && compare(90, BG, BG * 2)){color = 8;}
+    if (compare(0, BR, 25) && compare(0,RR,30)){color = 0;}
     
     if (color == 8) {toggle_light(2,1);}
-
     return color;
 }
 
