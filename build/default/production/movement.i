@@ -24460,10 +24460,7 @@ unsigned amb_light_measure(struct color_rgb *amb);
 # 3 "movement.c" 2
 
 # 1 "./dc_motor.h" 1
-# 13 "./dc_motor.h"
-unsigned char CALIBRATION_135 = 10;
-unsigned char CALIBRATION_180 = 20;
-
+# 16 "./dc_motor.h"
 unsigned char SENSITIVITY = 10;
 
 struct DC_motor {

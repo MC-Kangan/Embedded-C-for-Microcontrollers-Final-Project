@@ -24232,10 +24232,7 @@ unsigned char __t3rd16on(void);
 # 1 "color.c" 2
 
 # 1 "./dc_motor.h" 1
-# 13 "./dc_motor.h"
-unsigned char CALIBRATION_135 = 10;
-unsigned char CALIBRATION_180 = 20;
-
+# 16 "./dc_motor.h"
 unsigned char SENSITIVITY = 10;
 
 struct DC_motor {
@@ -25243,6 +25240,8 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
 {
 
 
+
+
     unsigned int RR = 0, RG = 0, RB = 0, GR = 0, GG = 0, GB = 0, BR = 0, BG = 0, BB = 0, BC = 0;
     unsigned char color = 0;
 
@@ -25251,14 +25250,20 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
 
     RR = lroundf((float)(m->R)/(w->RR)*100); RG = lroundf((float)(m->G)/(w->RG)*100); RB = lroundf((float)(m->B)/(w->RB)*100);
     _delay((unsigned long)((50)*(64000000/4000.0)));
+    char buf[100];
+
+    sprintf(buf,"%d\t%d\t%d\r\n", RR, RG, RB);
+    sendStringSerial4(buf);
 
     LED_G();
     read_color(m);
 
 
     GR = lroundf((float)(m->R)/(w->GR)*100); GG = lroundf((float)(m->G)/(w->GG)*100); GB = lroundf((float)(m->B)/(w->GB)*100);
-
     _delay((unsigned long)((50)*(64000000/4000.0)));
+
+    sprintf(buf,"%d\t%d\t%d\r\n", GR, GG, GB);
+    sendStringSerial4(buf);
 
     LED_B();
     read_color(m);
@@ -25266,34 +25271,32 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
     BC = lroundf((float)(m->C)/(w->BC)*100);
     _delay((unsigned long)((50)*(64000000/4000.0)));
 
+    sprintf(buf,"%d\t%d\t%d\r\n", BR, BG, BB);
+    sendStringSerial4(buf);
+
 
     if (compare(0, BR, 70)){
-
          if (compare(0, lroundf((float)(GG + BG)/BB * 200), 411)){color = 3;}
         else{color = 2;}
     }
     else{
         if (compare(0, BG, 75)){
 
-            if (compare(0, lroundf((float)RR/RG * 500), 670)){
-                if (GR > 90){color = 6;}
-                else {color = 0;}
-            }
+            if (compare(480, lroundf((float)GR/RR * 500), 520)){color = 6;}
             else {color = 1;}
         }
         else{
-            if (compare(0, lroundf((float)(BR + BG)/BB * 100), 100)){
-                if (BG > 90){color = 7;}
-                else {color = 0;}
-            }
+
+            if (BG > BR) {color = 7;}
             else{
-                if (BG > BB && lroundf((float)BB / BC * 100) < 90){color = 4;}
-                else{color = 5;}
+                if (compare(490, lroundf((float)BG / BB * 500), 520)){color = 5;}
+                if (lroundf((float)BG / BB * 500) > 520) {color = 4;}
+                else {color = 0;}
             }
         }
     }
 
-    if (compare(90, BR, 110) && compare(90,BG,110)){color = 8;}
+    if (compare(90, BR, BR * 30) && compare(90, BB, BR * 30)){color = 8;}
     if (compare(0, BR, 25) && compare(0,RR,90)){color = 0;}
 
     if (color == 8) {toggle_light(2,1);}

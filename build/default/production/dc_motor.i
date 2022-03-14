@@ -24232,10 +24232,7 @@ unsigned char __t3rd16on(void);
 # 1 "dc_motor.c" 2
 
 # 1 "./dc_motor.h" 1
-# 13 "./dc_motor.h"
-unsigned char CALIBRATION_135 = 10;
-unsigned char CALIBRATION_180 = 20;
-
+# 16 "./dc_motor.h"
 unsigned char SENSITIVITY = 10;
 
 struct DC_motor {
@@ -24549,6 +24546,7 @@ void test_function(unsigned char test_code, struct color_rgb *m, struct white_ca
 
 
 struct DC_motor motorL, motorR;
+unsigned char CALIBRATION_180 = 20;
 
 void initDCmotorsPWM(int PWMperiod){
 
@@ -24647,14 +24645,14 @@ void turnLeft(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_left
         _delay((unsigned long)((10)*(64000000/4000.0)));
     }
     unsigned int delay = angle_left * SENSITIVITY;
-    unsigned int delay_135 = delay + CALIBRATION_135;
+
     unsigned int delay_180 = delay + CALIBRATION_180;
     if (angle_left == 180){
         for(unsigned int i = 0; i <delay_180; i++){_delay((unsigned long)((1)*(64000000/4000.0)));}
     }
-    if (angle_left == 135){
-        for(unsigned int i = 0; i <delay_135; i++){_delay((unsigned long)((1)*(64000000/4000.0)));}
-    }
+
+
+
     else{
         for(unsigned int i = 0; i < delay; i++){_delay((unsigned long)((1)*(64000000/4000.0)));}
     }
@@ -24674,14 +24672,14 @@ void turnRight(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_rig
         _delay((unsigned long)((10)*(64000000/4000.0)));
     }
     unsigned int delay = angle_right * SENSITIVITY;
-    unsigned int delay_135 = delay + CALIBRATION_135;
+
     unsigned int delay_180 = delay + CALIBRATION_180;
     if (angle_right == 180){
         for(unsigned int i = 0; i <delay_180; i++){_delay((unsigned long)((1)*(64000000/4000.0)));}
     }
-    if (angle_right == 135){
-        for(unsigned int i = 0; i <delay_135; i++){_delay((unsigned long)((1)*(64000000/4000.0)));}
-    }
+
+
+
     else{
         for(unsigned int i = 0; i < delay; i++){_delay((unsigned long)((1)*(64000000/4000.0)));}
     }

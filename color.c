@@ -286,6 +286,8 @@ void calibrate_white(struct white_card *w)
 // Function used to detect color with white light
 unsigned char detect_color(struct color_rgb *m, struct white_card *w)
 {
+    
+    
     // Color code:
     // 1: red; 2: green; 3: blue; 4: yellow; 5:pink; 6:orange; 7:light blue; 8:white; 0: black
     unsigned int RR = 0, RG = 0, RB = 0, GR = 0, GG = 0, GB = 0, BR = 0, BG = 0, BB = 0, BC = 0; //GR_REAL = 0, GC_REAL = 0, BC = 0;
@@ -296,49 +298,53 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
     //RR = (float)(m->R)/(w->RR)*100; RG = (float)(m->G)/(w->RG)*100; RB =(float)(m->B)/(w->RB)*100;
     RR = lround((float)(m->R)/(w->RR)*100); RG = lround((float)(m->G)/(w->RG)*100); RB = lround((float)(m->B)/(w->RB)*100);
     __delay_ms(50);
+    char buf[100];
+    
+    sprintf(buf,"%d\t%d\t%d\r\n", RR, RG, RB);
+    sendStringSerial4(buf);
     
     LED_G(); // Turn on green light
     read_color(m); 
     //GR_REAL = m->R ;  GC_REAL = m->C;
     //GR = (float)(m->R)/(w->GR)*100; GG = (float)(m->G)/(w->GG)*100; GB = (float)(m->B)/(w->GB)*100;
     GR = lround((float)(m->R)/(w->GR)*100); GG = lround((float)(m->G)/(w->GG)*100); GB = lround((float)(m->B)/(w->GB)*100);
-    
     __delay_ms(50);
+
+    sprintf(buf,"%d\t%d\t%d\r\n", GR, GG, GB);
+    sendStringSerial4(buf);
     
     LED_B(); // Turn on blue light
     read_color(m); 
     BR = lround((float)(m->R)/(w->BR)*100); BG = lround((float)(m->G)/(w->BG)*100); BB = lround((float)(m->B)/(w->BB)*100);
     BC = lround((float)(m->C)/(w->BC)*100);
     __delay_ms(50);
+
+    sprintf(buf,"%d\t%d\t%d\r\n", BR, BG, BB);
+    sendStringSerial4(buf);
     
-    
+    // Distinguish green (2) and blue (3)
     if (compare(0, BR, 70)){ // if BR < 70
-        // if (compare(0, (float)(GG + BG)/BB * 200, 414)){color = 3;}// if (GG+BG)/BB*2 < 391 //Blue
          if (compare(0, lround((float)(GG + BG)/BB * 200), 411)){color = 3;}// if (GG+BG)/BB*2 < 391 //Blue
         else{color = 2;} // if (GG+BG)/BB*2 > 391 //Green
     }
-    else{ // if BR > 70
+    else{
         if (compare(0, BG, 75)){ // if RG < 75
-            //if (compare(0, (float)RR/RG * 500, 670)){ // if RR/BG * 2 < 313
-            if (compare(0, lround((float)RR/RG * 500), 670)){ // if RR/BG * 2 < 313
-                if (GR > 90){color = 6;} 
-                else {color = 0;}
-            }
+            // Distinguish red (1) and orange (6)
+            if (compare(480, lround((float)GR/RR * 500), 520)){color = 6;}
             else {color = 1;} // if RR/BG*2 >= 313
         }
-        else{ // if RG >= 75
-            if (compare(0, lround((float)(BR + BG)/BB * 100), 100)){
-                if (BG > 90){color = 7;} // if BR < 85
+        else{ 
+            // Distinguish yellow (4), pink (5) and light blue (7)
+            if (BG > BR) {color = 7;}
+            else{
+                if (compare(490, lround((float)BG / BB * 500), 520)){color = 5;}
+                if (lround((float)BG / BB * 500) > 520) {color = 4;}
                 else {color = 0;}
-            }
-            else{// if BR > = 85
-                if (BG > BB && lround((float)BB / BC * 100) < 90){color = 4;} // if BG < BB
-                else{color = 5;}
-            }
+            }    
         }
     }
     // Group 0 (black and white)
-    if (compare(90, BR, 110) && compare(90,BG,110)){color = 8;}
+    if (compare(90, BR, BR * 30) && compare(90, BB, BR * 30)){color = 8;}
     if (compare(0, BR, 25) && compare(0,RR,90)){color = 0;}
     
     if (color == 8) {toggle_light(2,1);}

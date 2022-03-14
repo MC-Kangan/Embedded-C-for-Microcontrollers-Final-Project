@@ -24238,10 +24238,7 @@ unsigned char __t3rd16on(void);
 # 7 "test_and_calibration.c" 2
 
 # 1 "./dc_motor.h" 1
-# 13 "./dc_motor.h"
-unsigned char CALIBRATION_135 = 10;
-unsigned char CALIBRATION_180 = 20;
-
+# 16 "./dc_motor.h"
 unsigned char SENSITIVITY = 10;
 
 struct DC_motor {
@@ -24577,7 +24574,7 @@ void test_function(unsigned char test_code, struct color_rgb *m, struct white_ca
         if (test_code == 2){
             color = detect_color(m,w);
 
-
+            color_predict(color);
         }
 
         if (test_code == 3){

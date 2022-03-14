@@ -6,6 +6,7 @@
 #include "test_and_calibration.h"
 // function initialise T2 and PWM for DC motor control
 struct DC_motor motorL, motorR;
+unsigned char CALIBRATION_180 = 20;
 
 void initDCmotorsPWM(int PWMperiod){
 	//initialise your TRIS and LAT registers for PWM
@@ -104,14 +105,14 @@ void turnLeft(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_left
         __delay_ms(10);
     }
     unsigned int delay = angle_left * SENSITIVITY;
-    unsigned int delay_135 = delay + CALIBRATION_135;
+//    unsigned int delay_135 = delay + CALIBRATION_135;
     unsigned int delay_180 = delay + CALIBRATION_180;
     if (angle_left == 180){
         for(unsigned int i = 0; i <delay_180; i++){__delay_ms(1);}
     }
-    if (angle_left == 135){
-        for(unsigned int i = 0; i <delay_135; i++){__delay_ms(1);}
-    }
+//    if (angle_left == 135){
+//        for(unsigned int i = 0; i <delay_135; i++){__delay_ms(1);}
+//    }
     else{
         for(unsigned int i = 0; i < delay; i++){__delay_ms(1);}
     }
@@ -131,14 +132,14 @@ void turnRight(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_rig
         __delay_ms(10);
     }
     unsigned int delay = angle_right * SENSITIVITY;
-    unsigned int delay_135 = delay + CALIBRATION_135;
+//    unsigned int delay_135 = delay + CALIBRATION_135;
     unsigned int delay_180 = delay + CALIBRATION_180;
     if (angle_right == 180){
         for(unsigned int i = 0; i <delay_180; i++){__delay_ms(1);}
     }
-    if (angle_right == 135){
-        for(unsigned int i = 0; i <delay_135; i++){__delay_ms(1);}
-    }
+//    if (angle_right == 135){
+//        for(unsigned int i = 0; i <delay_135; i++){__delay_ms(1);}
+//    }
     else{
         for(unsigned int i = 0; i < delay; i++){__delay_ms(1);}
     }

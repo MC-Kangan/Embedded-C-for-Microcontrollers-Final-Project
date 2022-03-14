@@ -2168,19 +2168,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "40928
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 40928: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"13 ./dc_motor.h
-[; ;./dc_motor.h: 13: unsigned char CALIBRATION_135 = 10;
-[v _CALIBRATION_135 `uc ~T0 @X0 1 e ]
-[i _CALIBRATION_135
--> -> 10 `i `uc
-]
-"14
-[; ;./dc_motor.h: 14: unsigned char CALIBRATION_180 = 20;
-[v _CALIBRATION_180 `uc ~T0 @X0 1 e ]
-[i _CALIBRATION_180
--> -> 20 `i `uc
-]
-"16
+"16 ./dc_motor.h
 [; ;./dc_motor.h: 16: unsigned char SENSITIVITY = 10;
 [v _SENSITIVITY `uc ~T0 @X0 1 e ]
 [i _SENSITIVITY

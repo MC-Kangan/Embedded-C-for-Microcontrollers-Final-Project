@@ -34,7 +34,7 @@ void test_function(unsigned char test_code, struct color_rgb *m, struct white_ca
         if (test_code == 2){
             color = detect_color(m,w);
             //color_display(m);
-            //color_predict(color);
+            color_predict(color);
         }
         // Test 3: Collect data for different color cards
         if (test_code == 3){
