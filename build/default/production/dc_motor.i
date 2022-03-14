@@ -24244,7 +24244,6 @@ struct DC_motor {
     unsigned char *dir_LAT;
     char dir_pin;
     int PWMperiod;
-    char voltage;
 };
 
 
@@ -24543,7 +24542,8 @@ unsigned amb_light_measure(struct color_rgb *amb);
 
 
 
-void calibration(struct DC_motor *mL, struct DC_motor *mR);
+void setup_init(void);
+void calibration_motor(struct DC_motor *mL, struct DC_motor *mR);
 void test_function(unsigned char test_code, struct color_rgb *m, struct white_card *w, struct DC_motor *mL, struct DC_motor *mR);
 # 6 "dc_motor.c" 2
 
@@ -24722,22 +24722,6 @@ void fullSpeedBack(struct DC_motor *mL, struct DC_motor *mR)
     _delay((unsigned long)((500)*(64000000/4000.0)));
     stop(mL,mR);
 }
-
-void halfSpeedBack(struct DC_motor *mL, struct DC_motor *mR)
-{
-    mL->direction=0;
-    mR->direction=0;
-    while (mL->power<40 && mR->power<40){
-        mL->power += 10;
-        mR->power += 10;
-        setMotorPWM(mL);
-        setMotorPWM(mR);
-        _delay((unsigned long)((10)*(64000000/4000.0)));
-    }
-    _delay((unsigned long)((100)*(64000000/4000.0)));
-    stop(mL,mR);
-}
-
 
 void short_reverse(struct DC_motor *mL, struct DC_motor *mR)
 { fullSpeedBack(mL, mR);

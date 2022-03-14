@@ -36,6 +36,7 @@ void main(void){
     initUSART4();
     Timer0_init();
     Interrupts_init();
+    setup_init();
     
     struct color_rgb rgb, amb;
     struct white_card white;
@@ -50,10 +51,24 @@ void main(void){
 //    calibration(&motorL, &motorR);
     unsigned int amb_light = 0;
 //    test_action(&motorL, &motorR);  
+    unsigned char setup = 0;
     if (TEST == 0){
-        calibrate_white(&white);
-        amb_light = amb_light_measure(&amb);
+        while(!setup){
+            LED_OFF();
+            LATDbits.LATD7 = 1;
+            LATHbits.LATH3 = 1;
+            while (PORTFbits.RF2);
+            if (!PORTFbits.RF2){calibrate_white(&white); LATDbits.LATD7 = 0; __delay_ms(500);}
+            while (PORTFbits.RF3);
+            if (!PORTFbits.RF3){amb_light = amb_light_measure(&amb); LATHbits.LATH3 = 0; __delay_ms(500);}
+            LATDbits.LATD7 = 1;
+            if (!PORTFbits.RF3){calibration_motor(&motorL, &motorR);} // This line is not working as intended
+            while (PORTFbits.RF2);
+            if (!PORTFbits.RF2){LATDbits.LATD7 = 0; setup = 1;__delay_ms(500);}
+        }
     }
+    
+    
     
     while(1){
 

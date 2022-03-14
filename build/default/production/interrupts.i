@@ -24291,6 +24291,8 @@ void Interrupts_init(void)
 void __attribute__((picinterrupt(("high_priority")))) HighISR()
 {
     if(PIR0bits.TMR0IF){
+        TMR0H=0b00111100;
+        TMR0L=0b10101111;
         centisecond ++;
         PIR0bits.TMR0IF = 0;
     }

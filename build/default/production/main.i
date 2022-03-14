@@ -24253,7 +24253,6 @@ struct DC_motor {
     unsigned char *dir_LAT;
     char dir_pin;
     int PWMperiod;
-    char voltage;
 };
 
 
@@ -24461,7 +24460,8 @@ void Timer0_init(void);
 
 # 1 "./test_and_calibration.h" 1
 # 17 "./test_and_calibration.h"
-void calibration(struct DC_motor *mL, struct DC_motor *mR);
+void setup_init(void);
+void calibration_motor(struct DC_motor *mL, struct DC_motor *mR);
 void test_function(unsigned char test_code, struct color_rgb *m, struct white_card *w, struct DC_motor *mL, struct DC_motor *mR);
 # 17 "main.c" 2
 
@@ -24631,6 +24631,7 @@ void main(void){
     initUSART4();
     Timer0_init();
     Interrupts_init();
+    setup_init();
 
     struct color_rgb rgb, amb;
     struct white_card white;
@@ -24645,10 +24646,24 @@ void main(void){
 
     unsigned int amb_light = 0;
 
+    unsigned char setup = 0;
     if (0 == 0){
-        calibrate_white(&white);
-        amb_light = amb_light_measure(&amb);
+        while(!setup){
+            LED_OFF();
+            LATDbits.LATD7 = 1;
+            LATHbits.LATH3 = 1;
+            while (PORTFbits.RF2);
+            if (!PORTFbits.RF2){calibrate_white(&white); LATDbits.LATD7 = 0; _delay((unsigned long)((500)*(64000000/4000.0)));}
+            while (PORTFbits.RF3);
+            if (!PORTFbits.RF3){amb_light = amb_light_measure(&amb); LATHbits.LATH3 = 0; _delay((unsigned long)((500)*(64000000/4000.0)));}
+            LATDbits.LATD7 = 1;
+            if (!PORTFbits.RF3){calibration_motor(&motorL, &motorR);}
+            while (PORTFbits.RF2);
+            if (!PORTFbits.RF2){LATDbits.LATD7 = 0; setup = 1;_delay((unsigned long)((500)*(64000000/4000.0)));}
+        }
     }
+
+
 
     while(1){
 
@@ -24668,9 +24683,6 @@ void main(void){
             stop_move = centisecond;
             if ((stop_move-start_move)>1){
                 memory[array_index] = (stop_move-start_move);
-                color_predict(array_index);
-                color_predict(memory[array_index]);
-                color_predict(200);
                 array_index++;
             }
             stop(&motorL, &motorR);

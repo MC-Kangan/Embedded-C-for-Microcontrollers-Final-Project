@@ -24244,7 +24244,6 @@ struct DC_motor {
     unsigned char *dir_LAT;
     char dir_pin;
     int PWMperiod;
-    char voltage;
 };
 
 
@@ -24960,7 +24959,8 @@ void goback(struct DC_motor *mL, struct DC_motor *mR);
 
 # 1 "./test_and_calibration.h" 1
 # 17 "./test_and_calibration.h"
-void calibration(struct DC_motor *mL, struct DC_motor *mR);
+void setup_init(void);
+void calibration_motor(struct DC_motor *mL, struct DC_motor *mR);
 void test_function(unsigned char test_code, struct color_rgb *m, struct white_card *w, struct DC_motor *mL, struct DC_motor *mR);
 # 11 "color.c" 2
 

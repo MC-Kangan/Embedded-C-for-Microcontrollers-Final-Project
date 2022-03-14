@@ -42,6 +42,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 "5103
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 5103: extern volatile PIR0bits_t PIR0bits __attribute__((address(0xE33)));
 [v _PIR0bits `VS285 ~T0 @X0 0 e@3635 ]
+"39327
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 39327: extern volatile unsigned char TMR0H __attribute__((address(0xFD4)));
+[v _TMR0H `Vuc ~T0 @X0 0 e@4052 ]
+"39189
+[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 39189: extern volatile unsigned char TMR0L __attribute__((address(0xFD3)));
+[v _TMR0L `Vuc ~T0 @X0 0 e@4051 ]
 "55 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 55: __asm("PPSLOCK equ 0DEFh");
 [; <" PPSLOCK equ 0DEFh ;# ">
@@ -2067,16 +2073,22 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ ! != -> . . _PIR0bits 0 5 `i -> 0 `i 2021  ]
 {
 "24
-[; ;interrupts.c: 24:         centisecond ++;
-[e ++ _centisecond -> -> 1 `i `ui ]
+[; ;interrupts.c: 24:         TMR0H=0b00111100;
+[e = _TMR0H -> -> 60 `i `uc ]
 "25
-[; ;interrupts.c: 25:         PIR0bits.TMR0IF = 0;
-[e = . . _PIR0bits 0 5 -> -> 0 `i `uc ]
+[; ;interrupts.c: 25:         TMR0L=0b10101111;
+[e = _TMR0L -> -> 175 `i `uc ]
 "26
-[; ;interrupts.c: 26:     }
+[; ;interrupts.c: 26:         centisecond ++;
+[e ++ _centisecond -> -> 1 `i `ui ]
+"27
+[; ;interrupts.c: 27:         PIR0bits.TMR0IF = 0;
+[e = . . _PIR0bits 0 5 -> -> 0 `i `uc ]
+"28
+[; ;interrupts.c: 28:     }
 }
 [e :U 2021 ]
-"27
-[; ;interrupts.c: 27: }
+"29
+[; ;interrupts.c: 29: }
 [e :UE 2020 ]
 }

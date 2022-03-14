@@ -24250,7 +24250,6 @@ struct DC_motor {
     unsigned char *dir_LAT;
     char dir_pin;
     int PWMperiod;
-    char voltage;
 };
 
 
@@ -24549,12 +24548,31 @@ unsigned amb_light_measure(struct color_rgb *amb);
 
 
 
-void calibration(struct DC_motor *mL, struct DC_motor *mR);
+void setup_init(void);
+void calibration_motor(struct DC_motor *mL, struct DC_motor *mR);
 void test_function(unsigned char test_code, struct color_rgb *m, struct white_card *w, struct DC_motor *mL, struct DC_motor *mR);
 # 12 "test_and_calibration.c" 2
 
 
 
+
+void setup_init(void){
+
+    LATDbits.LATD7=0;
+    TRISDbits.TRISD7=0;
+
+
+    LATHbits.LATH3=0;
+    TRISHbits.TRISH3=0;
+
+
+    TRISFbits.TRISF2=1;
+    ANSELFbits.ANSELF2=0;
+
+
+    TRISFbits.TRISF3=1;
+    ANSELFbits.ANSELF3=0;
+}
 
 void test_function(unsigned char test_code, struct color_rgb *m, struct white_card *w, struct DC_motor *mL, struct DC_motor *mR)
 {
@@ -24599,7 +24617,7 @@ void test_function(unsigned char test_code, struct color_rgb *m, struct white_ca
     }
 }
 
-void calibration(struct DC_motor *mL, struct DC_motor *mR)
+void calibration_motor(struct DC_motor *mL, struct DC_motor *mR)
 {
     while (1) {
         LATDbits.LATD7 = 1;
