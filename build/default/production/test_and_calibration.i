@@ -24238,8 +24238,10 @@ unsigned char __t3rd16on(void);
 # 7 "test_and_calibration.c" 2
 
 # 1 "./dc_motor.h" 1
-# 16 "./dc_motor.h"
-unsigned char SENSITIVITY = 10;
+# 13 "./dc_motor.h"
+unsigned char CALIBRATION_135 = 15;
+unsigned char CALIBRATION_180 = 10;
+unsigned char SENSITIVITY = 10.5;
 
 struct DC_motor {
     char power;

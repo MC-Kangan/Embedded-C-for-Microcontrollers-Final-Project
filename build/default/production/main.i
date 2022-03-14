@@ -24241,8 +24241,10 @@ unsigned char __t3rd16on(void);
 # 9 "main.c" 2
 
 # 1 "./dc_motor.h" 1
-# 16 "./dc_motor.h"
-unsigned char SENSITIVITY = 10;
+# 13 "./dc_motor.h"
+unsigned char CALIBRATION_135 = 15;
+unsigned char CALIBRATION_180 = 10;
+unsigned char SENSITIVITY = 10.5;
 
 struct DC_motor {
     char power;
@@ -24641,7 +24643,7 @@ void main(void){
     unsigned char stop_signal = 0;
 
     unsigned int amb_light = 0;
-
+    test_action(&motorL, &motorR);
     if (1 == 0){
         calibrate_white(&white);
         amb_light = amb_light_measure(&amb);

@@ -24232,8 +24232,10 @@ unsigned char __t3rd16on(void);
 # 1 "dc_motor.c" 2
 
 # 1 "./dc_motor.h" 1
-# 16 "./dc_motor.h"
-unsigned char SENSITIVITY = 10;
+# 13 "./dc_motor.h"
+unsigned char CALIBRATION_135 = 15;
+unsigned char CALIBRATION_180 = 10;
+unsigned char SENSITIVITY = 10.5;
 
 struct DC_motor {
     char power;
@@ -24546,7 +24548,6 @@ void test_function(unsigned char test_code, struct color_rgb *m, struct white_ca
 
 
 struct DC_motor motorL, motorR;
-unsigned char CALIBRATION_180 = 20;
 
 void initDCmotorsPWM(int PWMperiod){
 
@@ -24629,7 +24630,7 @@ void stop(struct DC_motor *mL, struct DC_motor *mR)
         setMotorPWM(mR);
         _delay((unsigned long)((10)*(64000000/4000.0)));
     }
-    _delay((unsigned long)((100)*(64000000/4000.0)));
+    _delay((unsigned long)((500)*(64000000/4000.0)));
 }
 
 
@@ -24645,15 +24646,15 @@ void turnLeft(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_left
         _delay((unsigned long)((10)*(64000000/4000.0)));
     }
     unsigned int delay = angle_left * SENSITIVITY;
-
+    unsigned int delay_135 = delay + CALIBRATION_135;
     unsigned int delay_180 = delay + CALIBRATION_180;
     if (angle_left == 180){
         for(unsigned int i = 0; i <delay_180; i++){_delay((unsigned long)((1)*(64000000/4000.0)));}
     }
-
-
-
-    else{
+    if (angle_left == 135){
+        for(unsigned int i = 0; i <delay_135; i++){_delay((unsigned long)((1)*(64000000/4000.0)));}
+    }
+    if (angle_left == 90){
         for(unsigned int i = 0; i < delay; i++){_delay((unsigned long)((1)*(64000000/4000.0)));}
     }
     stop(mL,mR);
@@ -24672,15 +24673,15 @@ void turnRight(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_rig
         _delay((unsigned long)((10)*(64000000/4000.0)));
     }
     unsigned int delay = angle_right * SENSITIVITY;
-
+    unsigned int delay_135 = delay + CALIBRATION_135;
     unsigned int delay_180 = delay + CALIBRATION_180;
     if (angle_right == 180){
         for(unsigned int i = 0; i <delay_180; i++){_delay((unsigned long)((1)*(64000000/4000.0)));}
     }
-
-
-
-    else{
+    if (angle_right == 135){
+        for(unsigned int i = 0; i <delay_135; i++){_delay((unsigned long)((1)*(64000000/4000.0)));}
+    }
+    if (angle_right == 90){
         for(unsigned int i = 0; i < delay; i++){_delay((unsigned long)((1)*(64000000/4000.0)));}
     }
     stop(mL,mR);
@@ -24702,7 +24703,7 @@ void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR)
 
 void fullSpeedAhead_test(struct DC_motor *mL, struct DC_motor *mR)
 { fullSpeedAhead(mL, mR);
-    _delay((unsigned long)((500)*(64000000/4000.0)));
+    _delay((unsigned long)((1000)*(64000000/4000.0)));
     stop(mL,mR);
 }
 
@@ -24729,6 +24730,6 @@ void short_reverse(struct DC_motor *mL, struct DC_motor *mR)
 
 void reverse_square(struct DC_motor *mL, struct DC_motor *mR)
 { fullSpeedBack(mL, mR);
-    _delay((unsigned long)((1000)*(64000000/4000.0)));
+    _delay((unsigned long)((1500)*(64000000/4000.0)));
     stop(mL,mR);
 }

@@ -49,7 +49,7 @@ void main(void){
     unsigned char stop_signal = 0;
 //    calibration(&motorL, &motorR);
     unsigned int amb_light = 0;
-    
+    test_action(&motorL, &motorR);  
     if (TEST == 0){
         calibrate_white(&white);
         amb_light = amb_light_measure(&amb);

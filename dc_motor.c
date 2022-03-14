@@ -6,7 +6,6 @@
 #include "test_and_calibration.h"
 // function initialise T2 and PWM for DC motor control
 struct DC_motor motorL, motorR;
-unsigned char CALIBRATION_180 = 20;
 
 void initDCmotorsPWM(int PWMperiod){
 	//initialise your TRIS and LAT registers for PWM
@@ -89,7 +88,7 @@ void stop(struct DC_motor *mL, struct DC_motor *mR)
         setMotorPWM(mR);                    // set the power to motor
         __delay_ms(10);
     }
-    __delay_ms(100);
+    __delay_ms(500);
 }
 
 //function to make the robot turn left 
@@ -100,20 +99,20 @@ void turnLeft(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_left
       while (mR->power <TURNING_POWER_R){      // when the right motor power is lower than the setting value(see dc_motor.h)
         mR->power += 5;                        // increase the right motor power by 1 for each time (this case the power of motor push to the setting value immediately)
         mL->power = 0;                         // keep the left motor static, so the car will turn left               
-        setMotorPWM(mL);    // set the power to motor
-        setMotorPWM(mR); 
+        setMotorPWM(mL);                       // set the power to motor
+        setMotorPWM(mR);                       // set the power to motor
         __delay_ms(10);
     }
     unsigned int delay = angle_left * SENSITIVITY;
-//    unsigned int delay_135 = delay + CALIBRATION_135;
+    unsigned int delay_135 = delay + CALIBRATION_135;
     unsigned int delay_180 = delay + CALIBRATION_180;
     if (angle_left == 180){
         for(unsigned int i = 0; i <delay_180; i++){__delay_ms(1);}
     }
-//    if (angle_left == 135){
-//        for(unsigned int i = 0; i <delay_135; i++){__delay_ms(1);}
-//    }
-    else{
+    if (angle_left == 135){
+        for(unsigned int i = 0; i <delay_135; i++){__delay_ms(1);}
+    }
+    if (angle_left == 90){
         for(unsigned int i = 0; i < delay; i++){__delay_ms(1);}
     }
     stop(mL,mR);
@@ -128,19 +127,19 @@ void turnRight(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_rig
         mL->power += 5;                      // increase the left motor power by 1 for each time (this case the power of motor push to the setting value immediately)
         mR->power = 0;                       // keep the right motor static, so the car will turn right
         setMotorPWM(mL);                     // set the power to motor
-        setMotorPWM(mR);
+        setMotorPWM(mR);                     // set the power to motor
         __delay_ms(10);
     }
     unsigned int delay = angle_right * SENSITIVITY;
-//    unsigned int delay_135 = delay + CALIBRATION_135;
+    unsigned int delay_135 = delay + CALIBRATION_135;
     unsigned int delay_180 = delay + CALIBRATION_180;
     if (angle_right == 180){
         for(unsigned int i = 0; i <delay_180; i++){__delay_ms(1);}
     }
-//    if (angle_right == 135){
-//        for(unsigned int i = 0; i <delay_135; i++){__delay_ms(1);}
-//    }
-    else{
+    if (angle_right == 135){
+        for(unsigned int i = 0; i <delay_135; i++){__delay_ms(1);}
+    }
+    if (angle_right == 90){
         for(unsigned int i = 0; i < delay; i++){__delay_ms(1);}
     }
     stop(mL,mR);
@@ -162,7 +161,7 @@ void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR)
 
 void fullSpeedAhead_test(struct DC_motor *mL, struct DC_motor *mR)
 {   fullSpeedAhead(mL, mR);
-    __delay_ms(500);
+    __delay_ms(1000);
     stop(mL,mR);
 }
 
@@ -189,7 +188,7 @@ void short_reverse(struct DC_motor *mL, struct DC_motor *mR)
 
 void reverse_square(struct DC_motor *mL, struct DC_motor *mR)
 {   fullSpeedBack(mL, mR);
-    __delay_ms(1000);
+    __delay_ms(1500);
     stop(mL,mR);
 }
 

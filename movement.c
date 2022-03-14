@@ -84,6 +84,15 @@ void test_action (struct DC_motor *mL, struct DC_motor *mR)
     fullSpeedAhead_test(mL,mR);
     turnRight(mL,mR,90);
     fullSpeedAhead_test(mL,mR);
+    turnLeft(mL,mR,180);
+    fullSpeedAhead_test(mL,mR);
+    turnLeft(mL,mR,135);
+    fullSpeedAhead_test(mL,mR);
+    turnRight(mL,mR,135);
+    fullSpeedAhead_test(mL,mR);
+    turnLeft(mL,mR,135);
+    fullSpeedAhead_test(mL,mR);
+    turnRight(mL,mR,135);
 }
 void pin_init(void)
 {   TRISFbits.TRISF2=1; //set TRIS value for pin (input)
@@ -112,16 +121,17 @@ void goback(struct DC_motor *mL, struct DC_motor *mR)
 {   turnRight(mL,mR,180);
     array_index--; 
     while(array_index >= 0){
-        fullSpeedAhead(mL,mR);
         color_predict(array_index);
-        color_predict(201);
+        color_predict(memory[array_index]);
+        color_predict(200);
+        fullSpeedAhead(mL,mR);
         for (unsigned int i=0; i<memory[array_index]; i++) {__delay_ms(1000);}
         stop(mL,mR);
         if (array_index == 0){break;}     
         array_index--; 
         color_predict(array_index);
-        color_predict(201);
-        
+        color_predict(memory[array_index]);
+        color_predict(200);
         if (memory[array_index] == 1){turnLeft(mL,mR,90);array_index--;}
         if (memory[array_index] == 2){turnRight(mL,mR,90);array_index--;}
         if (memory[array_index] == 3){turnLeft(mL,mR,180);array_index--;}

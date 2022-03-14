@@ -6,8 +6,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "43 ./color.h
 [; ;./color.h: 43: void color_click_init(void);
 [v _color_click_init `(v ~T0 @X0 0 ef ]
-"29 ./dc_motor.h
-[; ;./dc_motor.h: 29: void initDCmotorsPWM(int PWMperiod);
+"28 ./dc_motor.h
+[; ;./dc_motor.h: 28: void initDCmotorsPWM(int PWMperiod);
 [v _initDCmotorsPWM `(v ~T0 @X0 0 ef1`i ]
 "37 ./color.h
 [; ;./color.h: 37: void buggylight_init(void);
@@ -29,16 +29,19 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./color.h: 17: struct white_card {
 [s S2017 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 ]
 [n S2017 white_card RR RG RB GR GG GB BR BG BB CR CG CB CC BC ]
-"18 ./dc_motor.h
-[; ;./dc_motor.h: 18: struct DC_motor {
+"17 ./dc_motor.h
+[; ;./dc_motor.h: 17: struct DC_motor {
 [s S2015 `uc 1 `uc 1 `*uc 1 `*uc 1 `uc 1 `i 1 `uc 1 ]
 [n S2015 DC_motor power direction dutyHighByte dir_LAT dir_pin PWMperiod voltage ]
 "14 ./movement.h
 [; ;./movement.h: 14: void pin_init(void);
 [v _pin_init `(v ~T0 @X0 0 ef ]
-"30 ./dc_motor.h
-[; ;./dc_motor.h: 30: void initDCmotors_parameter(struct DC_motor *motorL, struct DC_motor *motorR);
+"29 ./dc_motor.h
+[; ;./dc_motor.h: 29: void initDCmotors_parameter(struct DC_motor *motorL, struct DC_motor *motorR);
 [v _initDCmotors_parameter `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
+"13 ./movement.h
+[; ;./movement.h: 13: void test_action (struct DC_motor *mL, struct DC_motor *mR);
+[v _test_action `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
 "77 ./color.h
 [; ;./color.h: 77: void calibrate_white(struct white_card *w);
 [v _calibrate_white `(v ~T0 @X0 0 ef1`*S2017 ]
@@ -63,8 +66,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "39601
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 39601: extern volatile T0CON0bits_t T0CON0bits __attribute__((address(0xFD5)));
 [v _T0CON0bits `VS1921 ~T0 @X0 0 e@4053 ]
-"35 ./dc_motor.h
-[; ;./dc_motor.h: 35: void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
+"34 ./dc_motor.h
+[; ;./dc_motor.h: 34: void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
 [v _fullSpeedAhead `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
 "86 ./color.h
 [; ;./color.h: 86: unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light) ;
@@ -72,8 +75,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "78
 [; ;./color.h: 78: void color_predict(unsigned char color);
 [v _color_predict `(v ~T0 @X0 0 ef1`uc ]
-"32 ./dc_motor.h
-[; ;./dc_motor.h: 32: void stop(struct DC_motor *mL, struct DC_motor *mR);
+"31 ./dc_motor.h
+[; ;./dc_motor.h: 31: void stop(struct DC_motor *mL, struct DC_motor *mR);
 [v _stop `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
 [v F192 `(v ~T0 @X0 1 tf1`ul ]
 "12 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\builtins.h
@@ -2070,11 +2073,23 @@ Version 4.0 HI-TECH Software Intermediate Code
 "40928
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 40928: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"16 ./dc_motor.h
-[; ;./dc_motor.h: 16: unsigned char SENSITIVITY = 10;
+"13 ./dc_motor.h
+[; ;./dc_motor.h: 13: unsigned char CALIBRATION_135 = 15;
+[v _CALIBRATION_135 `uc ~T0 @X0 1 e ]
+[i _CALIBRATION_135
+-> -> 15 `i `uc
+]
+"14
+[; ;./dc_motor.h: 14: unsigned char CALIBRATION_180 = 10;
+[v _CALIBRATION_180 `uc ~T0 @X0 1 e ]
+[i _CALIBRATION_180
+-> -> 10 `i `uc
+]
+"15
+[; ;./dc_motor.h: 15: unsigned char SENSITIVITY = 10.5;
 [v _SENSITIVITY `uc ~T0 @X0 1 e ]
 [i _SENSITIVITY
--> -> 10 `i `uc
+-> .10.5 `uc
 ]
 "13 ./serial.h
 [; ;./serial.h: 13: volatile char EUSART4RXbuf[20];
@@ -2186,6 +2201,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 51:     unsigned int amb_light = 0;
 [v _amb_light `ui ~T0 @X0 1 a ]
 [e = _amb_light -> -> 0 `i `ui ]
+"52
+[; ;main.c: 52:     test_action(&motorL, &motorR);
+[e ( _test_action (2 , &U _motorL &U _motorR ]
 "53
 [; ;main.c: 53:     if (1 == 0){
 [e $ ! == -> 1 `i -> 0 `i 2021  ]
