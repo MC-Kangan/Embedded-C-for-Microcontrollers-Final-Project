@@ -10,7 +10,7 @@
 void short_burst_back(struct DC_motor *mL, struct DC_motor *mR)
 {
     fullSpeedAhead(mL,mR);
-    __delay_ms(600);
+    __delay_ms(500);
     stop(mL,mR);
 }
 

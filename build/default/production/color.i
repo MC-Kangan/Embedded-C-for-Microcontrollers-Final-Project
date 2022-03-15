@@ -24262,14 +24262,11 @@ void reverse_square(struct DC_motor *mL, struct DC_motor *mR);
 # 2 "color.c" 2
 
 # 1 "./serial.h" 1
-# 13 "./serial.h"
-volatile char EUSART4RXbuf[20];
-volatile char RxBufWriteCnt=0;
-volatile char RxBufReadCnt=0;
 
-volatile char EUSART4TXbuf[60];
-volatile char TxBufWriteCnt=0;
-volatile char TxBufReadCnt=0;
+
+
+
+
 
 
 
@@ -24277,18 +24274,6 @@ void initUSART4(void);
 char getCharSerial4(void);
 void sendCharSerial4(char charToSend);
 void sendStringSerial4(char *string);
-
-
-char getCharFromRxBuf(void);
-void putCharToRxBuf(char byte);
-char isDataInRxBuf (void);
-
-
-char getCharFromTxBuf(void);
-void putCharToTxBuf(char byte);
-char isDataInTxBuf (void);
-void TxBufferedString(char *string);
-void sendTxBuf(void);
 # 3 "color.c" 2
 
 # 1 "./color.h" 1
@@ -25299,6 +25284,7 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
                 else {color = 5;}
             }
         }
+        else {color = 0;}
     }
 
     if (compare(90, RR, RR * 2) && compare(90, RB, RB * 2) && compare(90, BG, BG * 2)){color = 8;}
@@ -25361,7 +25347,7 @@ unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR, unsigne
     _delay((unsigned long)((100)*(64000000/4000.0)));
     CC_amb = color_read_Clear();
     CG_amb = color_read_Green();
-    threshold = lroundf((float)amb_light * 1.05);
+    threshold = lroundf((float)amb_light * 1.1);
 
 
     if (CC_amb >= threshold){stop = 1;}

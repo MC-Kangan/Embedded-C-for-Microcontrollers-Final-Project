@@ -176,19 +176,19 @@ void fullSpeedBack(struct DC_motor *mL, struct DC_motor *mR)
         setMotorPWM(mR);                                                // set the power to motor
         __delay_ms(10);
     }
-    __delay_ms(500);
-    stop(mL,mR);
+    //__delay_ms(500);
+    //stop(mL,mR);
 }
 
 void short_reverse(struct DC_motor *mL, struct DC_motor *mR)
 {   fullSpeedBack(mL, mR);
-    __delay_ms(300);
+    __delay_ms(800);
     stop(mL,mR);
 }
 
 void reverse_square(struct DC_motor *mL, struct DC_motor *mR)
 {   fullSpeedBack(mL, mR);
-    __delay_ms(1500);
+    __delay_ms(1300);
     stop(mL,mR);
 }
 

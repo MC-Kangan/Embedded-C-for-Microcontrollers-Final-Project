@@ -29,6 +29,8 @@
       <itemPath>timers.h</itemPath>
       <itemPath>test_and_calibration.c</itemPath>
       <itemPath>test_and_calibration.h</itemPath>
+      <itemPath>Project_Requirement.md</itemPath>
+      <itemPath>README.md</itemPath>
     </logicalFolder>
     <logicalFolder name="ExternalFiles"
                    displayName="Important Files"

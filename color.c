@@ -344,6 +344,7 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
                 else {color = 5;}
             }    
         }
+        else {color = 0;}
     }
     // Group 0 (black and white)
     if (compare(90, RR, RR * 2) && compare(90, RB, RB * 2) && compare(90, BG, BG * 2)){color = 8;}
@@ -406,7 +407,7 @@ unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR, unsigne
     __delay_ms(100);
     CC_amb = color_read_Clear();
     CG_amb = color_read_Green();//, CR = m->R, CG = m->G, CB = m->B;
-    threshold = lround((float)amb_light * 1.05);
+    threshold = lround((float)amb_light * 1.1);
     //threshold = lround((float)(w->CC)/ 105 * 100);
 
     if (CC_amb >= threshold){stop = 1;}

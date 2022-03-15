@@ -24490,14 +24490,11 @@ void reverse_square(struct DC_motor *mL, struct DC_motor *mR);
 # 4 "movement.c" 2
 
 # 1 "./serial.h" 1
-# 13 "./serial.h"
-volatile char EUSART4RXbuf[20];
-volatile char RxBufWriteCnt=0;
-volatile char RxBufReadCnt=0;
 
-volatile char EUSART4TXbuf[60];
-volatile char TxBufWriteCnt=0;
-volatile char TxBufReadCnt=0;
+
+
+
+
 
 
 
@@ -24505,18 +24502,6 @@ void initUSART4(void);
 char getCharSerial4(void);
 void sendCharSerial4(char charToSend);
 void sendStringSerial4(char *string);
-
-
-char getCharFromRxBuf(void);
-void putCharToRxBuf(char byte);
-char isDataInRxBuf (void);
-
-
-char getCharFromTxBuf(void);
-void putCharToTxBuf(char byte);
-char isDataInTxBuf (void);
-void TxBufferedString(char *string);
-void sendTxBuf(void);
 # 5 "movement.c" 2
 
 # 1 "./movement.h" 1
@@ -24553,7 +24538,7 @@ void Timer0_init(void);
 void short_burst_back(struct DC_motor *mL, struct DC_motor *mR)
 {
     fullSpeedAhead(mL,mR);
-    _delay((unsigned long)((600)*(64000000/4000.0)));
+    _delay((unsigned long)((500)*(64000000/4000.0)));
     stop(mL,mR);
 }
 

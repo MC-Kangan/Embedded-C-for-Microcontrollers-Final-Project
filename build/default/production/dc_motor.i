@@ -24262,14 +24262,11 @@ void reverse_square(struct DC_motor *mL, struct DC_motor *mR);
 # 2 "dc_motor.c" 2
 
 # 1 "./serial.h" 1
-# 13 "./serial.h"
-volatile char EUSART4RXbuf[20];
-volatile char RxBufWriteCnt=0;
-volatile char RxBufReadCnt=0;
 
-volatile char EUSART4TXbuf[60];
-volatile char TxBufWriteCnt=0;
-volatile char TxBufReadCnt=0;
+
+
+
+
 
 
 
@@ -24277,18 +24274,6 @@ void initUSART4(void);
 char getCharSerial4(void);
 void sendCharSerial4(char charToSend);
 void sendStringSerial4(char *string);
-
-
-char getCharFromRxBuf(void);
-void putCharToRxBuf(char byte);
-char isDataInRxBuf (void);
-
-
-char getCharFromTxBuf(void);
-void putCharToTxBuf(char byte);
-char isDataInTxBuf (void);
-void TxBufferedString(char *string);
-void sendTxBuf(void);
 # 3 "dc_motor.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\c99\\stdio.h" 1 3
@@ -24693,7 +24678,7 @@ void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR)
 {
     mL->direction=1;
     mR->direction=1;
-    while (mL->power<20 && mR->power<20){
+    while (mL->power<30 && mR->power<30){
         mL->power += 10;
         mR->power += 10;
         setMotorPWM(mL);
@@ -24719,18 +24704,18 @@ void fullSpeedBack(struct DC_motor *mL, struct DC_motor *mR)
         setMotorPWM(mR);
         _delay((unsigned long)((10)*(64000000/4000.0)));
     }
-    _delay((unsigned long)((500)*(64000000/4000.0)));
-    stop(mL,mR);
+
+
 }
 
 void short_reverse(struct DC_motor *mL, struct DC_motor *mR)
 { fullSpeedBack(mL, mR);
-    _delay((unsigned long)((300)*(64000000/4000.0)));
+    _delay((unsigned long)((800)*(64000000/4000.0)));
     stop(mL,mR);
 }
 
 void reverse_square(struct DC_motor *mL, struct DC_motor *mR)
 { fullSpeedBack(mL, mR);
-    _delay((unsigned long)((1500)*(64000000/4000.0)));
+    _delay((unsigned long)((1300)*(64000000/4000.0)));
     stop(mL,mR);
 }

@@ -24271,14 +24271,11 @@ void reverse_square(struct DC_motor *mL, struct DC_motor *mR);
 # 10 "main.c" 2
 
 # 1 "./serial.h" 1
-# 13 "./serial.h"
-volatile char EUSART4RXbuf[20];
-volatile char RxBufWriteCnt=0;
-volatile char RxBufReadCnt=0;
 
-volatile char EUSART4TXbuf[60];
-volatile char TxBufWriteCnt=0;
-volatile char TxBufReadCnt=0;
+
+
+
+
 
 
 
@@ -24286,18 +24283,6 @@ void initUSART4(void);
 char getCharSerial4(void);
 void sendCharSerial4(char charToSend);
 void sendStringSerial4(char *string);
-
-
-char getCharFromRxBuf(void);
-void putCharToRxBuf(char byte);
-char isDataInRxBuf (void);
-
-
-char getCharFromTxBuf(void);
-void putCharToTxBuf(char byte);
-char isDataInTxBuf (void);
-void TxBufferedString(char *string);
-void sendTxBuf(void);
 # 11 "main.c" 2
 
 # 1 "./color.h" 1
@@ -24664,7 +24649,6 @@ void main(void){
     }
 
 
-
     while(1){
 
   if (0 == 1){
@@ -24690,10 +24674,7 @@ void main(void){
             short_burst_back(&motorL, &motorR);
             color = detect_color(&rgb, &white);
             color = verify_color(color, &rgb, &white);
-
-
-            action(color, &motorL, &motorR);
-            color = 0;
+            if (color!= 0){action(color, &motorL, &motorR); color = 0;}
             stop_signal = 0;
         }
     }

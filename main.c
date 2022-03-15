@@ -1,4 +1,4 @@
-// CONFIG1L
+ // CONFIG1L
 #pragma config FEXTOSC = HS     // External Oscillator mode Selection bits (HS (crystal oscillator) above 8 MHz; PFM set to high power)
 #pragma config RSTOSC = EXTOSC_4PLL// Power-up default value for COSC bits (EXTOSC with 4x PLL, with EXTOSC operating per FEXTOSC bits)
 
@@ -68,8 +68,7 @@ void main(void){
         }
     }
     
-    
-    
+   
     while(1){
 
 		if (TEST == 1){
@@ -95,10 +94,7 @@ void main(void){
             short_burst_back(&motorL, &motorR);
             color = detect_color(&rgb, &white);
             color = verify_color(color, &rgb, &white);
-            //if (stop_move-start_move)
-            
-            action(color, &motorL, &motorR);
-            color = 0;
+            if (color!= 0){action(color, &motorL, &motorR); color = 0;}
             stop_signal = 0;
         }
     }

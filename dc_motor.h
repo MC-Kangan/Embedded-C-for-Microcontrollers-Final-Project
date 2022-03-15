@@ -8,7 +8,7 @@
 #define _XTAL_FREQ 64000000
 #define TURNING_POWER_L 25 // This number needs to be adjusted according to different floor condition
 #define TURNING_POWER_R 25 // This number needs to be adjusted according to different floor condition
-#define FORWARD_POWER 20
+#define FORWARD_POWER 30
 #define BACKWARD_POWER 50
 unsigned char CALIBRATION_135 = 15;
 unsigned char CALIBRATION_180 = 10;
