@@ -6,8 +6,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "43 ./color.h
 [; ;./color.h: 43: void color_click_init(void);
 [v _color_click_init `(v ~T0 @X0 0 ef ]
-"28 ./dc_motor.h
-[; ;./dc_motor.h: 28: void initDCmotorsPWM(int PWMperiod);
+"29 ./dc_motor.h
+[; ;./dc_motor.h: 29: void initDCmotorsPWM(int PWMperiod);
 [v _initDCmotorsPWM `(v ~T0 @X0 0 ef1`i ]
 "37 ./color.h
 [; ;./color.h: 37: void buggylight_init(void);
@@ -29,15 +29,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./color.h: 17: struct white_card {
 [s S2017 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 ]
 [n S2017 white_card RR RG RB GR GG GB BR BG BB CR CG CB CC BC ]
-"18 ./dc_motor.h
-[; ;./dc_motor.h: 18: struct DC_motor {
+"19 ./dc_motor.h
+[; ;./dc_motor.h: 19: struct DC_motor {
 [s S2015 `uc 1 `uc 1 `*uc 1 `*uc 1 `uc 1 `i 1 ]
 [n S2015 DC_motor power direction dutyHighByte dir_LAT dir_pin PWMperiod ]
 "13 ./movement.h
 [; ;./movement.h: 13: void pin_init(void);
 [v _pin_init `(v ~T0 @X0 0 ef ]
-"29 ./dc_motor.h
-[; ;./dc_motor.h: 29: void initDCmotors_parameter(struct DC_motor *motorL, struct DC_motor *motorR);
+"30 ./dc_motor.h
+[; ;./dc_motor.h: 30: void initDCmotors_parameter(struct DC_motor *motorL, struct DC_motor *motorR);
 [v _initDCmotors_parameter `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
 "71 ./color.h
 [; ;./color.h: 71: void LED_OFF(void);
@@ -116,9 +116,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "18 ./test_and_calibration.h
 [; ;./test_and_calibration.h: 18: void calibration_motor(struct DC_motor *mL, struct DC_motor *mR);
 [v _calibration_motor `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
-"19
-[; ;./test_and_calibration.h: 19: void test_function(unsigned char test_code, struct color_rgb *m, struct white_card *w, struct DC_motor *mL, struct DC_motor *mR);
-[v _test_function `(v ~T0 @X0 0 ef5`uc`*S2016`*S2017`*S2015`*S2015 ]
+"37 ./dc_motor.h
+[; ;./dc_motor.h: 37: void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
+[v _fullSpeedAhead `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
 "39587 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 39587:     struct {
 [s S1922 :4 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -134,14 +134,20 @@ Version 4.0 HI-TECH Software Intermediate Code
 "39601
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 39601: extern volatile T0CON0bits_t T0CON0bits __attribute__((address(0xFD5)));
 [v _T0CON0bits `VS1921 ~T0 @X0 0 e@4053 ]
-"35 ./dc_motor.h
-[; ;./dc_motor.h: 35: void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
-[v _fullSpeedAhead `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
 "86 ./color.h
 [; ;./color.h: 86: unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light) ;
 [v _distance_measure `(uc ~T0 @X0 0 ef3`*S2015`*S2015`ui ]
-"31 ./dc_motor.h
-[; ;./dc_motor.h: 31: void stop(struct DC_motor *mL, struct DC_motor *mR);
+"14 ./movement.h
+[; ;./movement.h: 14: void goback(struct DC_motor *mL, struct DC_motor *mR);
+[v _goback `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
+"109 C:\Program Files\Microchip\xc8\v2.35\pic\include\c99\stdio.h
+[; ;C:\Program Files\Microchip\xc8\v2.35\pic\include\c99\stdio.h: 109: int sprintf(char *restrict, const char *restrict, ...);
+[v _sprintf `(i ~T0 @X0 0 e1v`*uc`*Cuc ]
+"12 ./serial.h
+[; ;./serial.h: 12: void sendStringSerial4(char *string);
+[v _sendStringSerial4 `(v ~T0 @X0 0 ef1`*uc ]
+"32 ./dc_motor.h
+[; ;./dc_motor.h: 32: void stop(struct DC_motor *mL, struct DC_motor *mR);
 [v _stop `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
 "11 ./movement.h
 [; ;./movement.h: 11: void short_burst(struct DC_motor *mL, struct DC_motor *mR);
@@ -2137,11 +2143,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 "40928
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 40928: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"16 ./dc_motor.h
-[; ;./dc_motor.h: 16: unsigned char SENSITIVITY = 9;
-[v _SENSITIVITY `uc ~T0 @X0 1 e ]
+"17 ./dc_motor.h
+[; ;./dc_motor.h: 17: unsigned int SENSITIVITY = 360;
+[v _SENSITIVITY `ui ~T0 @X0 1 e ]
 [i _SENSITIVITY
--> -> 9 `i `uc
+-> -> 360 `i `ui
 ]
 "6 ./movement.h
 [; ;./movement.h: 6: unsigned int centisecond = 0;
@@ -2228,32 +2234,36 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _setup `uc ~T0 @X0 1 a ]
 [e = _setup -> -> 0 `i `uc ]
 "54
-[; ;main.c: 54:     if (0 == 0){
+[; ;main.c: 54:     unsigned char accident = 0;
+[v _accident `uc ~T0 @X0 1 a ]
+[e = _accident -> -> 0 `i `uc ]
+"55
+[; ;main.c: 55:     if (0 == 0){
 [e $ ! == -> 0 `i -> 0 `i 2021  ]
 {
-"55
-[; ;main.c: 55:         while(!setup){
+"56
+[; ;main.c: 56:         while(!setup){
 [e $U 2022  ]
 [e :U 2023 ]
 {
-"56
-[; ;main.c: 56:             LED_OFF();
-[e ( _LED_OFF ..  ]
 "57
-[; ;main.c: 57:             LATDbits.LATD7 = 1;
-[e = . . _LATDbits 0 7 -> -> 1 `i `uc ]
+[; ;main.c: 57:             LED_OFF();
+[e ( _LED_OFF ..  ]
 "58
-[; ;main.c: 58:             LATHbits.LATH3 = 1;
-[e = . . _LATHbits 0 3 -> -> 1 `i `uc ]
+[; ;main.c: 58:             LATDbits.LATD7 = 1;
+[e = . . _LATDbits 0 7 -> -> 1 `i `uc ]
 "59
-[; ;main.c: 59:             while (PORTFbits.RF2);
+[; ;main.c: 59:             LATHbits.LATH3 = 1;
+[e = . . _LATHbits 0 3 -> -> 1 `i `uc ]
+"60
+[; ;main.c: 60:             while (PORTFbits.RF2);
 [e $U 2025  ]
 [e :U 2026 ]
 [e :U 2025 ]
 [e $ != -> . . _PORTFbits 0 2 `i -> 0 `i 2026  ]
 [e :U 2027 ]
-"60
-[; ;main.c: 60:             if (!PORTFbits.RF2){calibrate_white(&white); LATDbits.LATD7 = 0; _delay((unsigned long)((500)*(64000000/4000.0)));}
+"61
+[; ;main.c: 61:             if (!PORTFbits.RF2){calibrate_white(&white); LATDbits.LATD7 = 0; _delay((unsigned long)((500)*(64000000/4000.0)));}
 [e $ ! ! != -> . . _PORTFbits 0 2 `i -> 0 `i 2028  ]
 {
 [e ( _calibrate_white (1 &U _white ]
@@ -2261,15 +2271,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 }
 [e :U 2028 ]
-"61
-[; ;main.c: 61:             while (PORTFbits.RF3);
+"62
+[; ;main.c: 62:             while (PORTFbits.RF3);
 [e $U 2029  ]
 [e :U 2030 ]
 [e :U 2029 ]
 [e $ != -> . . _PORTFbits 0 3 `i -> 0 `i 2030  ]
 [e :U 2031 ]
-"62
-[; ;main.c: 62:             if (!PORTFbits.RF3){amb_light = amb_light_measure(&amb); LATHbits.LATH3 = 0; _delay((unsigned long)((500)*(64000000/4000.0)));}
+"63
+[; ;main.c: 63:             if (!PORTFbits.RF3){amb_light = amb_light_measure(&amb); LATHbits.LATH3 = 0; _delay((unsigned long)((500)*(64000000/4000.0)));}
 [e $ ! ! != -> . . _PORTFbits 0 3 `i -> 0 `i 2032  ]
 {
 [e = _amb_light ( _amb_light_measure (1 &U _amb ]
@@ -2277,25 +2287,25 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 }
 [e :U 2032 ]
-"63
-[; ;main.c: 63:             LATDbits.LATD7 = 1;
-[e = . . _LATDbits 0 7 -> -> 1 `i `uc ]
 "64
-[; ;main.c: 64:             if (!PORTFbits.RF3){calibration_motor(&motorL, &motorR);}
+[; ;main.c: 64:             LATDbits.LATD7 = 1;
+[e = . . _LATDbits 0 7 -> -> 1 `i `uc ]
+"65
+[; ;main.c: 65:             if (!PORTFbits.RF3){calibration_motor(&motorL, &motorR);}
 [e $ ! ! != -> . . _PORTFbits 0 3 `i -> 0 `i 2033  ]
 {
 [e ( _calibration_motor (2 , &U _motorL &U _motorR ]
 }
 [e :U 2033 ]
-"65
-[; ;main.c: 65:             while (PORTFbits.RF2);
+"66
+[; ;main.c: 66:             while (PORTFbits.RF2);
 [e $U 2034  ]
 [e :U 2035 ]
 [e :U 2034 ]
 [e $ != -> . . _PORTFbits 0 2 `i -> 0 `i 2035  ]
 [e :U 2036 ]
-"66
-[; ;main.c: 66:             if (!PORTFbits.RF2){LATDbits.LATD7 = 0; setup = 1;_delay((unsigned long)((500)*(64000000/4000.0)));}
+"67
+[; ;main.c: 67:             if (!PORTFbits.RF2){LATDbits.LATD7 = 0; setup = 1;_delay((unsigned long)((500)*(64000000/4000.0)));}
 [e $ ! ! != -> . . _PORTFbits 0 2 `i -> 0 `i 2037  ]
 {
 [e = . . _LATDbits 0 7 -> -> 0 `i `uc ]
@@ -2303,119 +2313,161 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 }
 [e :U 2037 ]
-"67
-[; ;main.c: 67:         }
+"68
+[; ;main.c: 68:         }
 }
 [e :U 2022 ]
-"55
-[; ;main.c: 55:         while(!setup){
+"56
+[; ;main.c: 56:         while(!setup){
 [e $ ! != -> _setup `i -> 0 `i 2023  ]
 [e :U 2024 ]
-"68
-[; ;main.c: 68:     }
+"69
+[; ;main.c: 69:     }
 }
 [e :U 2021 ]
-"71
-[; ;main.c: 71:     while(1){
+"72
+[; ;main.c: 72:     while(1){
 [e :U 2039 ]
 {
-"73
-[; ;main.c: 73:   if (0 == 1){
+"74
+[; ;main.c: 74:   if (0 == 1){
 [e $ ! == -> 0 `i -> 1 `i 2041  ]
 {
-"74
-[; ;main.c: 74:             test_function(3, &rgb, &white, &motorL, &motorR);
-[e ( _test_function (4 , , , , -> -> 3 `i `uc &U _rgb &U _white &U _motorL &U _motorR ]
-"75
-[; ;main.c: 75:         }
+"76
+[; ;main.c: 76:             unsigned char i = 0, j = 0;
+[v _i `uc ~T0 @X0 1 a ]
+[e = _i -> -> 0 `i `uc ]
+[v _j `uc ~T0 @X0 1 a ]
+[e = _j -> -> 0 `i `uc ]
+"84
+[; ;main.c: 84:             fullSpeedAhead(&motorL, &motorR);
+[e ( _fullSpeedAhead (2 , &U _motorL &U _motorR ]
+"87
+[; ;main.c: 87:         }
 }
 [e :U 2041 ]
-"76
-[; ;main.c: 76:         if (0 == 0){
+"88
+[; ;main.c: 88:         if (0 == 0){
 [e $ ! == -> 0 `i -> 0 `i 2042  ]
 {
-"79
-[; ;main.c: 79:             T0CON0bits.T0EN=1;
+"91
+[; ;main.c: 91:             T0CON0bits.T0EN=1;
 [e = . . _T0CON0bits 0 4 -> -> 1 `i `uc ]
-"80
-[; ;main.c: 80:             start_move = centisecond;
+"92
+[; ;main.c: 92:             start_move = centisecond;
 [e = _start_move _centisecond ]
-"81
-[; ;main.c: 81:             while (stop_signal == 0){
+"93
+[; ;main.c: 93:             while (stop_signal == 0){
 [e $U 2043  ]
 [e :U 2044 ]
 {
-"82
-[; ;main.c: 82:                 fullSpeedAhead(&motorL, &motorR);
+"94
+[; ;main.c: 94:                 fullSpeedAhead(&motorL, &motorR);
 [e ( _fullSpeedAhead (2 , &U _motorL &U _motorR ]
-"83
-[; ;main.c: 83:                 stop_signal = distance_measure(&motorL, &motorR, amb_light);
+"95
+[; ;main.c: 95:                 stop_signal = distance_measure(&motorL, &motorR, amb_light);
 [e = _stop_signal ( _distance_measure (3 , , &U _motorL &U _motorR _amb_light ]
-"84
-[; ;main.c: 84:             }
+"96
+[; ;main.c: 96:             }
 }
 [e :U 2043 ]
-"81
-[; ;main.c: 81:             while (stop_signal == 0){
+"93
+[; ;main.c: 93:             while (stop_signal == 0){
 [e $ == -> _stop_signal `i -> 0 `i 2044  ]
 [e :U 2045 ]
-"85
-[; ;main.c: 85:             T0CON0bits.T0EN=0;
+"97
+[; ;main.c: 97:             T0CON0bits.T0EN=0;
 [e = . . _T0CON0bits 0 4 -> -> 0 `i `uc ]
-"86
-[; ;main.c: 86:             stop_move = centisecond;
+"98
+[; ;main.c: 98:             stop_move = centisecond;
 [e = _stop_move _centisecond ]
-"87
-[; ;main.c: 87:             if ((stop_move-start_move)>1){
+"99
+[; ;main.c: 99:             if ((stop_move-start_move)>1){
 [e $ ! > - _stop_move _start_move -> -> 1 `i `ui 2046  ]
 {
-"88
-[; ;main.c: 88:                 memory[array_index] = (stop_move-start_move);
+"100
+[; ;main.c: 100:                 memory[array_index] = (stop_move-start_move);
 [e = *U + &U _memory * -> _array_index `ux -> -> # *U &U _memory `ui `ux - _stop_move _start_move ]
-"89
-[; ;main.c: 89:                 array_index++;
+"101
+[; ;main.c: 101:                 array_index++;
 [e ++ _array_index -> -> 1 `i `uc ]
-"90
-[; ;main.c: 90:             }
+"102
+[; ;main.c: 102:             }
 }
+[e $U 2047  ]
+"103
+[; ;main.c: 103:             else{
 [e :U 2046 ]
-"91
-[; ;main.c: 91:             stop(&motorL, &motorR);
+{
+"104
+[; ;main.c: 104:                 accident++;
+[e ++ _accident -> -> 1 `i `uc ]
+"105
+[; ;main.c: 105:                 if (accident >= 10){
+[e $ ! >= -> _accident `i -> 10 `i 2048  ]
+{
+"106
+[; ;main.c: 106:                     goback(&motorL, &motorR);
+[e ( _goback (2 , &U _motorL &U _motorR ]
+"107
+[; ;main.c: 107:                     accident = 0;
+[e = _accident -> -> 0 `i `uc ]
+"108
+[; ;main.c: 108:                 }
+}
+[e :U 2048 ]
+"109
+[; ;main.c: 109:             }
+}
+[e :U 2047 ]
+"111
+[; ;main.c: 111:             char buf[100];
+[v _buf `uc ~T0 @X0 -> 100 `i a ]
+"112
+[; ;main.c: 112:             sprintf(buf,"%d\r\n",(stop_move-start_move));
+[e ( _sprintf (1 , (. , &U _buf :s 1C - _stop_move _start_move ]
+"113
+[; ;main.c: 113:             sendStringSerial4(buf);
+[e ( _sendStringSerial4 (1 &U _buf ]
+"115
+[; ;main.c: 115:             stop(&motorL, &motorR);
 [e ( _stop (2 , &U _motorL &U _motorR ]
-"92
-[; ;main.c: 92:             _delay((unsigned long)((1000)*(64000000/4000.0)));
+"116
+[; ;main.c: 116:             _delay((unsigned long)((1000)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"93
-[; ;main.c: 93:             short_burst(&motorL, &motorR);
+"117
+[; ;main.c: 117:             short_burst(&motorL, &motorR);
 [e ( _short_burst (2 , &U _motorL &U _motorR ]
-"94
-[; ;main.c: 94:             color = detect_color(&rgb, &white);
+"118
+[; ;main.c: 118:             color = detect_color(&rgb, &white);
 [e = _color ( _detect_color (2 , &U _rgb &U _white ]
-"95
-[; ;main.c: 95:             color = verify_color(color, &rgb, &white);
+"119
+[; ;main.c: 119:             color = verify_color(color, &rgb, &white);
 [e = _color ( _verify_color (3 , , _color &U _rgb &U _white ]
-"96
-[; ;main.c: 96:             if (color!= 0){action(color, &motorL, &motorR); color = 0;}
-[e $ ! != -> _color `i -> 0 `i 2047  ]
+"120
+[; ;main.c: 120:             if (color!= 0){action(color, &motorL, &motorR); color = 0;}
+[e $ ! != -> _color `i -> 0 `i 2049  ]
 {
 [e ( _action (3 , , _color &U _motorL &U _motorR ]
 [e = _color -> -> 0 `i `uc ]
 }
-[e :U 2047 ]
-"97
-[; ;main.c: 97:             stop_signal = 0;
+[e :U 2049 ]
+"121
+[; ;main.c: 121:             stop_signal = 0;
 [e = _stop_signal -> -> 0 `i `uc ]
-"98
-[; ;main.c: 98:         }
+"122
+[; ;main.c: 122:         }
 }
 [e :U 2042 ]
-"99
-[; ;main.c: 99:     }
+"123
+[; ;main.c: 123:     }
 }
 [e :U 2038 ]
 [e $U 2039  ]
 [e :U 2040 ]
-"100
-[; ;main.c: 100: }
+"124
+[; ;main.c: 124: }
 [e :UE 2020 ]
 }
+[p f _sprintf 8388736 ]
+[a 1C 37 100 13 10 0 ]

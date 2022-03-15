@@ -82,14 +82,50 @@ void setMotorPWM(struct DC_motor *m)
 void stop(struct DC_motor *mL, struct DC_motor *mR)
 {
     while (mL->power >0 || mR->power >0){   // when the powers for left and right motors are larger than 0
-        if (mL->power !=0){mL->power -= 5;}                    // reduce the left motor power by 10 for each time (this case the power of motor doesn't drop to 0 immediately)
-        if (mR->power !=0){mR->power -= 5;}                    // reduce the right motor power by 10 for each time (this case the power of motor doesn't drop to 0 immediately)
+        if (mL->power !=0){mL->power -= 2;}                    // reduce the left motor power by 10 for each time (this case the power of motor doesn't drop to 0 immediately)
+        if (mR->power !=0){mR->power -= 2;}                    // reduce the right motor power by 10 for each time (this case the power of motor doesn't drop to 0 immediately)
         setMotorPWM(mL);                    // set the power to motor
         setMotorPWM(mR);                    // set the power to motor
-        __delay_ms(10);
+        __delay_ms(5);
     }
     __delay_ms(500);
 }
+
+void turn45(struct DC_motor *mL, struct DC_motor *mR, unsigned char turn_time, unsigned char direction)
+{
+    // Direction 1: left; Direction 2: right
+    unsigned char i = 0;
+ 
+    for (i = 0; i < turn_time; i++){
+        mL->direction=1;
+        mR->direction=1;
+        if (direction == 1){ // left
+            while (mR->power <TURNING_POWER){      // when the right motor power is lower than the setting value(see dc_motor.h)
+                mR->power += 5;                        // increase the right motor power by 1 for each time (this case the power of motor push to the setting value immediately)
+                mL->power = 0;                         // keep the left motor static, so the car will turn left               
+                setMotorPWM(mL);                       // set the power to motor
+                setMotorPWM(mR);                       // set the power to motor
+                __delay_ms(10);
+            }
+            unsigned int delay = SENSITIVITY;
+            if (direction == 4){delay += 10;}
+            for(unsigned int i = 0; i <delay; i++){__delay_ms(1);}
+            stop(mL,mR);
+        }
+        else if (direction == 2){ // right
+            while (mL->power <TURNING_POWER){      // when the right motor power is lower than the setting value(see dc_motor.h)
+                mL->power += 5;                        // increase the right motor power by 1 for each time (this case the power of motor push to the setting value immediately)
+                mR->power = 0;                         // keep the left motor static, so the car will turn left               
+                setMotorPWM(mL);                       // set the power to motor
+                setMotorPWM(mR);                       // set the power to motor
+                __delay_ms(10);
+            }
+            unsigned int delay = 20 + SENSITIVITY;
+            for(unsigned int i = 0; i <delay; i++){__delay_ms(1);}
+            stop(mL,mR);
+        }
+    }
+} 
 
 //function to make the robot turn left 
 void turnLeft(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_left)
@@ -151,8 +187,8 @@ void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR)
     mL->direction=1;
     mR->direction=1;
     while (mL->power<FORWARD_POWER_L || mR->power<FORWARD_POWER_R){         // when the powers for left and right motors are smaller than 70
-        if (mL->power<FORWARD_POWER_L) {mL->power += 5;}// increase the left motor power by 10 for each time (this case the power of motor push to the setting value immediately)
-        if (mR->power<FORWARD_POWER_R) {mR->power += 5;} 
+        if (mL->power<FORWARD_POWER_L) {mL->power += 2;}// increase the left motor power by 10 for each time (this case the power of motor push to the setting value immediately)
+        if (mR->power<FORWARD_POWER_R) {mR->power += 2;} 
         //mR->power += 5;                                                // increase the right motor power by 10 for each time (this case the power of motor push to the setting value immediately)
         setMotorPWM(mL);                                                // set the power to motor
         setMotorPWM(mR);                                                // set the power to motor

@@ -51,6 +51,7 @@ void main(void){
     unsigned int amb_light = 0;
 //    test_action(&motorL, &motorR);  
     unsigned char setup = 0;
+    unsigned char accident = 0;
     if (TEST == 0){
         while(!setup){
             LED_OFF();
@@ -71,7 +72,18 @@ void main(void){
     while(1){
 
 		if (TEST == 1){
-            test_function(3, &rgb, &white, &motorL, &motorR);
+            //test_function(3, &rgb, &white, &motorL, &motorR);
+            unsigned char i = 0, j = 0; 
+//            for (i = 0; i < 10; i++){
+//                turn45(&motorL, &motorR,1,1);
+//            }
+//            
+//            for (j = 0; j < 10; j++){
+//                turn45(&motorL, &motorR,1,2);
+//            }
+            fullSpeedAhead(&motorL, &motorR);
+            //__delay_ms(3000);
+            
         }
         if (TEST == 0){
             //read_color(&rgb);
@@ -88,6 +100,18 @@ void main(void){
                 memory[array_index] = (stop_move-start_move);
                 array_index++;
             }
+            else{
+                accident++;
+                if (accident >= 10){
+                    goback(&motorL, &motorR);
+                    accident = 0;
+                }
+            }
+            
+//            char buf[100];
+//            sprintf(buf,"%d\r\n",(stop_move-start_move));
+//            sendStringSerial4(buf);
+            
             stop(&motorL, &motorR);
             __delay_ms(1000);
             short_burst(&motorL, &motorR);

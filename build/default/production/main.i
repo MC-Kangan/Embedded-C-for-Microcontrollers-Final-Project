@@ -24241,8 +24241,8 @@ unsigned char __t3rd16on(void);
 # 9 "main.c" 2
 
 # 1 "./dc_motor.h" 1
-# 16 "./dc_motor.h"
-unsigned char SENSITIVITY = 9;
+# 17 "./dc_motor.h"
+unsigned int SENSITIVITY = 360;
 
 struct DC_motor {
     char power;
@@ -24258,6 +24258,7 @@ void initDCmotorsPWM(int PWMperiod);
 void initDCmotors_parameter(struct DC_motor *motorL, struct DC_motor *motorR);
 void setMotorPWM(struct DC_motor *m);
 void stop(struct DC_motor *mL, struct DC_motor *mR);
+void turn45(struct DC_motor *mL, struct DC_motor *mR, unsigned char turn_time, unsigned char direction);
 void halfSpeedBack(struct DC_motor *mL, struct DC_motor *mR);
 void turnLeft(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_left);
 void turnRight(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_right);
@@ -24627,6 +24628,7 @@ void main(void){
     unsigned int amb_light = 0;
 
     unsigned char setup = 0;
+    unsigned char accident = 0;
     if (0 == 0){
         while(!setup){
             LED_OFF();
@@ -24647,7 +24649,18 @@ void main(void){
     while(1){
 
   if (0 == 1){
-            test_function(3, &rgb, &white, &motorL, &motorR);
+
+            unsigned char i = 0, j = 0;
+
+
+
+
+
+
+
+            fullSpeedAhead(&motorL, &motorR);
+
+
         }
         if (0 == 0){
 
@@ -24664,6 +24677,18 @@ void main(void){
                 memory[array_index] = (stop_move-start_move);
                 array_index++;
             }
+            else{
+                accident++;
+                if (accident >= 10){
+                    goback(&motorL, &motorR);
+                    accident = 0;
+                }
+            }
+
+            char buf[100];
+            sprintf(buf,"%d\r\n",(stop_move-start_move));
+            sendStringSerial4(buf);
+
             stop(&motorL, &motorR);
             _delay((unsigned long)((1000)*(64000000/4000.0)));
             short_burst(&motorL, &motorR);

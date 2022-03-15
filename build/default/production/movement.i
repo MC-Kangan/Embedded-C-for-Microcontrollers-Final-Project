@@ -24460,8 +24460,8 @@ unsigned amb_light_measure(struct color_rgb *amb);
 # 3 "movement.c" 2
 
 # 1 "./dc_motor.h" 1
-# 16 "./dc_motor.h"
-unsigned char SENSITIVITY = 9;
+# 17 "./dc_motor.h"
+unsigned int SENSITIVITY = 360;
 
 struct DC_motor {
     char power;
@@ -24477,6 +24477,7 @@ void initDCmotorsPWM(int PWMperiod);
 void initDCmotors_parameter(struct DC_motor *motorL, struct DC_motor *motorR);
 void setMotorPWM(struct DC_motor *m);
 void stop(struct DC_motor *mL, struct DC_motor *mR);
+void turn45(struct DC_motor *mL, struct DC_motor *mR, unsigned char turn_time, unsigned char direction);
 void halfSpeedBack(struct DC_motor *mL, struct DC_motor *mR);
 void turnLeft(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_left);
 void turnRight(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_right);
@@ -24542,43 +24543,50 @@ void action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR)
 { if (color != 0){
         if (color == 1){
             short_reverse(mL,mR,1);
-            turnRight(mL,mR,90);
+            turn45(mL, mR, 2, 2);
+
             memory[array_index] = 1;
             array_index++;
         }
         if (color == 2){
             short_reverse(mL,mR,1);
-            turnLeft(mL,mR,90);
+            turn45(mL, mR, 2, 1);
+
             memory[array_index] = 2;
             array_index++;
         }
         if (color == 3){
             short_reverse(mL,mR,1);
-            turnLeft(mL,mR,180);
+            turn45(mL, mR, 4, 1);
+
             memory[array_index] = 3;
             array_index++;
         }
         if (color == 4){
             short_reverse(mL,mR,3);
-            turnRight(mL,mR,90);
+            turn45(mL, mR, 2, 2);
+
             memory[array_index] = 4;
             array_index++;
         }
         if (color == 5){
             short_reverse(mL,mR,3);
-            turnLeft(mL,mR,90);
+            turn45(mL, mR, 2, 1);
+
             memory[array_index] = 5;
             array_index++;
         }
         if (color == 6){
             short_reverse(mL,mR,1);
-            turnRight(mL,mR,135);
+            turn45(mL, mR, 3, 2);
+
             memory[array_index] = 6;
             array_index++;
         }
         if (color == 7){
             short_reverse(mL,mR,1);
-            turnLeft(mL,mR,135);
+            turn45(mL, mR, 3, 1);
+
             memory[array_index] = 7;
             array_index++;
         }
@@ -24614,7 +24622,8 @@ void pin_init(void)
 }
 
 void goback(struct DC_motor *mL, struct DC_motor *mR)
-{ turnRight(mL,mR,180);
+{ turn45(mL, mR, 4, 1);
+
     short_reverse(mL,mR,2);
     array_index--;
     while(array_index >= 0){
@@ -24623,13 +24632,13 @@ void goback(struct DC_motor *mL, struct DC_motor *mR)
         stop(mL,mR);
         if (array_index == 0){break;}
         array_index--;
-        if (memory[array_index] == 1){turnLeft(mL,mR,90);short_reverse(mL,mR,2);array_index--;}
-        else if (memory[array_index] == 2){turnRight(mL,mR,90);short_reverse(mL,mR,2);array_index--;}
-        else if (memory[array_index] == 3){turnLeft(mL,mR,180);short_reverse(mL,mR,2);array_index--;}
-        else if (memory[array_index] == 4){turnLeft(mL,mR,90);short_reverse(mL,mR,3);array_index--;}
-        else if (memory[array_index] == 5){turnRight(mL,mR,90);short_reverse(mL,mR,3);array_index--;}
-        else if (memory[array_index] == 6){turnLeft(mL,mR,135);short_reverse(mL,mR,2);array_index--;}
-        else if (memory[array_index] == 7){turnRight(mL,mR,135);short_reverse(mL,mR,2);array_index--;}
+        if (memory[array_index] == 1){turn45(mL, mR, 2, 1);short_reverse(mL,mR,2);array_index--;}
+        else if (memory[array_index] == 2){turn45(mL, mR, 2, 2);short_reverse(mL,mR,2);array_index--;}
+        else if (memory[array_index] == 3){turn45(mL, mR, 4, 1);short_reverse(mL,mR,2);array_index--;}
+        else if (memory[array_index] == 4){turn45(mL, mR, 2, 1);short_reverse(mL,mR,3);array_index--;}
+        else if (memory[array_index] == 5){turn45(mL, mR, 2, 2);short_reverse(mL,mR,3);array_index--;}
+        else if (memory[array_index] == 6){turn45(mL, mR, 3, 1);short_reverse(mL,mR,2);array_index--;}
+        else if (memory[array_index] == 7){turn45(mL, mR, 3, 2);short_reverse(mL,mR,2);array_index--;}
     }
     LATDbits.LATD7 = 1;
     while(PORTFbits.RF2){

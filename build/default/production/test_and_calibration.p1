@@ -1,16 +1,16 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"18 ./dc_motor.h
-[; ;./dc_motor.h: 18: struct DC_motor {
+"19 ./dc_motor.h
+[; ;./dc_motor.h: 19: struct DC_motor {
 [s S2015 `uc 1 `uc 1 `*uc 1 `*uc 1 `uc 1 `i 1 ]
 [n S2015 DC_motor power direction dutyHighByte dir_LAT dir_pin PWMperiod ]
-"36
-[; ;./dc_motor.h: 36: void fullSpeedAhead_test(struct DC_motor *mL, struct DC_motor *mR);
+"38
+[; ;./dc_motor.h: 38: void fullSpeedAhead_test(struct DC_motor *mL, struct DC_motor *mR);
 [v _fullSpeedAhead_test `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
-"33
-[; ;./dc_motor.h: 33: void turnLeft(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_left);
+"35
+[; ;./dc_motor.h: 35: void turnLeft(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_left);
 [v _turnLeft `(v ~T0 @X0 0 ef3`*S2015`*S2015`uc ]
-"34
-[; ;./dc_motor.h: 34: void turnRight(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_right);
+"36
+[; ;./dc_motor.h: 36: void turnRight(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_right);
 [v _turnRight `(v ~T0 @X0 0 ef3`*S2015`*S2015`uc ]
 "10 ./color.h
 [; ;./color.h: 10: struct color_rgb {
@@ -44,14 +44,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 "84
 [; ;./color.h: 84: void color_data_collection(struct color_rgb *m);
 [v _color_data_collection `(v ~T0 @X0 0 ef1`*S2018 ]
-"35 ./dc_motor.h
-[; ;./dc_motor.h: 35: void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
+"37 ./dc_motor.h
+[; ;./dc_motor.h: 37: void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
 [v _fullSpeedAhead `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
 "86 ./color.h
 [; ;./color.h: 86: unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light) ;
 [v _distance_measure `(uc ~T0 @X0 0 ef3`*S2015`*S2015`ui ]
-"31 ./dc_motor.h
-[; ;./dc_motor.h: 31: void stop(struct DC_motor *mL, struct DC_motor *mR);
+"32 ./dc_motor.h
+[; ;./dc_motor.h: 32: void stop(struct DC_motor *mL, struct DC_motor *mR);
 [v _stop `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
 [v F192 `(v ~T0 @X0 1 tf1`ul ]
 "12 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\builtins.h
@@ -2092,11 +2092,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 "40928
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 40928: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"16 ./dc_motor.h
-[; ;./dc_motor.h: 16: unsigned char SENSITIVITY = 9;
-[v _SENSITIVITY `uc ~T0 @X0 1 e ]
+"17 ./dc_motor.h
+[; ;./dc_motor.h: 17: unsigned int SENSITIVITY = 360;
+[v _SENSITIVITY `ui ~T0 @X0 1 e ]
 [i _SENSITIVITY
--> -> 9 `i `uc
+-> -> 360 `i `ui
 ]
 "6 ./movement.h
 [; ;./movement.h: 6: unsigned int centisecond = 0;
@@ -2381,7 +2381,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 [e = . . _LATDbits 0 7 -> -> 0 `i `uc ]
 [e ( __delay (1 -> * -> -> 300 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-[e =+ _SENSITIVITY -> -> 5 `i `uc ]
+[e =+ _SENSITIVITY -> -> 5 `i `ui ]
 }
 [e :U 2042 ]
 "91
@@ -2415,7 +2415,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 [e = . . _LATHbits 0 3 -> -> 0 `i `uc ]
 [e ( __delay (1 -> * -> -> 300 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-[e =- _SENSITIVITY -> -> 5 `i `uc ]
+[e =- _SENSITIVITY -> -> 5 `i `ui ]
 }
 [e :U 2046 ]
 "97

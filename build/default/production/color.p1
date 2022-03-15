@@ -174,8 +174,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "81 ./color.h
 [; ;./color.h: 81: unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned int upper);
 [v _compare `(uc ~T0 @X0 0 ef3`ui`ui`ui ]
-"18 ./dc_motor.h
-[; ;./dc_motor.h: 18: struct DC_motor {
+"19 ./dc_motor.h
+[; ;./dc_motor.h: 19: struct DC_motor {
 [s S2015 `uc 1 `uc 1 `*uc 1 `*uc 1 `uc 1 `i 1 ]
 [n S2015 DC_motor power direction dutyHighByte dir_LAT dir_pin PWMperiod ]
 "55 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h
@@ -2152,11 +2152,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 "40928
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 40928: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"16 ./dc_motor.h
-[; ;./dc_motor.h: 16: unsigned char SENSITIVITY = 9;
-[v _SENSITIVITY `uc ~T0 @X0 1 e ]
+"17 ./dc_motor.h
+[; ;./dc_motor.h: 17: unsigned int SENSITIVITY = 360;
+[v _SENSITIVITY `ui ~T0 @X0 1 e ]
 [i _SENSITIVITY
--> -> 9 `i `uc
+-> -> 360 `i `ui
 ]
 "6 ./movement.h
 [; ;./movement.h: 6: unsigned int centisecond = 0;
