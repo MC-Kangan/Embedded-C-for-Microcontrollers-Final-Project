@@ -24232,10 +24232,8 @@ unsigned char __t3rd16on(void);
 # 1 "dc_motor.c" 2
 
 # 1 "./dc_motor.h" 1
-# 13 "./dc_motor.h"
-unsigned char CALIBRATION_135 = 15;
-unsigned char CALIBRATION_180 = 10;
-unsigned char SENSITIVITY = 10.5;
+# 16 "./dc_motor.h"
+unsigned char SENSITIVITY = 9;
 
 struct DC_motor {
     char power;
@@ -24257,8 +24255,7 @@ void turnRight(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_rig
 void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
 void fullSpeedAhead_test(struct DC_motor *mL, struct DC_motor *mR);
 void fullSpeedBack(struct DC_motor *mL, struct DC_motor *mR);
-void short_reverse(struct DC_motor *mL, struct DC_motor *mR);
-void reverse_square(struct DC_motor *mL, struct DC_motor *mR);
+void short_reverse(struct DC_motor *mL, struct DC_motor *mR, unsigned char instruction);
 # 2 "dc_motor.c" 2
 
 # 1 "./serial.h" 1
@@ -24433,9 +24430,8 @@ unsigned int memory[20];
 unsigned char array_index = 0;
 
 
-void short_burst_back(struct DC_motor *mL, struct DC_motor *mR);
+void short_burst(struct DC_motor *mL, struct DC_motor *mR);
 void action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR);
-void test_action (struct DC_motor *mL, struct DC_motor *mR);
 void pin_init(void);
 void goback(struct DC_motor *mL, struct DC_motor *mR);
 # 5 "dc_motor.c" 2
@@ -24527,7 +24523,7 @@ unsigned amb_light_measure(struct color_rgb *amb);
 
 
 
-void setup_init(void);
+void test_action (struct DC_motor *mL, struct DC_motor *mR);
 void calibration_motor(struct DC_motor *mL, struct DC_motor *mR);
 void test_function(unsigned char test_code, struct color_rgb *m, struct white_card *w, struct DC_motor *mL, struct DC_motor *mR);
 # 6 "dc_motor.c" 2
@@ -24624,7 +24620,7 @@ void turnLeft(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_left
 {
       mL->direction=1;
       mR->direction=1;
-      while (mR->power <25){
+      while (mR->power <30){
         mR->power += 5;
         mL->power = 0;
         setMotorPWM(mL);
@@ -24632,8 +24628,8 @@ void turnLeft(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_left
         _delay((unsigned long)((10)*(64000000/4000.0)));
     }
     unsigned int delay = angle_left * SENSITIVITY;
-    unsigned int delay_135 = delay + CALIBRATION_135;
-    unsigned int delay_180 = delay + CALIBRATION_180;
+    unsigned int delay_135 = delay + 15;;
+    unsigned int delay_180 = delay + 0;;
     if (angle_left == 180){
         for(unsigned int i = 0; i <delay_180; i++){_delay((unsigned long)((1)*(64000000/4000.0)));}
     }
@@ -24641,7 +24637,7 @@ void turnLeft(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_left
         for(unsigned int i = 0; i <delay_135; i++){_delay((unsigned long)((1)*(64000000/4000.0)));}
     }
     if (angle_left == 90){
-        for(unsigned int i = 0; i < delay; i++){_delay((unsigned long)((1)*(64000000/4000.0)));}
+        for(unsigned int i = 0; i < delay+10; i++){_delay((unsigned long)((1)*(64000000/4000.0)));}
     }
     stop(mL,mR);
 }
@@ -24651,7 +24647,7 @@ void turnRight(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_rig
 {
     mL->direction=1;
     mR->direction=1;
-    while (mL->power <25){
+    while (mL->power <30){
         mL->power += 5;
         mR->power = 0;
         setMotorPWM(mL);
@@ -24659,8 +24655,8 @@ void turnRight(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_rig
         _delay((unsigned long)((10)*(64000000/4000.0)));
     }
     unsigned int delay = angle_right * SENSITIVITY;
-    unsigned int delay_135 = delay + CALIBRATION_135;
-    unsigned int delay_180 = delay + CALIBRATION_180;
+    unsigned int delay_135 = delay + 15;;
+    unsigned int delay_180 = delay + 0;;
     if (angle_right == 180){
         for(unsigned int i = 0; i <delay_180; i++){_delay((unsigned long)((1)*(64000000/4000.0)));}
     }
@@ -24678,9 +24674,10 @@ void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR)
 {
     mL->direction=1;
     mR->direction=1;
-    while (mL->power<30 && mR->power<30){
-        mL->power += 10;
-        mR->power += 10;
+    while (mL->power<35 || mR->power<30){
+        if (mL->power<35) {mL->power += 5;}
+        if (mR->power<30) {mR->power += 5;}
+
         setMotorPWM(mL);
         setMotorPWM(mR);
         _delay((unsigned long)((10)*(64000000/4000.0)));
@@ -24708,14 +24705,11 @@ void fullSpeedBack(struct DC_motor *mL, struct DC_motor *mR)
 
 }
 
-void short_reverse(struct DC_motor *mL, struct DC_motor *mR)
-{ fullSpeedBack(mL, mR);
-    _delay((unsigned long)((800)*(64000000/4000.0)));
-    stop(mL,mR);
-}
-
-void reverse_square(struct DC_motor *mL, struct DC_motor *mR)
-{ fullSpeedBack(mL, mR);
-    _delay((unsigned long)((1300)*(64000000/4000.0)));
+void short_reverse(struct DC_motor *mL, struct DC_motor *mR, unsigned char instruction)
+{
+    fullSpeedBack(mL, mR);
+    if (instruction == 1) {_delay((unsigned long)((500)*(64000000/4000.0)));}
+    if (instruction == 2) {_delay((unsigned long)((700)*(64000000/4000.0)));}
+    if (instruction == 3) {_delay((unsigned long)((1300)*(64000000/4000.0)));}
     stop(mL,mR);
 }

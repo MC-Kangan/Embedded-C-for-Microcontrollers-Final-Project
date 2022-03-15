@@ -1,4 +1,62 @@
 Version 4.0 HI-TECH Software Intermediate Code
+"18 ./dc_motor.h
+[; ;./dc_motor.h: 18: struct DC_motor {
+[s S2015 `uc 1 `uc 1 `*uc 1 `*uc 1 `uc 1 `i 1 ]
+[n S2015 DC_motor power direction dutyHighByte dir_LAT dir_pin PWMperiod ]
+"36
+[; ;./dc_motor.h: 36: void fullSpeedAhead_test(struct DC_motor *mL, struct DC_motor *mR);
+[v _fullSpeedAhead_test `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
+"33
+[; ;./dc_motor.h: 33: void turnLeft(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_left);
+[v _turnLeft `(v ~T0 @X0 0 ef3`*S2015`*S2015`uc ]
+"34
+[; ;./dc_motor.h: 34: void turnRight(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_right);
+[v _turnRight `(v ~T0 @X0 0 ef3`*S2015`*S2015`uc ]
+"10 ./color.h
+[; ;./color.h: 10: struct color_rgb {
+[s S2018 `ui 1 `ui 1 `ui 1 `ui 1 ]
+[n S2018 color_rgb R G B C ]
+"17
+[; ;./color.h: 17: struct white_card {
+[s S2019 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 ]
+[n S2019 white_card RR RG RB GR GG GB BR BG BB CR CG CB CC BC ]
+"77
+[; ;./color.h: 77: void calibrate_white(struct white_card *w);
+[v _calibrate_white `(v ~T0 @X0 0 ef1`*S2019 ]
+"87
+[; ;./color.h: 87: unsigned amb_light_measure(struct color_rgb *amb);
+[v _amb_light_measure `(ui ~T0 @X0 0 ef1`*S2018 ]
+"73
+[; ;./color.h: 73: void LED_C(void);
+[v _LED_C `(v ~T0 @X0 0 ef ]
+"70
+[; ;./color.h: 70: void read_color (struct color_rgb *m);
+[v _read_color `(v ~T0 @X0 0 ef1`*S2018 ]
+"76
+[; ;./color.h: 76: void color_display(struct color_rgb *m);
+[v _color_display `(v ~T0 @X0 0 ef1`*S2018 ]
+"79
+[; ;./color.h: 79: unsigned char detect_color(struct color_rgb *m, struct white_card *w);
+[v _detect_color `(uc ~T0 @X0 0 ef2`*S2018`*S2019 ]
+"78
+[; ;./color.h: 78: void color_predict(unsigned char color);
+[v _color_predict `(v ~T0 @X0 0 ef1`uc ]
+"84
+[; ;./color.h: 84: void color_data_collection(struct color_rgb *m);
+[v _color_data_collection `(v ~T0 @X0 0 ef1`*S2018 ]
+"35 ./dc_motor.h
+[; ;./dc_motor.h: 35: void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
+[v _fullSpeedAhead `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
+"86 ./color.h
+[; ;./color.h: 86: unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light) ;
+[v _distance_measure `(uc ~T0 @X0 0 ef3`*S2015`*S2015`ui ]
+"31 ./dc_motor.h
+[; ;./dc_motor.h: 31: void stop(struct DC_motor *mL, struct DC_motor *mR);
+[v _stop `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
+[v F192 `(v ~T0 @X0 1 tf1`ul ]
+"12 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\builtins.h
+[v __delay `JF192 ~T0 @X0 0 e ]
+[p i __delay ]
 "28811 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 28811:     struct {
 [s S1349 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -14,17 +72,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "28832
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 28832: extern volatile LATDbits_t LATDbits __attribute__((address(0xF7C)));
 [v _LATDbits `VS1348 ~T0 @X0 0 e@3964 ]
-"29707
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 29707:     struct {
-[s S1380 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1380 . TRISD0 TRISD1 TRISD2 TRISD3 TRISD4 TRISD5 TRISD6 TRISD7 ]
-"29706
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 29706: typedef union {
-[u S1379 `S1380 1 ]
-[n S1379 . . ]
-"29718
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 29718: extern volatile TRISDbits_t TRISDbits __attribute__((address(0xF84)));
-[v _TRISDbits `VS1379 ~T0 @X0 0 e@3972 ]
 "29236
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 29236:     struct {
 [s S1361 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -56,89 +103,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "29265
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 29265: extern volatile LATHbits_t LATHbits __attribute__((address(0xF80)));
 [v _LATHbits `VS1360 ~T0 @X0 0 e@3968 ]
-"30065
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 30065:     struct {
-[s S1392 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1392 . TRISH0 TRISH1 TRISH2 TRISH3 ]
-"30064
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 30064: typedef union {
-[u S1391 `S1392 1 ]
-[n S1391 . . ]
-"30072
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 30072: extern volatile TRISHbits_t TRISHbits __attribute__((address(0xF88)));
-[v _TRISHbits `VS1391 ~T0 @X0 0 e@3976 ]
-"29946
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 29946:     struct {
-[s S1388 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S1388 . TRISF0 TRISF1 TRISF2 TRISF3 TRISF4 TRISF5 TRISF6 TRISF7 ]
-"29945
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 29945: typedef union {
-[u S1387 `S1388 1 ]
-[n S1387 . . ]
-"29957
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 29957: extern volatile TRISFbits_t TRISFbits __attribute__((address(0xF86)));
-[v _TRISFbits `VS1387 ~T0 @X0 0 e@3974 ]
-"12309
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 12309:     struct {
-[s S568 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S568 . ANSELF0 ANSELF1 ANSELF2 ANSELF3 ANSELF4 ANSELF5 ANSELF6 ANSELF7 ]
-"12308
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 12308: typedef union {
-[u S567 `S568 1 ]
-[n S567 . . ]
-"12320
-[; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 12320: extern volatile ANSELFbits_t ANSELFbits __attribute__((address(0xEB4)));
-[v _ANSELFbits `VS567 ~T0 @X0 0 e@3764 ]
-"10 ./color.h
-[; ;./color.h: 10: struct color_rgb {
-[s S2018 `ui 1 `ui 1 `ui 1 `ui 1 ]
-[n S2018 color_rgb R G B C ]
-"17
-[; ;./color.h: 17: struct white_card {
-[s S2019 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 ]
-[n S2019 white_card RR RG RB GR GG GB BR BG BB CR CG CB CC BC ]
-"17 ./dc_motor.h
-[; ;./dc_motor.h: 17: struct DC_motor {
-[s S2015 `uc 1 `uc 1 `*uc 1 `*uc 1 `uc 1 `i 1 ]
-[n S2015 DC_motor power direction dutyHighByte dir_LAT dir_pin PWMperiod ]
-"77 ./color.h
-[; ;./color.h: 77: void calibrate_white(struct white_card *w);
-[v _calibrate_white `(v ~T0 @X0 0 ef1`*S2019 ]
-"87
-[; ;./color.h: 87: unsigned amb_light_measure(struct color_rgb *amb);
-[v _amb_light_measure `(ui ~T0 @X0 0 ef1`*S2018 ]
-"73
-[; ;./color.h: 73: void LED_C(void);
-[v _LED_C `(v ~T0 @X0 0 ef ]
-"70
-[; ;./color.h: 70: void read_color (struct color_rgb *m);
-[v _read_color `(v ~T0 @X0 0 ef1`*S2018 ]
-"76
-[; ;./color.h: 76: void color_display(struct color_rgb *m);
-[v _color_display `(v ~T0 @X0 0 ef1`*S2018 ]
-"79
-[; ;./color.h: 79: unsigned char detect_color(struct color_rgb *m, struct white_card *w);
-[v _detect_color `(uc ~T0 @X0 0 ef2`*S2018`*S2019 ]
-"78
-[; ;./color.h: 78: void color_predict(unsigned char color);
-[v _color_predict `(v ~T0 @X0 0 ef1`uc ]
-"84
-[; ;./color.h: 84: void color_data_collection(struct color_rgb *m);
-[v _color_data_collection `(v ~T0 @X0 0 ef1`*S2018 ]
-"34 ./dc_motor.h
-[; ;./dc_motor.h: 34: void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
-[v _fullSpeedAhead `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
-"86 ./color.h
-[; ;./color.h: 86: unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light) ;
-[v _distance_measure `(uc ~T0 @X0 0 ef3`*S2015`*S2015`ui ]
-"30 ./dc_motor.h
-[; ;./dc_motor.h: 30: void stop(struct DC_motor *mL, struct DC_motor *mR);
-[v _stop `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
-[v F192 `(v ~T0 @X0 1 tf1`ul ]
-"12 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\builtins.h
-[v __delay `JF192 ~T0 @X0 0 e ]
-[p i __delay ]
-"30586 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h
+"30586
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 30586:     struct {
 [s S1412 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S1412 . RF0 RF1 RF2 RF3 RF4 RF5 RF6 RF7 ]
@@ -153,9 +118,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "30602
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 30602: extern volatile PORTFbits_t PORTFbits __attribute__((address(0xF8E)));
 [v _PORTFbits `VS1411 ~T0 @X0 0 e@3982 ]
-"13 ./movement.h
-[; ;./movement.h: 13: void test_action (struct DC_motor *mL, struct DC_motor *mR);
-[v _test_action `(v ~T0 @X0 0 ef2`*S2015`*S2015 ]
 "55 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 55: __asm("PPSLOCK equ 0DEFh");
 [; <" PPSLOCK equ 0DEFh ;# ">
@@ -2130,23 +2092,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 "40928
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 40928: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"13 ./dc_motor.h
-[; ;./dc_motor.h: 13: unsigned char CALIBRATION_135 = 15;
-[v _CALIBRATION_135 `uc ~T0 @X0 1 e ]
-[i _CALIBRATION_135
--> -> 15 `i `uc
-]
-"14
-[; ;./dc_motor.h: 14: unsigned char CALIBRATION_180 = 10;
-[v _CALIBRATION_180 `uc ~T0 @X0 1 e ]
-[i _CALIBRATION_180
--> -> 10 `i `uc
-]
-"15
-[; ;./dc_motor.h: 15: unsigned char SENSITIVITY = 10.5;
+"16 ./dc_motor.h
+[; ;./dc_motor.h: 16: unsigned char SENSITIVITY = 9;
 [v _SENSITIVITY `uc ~T0 @X0 1 e ]
 [i _SENSITIVITY
--> .10.5 `uc
+-> -> 9 `i `uc
 ]
 "6 ./movement.h
 [; ;./movement.h: 6: unsigned int centisecond = 0;
@@ -2164,227 +2114,269 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 0 `i `uc
 ]
 "16 test_and_calibration.c
-[; ;test_and_calibration.c: 16: void setup_init(void){
-[v _setup_init `(v ~T0 @X0 1 ef ]
+[; ;test_and_calibration.c: 16: void test_action (struct DC_motor *mL, struct DC_motor *mR)
+[v _test_action `(v ~T0 @X0 1 ef2`*S2015`*S2015 ]
+"17
+[; ;test_and_calibration.c: 17: { fullSpeedAhead_test(mL,mR);
 {
-[e :U _setup_init ]
+[e :U _test_action ]
+"16
+[; ;test_and_calibration.c: 16: void test_action (struct DC_motor *mL, struct DC_motor *mR)
+[v _mL `*S2015 ~T0 @X0 1 r1 ]
+[v _mR `*S2015 ~T0 @X0 1 r2 ]
+"17
+[; ;test_and_calibration.c: 17: { fullSpeedAhead_test(mL,mR);
 [f ]
+[e ( _fullSpeedAhead_test (2 , _mL _mR ]
 "18
-[; ;test_and_calibration.c: 18:     LATDbits.LATD7=0;
-[e = . . _LATDbits 0 7 -> -> 0 `i `uc ]
+[; ;test_and_calibration.c: 18:     turnLeft(mL,mR,90);
+[e ( _turnLeft (3 , , _mL _mR -> -> 90 `i `uc ]
 "19
-[; ;test_and_calibration.c: 19:     TRISDbits.TRISD7=0;
-[e = . . _TRISDbits 0 7 -> -> 0 `i `uc ]
+[; ;test_and_calibration.c: 19:     fullSpeedAhead_test(mL,mR);
+[e ( _fullSpeedAhead_test (2 , _mL _mR ]
+"20
+[; ;test_and_calibration.c: 20:     turnLeft(mL,mR,90);
+[e ( _turnLeft (3 , , _mL _mR -> -> 90 `i `uc ]
+"21
+[; ;test_and_calibration.c: 21:     fullSpeedAhead_test(mL,mR);
+[e ( _fullSpeedAhead_test (2 , _mL _mR ]
 "22
-[; ;test_and_calibration.c: 22:     LATHbits.LATH3=0;
-[e = . . _LATHbits 0 3 -> -> 0 `i `uc ]
+[; ;test_and_calibration.c: 22:     turnLeft(mL,mR,180);
+[e ( _turnLeft (3 , , _mL _mR -> -> 180 `i `uc ]
 "23
-[; ;test_and_calibration.c: 23:     TRISHbits.TRISH3=0;
-[e = . . _TRISHbits 0 3 -> -> 0 `i `uc ]
+[; ;test_and_calibration.c: 23:     fullSpeedAhead_test(mL,mR);
+[e ( _fullSpeedAhead_test (2 , _mL _mR ]
+"24
+[; ;test_and_calibration.c: 24:     turnRight(mL,mR,90);
+[e ( _turnRight (3 , , _mL _mR -> -> 90 `i `uc ]
+"25
+[; ;test_and_calibration.c: 25:     fullSpeedAhead_test(mL,mR);
+[e ( _fullSpeedAhead_test (2 , _mL _mR ]
 "26
-[; ;test_and_calibration.c: 26:     TRISFbits.TRISF2=1;
-[e = . . _TRISFbits 0 2 -> -> 1 `i `uc ]
+[; ;test_and_calibration.c: 26:     turnRight(mL,mR,90);
+[e ( _turnRight (3 , , _mL _mR -> -> 90 `i `uc ]
 "27
-[; ;test_and_calibration.c: 27:     ANSELFbits.ANSELF2=0;
-[e = . . _ANSELFbits 0 2 -> -> 0 `i `uc ]
+[; ;test_and_calibration.c: 27:     fullSpeedAhead_test(mL,mR);
+[e ( _fullSpeedAhead_test (2 , _mL _mR ]
+"28
+[; ;test_and_calibration.c: 28:     turnLeft(mL,mR,180);
+[e ( _turnLeft (3 , , _mL _mR -> -> 180 `i `uc ]
+"29
+[; ;test_and_calibration.c: 29:     fullSpeedAhead_test(mL,mR);
+[e ( _fullSpeedAhead_test (2 , _mL _mR ]
 "30
-[; ;test_and_calibration.c: 30:     TRISFbits.TRISF3=1;
-[e = . . _TRISFbits 0 3 -> -> 1 `i `uc ]
+[; ;test_and_calibration.c: 30:     turnLeft(mL,mR,135);
+[e ( _turnLeft (3 , , _mL _mR -> -> 135 `i `uc ]
 "31
-[; ;test_and_calibration.c: 31:     ANSELFbits.ANSELF3=0;
-[e = . . _ANSELFbits 0 3 -> -> 0 `i `uc ]
+[; ;test_and_calibration.c: 31:     fullSpeedAhead_test(mL,mR);
+[e ( _fullSpeedAhead_test (2 , _mL _mR ]
 "32
-[; ;test_and_calibration.c: 32: }
+[; ;test_and_calibration.c: 32:     turnRight(mL,mR,135);
+[e ( _turnRight (3 , , _mL _mR -> -> 135 `i `uc ]
+"33
+[; ;test_and_calibration.c: 33:     fullSpeedAhead_test(mL,mR);
+[e ( _fullSpeedAhead_test (2 , _mL _mR ]
+"34
+[; ;test_and_calibration.c: 34:     turnLeft(mL,mR,135);
+[e ( _turnLeft (3 , , _mL _mR -> -> 135 `i `uc ]
+"35
+[; ;test_and_calibration.c: 35:     fullSpeedAhead_test(mL,mR);
+[e ( _fullSpeedAhead_test (2 , _mL _mR ]
+"36
+[; ;test_and_calibration.c: 36:     turnRight(mL,mR,135);
+[e ( _turnRight (3 , , _mL _mR -> -> 135 `i `uc ]
+"37
+[; ;test_and_calibration.c: 37: }
 [e :UE 2020 ]
 }
-"34
-[; ;test_and_calibration.c: 34: void test_function(unsigned char test_code, struct color_rgb *m, struct white_card *w, struct DC_motor *mL, struct DC_motor *mR)
+"39
+[; ;test_and_calibration.c: 39: void test_function(unsigned char test_code, struct color_rgb *m, struct white_card *w, struct DC_motor *mL, struct DC_motor *mR)
 [v _test_function `(v ~T0 @X0 1 ef5`uc`*S2018`*S2019`*S2015`*S2015 ]
-"35
-[; ;test_and_calibration.c: 35: {
+"40
+[; ;test_and_calibration.c: 40: {
 {
 [e :U _test_function ]
-"34
-[; ;test_and_calibration.c: 34: void test_function(unsigned char test_code, struct color_rgb *m, struct white_card *w, struct DC_motor *mL, struct DC_motor *mR)
+"39
+[; ;test_and_calibration.c: 39: void test_function(unsigned char test_code, struct color_rgb *m, struct white_card *w, struct DC_motor *mL, struct DC_motor *mR)
 [v _test_code `uc ~T0 @X0 1 r1 ]
 [v _m `*S2018 ~T0 @X0 1 r2 ]
 [v _w `*S2019 ~T0 @X0 1 r3 ]
 [v _mL `*S2015 ~T0 @X0 1 r4 ]
 [v _mR `*S2015 ~T0 @X0 1 r5 ]
-"35
-[; ;test_and_calibration.c: 35: {
+"40
+[; ;test_and_calibration.c: 40: {
 [f ]
-"36
-[; ;test_and_calibration.c: 36:     unsigned char complete = 0;
+"41
+[; ;test_and_calibration.c: 41:     unsigned char complete = 0;
 [v _complete `uc ~T0 @X0 1 a ]
 [e = _complete -> -> 0 `i `uc ]
-"37
-[; ;test_and_calibration.c: 37:     unsigned char color = 0;
+"42
+[; ;test_and_calibration.c: 42:     unsigned char color = 0;
 [v _color `uc ~T0 @X0 1 a ]
 [e = _color -> -> 0 `i `uc ]
-"38
-[; ;test_and_calibration.c: 38:     unsigned char stop_signal = 0;
+"43
+[; ;test_and_calibration.c: 43:     unsigned char stop_signal = 0;
 [v _stop_signal `uc ~T0 @X0 1 a ]
 [e = _stop_signal -> -> 0 `i `uc ]
-"39
-[; ;test_and_calibration.c: 39:     unsigned int amb_light = 0;
+"44
+[; ;test_and_calibration.c: 44:     unsigned int amb_light = 0;
 [v _amb_light `ui ~T0 @X0 1 a ]
 [e = _amb_light -> -> 0 `i `ui ]
-"41
-[; ;test_and_calibration.c: 41:     if (test_code == 2){calibrate_white(w);}
+"46
+[; ;test_and_calibration.c: 46:     if (test_code == 2){calibrate_white(w);}
 [e $ ! == -> _test_code `i -> 2 `i 2022  ]
 {
 [e ( _calibrate_white (1 _w ]
 }
 [e :U 2022 ]
-"42
-[; ;test_and_calibration.c: 42:     if (test_code == 4){amb_light = amb_light_measure(m);}
+"47
+[; ;test_and_calibration.c: 47:     if (test_code == 4){amb_light = amb_light_measure(m);}
 [e $ ! == -> _test_code `i -> 4 `i 2023  ]
 {
 [e = _amb_light ( _amb_light_measure (1 _m ]
 }
 [e :U 2023 ]
-"44
-[; ;test_and_calibration.c: 44:     while(1){
+"49
+[; ;test_and_calibration.c: 49:     while(1){
 [e :U 2025 ]
 {
-"46
-[; ;test_and_calibration.c: 46:         if (test_code == 1){
+"51
+[; ;test_and_calibration.c: 51:         if (test_code == 1){
 [e $ ! == -> _test_code `i -> 1 `i 2027  ]
 {
-"47
-[; ;test_and_calibration.c: 47:             LED_C();
+"52
+[; ;test_and_calibration.c: 52:             LED_C();
 [e ( _LED_C ..  ]
-"48
-[; ;test_and_calibration.c: 48:             read_color(m);
+"53
+[; ;test_and_calibration.c: 53:             read_color(m);
 [e ( _read_color (1 _m ]
-"49
-[; ;test_and_calibration.c: 49:             color_display(m);
+"54
+[; ;test_and_calibration.c: 54:             color_display(m);
 [e ( _color_display (1 _m ]
-"50
-[; ;test_and_calibration.c: 50:         }
+"55
+[; ;test_and_calibration.c: 55:         }
 }
 [e :U 2027 ]
-"52
-[; ;test_and_calibration.c: 52:         if (test_code == 2){
+"57
+[; ;test_and_calibration.c: 57:         if (test_code == 2){
 [e $ ! == -> _test_code `i -> 2 `i 2028  ]
 {
-"53
-[; ;test_and_calibration.c: 53:             color = detect_color(m,w);
+"58
+[; ;test_and_calibration.c: 58:             color = detect_color(m,w);
 [e = _color ( _detect_color (2 , _m _w ]
-"55
-[; ;test_and_calibration.c: 55:             color_predict(color);
+"60
+[; ;test_and_calibration.c: 60:             color_predict(color);
 [e ( _color_predict (1 _color ]
-"56
-[; ;test_and_calibration.c: 56:         }
+"61
+[; ;test_and_calibration.c: 61:         }
 }
 [e :U 2028 ]
-"58
-[; ;test_and_calibration.c: 58:         if (test_code == 3){
+"63
+[; ;test_and_calibration.c: 63:         if (test_code == 3){
 [e $ ! == -> _test_code `i -> 3 `i 2029  ]
 {
-"59
-[; ;test_and_calibration.c: 59:             while (complete == 0){
+"64
+[; ;test_and_calibration.c: 64:             while (complete == 0){
 [e $U 2030  ]
 [e :U 2031 ]
 {
-"60
-[; ;test_and_calibration.c: 60:                 color_data_collection(m);
+"65
+[; ;test_and_calibration.c: 65:                 color_data_collection(m);
 [e ( _color_data_collection (1 _m ]
-"61
-[; ;test_and_calibration.c: 61:                 complete = 1;
+"66
+[; ;test_and_calibration.c: 66:                 complete = 1;
 [e = _complete -> -> 1 `i `uc ]
-"62
-[; ;test_and_calibration.c: 62:             }
+"67
+[; ;test_and_calibration.c: 67:             }
 }
 [e :U 2030 ]
-"59
-[; ;test_and_calibration.c: 59:             while (complete == 0){
+"64
+[; ;test_and_calibration.c: 64:             while (complete == 0){
 [e $ == -> _complete `i -> 0 `i 2031  ]
 [e :U 2032 ]
-"63
-[; ;test_and_calibration.c: 63:         }
+"68
+[; ;test_and_calibration.c: 68:         }
 }
 [e :U 2029 ]
-"65
-[; ;test_and_calibration.c: 65:         if (test_code == 4){
+"70
+[; ;test_and_calibration.c: 70:         if (test_code == 4){
 [e $ ! == -> _test_code `i -> 4 `i 2033  ]
 {
-"66
-[; ;test_and_calibration.c: 66:             while (stop_signal == 0){
+"71
+[; ;test_and_calibration.c: 71:             while (stop_signal == 0){
 [e $U 2034  ]
 [e :U 2035 ]
 {
-"67
-[; ;test_and_calibration.c: 67:                 fullSpeedAhead(mL, mR);
+"72
+[; ;test_and_calibration.c: 72:                 fullSpeedAhead(mL, mR);
 [e ( _fullSpeedAhead (2 , _mL _mR ]
-"68
-[; ;test_and_calibration.c: 68:                 stop_signal = distance_measure(mL, mR, amb_light);
+"73
+[; ;test_and_calibration.c: 73:                 stop_signal = distance_measure(mL, mR, amb_light);
 [e = _stop_signal ( _distance_measure (3 , , _mL _mR _amb_light ]
-"69
-[; ;test_and_calibration.c: 69:             }
+"74
+[; ;test_and_calibration.c: 74:             }
 }
 [e :U 2034 ]
-"66
-[; ;test_and_calibration.c: 66:             while (stop_signal == 0){
+"71
+[; ;test_and_calibration.c: 71:             while (stop_signal == 0){
 [e $ == -> _stop_signal `i -> 0 `i 2035  ]
 [e :U 2036 ]
-"70
-[; ;test_and_calibration.c: 70:             stop(mL, mR);
+"75
+[; ;test_and_calibration.c: 75:             stop(mL, mR);
 [e ( _stop (2 , _mL _mR ]
-"71
-[; ;test_and_calibration.c: 71:             _delay((unsigned long)((1000)*(64000000/4000.0)));
+"76
+[; ;test_and_calibration.c: 76:             _delay((unsigned long)((1000)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"72
-[; ;test_and_calibration.c: 72:             stop_signal = 0;
+"77
+[; ;test_and_calibration.c: 77:             stop_signal = 0;
 [e = _stop_signal -> -> 0 `i `uc ]
-"73
-[; ;test_and_calibration.c: 73:         }
+"78
+[; ;test_and_calibration.c: 78:         }
 }
 [e :U 2033 ]
-"74
-[; ;test_and_calibration.c: 74:     }
+"79
+[; ;test_and_calibration.c: 79:     }
 }
 [e :U 2024 ]
 [e $U 2025  ]
 [e :U 2026 ]
-"75
-[; ;test_and_calibration.c: 75: }
+"80
+[; ;test_and_calibration.c: 80: }
 [e :UE 2021 ]
 }
-"77
-[; ;test_and_calibration.c: 77: void calibration_motor(struct DC_motor *mL, struct DC_motor *mR)
+"82
+[; ;test_and_calibration.c: 82: void calibration_motor(struct DC_motor *mL, struct DC_motor *mR)
 [v _calibration_motor `(v ~T0 @X0 1 ef2`*S2015`*S2015 ]
-"78
-[; ;test_and_calibration.c: 78: {
+"83
+[; ;test_and_calibration.c: 83: {
 {
 [e :U _calibration_motor ]
-"77
-[; ;test_and_calibration.c: 77: void calibration_motor(struct DC_motor *mL, struct DC_motor *mR)
+"82
+[; ;test_and_calibration.c: 82: void calibration_motor(struct DC_motor *mL, struct DC_motor *mR)
 [v _mL `*S2015 ~T0 @X0 1 r1 ]
 [v _mR `*S2015 ~T0 @X0 1 r2 ]
-"78
-[; ;test_and_calibration.c: 78: {
+"83
+[; ;test_and_calibration.c: 83: {
 [f ]
-"79
-[; ;test_and_calibration.c: 79:     while (1) {
+"84
+[; ;test_and_calibration.c: 84:     while (1) {
 [e :U 2039 ]
 {
-"80
-[; ;test_and_calibration.c: 80:         LATDbits.LATD7 = 1;
+"85
+[; ;test_and_calibration.c: 85:         LATDbits.LATD7 = 1;
 [e = . . _LATDbits 0 7 -> -> 1 `i `uc ]
-"81
-[; ;test_and_calibration.c: 81:         LATHbits.LATH3 = 1;
+"86
+[; ;test_and_calibration.c: 86:         LATHbits.LATH3 = 1;
 [e = . . _LATHbits 0 3 -> -> 1 `i `uc ]
-"83
-[; ;test_and_calibration.c: 83:         if (!PORTFbits.RF2) {
+"88
+[; ;test_and_calibration.c: 88:         if (!PORTFbits.RF2) {
 [e $ ! ! != -> . . _PORTFbits 0 2 `i -> 0 `i 2041  ]
 {
-"84
-[; ;test_and_calibration.c: 84:             _delay((unsigned long)((300)*(64000000/4000.0)));
+"89
+[; ;test_and_calibration.c: 89:             _delay((unsigned long)((300)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 300 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"85
-[; ;test_and_calibration.c: 85:             if (!PORTFbits.RF2){LATDbits.LATD7 = 0; _delay((unsigned long)((300)*(64000000/4000.0))); SENSITIVITY += 5; }
+"90
+[; ;test_and_calibration.c: 90:             if (!PORTFbits.RF2){LATDbits.LATD7 = 0; _delay((unsigned long)((300)*(64000000/4000.0))); SENSITIVITY += 5; }
 [e $ ! ! != -> . . _PORTFbits 0 2 `i -> 0 `i 2042  ]
 {
 [e = . . _LATDbits 0 7 -> -> 0 `i `uc ]
@@ -2392,33 +2384,33 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e =+ _SENSITIVITY -> -> 5 `i `uc ]
 }
 [e :U 2042 ]
-"86
-[; ;test_and_calibration.c: 86:             if (!PORTFbits.RF3){break;}
+"91
+[; ;test_and_calibration.c: 91:             if (!PORTFbits.RF3){break;}
 [e $ ! ! != -> . . _PORTFbits 0 3 `i -> 0 `i 2043  ]
 {
 [e $U 2040  ]
 }
 [e :U 2043 ]
-"87
-[; ;test_and_calibration.c: 87:         }
+"92
+[; ;test_and_calibration.c: 92:         }
 }
 [e :U 2041 ]
-"88
-[; ;test_and_calibration.c: 88:         if (!PORTFbits.RF3) {
+"93
+[; ;test_and_calibration.c: 93:         if (!PORTFbits.RF3) {
 [e $ ! ! != -> . . _PORTFbits 0 3 `i -> 0 `i 2044  ]
 {
-"89
-[; ;test_and_calibration.c: 89:             _delay((unsigned long)((300)*(64000000/4000.0)));
+"94
+[; ;test_and_calibration.c: 94:             _delay((unsigned long)((300)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 300 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"90
-[; ;test_and_calibration.c: 90:             if (!PORTFbits.RF2){break;}
+"95
+[; ;test_and_calibration.c: 95:             if (!PORTFbits.RF2){break;}
 [e $ ! ! != -> . . _PORTFbits 0 2 `i -> 0 `i 2045  ]
 {
 [e $U 2040  ]
 }
 [e :U 2045 ]
-"91
-[; ;test_and_calibration.c: 91:             if (!PORTFbits.RF3){LATHbits.LATH3 = 0; _delay((unsigned long)((300)*(64000000/4000.0))); SENSITIVITY -= 5; }
+"96
+[; ;test_and_calibration.c: 96:             if (!PORTFbits.RF3){LATHbits.LATH3 = 0; _delay((unsigned long)((300)*(64000000/4000.0))); SENSITIVITY -= 5; }
 [e $ ! ! != -> . . _PORTFbits 0 3 `i -> 0 `i 2046  ]
 {
 [e = . . _LATHbits 0 3 -> -> 0 `i `uc ]
@@ -2426,26 +2418,26 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e =- _SENSITIVITY -> -> 5 `i `uc ]
 }
 [e :U 2046 ]
-"92
-[; ;test_and_calibration.c: 92:             }
+"97
+[; ;test_and_calibration.c: 97:             }
 }
 [e :U 2044 ]
-"93
-[; ;test_and_calibration.c: 93:     }
+"98
+[; ;test_and_calibration.c: 98:     }
 }
 [e :U 2038 ]
 [e $U 2039  ]
 [e :U 2040 ]
-"94
-[; ;test_and_calibration.c: 94:     LATDbits.LATD7 = 0;
+"99
+[; ;test_and_calibration.c: 99:     LATDbits.LATD7 = 0;
 [e = . . _LATDbits 0 7 -> -> 0 `i `uc ]
-"95
-[; ;test_and_calibration.c: 95:     LATHbits.LATH3 = 0;
+"100
+[; ;test_and_calibration.c: 100:     LATHbits.LATH3 = 0;
 [e = . . _LATHbits 0 3 -> -> 0 `i `uc ]
-"96
-[; ;test_and_calibration.c: 96:     test_action(mL, mR);
+"101
+[; ;test_and_calibration.c: 101:     test_action(mL, mR);
 [e ( _test_action (2 , _mL _mR ]
-"97
-[; ;test_and_calibration.c: 97: }
+"102
+[; ;test_and_calibration.c: 102: }
 [e :UE 2037 ]
 }

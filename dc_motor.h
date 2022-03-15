@@ -6,13 +6,14 @@
 //#include "color.h"
 
 #define _XTAL_FREQ 64000000
-#define TURNING_POWER_L 25 // This number needs to be adjusted according to different floor condition
-#define TURNING_POWER_R 25 // This number needs to be adjusted according to different floor condition
-#define FORWARD_POWER 30
+#define TURNING_POWER_L 30 // This number needs to be adjusted according to different floor condition
+#define TURNING_POWER_R 30 // This number needs to be adjusted according to different floor condition
+#define FORWARD_POWER_L 35
+#define FORWARD_POWER_R 30
 #define BACKWARD_POWER 50
-unsigned char CALIBRATION_135 = 15;
-unsigned char CALIBRATION_180 = 10;
-unsigned char SENSITIVITY = 10.5;
+#define CALIBRATION_135 15;
+#define CALIBRATION_180 0;
+unsigned char SENSITIVITY = 9;
 
 struct DC_motor { //definition of DC_motor structure
     char power;         //motor power, out of 100
@@ -34,8 +35,8 @@ void turnRight(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_rig
 void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
 void fullSpeedAhead_test(struct DC_motor *mL, struct DC_motor *mR);
 void fullSpeedBack(struct DC_motor *mL, struct DC_motor *mR);
-void short_reverse(struct DC_motor *mL, struct DC_motor *mR);
-void reverse_square(struct DC_motor *mL, struct DC_motor *mR);
+void short_reverse(struct DC_motor *mL, struct DC_motor *mR, unsigned char instruction);
+//void reverse_square(struct DC_motor *mL, struct DC_motor *mR);
 
 
 #endif

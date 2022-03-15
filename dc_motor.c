@@ -113,7 +113,7 @@ void turnLeft(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_left
         for(unsigned int i = 0; i <delay_135; i++){__delay_ms(1);}
     }
     if (angle_left == 90){
-        for(unsigned int i = 0; i < delay; i++){__delay_ms(1);}
+        for(unsigned int i = 0; i < delay+10; i++){__delay_ms(1);}
     }
     stop(mL,mR);
 }
@@ -150,9 +150,10 @@ void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR)
 {
     mL->direction=1;
     mR->direction=1;
-    while (mL->power<FORWARD_POWER && mR->power<FORWARD_POWER){         // when the powers for left and right motors are smaller than 70
-        mL->power += 10;                                                // increase the left motor power by 10 for each time (this case the power of motor push to the setting value immediately)
-        mR->power += 10;                                                // increase the right motor power by 10 for each time (this case the power of motor push to the setting value immediately)
+    while (mL->power<FORWARD_POWER_L || mR->power<FORWARD_POWER_R){         // when the powers for left and right motors are smaller than 70
+        if (mL->power<FORWARD_POWER_L) {mL->power += 5;}// increase the left motor power by 10 for each time (this case the power of motor push to the setting value immediately)
+        if (mR->power<FORWARD_POWER_R) {mR->power += 5;} 
+        //mR->power += 5;                                                // increase the right motor power by 10 for each time (this case the power of motor push to the setting value immediately)
         setMotorPWM(mL);                                                // set the power to motor
         setMotorPWM(mR);                                                // set the power to motor
         __delay_ms(10);
@@ -180,17 +181,20 @@ void fullSpeedBack(struct DC_motor *mL, struct DC_motor *mR)
     //stop(mL,mR);
 }
 
-void short_reverse(struct DC_motor *mL, struct DC_motor *mR)
-{   fullSpeedBack(mL, mR);
-    __delay_ms(800);
+void short_reverse(struct DC_motor *mL, struct DC_motor *mR, unsigned char instruction)
+{   
+    fullSpeedBack(mL, mR);
+    if (instruction == 1) {__delay_ms(500);}
+    if (instruction == 2) {__delay_ms(700);}
+    if (instruction == 3) {__delay_ms(1300);}
     stop(mL,mR);
 }
 
-void reverse_square(struct DC_motor *mL, struct DC_motor *mR)
-{   fullSpeedBack(mL, mR);
-    __delay_ms(1300);
-    stop(mL,mR);
-}
+//void reverse_square(struct DC_motor *mL, struct DC_motor *mR)
+//{   fullSpeedBack(mL, mR);
+//    __delay_ms(1300);
+//    stop(mL,mR);
+//}
 
 
 

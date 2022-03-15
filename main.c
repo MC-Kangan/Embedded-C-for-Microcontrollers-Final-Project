@@ -36,7 +36,6 @@ void main(void){
     initUSART4();
     Timer0_init();
     Interrupts_init();
-    setup_init();
     
     struct color_rgb rgb, amb;
     struct white_card white;
@@ -91,7 +90,7 @@ void main(void){
             }
             stop(&motorL, &motorR);
             __delay_ms(1000);
-            short_burst_back(&motorL, &motorR);
+            short_burst(&motorL, &motorR);
             color = detect_color(&rgb, &white);
             color = verify_color(color, &rgb, &white);
             if (color!= 0){action(color, &motorL, &motorR); color = 0;}

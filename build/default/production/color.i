@@ -24232,10 +24232,8 @@ unsigned char __t3rd16on(void);
 # 1 "color.c" 2
 
 # 1 "./dc_motor.h" 1
-# 13 "./dc_motor.h"
-unsigned char CALIBRATION_135 = 15;
-unsigned char CALIBRATION_180 = 10;
-unsigned char SENSITIVITY = 10.5;
+# 16 "./dc_motor.h"
+unsigned char SENSITIVITY = 9;
 
 struct DC_motor {
     char power;
@@ -24257,8 +24255,7 @@ void turnRight(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_rig
 void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
 void fullSpeedAhead_test(struct DC_motor *mL, struct DC_motor *mR);
 void fullSpeedBack(struct DC_motor *mL, struct DC_motor *mR);
-void short_reverse(struct DC_motor *mL, struct DC_motor *mR);
-void reverse_square(struct DC_motor *mL, struct DC_motor *mR);
+void short_reverse(struct DC_motor *mL, struct DC_motor *mR, unsigned char instruction);
 # 2 "color.c" 2
 
 # 1 "./serial.h" 1
@@ -24935,16 +24932,15 @@ unsigned int memory[20];
 unsigned char array_index = 0;
 
 
-void short_burst_back(struct DC_motor *mL, struct DC_motor *mR);
+void short_burst(struct DC_motor *mL, struct DC_motor *mR);
 void action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR);
-void test_action (struct DC_motor *mL, struct DC_motor *mR);
 void pin_init(void);
 void goback(struct DC_motor *mL, struct DC_motor *mR);
 # 10 "color.c" 2
 
 # 1 "./test_and_calibration.h" 1
 # 17 "./test_and_calibration.h"
-void setup_init(void);
+void test_action (struct DC_motor *mL, struct DC_motor *mR);
 void calibration_motor(struct DC_motor *mL, struct DC_motor *mR);
 void test_function(unsigned char test_code, struct color_rgb *m, struct white_card *w, struct DC_motor *mL, struct DC_motor *mR);
 # 11 "color.c" 2

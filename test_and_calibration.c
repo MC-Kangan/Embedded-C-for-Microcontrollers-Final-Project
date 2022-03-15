@@ -13,22 +13,27 @@
 #include "color.h"
 
 
-void setup_init(void){
-    // setup pin for output (connected to LED1 - RD7)
-    LATDbits.LATD7=0;   //set initial output state - LATx registers (output latch); light on (1); light off (0)
-    TRISDbits.TRISD7=0; //set TRIS value for pin (output) - TRISx registers (data direction); Tris determines either output(0) of input(1)
-    
-     // setup pin for output (connected to LED2 - RH3)
-    LATHbits.LATH3=0;   //set initial output state - LATx registers (output latch)
-    TRISHbits.TRISH3=0; //set TRIS value for pin (output) - TRISx registers (data direction)
-    
-    // setup pin for input (connected to button1 - RF2)
-    TRISFbits.TRISF2=1; //set TRIS value for pin (input)
-    ANSELFbits.ANSELF2=0; //turn off analogue input on pin  
-    
-    // setup pin for input (connected to button2 - RF3)
-    TRISFbits.TRISF3=1; //set TRIS value for pin (input)
-    ANSELFbits.ANSELF3=0; //turn off analogue input on pin  
+void test_action (struct DC_motor *mL, struct DC_motor *mR)
+{   fullSpeedAhead_test(mL,mR);
+    turnLeft(mL,mR,90);
+    fullSpeedAhead_test(mL,mR);
+    turnLeft(mL,mR,90);
+    fullSpeedAhead_test(mL,mR);
+    turnLeft(mL,mR,180);
+    fullSpeedAhead_test(mL,mR);
+    turnRight(mL,mR,90);
+    fullSpeedAhead_test(mL,mR);
+    turnRight(mL,mR,90);
+    fullSpeedAhead_test(mL,mR);
+    turnLeft(mL,mR,180);
+    fullSpeedAhead_test(mL,mR);
+    turnLeft(mL,mR,135);
+    fullSpeedAhead_test(mL,mR);
+    turnRight(mL,mR,135);
+    fullSpeedAhead_test(mL,mR);
+    turnLeft(mL,mR,135);
+    fullSpeedAhead_test(mL,mR);
+    turnRight(mL,mR,135);
 }
 
 void test_function(unsigned char test_code, struct color_rgb *m, struct white_card *w, struct DC_motor *mL, struct DC_motor *mR)
