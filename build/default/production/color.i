@@ -24233,7 +24233,7 @@ unsigned char __t3rd16on(void);
 
 # 1 "./dc_motor.h" 1
 # 11 "./dc_motor.h"
-unsigned int SENSITIVITY = 345;
+unsigned int SENSITIVITY = 150;
 
 struct DC_motor {
     char power;
@@ -25224,19 +25224,19 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
     RR = lroundf((float)(m->R)/(w->RR)*100); RG = lroundf((float)(m->G)/(w->RG)*100); RB = lroundf((float)(m->B)/(w->RB)*100);
     _delay((unsigned long)((50)*(64000000/4000.0)));
 
-
-
-
+    char buf[100];
+    sprintf(buf,"%d\t%d\t%d\r\n", RR, RG, RB);
+    sendStringSerial4(buf);
 
     LED_G();
     _delay((unsigned long)((100)*(64000000/4000.0)));
     read_color(m);
 
-
+    GR = (float)(m->R)/(w->GR)*100; GG = (float)(m->G)/(w->GG)*100; GB = (float)(m->B)/(w->GB)*100;
     GR = lroundf((float)(m->R)/(w->GR)*100); GG = lroundf((float)(m->G)/(w->GG)*100); GB = lroundf((float)(m->B)/(w->GB)*100);
 
-
-
+    sprintf(buf,"%d\t%d\t%d\r\n", GR, GG, GB);
+    sendStringSerial4(buf);
 
     LED_B();
     _delay((unsigned long)((100)*(64000000/4000.0)));
@@ -25244,8 +25244,8 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
     BR = lroundf((float)(m->R)/(w->BR)*100); BG = lroundf((float)(m->G)/(w->BG)*100); BB = lroundf((float)(m->B)/(w->BB)*100);
     BC = lroundf((float)(m->C)/(w->BC)*100);
 
-
-
+    sprintf(buf,"%d\t%d\t%d\r\n", BR, BG, BB);
+    sendStringSerial4(buf);
 
 
     if (compare(0, RR, 45)){
@@ -25260,7 +25260,8 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
         }
         else if (GG > 30 && GB > 30){
 
-            if (BG >= BR) {color = 7;}
+            if (BB >= 80){color = 7;}
+
             else{
                 if (BG < 48){color = 4;}
                 else {color = 5;}

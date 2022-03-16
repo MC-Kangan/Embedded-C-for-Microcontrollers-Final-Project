@@ -2070,10 +2070,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 40928: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
 "11 ./dc_motor.h
-[; ;./dc_motor.h: 11: unsigned int SENSITIVITY = 345;
+[; ;./dc_motor.h: 11: unsigned int SENSITIVITY = 150;
 [v _SENSITIVITY `ui ~T0 @X0 1 e ]
 [i _SENSITIVITY
--> -> 345 `i `ui
+-> -> 150 `i `ui
 ]
 "6 ./movement.h
 [; ;./movement.h: 6: unsigned int centisecond = 0;
@@ -2171,10 +2171,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 2024 ]
 {
 "54
-[; ;main.c: 54:   if (0 == 1){test_function(3, &rgb, &white, &motorL, &motorR);}
+[; ;main.c: 54:   if (0 == 1){test_function(2, &rgb, &white, &motorL, &motorR);}
 [e $ ! == -> 0 `i -> 1 `i 2026  ]
 {
-[e ( _test_function (4 , , , , -> -> 3 `i `uc &U _rgb &U _white &U _motorL &U _motorR ]
+[e ( _test_function (4 , , , , -> -> 2 `i `uc &U _rgb &U _white &U _motorL &U _motorR ]
 }
 [e :U 2026 ]
 "55

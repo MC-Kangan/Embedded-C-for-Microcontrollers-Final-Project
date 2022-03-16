@@ -51,7 +51,7 @@ void main(void){
     }
       
     while(1){
-		if (TEST == 1){test_function(3, &rgb, &white, &motorL, &motorR);}
+		if (TEST == 1){test_function(2, &rgb, &white, &motorL, &motorR);}
         if (TEST == 0){ 
             T0CON0bits.T0EN=1;	//start the timer (energy saving for the timer to count only when buggy is going straight)
             start_time = centisecond;

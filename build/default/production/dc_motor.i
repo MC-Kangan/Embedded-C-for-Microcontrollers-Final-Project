@@ -24233,7 +24233,7 @@ unsigned char __t3rd16on(void);
 
 # 1 "./dc_motor.h" 1
 # 11 "./dc_motor.h"
-unsigned int SENSITIVITY = 345;
+unsigned int SENSITIVITY = 150;
 
 struct DC_motor {
     char power;
@@ -24347,18 +24347,18 @@ void turn45(struct DC_motor *mL, struct DC_motor *mR, unsigned char turn_time, u
         mL->direction=1;
         mR->direction=1;
         if (direction == 1){
-            while (mR->power <30){
+            while (mR->power <50){
                 mR->power += 5;
                 mL->power = 0;
                 setMotorPWM(mL);
                 setMotorPWM(mR);
                 _delay((unsigned long)((10)*(64000000/4000.0)));
             }
-            for(unsigned int i = 0; i<SENSITIVITY; i++){_delay((unsigned long)((1)*(64000000/4000.0)));}
+            for(unsigned int i = 0; i<SENSITIVITY + 15; i++){_delay((unsigned long)((1)*(64000000/4000.0)));}
             stop(mL,mR);
         }
         else if (direction == 2){
-            while (mL->power <30){
+            while (mL->power <50){
                 mL->power += 5;
                 mR->power = 0;
                 setMotorPWM(mL);
@@ -24401,6 +24401,6 @@ void fullSpeedBack(struct DC_motor *mL, struct DC_motor *mR, unsigned char instr
 
     if (instruction == 1) {_delay((unsigned long)((600)*(64000000/4000.0)));}
     if (instruction == 2) {_delay((unsigned long)((1000)*(64000000/4000.0)));}
-    if (instruction == 3) {_delay((unsigned long)((1900)*(64000000/4000.0)));}
+    if (instruction == 3) {_delay((unsigned long)((2000)*(64000000/4000.0)));}
     stop(mL,mR);
 }

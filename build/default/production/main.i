@@ -24505,7 +24505,7 @@ unsigned char I2C_2_Master_Read(unsigned char ack);
 
 # 1 "./dc_motor.h" 1
 # 11 "./dc_motor.h"
-unsigned int SENSITIVITY = 345;
+unsigned int SENSITIVITY = 150;
 
 struct DC_motor {
     char power;
@@ -24633,7 +24633,7 @@ void main(void){
     }
 
     while(1){
-  if (0 == 1){test_function(3, &rgb, &white, &motorL, &motorR);}
+  if (0 == 1){test_function(2, &rgb, &white, &motorL, &motorR);}
         if (0 == 0){
             T0CON0bits.T0EN=1;
             start_time = centisecond;

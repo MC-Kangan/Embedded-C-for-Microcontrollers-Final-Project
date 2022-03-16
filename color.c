@@ -282,19 +282,19 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
     RR = lround((float)(m->R)/(w->RR)*100); RG = lround((float)(m->G)/(w->RG)*100); RB = lround((float)(m->B)/(w->RB)*100);
     __delay_ms(50);
     
-    //char buf[100];  
-    //sprintf(buf,"%d\t%d\t%d\r\n", RR, RG, RB);
-    //sendStringSerial4(buf);
+    char buf[100];  
+    sprintf(buf,"%d\t%d\t%d\r\n", RR, RG, RB);
+    sendStringSerial4(buf);
     
     LED_G(); // Turn on green light
     __delay_ms(100);
     read_color(m); 
-    //GR_REAL = m->R ;  GC_REAL = m->C;
-    //GR = (float)(m->R)/(w->GR)*100; GG = (float)(m->G)/(w->GG)*100; GB = (float)(m->B)/(w->GB)*100;
+
+    GR = (float)(m->R)/(w->GR)*100; GG = (float)(m->G)/(w->GG)*100; GB = (float)(m->B)/(w->GB)*100;
     GR = lround((float)(m->R)/(w->GR)*100); GG = lround((float)(m->G)/(w->GG)*100); GB = lround((float)(m->B)/(w->GB)*100);
 
-    //sprintf(buf,"%d\t%d\t%d\r\n", GR, GG, GB);
-    //sendStringSerial4(buf);
+    sprintf(buf,"%d\t%d\t%d\r\n", GR, GG, GB);
+    sendStringSerial4(buf);
     
     LED_B(); // Turn on blue light
     __delay_ms(100);
@@ -302,8 +302,8 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
     BR = lround((float)(m->R)/(w->BR)*100); BG = lround((float)(m->G)/(w->BG)*100); BB = lround((float)(m->B)/(w->BB)*100);
     BC = lround((float)(m->C)/(w->BC)*100);
 
-    //sprintf(buf,"%d\t%d\t%d\r\n", BR, BG, BB);
-    //sendStringSerial4(buf);
+    sprintf(buf,"%d\t%d\t%d\r\n", BR, BG, BB);
+    sendStringSerial4(buf);
     
     // Distinguish green (2) and blue (3)
     if (compare(0, RR, 45)){ 
@@ -318,7 +318,8 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
         }
         else if (GG > 30 && GB > 30){
             // Distinguish yellow (4), pink (5) and light blue (7)
-            if (BG >= BR) {color = 7;}
+            if (BB >= 80){color = 7;}
+            //if (BG >= BR) {color = 7;}
             else{
                 if (BG < 48){color = 4;}
                 else {color = 5;}

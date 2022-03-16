@@ -100,7 +100,7 @@ void turn45(struct DC_motor *mL, struct DC_motor *mR, unsigned char turn_time, u
                 setMotorPWM(mR);                   // set the power to motor
                 __delay_ms(10);
             } 
-            for(unsigned int i = 0; i<SENSITIVITY; i++){__delay_ms(1);}    // delay time for turning: control how far the buggy will turn left. see sensitivity value in dc_motor.h
+            for(unsigned int i = 0; i<SENSITIVITY + 15; i++){__delay_ms(1);}    // delay time for turning: control how far the buggy will turn left. see sensitivity value in dc_motor.h
             stop(mL,mR);                           // stop the movement of the buggy for 0.5 second after turning
         }
         else if (direction == 2){                  // turn right
@@ -147,6 +147,6 @@ void fullSpeedBack(struct DC_motor *mL, struct DC_motor *mR, unsigned char instr
     // full-speed back for a particular time 
     if (instruction == 1) {__delay_ms(600);}        // short delay, short reverse
     if (instruction == 2) {__delay_ms(1000);}       // medium delay, medium reverse
-    if (instruction == 3) {__delay_ms(1900);}       // large delay, large reverse
+    if (instruction == 3) {__delay_ms(2000);}       // large delay, large reverse
     stop(mL,mR);                                    // stop the movement of the buggy for 0.5 second after reverse
 }

@@ -24315,7 +24315,7 @@ unsigned amb_light_measure(struct color_rgb *amb);
 
 # 1 "./dc_motor.h" 1
 # 11 "./dc_motor.h"
-unsigned int SENSITIVITY = 345;
+unsigned int SENSITIVITY = 150;
 
 struct DC_motor {
     char power;

@@ -2180,10 +2180,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 40928: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
 "11 ./dc_motor.h
-[; ;./dc_motor.h: 11: unsigned int SENSITIVITY = 345;
+[; ;./dc_motor.h: 11: unsigned int SENSITIVITY = 150;
 [v _SENSITIVITY `ui ~T0 @X0 1 e ]
 [i _SENSITIVITY
--> -> 345 `i `ui
+-> -> 150 `i `ui
 ]
 "5 dc_motor.c
 [; ;dc_motor.c: 5: struct DC_motor motorL, motorR;
@@ -2465,7 +2465,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ ! == -> _direction `i -> 1 `i 2034  ]
 {
 "96
-[; ;dc_motor.c: 96:             while (mR->power <30){
+[; ;dc_motor.c: 96:             while (mR->power <50){
 [e $U 2035  ]
 [e :U 2036 ]
 {
@@ -2489,11 +2489,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e :U 2035 ]
 "96
-[; ;dc_motor.c: 96:             while (mR->power <30){
-[e $ < -> . *U _mR 0 `i -> 30 `i 2036  ]
+[; ;dc_motor.c: 96:             while (mR->power <50){
+[e $ < -> . *U _mR 0 `i -> 50 `i 2036  ]
 [e :U 2037 ]
 "103
-[; ;dc_motor.c: 103:             for(unsigned int i = 0; i<SENSITIVITY; i++){_delay((unsigned long)((1)*(64000000/4000.0)));}
+[; ;dc_motor.c: 103:             for(unsigned int i = 0; i<SENSITIVITY + 15; i++){_delay((unsigned long)((1)*(64000000/4000.0)));}
 {
 [v _i `ui ~T0 @X0 1 a ]
 [e = _i -> -> 0 `i `ui ]
@@ -2504,7 +2504,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e ++ _i -> -> 1 `i `ui ]
 [e :U 2041 ]
-[e $ < _i _SENSITIVITY 2038  ]
+[e $ < _i + _SENSITIVITY -> -> 15 `i `ui 2038  ]
 [e :U 2039 ]
 }
 "104
@@ -2520,7 +2520,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $ ! == -> _direction `i -> 2 `i 2043  ]
 {
 "107
-[; ;dc_motor.c: 107:             while (mL->power <30){
+[; ;dc_motor.c: 107:             while (mL->power <50){
 [e $U 2044  ]
 [e :U 2045 ]
 {
@@ -2544,8 +2544,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e :U 2044 ]
 "107
-[; ;dc_motor.c: 107:             while (mL->power <30){
-[e $ < -> . *U _mL 0 `i -> 30 `i 2045  ]
+[; ;dc_motor.c: 107:             while (mL->power <50){
+[e $ < -> . *U _mL 0 `i -> 50 `i 2045  ]
 [e :U 2046 ]
 "114
 [; ;dc_motor.c: 114:             for(unsigned int i = 0; i <SENSITIVITY; i++){_delay((unsigned long)((1)*(64000000/4000.0)));}
@@ -2714,10 +2714,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 [e :U 2064 ]
 "150
-[; ;dc_motor.c: 150:     if (instruction == 3) {_delay((unsigned long)((1900)*(64000000/4000.0)));}
+[; ;dc_motor.c: 150:     if (instruction == 3) {_delay((unsigned long)((2000)*(64000000/4000.0)));}
 [e $ ! == -> _instruction `i -> 3 `i 2065  ]
 {
-[e ( __delay (1 -> * -> -> 1900 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+[e ( __delay (1 -> * -> -> 2000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 }
 [e :U 2065 ]
 "151
