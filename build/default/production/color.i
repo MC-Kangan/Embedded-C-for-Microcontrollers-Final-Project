@@ -24270,7 +24270,13 @@ void sendStringSerial4(char *string);
 # 3 "color.c" 2
 
 # 1 "./color.h" 1
-# 10 "./color.h"
+
+
+
+
+
+
+
 struct color_rgb {
     unsigned int R ;
     unsigned int G ;
@@ -24341,7 +24347,7 @@ void color_predict(unsigned char color);
 unsigned char detect_color(struct color_rgb *m, struct white_card *w);
 unsigned char verify_color(unsigned char color,struct color_rgb *m, struct white_card *w);
 unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned int upper);
-unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light) ;
+unsigned char detect_wall(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light) ;
 unsigned amb_light_measure(struct color_rgb *amb);
 # 4 "color.c" 2
 
@@ -24931,7 +24937,13 @@ void goback(struct DC_motor *mL, struct DC_motor *mR);
 # 10 "color.c" 2
 
 # 1 "./test_and_calibration.h" 1
-# 10 "./test_and_calibration.h"
+
+
+
+
+
+
+
 unsigned int setup(struct white_card *white,struct color_rgb*amb,struct DC_motor *mL, struct DC_motor *mR);
 void test_action(struct DC_motor *mL, struct DC_motor *mR);
 void color_data_collection(struct color_rgb *m);
@@ -25308,7 +25320,7 @@ unsigned amb_light_measure(struct color_rgb *amb)
     return CC_amb_ave;
 }
 
-unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light)
+unsigned char detect_wall(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light)
 {
     unsigned int CC_amb = 0, CG_amb = 0;
     unsigned char stop = 0;

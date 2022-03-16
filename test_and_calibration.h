@@ -2,8 +2,6 @@
 #define	TEST_AND_CALIBRATION_H
 
 #include <xc.h>
-#include "dc_motor.h"
-#include "color.h"
 
 #define _XTAL_FREQ 64000000 //note intrinsic _delay function is 62.5ns at 64,000,000Hz 
 

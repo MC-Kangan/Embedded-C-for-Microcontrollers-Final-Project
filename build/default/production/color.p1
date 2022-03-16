@@ -163,8 +163,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "13 ./i2c.h
 [; ;./i2c.h: 13: void I2C_2_Master_Init(void);
 [v _I2C_2_Master_Init `(v ~T0 @X0 0 ef ]
-"48 ./color.h
-[; ;./color.h: 48: void color_writetoaddr(char address, char value);
+"46 ./color.h
+[; ;./color.h: 46: void color_writetoaddr(char address, char value);
 [v _color_writetoaddr `(v ~T0 @X0 0 ef2`uc`uc ]
 "23 ./i2c.h
 [; ;./i2c.h: 23: void I2C_2_Master_Start(void);
@@ -181,8 +181,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "43
 [; ;./i2c.h: 43: unsigned char I2C_2_Master_Read(unsigned char ack);
 [v _I2C_2_Master_Read `(uc ~T0 @X0 0 ef1`uc ]
-"10 ./color.h
-[; ;./color.h: 10: struct color_rgb {
+"8 ./color.h
+[; ;./color.h: 8: struct color_rgb {
 [s S2016 `ui 1 `ui 1 `ui 1 `ui 1 ]
 [n S2016 color_rgb R G B C ]
 "109 C:\Program Files\Microchip\xc8\v2.35\pic\include\c99\stdio.h
@@ -191,15 +191,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 "12 ./serial.h
 [; ;./serial.h: 12: void sendStringSerial4(char *string);
 [v _sendStringSerial4 `(v ~T0 @X0 0 ef1`*uc ]
-"17 ./color.h
-[; ;./color.h: 17: struct white_card {
+"15 ./color.h
+[; ;./color.h: 15: struct white_card {
 [s S2017 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 ]
 [n S2017 white_card RR RG RB GR GG GB BR BG BB CR CG CB CC BC ]
 "282 C:\Program Files\Microchip\xc8\v2.35\pic\include\c99\math.h
 [; ;C:\Program Files\Microchip\xc8\v2.35\pic\include\c99\math.h: 282: long lroundf(float);
 [v _lroundf `(l ~T0 @X0 0 ef1`f ]
-"79 ./color.h
-[; ;./color.h: 79: unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned int upper);
+"77 ./color.h
+[; ;./color.h: 77: unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned int upper);
 [v _compare `(uc ~T0 @X0 0 ef3`ui`ui`ui ]
 "13 ./dc_motor.h
 [; ;./dc_motor.h: 13: struct DC_motor {
@@ -3295,14 +3295,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :UE 2070 ]
 }
 "381
-[; ;color.c: 381: unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light)
-[v _distance_measure `(uc ~T0 @X0 1 ef3`*S2015`*S2015`ui ]
+[; ;color.c: 381: unsigned char detect_wall(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light)
+[v _detect_wall `(uc ~T0 @X0 1 ef3`*S2015`*S2015`ui ]
 "382
 [; ;color.c: 382: {
 {
-[e :U _distance_measure ]
+[e :U _detect_wall ]
 "381
-[; ;color.c: 381: unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light)
+[; ;color.c: 381: unsigned char detect_wall(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light)
 [v _mL `*S2015 ~T0 @X0 1 r1 ]
 [v _mR `*S2015 ~T0 @X0 1 r2 ]
 [v _amb_light `ui ~T0 @X0 1 r3 ]

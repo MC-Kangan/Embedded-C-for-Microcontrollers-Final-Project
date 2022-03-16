@@ -7,15 +7,15 @@
 #pragma config WDTE = OFF        // WDT operating mode (WDT enabled regardless of sleep)
 
 #include <xc.h>
-#include "dc_motor.h"
-#include "serial.h"
+#include <stdio.h>
 #include "color.h"
 #include "i2c.h"
+#include "dc_motor.h"
 #include "movement.h"
-#include "interrupts.h"
 #include "timers.h"
+#include "interrupts.h"
+#include "serial.h"
 #include "test_and_calibration.h"
-#include <stdio.h>
 
 #define _XTAL_FREQ 64000000 //note intrinsic _delay function is 62.5ns at 64,000,000Hz 
 #define TEST 0
@@ -30,15 +30,15 @@ void main(void){
     struct white_card white;
     struct DC_motor motorL, motorR;
     
-    // Initiate
-    I2C_2_Master_Init();
-    color_click_init();
-    initDCmotorsPWM(199);
-    initUSART4();
-    Timer0_init();
-    Interrupts_init();
-    pin_init(); //initiate RGB pins, RF2 and RF3 pins for motor calibrations, BATVERSE pins for voltage measurement 
-    initDCmotors_parameter(&motorL, &motorR); 
+    // Initiation
+    // I2C_2_Master_Init();
+    color_click_init();     // color click initiation including I2C initiation(color.c)
+    pin_init();             // RGB initiation, RF2, RF3 button initiation, clicker board light and buggy light initiation(color.c)
+    initDCmotorsPWM(199);   // TRIS and LAT registers for PWM initiation(motor.c)
+    initDCmotors_parameter(&motorL, &motorR);  // motor parameter initiation(motor.c)
+    initUSART4();           // initiation of USART4 for reception and transmission (serial.c)
+    Timer0_init();          // Timer Initiation(timers.c)
+    Interrupts_init();      // Interrupt Initiation(interrupt.c)
     
     unsigned char stop_signal = 0;
     unsigned int amb_light = 0;
@@ -46,22 +46,20 @@ void main(void){
     unsigned int start_time= 0;
     unsigned int stop_time = 0;
 
-    
-  //    calibration(&motorL, &motorR);  
     if (TEST == 0){
         amb_light = setup(&white, &amb, &motorL, &motorR);
     }
       
     while(1){
 		if (TEST == 1){test_function(3, &rgb, &white, &motorL, &motorR);}
-        if (TEST == 0){
- 
+        if (TEST == 0){ 
             T0CON0bits.T0EN=1;	//start the timer (energy saving for the timer to count only when buggy is going straight)
             start_time = centisecond;
             while (stop_signal == 0){
                 fullSpeedAhead(&motorL, &motorR);
-                stop_signal = distance_measure(&motorL, &motorR, amb_light);
-            }            //            T0CON0bits.T0EN=0;  //stop the timer (energy saving for the timer to count only when buggy is going straight)
+                stop_signal = detect_wall(&motorL, &motorR, amb_light);
+            }            
+            T0CON0bits.T0EN=0;  //stop the timer (energy saving for the timer to count only when buggy is going straight)
             stop_time = centisecond;
             if ((stop_time-start_time)>10){
                 memory[array_index] = (stop_time-start_time-3);

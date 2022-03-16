@@ -1,15 +1,11 @@
  #include <xc.h>
-#include <stdio.h>
 #include "color.h"
 #include "dc_motor.h"
-#include "serial.h"
 #include "movement.h"
-#include "timers.h"
-#include "test_and_calibration.h"
 
 
 void short_burst(struct DC_motor *mL, struct DC_motor *mR)
-{
+{// a short burst movement for the buggy: moving ahead for 400ms and stop
     fullSpeedAhead(mL,mR);
     __delay_ms(400);
     stop(mL,mR);
@@ -68,18 +64,18 @@ void turning_action(unsigned char color, struct DC_motor *mL, struct DC_motor *m
 
 void goback(struct DC_motor *mL, struct DC_motor *mR)
 {   fullSpeedBack(mL,mR,1);     // Reverse moving for a small distance to leave space for turning
-    turn45(mL,mR,4,1);
-    fullSpeedBack(mL,mR,2);
-    array_index--;
+    turn45(mL,mR,4,1);          // Turn 180 for a small distance to leave space for turning
+    fullSpeedBack(mL,mR,2);     // Reverse moving for a medium distance so the buggy can auto calibrate the position. 
+    array_index--;              // Reduce the array index by 1 for reading the memory data later.
     while(array_index >= 0){
         fullSpeedAhead(mL,mR);
         for (unsigned int i=0; i<memory[array_index]; i++) {__delay_ms(100);}
         stop(mL,mR);
         if (array_index == 0){break;}   
-        array_index--;
+        array_index--;                  // Reduce the array index by 1 for reading the memory data later.
         if (memory[array_index] == 1){turn45(mL,mR,2,1);fullSpeedBack(mL,mR,2);array_index--;}
         else if (memory[array_index] == 2){turn45(mL,mR,2,2);fullSpeedBack(mL,mR,2);array_index--;}
-        else if (memory[array_index] == 3){turn45(mL,mR,4,1);fullSpeedBack(mL,mR,2);array_index--;}
+        else if (memory[array_index] == 3){turn45(mL,mR,4,2);fullSpeedBack(mL,mR,2);array_index--;}
         else if (memory[array_index] == 4){turn45(mL,mR,2,1);fullSpeedBack(mL,mR,3);array_index--;}
         else if (memory[array_index] == 5){turn45(mL,mR,2,2);fullSpeedBack(mL,mR,3);array_index--;}
         else if (memory[array_index] == 6){turn45(mL,mR,3,1);fullSpeedBack(mL,mR,2);array_index--;}

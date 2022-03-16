@@ -24240,206 +24240,6 @@ unsigned char __t3rd16on(void);
 # 34 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\\pic\\include\\xc.h" 2 3
 # 9 "main.c" 2
 
-# 1 "./dc_motor.h" 1
-# 11 "./dc_motor.h"
-unsigned int SENSITIVITY = 345;
-
-struct DC_motor {
-    char power;
-    char direction;
-    unsigned char *dutyHighByte;
-    unsigned char *dir_LAT;
-    char dir_pin;
-    int PWMperiod;
-};
-
-
-void initDCmotorsPWM(int PWMperiod);
-void initDCmotors_parameter(struct DC_motor *motorL, struct DC_motor *motorR);
-void setMotorPWM(struct DC_motor *m);
-void stop(struct DC_motor *mL, struct DC_motor *mR);
-void turn45(struct DC_motor *mL, struct DC_motor *mR, unsigned char turn_time, unsigned char direction);
-void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
-void fullSpeedBack(struct DC_motor *mL, struct DC_motor *mR, unsigned char instruction);
-# 10 "main.c" 2
-
-# 1 "./serial.h" 1
-
-
-
-
-
-
-
-
-void initUSART4(void);
-char getCharSerial4(void);
-void sendCharSerial4(char charToSend);
-void sendStringSerial4(char *string);
-# 11 "main.c" 2
-
-# 1 "./color.h" 1
-# 10 "./color.h"
-struct color_rgb {
-    unsigned int R ;
-    unsigned int G ;
-    unsigned int B ;
-    unsigned int C ;
-};
-
-struct white_card {
-    unsigned int RR ;
-    unsigned int RG ;
-    unsigned int RB;
-    unsigned int GR ;
-    unsigned int GG ;
-    unsigned int GB ;
-    unsigned int BR ;
-    unsigned int BG ;
-    unsigned int BB ;
-
-    unsigned int CR ;
-    unsigned int CG ;
-    unsigned int CB ;
-    unsigned int CC ;
-    unsigned int BC;
-
-};
-
-void pin_init(void);
-void toggle_light(unsigned char lightnumber, unsigned char toggletime);
-
-
-
-void color_click_init(void);
-
-
-
-
-
-
-void color_writetoaddr(char address, char value);
-
-
-
-
-
-unsigned int color_read_Red(void);
-
-
-
-
-
-unsigned int color_read_Blue(void);
-
-
-
-
-
-unsigned int color_read_Green(void);
-unsigned int color_read_Clear(void);
-void read_color (struct color_rgb *m);
-void LED_OFF(void);
-void LED_R(void);
-void LED_C(void);
-void LED_B(void);
-void LED_G(void);
-void color_display(struct color_rgb *m);
-void calibrate_white(struct white_card *w);
-void color_predict(unsigned char color);
-unsigned char detect_color(struct color_rgb *m, struct white_card *w);
-unsigned char verify_color(unsigned char color,struct color_rgb *m, struct white_card *w);
-unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned int upper);
-unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light) ;
-unsigned amb_light_measure(struct color_rgb *amb);
-# 12 "main.c" 2
-
-# 1 "./i2c.h" 1
-# 13 "./i2c.h"
-void I2C_2_Master_Init(void);
-
-
-
-
-void I2C_2_Master_Idle(void);
-
-
-
-
-void I2C_2_Master_Start(void);
-
-
-
-
-void I2C_2_Master_RepStart(void);
-
-
-
-
-void I2C_2_Master_Stop(void);
-
-
-
-
-void I2C_2_Master_Write(unsigned char data_byte);
-
-
-
-
-unsigned char I2C_2_Master_Read(unsigned char ack);
-# 13 "main.c" 2
-
-# 1 "./movement.h" 1
-
-
-
-
-
-unsigned int centisecond = 0;
-unsigned int memory[20];
-unsigned char array_index = 0;
-
-
-
-void short_burst(struct DC_motor *mL, struct DC_motor *mR);
-unsigned int straight_action(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light, unsigned int start_time, unsigned int stop_time);
-void distance_memory(struct DC_motor *mL, struct DC_motor *mR, unsigned int duration, unsigned char accident);
-void turning_action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR);
-void goback(struct DC_motor *mL, struct DC_motor *mR);
-# 14 "main.c" 2
-
-# 1 "./interrupts.h" 1
-
-
-
-
-
-
-
-void Interrupts_init(void);
-void __attribute__((picinterrupt(("high_priority")))) HighISR();
-# 15 "main.c" 2
-
-# 1 "./timers.h" 1
-
-
-
-
-
-
-
-void Timer0_init(void);
-# 16 "main.c" 2
-
-# 1 "./test_and_calibration.h" 1
-# 10 "./test_and_calibration.h"
-unsigned int setup(struct white_card *white,struct color_rgb*amb,struct DC_motor *mL, struct DC_motor *mR);
-void test_action(struct DC_motor *mL, struct DC_motor *mR);
-void color_data_collection(struct color_rgb *m);
-void calibration_motor(struct DC_motor *mL, struct DC_motor *mR);
-void test_function(unsigned char test_code, struct color_rgb *m, struct white_card *w, struct DC_motor *mL, struct DC_motor *mR);
-# 17 "main.c" 2
-
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\c99\\stdio.h" 1 3
 # 24 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\c99\\stdio.h" 3
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\c99\\bits/alltypes.h" 1 3
@@ -24584,6 +24384,218 @@ char *ctermid(char *);
 
 
 char *tempnam(const char *, const char *);
+# 10 "main.c" 2
+
+# 1 "./color.h" 1
+
+
+
+
+
+
+
+struct color_rgb {
+    unsigned int R ;
+    unsigned int G ;
+    unsigned int B ;
+    unsigned int C ;
+};
+
+struct white_card {
+    unsigned int RR ;
+    unsigned int RG ;
+    unsigned int RB;
+    unsigned int GR ;
+    unsigned int GG ;
+    unsigned int GB ;
+    unsigned int BR ;
+    unsigned int BG ;
+    unsigned int BB ;
+
+    unsigned int CR ;
+    unsigned int CG ;
+    unsigned int CB ;
+    unsigned int CC ;
+    unsigned int BC;
+
+};
+
+void pin_init(void);
+void toggle_light(unsigned char lightnumber, unsigned char toggletime);
+
+
+
+void color_click_init(void);
+
+
+
+
+
+
+void color_writetoaddr(char address, char value);
+
+
+
+
+
+unsigned int color_read_Red(void);
+
+
+
+
+
+unsigned int color_read_Blue(void);
+
+
+
+
+
+unsigned int color_read_Green(void);
+unsigned int color_read_Clear(void);
+void read_color (struct color_rgb *m);
+void LED_OFF(void);
+void LED_R(void);
+void LED_C(void);
+void LED_B(void);
+void LED_G(void);
+void color_display(struct color_rgb *m);
+void calibrate_white(struct white_card *w);
+void color_predict(unsigned char color);
+unsigned char detect_color(struct color_rgb *m, struct white_card *w);
+unsigned char verify_color(unsigned char color,struct color_rgb *m, struct white_card *w);
+unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned int upper);
+unsigned char detect_wall(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light) ;
+unsigned amb_light_measure(struct color_rgb *amb);
+# 11 "main.c" 2
+
+# 1 "./i2c.h" 1
+# 13 "./i2c.h"
+void I2C_2_Master_Init(void);
+
+
+
+
+void I2C_2_Master_Idle(void);
+
+
+
+
+void I2C_2_Master_Start(void);
+
+
+
+
+void I2C_2_Master_RepStart(void);
+
+
+
+
+void I2C_2_Master_Stop(void);
+
+
+
+
+void I2C_2_Master_Write(unsigned char data_byte);
+
+
+
+
+unsigned char I2C_2_Master_Read(unsigned char ack);
+# 12 "main.c" 2
+
+# 1 "./dc_motor.h" 1
+# 11 "./dc_motor.h"
+unsigned int SENSITIVITY = 345;
+
+struct DC_motor {
+    char power;
+    char direction;
+    unsigned char *dutyHighByte;
+    unsigned char *dir_LAT;
+    char dir_pin;
+    int PWMperiod;
+};
+
+
+void initDCmotorsPWM(int PWMperiod);
+void initDCmotors_parameter(struct DC_motor *motorL, struct DC_motor *motorR);
+void setMotorPWM(struct DC_motor *m);
+void stop(struct DC_motor *mL, struct DC_motor *mR);
+void turn45(struct DC_motor *mL, struct DC_motor *mR, unsigned char turn_time, unsigned char direction);
+void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
+void fullSpeedBack(struct DC_motor *mL, struct DC_motor *mR, unsigned char instruction);
+# 13 "main.c" 2
+
+# 1 "./movement.h" 1
+
+
+
+
+
+unsigned int centisecond = 0;
+unsigned int memory[20];
+unsigned char array_index = 0;
+
+
+
+void short_burst(struct DC_motor *mL, struct DC_motor *mR);
+unsigned int straight_action(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light, unsigned int start_time, unsigned int stop_time);
+void distance_memory(struct DC_motor *mL, struct DC_motor *mR, unsigned int duration, unsigned char accident);
+void turning_action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR);
+void goback(struct DC_motor *mL, struct DC_motor *mR);
+# 14 "main.c" 2
+
+# 1 "./timers.h" 1
+
+
+
+
+
+
+
+void Timer0_init(void);
+# 15 "main.c" 2
+
+# 1 "./interrupts.h" 1
+
+
+
+
+
+
+
+void Interrupts_init(void);
+void __attribute__((picinterrupt(("high_priority")))) HighISR();
+# 16 "main.c" 2
+
+# 1 "./serial.h" 1
+
+
+
+
+
+
+
+
+void initUSART4(void);
+char getCharSerial4(void);
+void sendCharSerial4(char charToSend);
+void sendStringSerial4(char *string);
+# 17 "main.c" 2
+
+# 1 "./test_and_calibration.h" 1
+
+
+
+
+
+
+
+unsigned int setup(struct white_card *white,struct color_rgb*amb,struct DC_motor *mL, struct DC_motor *mR);
+void test_action(struct DC_motor *mL, struct DC_motor *mR);
+void color_data_collection(struct color_rgb *m);
+void calibration_motor(struct DC_motor *mL, struct DC_motor *mR);
+void test_function(unsigned char test_code, struct color_rgb *m, struct white_card *w, struct DC_motor *mL, struct DC_motor *mR);
 # 18 "main.c" 2
 
 
@@ -24601,22 +24613,20 @@ void main(void){
     struct DC_motor motorL, motorR;
 
 
-    I2C_2_Master_Init();
+
     color_click_init();
+    pin_init();
     initDCmotorsPWM(199);
+    initDCmotors_parameter(&motorL, &motorR);
     initUSART4();
     Timer0_init();
     Interrupts_init();
-    pin_init();
-    initDCmotors_parameter(&motorL, &motorR);
 
     unsigned char stop_signal = 0;
     unsigned int amb_light = 0;
     unsigned char accident = 0;
     unsigned int start_time= 0;
     unsigned int stop_time = 0;
-
-
 
     if (0 == 0){
         amb_light = setup(&white, &amb, &motorL, &motorR);
@@ -24625,13 +24635,13 @@ void main(void){
     while(1){
   if (0 == 1){test_function(3, &rgb, &white, &motorL, &motorR);}
         if (0 == 0){
-
             T0CON0bits.T0EN=1;
             start_time = centisecond;
             while (stop_signal == 0){
                 fullSpeedAhead(&motorL, &motorR);
-                stop_signal = distance_measure(&motorL, &motorR, amb_light);
+                stop_signal = detect_wall(&motorL, &motorR, amb_light);
             }
+            T0CON0bits.T0EN=0;
             stop_time = centisecond;
             if ((stop_time-start_time)>10){
                 memory[array_index] = (stop_time-start_time-3);

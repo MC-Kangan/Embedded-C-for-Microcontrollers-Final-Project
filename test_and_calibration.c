@@ -1,10 +1,7 @@
 #include <xc.h>
-#include "dc_motor.h"
-#include "serial.h"
-#include <stdio.h>
-#include "movement.h"
-#include "test_and_calibration.h"
 #include "color.h"
+#include "dc_motor.h"
+#include "test_and_calibration.h"
 
 unsigned int setup(struct white_card *white,struct color_rgb*amb,struct DC_motor *mL, struct DC_motor *mR)
 {
@@ -115,7 +112,7 @@ void test_function(unsigned char test_code, struct color_rgb *m, struct white_ca
         if (test_code == 4){
             while (stop_signal == 0){
                 fullSpeedAhead(mL, mR);
-                stop_signal = distance_measure(mL, mR, amb_light);
+                stop_signal = detect_wall(mL, mR, amb_light);
             }
             stop(mL, mR);
             __delay_ms(1000);
@@ -148,10 +145,5 @@ void calibration_motor(struct DC_motor *mL, struct DC_motor *mR)
     LATDbits.LATD7 = 0;
     LATHbits.LATH3 = 0;
     test_action(mL, mR);
-//    LATDbits.LATD7 = 1;
-//    while (PORTFbits.RF2)
-//    if (!PORTFbits.RF2){LATDbits.LATD7 = 0;__delay_ms(500);}
-//    LATDbits.LATD7 = 0;
-    
 }
 

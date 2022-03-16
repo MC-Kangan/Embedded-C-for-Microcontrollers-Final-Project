@@ -1,4 +1,54 @@
 # Course project - Mine navigation search and rescue
+| | R reading  | G reading | B reading  | C reading | 
+| :------------: |:---------------:| :------------: |:---------------:|:---------------:| 
+| White light | CR | CG | CB | CC|  
+
+| Red light     | RR | RG | RB | RC | 
+| Green light | GR | GG | GB | GC | 
+| Blue light | BR | BG| BB | BC | 
+
+ 
+
+## Document control 
+
+Document | Application 
+
+---------|--------- 
+
+Main.c | Contains the basic logic of the buggy motion  
+
+Color.c | Contains functions to initialize Color Click, control the LED lights and detect colors  
+
+Dc_motor.c | Contains functions to control the basic motion of the motor/ Buggy, e.g., moving forward and backward, and turning 
+
+I2c.c | Contain functions to communicate between microcontrollers and peripheral integrated circuits 
+
+Interrupt.c | Contains functions to initialize interrupts 
+
+Movement.c | Contains functions to control the complex motion of the Buggy, allowing the Buggy to move correctly when detecting color 
+
+Serial.c | Contains functions to send and receive data from PC 
+
+Test_and_calibration.c | Contains functions to calibrate the color sensing and motor and tests 
+
+Timers.c | Contains functions to record the time 
+
+ 
+
+## Methodology 
+
+ 
+
+Distance measuring 
+
+[Relevant files ] 
+
+The distance-measuring function allows the buggy to stop moving when detecting the presence of a colored card. 
+When a card is detected, the function will set the stop_signal to 1, which will trigger the color detection function 
+and further movements. This effect is achieved by detecting the ambient light. During the program setup stage, the 
+ambient light is measured and stored in a CC value (see table X). When the buggy approaches a card, due to the 
+increase in reflection, the CC value measured by the buggy will increase.  When the ambient light exceeds the 1.1 times 
+of the CC value measured at the setup stage, the stop_signal will be changed from 0 to 1, instructing the buggy to stop. 
 
 ## Challenge brief
 

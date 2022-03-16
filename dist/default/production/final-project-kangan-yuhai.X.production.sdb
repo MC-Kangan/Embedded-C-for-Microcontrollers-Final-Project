@@ -67,7 +67,7 @@
 [v ___omul __omul `(uo  1 e 8 0 ]
 "10 C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\xxtofl.c
 [v ___xxtofl __xxtofl `(d  1 e 4 0 ]
-"13 C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+"13 C:\Users\jinyu\MPLABXProjects\final-project-kangan-yuhai.X\color.c
 [v _pin_init pin_init `(v  1 e 1 0 ]
 "49
 [v _toggle_light toggle_light `(v  1 e 1 0 ]
@@ -110,22 +110,22 @@
 "358
 [v _amb_light_measure amb_light_measure `(ui  1 e 2 0 ]
 "381
-[v _distance_measure distance_measure `(uc  1 e 1 0 ]
-"11 C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
+[v _detect_wall detect_wall `(uc  1 e 1 0 ]
+"7 C:\Users\jinyu\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
 [v _initDCmotorsPWM initDCmotorsPWM `(v  1 e 1 0 ]
-"41
+"37
 [v _initDCmotors_parameter initDCmotors_parameter `(v  1 e 1 0 ]
-"60
+"56
 [v _setMotorPWM setMotorPWM `(v  1 e 1 0 ]
-"80
+"76
 [v _stop stop `(v  1 e 1 0 ]
-"92
+"88
 [v _turn45 turn45 `(v  1 e 1 0 ]
-"125
+"121
 [v _fullSpeedAhead fullSpeedAhead `(v  1 e 1 0 ]
-"140
+"136
 [v _fullSpeedBack fullSpeedBack `(v  1 e 1 0 ]
-"4 C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
+"4 C:\Users\jinyu\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
 [v _I2C_2_Master_Init I2C_2_Master_Init `(v  1 e 1 0 ]
 "22
 [v _I2C_2_Master_Idle I2C_2_Master_Idle `(v  1 e 1 0 ]
@@ -139,39 +139,39 @@
 [v _I2C_2_Master_Write I2C_2_Master_Write `(v  1 e 1 0 ]
 "51
 [v _I2C_2_Master_Read I2C_2_Master_Read `(uc  1 e 1 0 ]
-"9 C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\interrupts.c
+"9 C:\Users\jinyu\MPLABXProjects\final-project-kangan-yuhai.X\interrupts.c
 [v _Interrupts_init Interrupts_init `(v  1 e 1 0 ]
 "21
 [v _HighISR HighISR `IIH(v  1 e 1 0 ]
-"27 C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
+"27 C:\Users\jinyu\MPLABXProjects\final-project-kangan-yuhai.X\main.c
 [v _main main `(v  1 e 1 0 ]
-"11 C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\movement.c
+"7 C:\Users\jinyu\MPLABXProjects\final-project-kangan-yuhai.X\movement.c
 [v _short_burst short_burst `(v  1 e 1 0 ]
-"18
+"14
 [v _turning_action turning_action `(v  1 e 1 0 ]
-"69
+"65
 [v _goback goback `(v  1 e 1 0 ]
-"4 C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\serial.c
+"4 C:\Users\jinyu\MPLABXProjects\final-project-kangan-yuhai.X\serial.c
 [v _initUSART4 initUSART4 `(v  1 e 1 0 ]
 "29
 [v _sendCharSerial4 sendCharSerial4 `(v  1 e 1 0 ]
 "35
 [v _sendStringSerial4 sendStringSerial4 `(v  1 e 1 0 ]
-"9 C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\test_and_calibration.c
+"6 C:\Users\jinyu\MPLABXProjects\final-project-kangan-yuhai.X\test_and_calibration.c
 [v _setup setup `(ui  1 e 2 0 ]
-"32
+"29
 [v _color_data_collection color_data_collection `(v  1 e 1 0 ]
-"66
+"63
 [v _test_action test_action `(v  1 e 1 0 ]
-"84
+"81
 [v _test_function test_function `(v  1 e 1 0 ]
-"131
+"128
 [v _calibration_motor calibration_motor `(v  1 e 1 0 ]
-"7 C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\timers.c
+"7 C:\Users\jinyu\MPLABXProjects\final-project-kangan-yuhai.X\timers.c
 [v _Timer0_init Timer0_init `(v  1 e 1 0 ]
-"11 C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X/dc_motor.h
+"11 C:\Users\jinyu\MPLABXProjects\final-project-kangan-yuhai.X/dc_motor.h
 [v _SENSITIVITY SENSITIVITY `ui  1 e 2 0 ]
-"6 C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X/movement.h
+"6 C:\Users\jinyu\MPLABXProjects\final-project-kangan-yuhai.X/movement.h
 [v _centisecond centisecond `ui  1 e 2 0 ]
 "7
 [v _memory memory `[20]ui  1 e 40 0 ]
@@ -183,7 +183,7 @@
 [v _SSP2CLKPPS SSP2CLKPPS `VEuc  1 e 1 @3612 ]
 "3863
 [v _SSP2DATPPS SSP2DATPPS `VEuc  1 e 1 @3613 ]
-[s S1801 . 1 `uc 1 INT0IE 1 0 :1:0 
+[s S1798 . 1 `uc 1 INT0IE 1 0 :1:0 
 `uc 1 INT1IE 1 0 :1:1 
 `uc 1 INT2IE 1 0 :1:2 
 `uc 1 INT3IE 1 0 :1:3 
@@ -191,9 +191,9 @@
 `uc 1 TMR0IE 1 0 :1:5 
 ]
 "4558
-[u S1808 . 1 `S1801 1 . 1 0 ]
-[v _PIE0bits PIE0bits `VES1808  1 e 1 @3625 ]
-[s S1818 . 1 `uc 1 INT0IF 1 0 :1:0 
+[u S1805 . 1 `S1798 1 . 1 0 ]
+[v _PIE0bits PIE0bits `VES1805  1 e 1 @3625 ]
+[s S1815 . 1 `uc 1 INT0IF 1 0 :1:0 
 `uc 1 INT1IF 1 0 :1:1 
 `uc 1 INT2IF 1 0 :1:2 
 `uc 1 INT3IF 1 0 :1:3 
@@ -201,9 +201,9 @@
 `uc 1 TMR0IF 1 0 :1:5 
 ]
 "5103
-[u S1825 . 1 `S1818 1 . 1 0 ]
-[v _PIR0bits PIR0bits `VES1825  1 e 1 @3635 ]
-[s S1435 . 1 `uc 1 TX3IF 1 0 :1:0 
+[u S1822 . 1 `S1815 1 . 1 0 ]
+[v _PIR0bits PIR0bits `VES1822  1 e 1 @3635 ]
+[s S1432 . 1 `uc 1 TX3IF 1 0 :1:0 
 `uc 1 RC3IF 1 0 :1:1 
 `uc 1 TX4IF 1 0 :1:2 
 `uc 1 RC4IF 1 0 :1:3 
@@ -211,8 +211,8 @@
 `uc 1 RC5IF 1 0 :1:5 
 ]
 "5333
-[u S1442 . 1 `S1435 1 . 1 0 ]
-[v _PIR4bits PIR4bits `VES1442  1 e 1 @3639 ]
+[u S1439 . 1 `S1432 1 . 1 0 ]
+[v _PIR4bits PIR4bits `VES1439  1 e 1 @3639 ]
 "7859
 [v _RC0PPS RC0PPS `VEuc  1 e 1 @3682 ]
 "8209
@@ -324,7 +324,7 @@
 [v _SP4BRGL SP4BRGL `VEuc  1 e 1 @3813 ]
 "15904
 [v _SP4BRGH SP4BRGH `VEuc  1 e 1 @3814 ]
-[s S1414 . 1 `uc 1 RX9D 1 0 :1:0 
+[s S1411 . 1 `uc 1 RX9D 1 0 :1:0 
 `uc 1 OERR 1 0 :1:1 
 `uc 1 FERR 1 0 :1:2 
 `uc 1 ADDEN 1 0 :1:3 
@@ -334,9 +334,9 @@
 `uc 1 SPEN 1 0 :1:7 
 ]
 "15964
-[u S1423 . 1 `S1414 1 . 1 0 ]
-[v _RC4STAbits RC4STAbits `VES1423  1 e 1 @3815 ]
-[s S1391 . 1 `uc 1 TX9D 1 0 :1:0 
+[u S1420 . 1 `S1411 1 . 1 0 ]
+[v _RC4STAbits RC4STAbits `VES1420  1 e 1 @3815 ]
+[s S1388 . 1 `uc 1 TX9D 1 0 :1:0 
 `uc 1 TRMT 1 0 :1:1 
 `uc 1 BRGH 1 0 :1:2 
 `uc 1 SENDB 1 0 :1:3 
@@ -346,9 +346,9 @@
 `uc 1 CSRC 1 0 :1:7 
 ]
 "16086
-[u S1400 . 1 `S1391 1 . 1 0 ]
-[v _TX4STAbits TX4STAbits `VES1400  1 e 1 @3816 ]
-[s S1370 . 1 `uc 1 ABDEN 1 0 :1:0 
+[u S1397 . 1 `S1388 1 . 1 0 ]
+[v _TX4STAbits TX4STAbits `VES1397  1 e 1 @3816 ]
+[s S1367 . 1 `uc 1 ABDEN 1 0 :1:0 
 `uc 1 WUE 1 0 :1:1 
 `uc 1 . 1 0 :1:2 
 `uc 1 BRG16 1 0 :1:3 
@@ -358,8 +358,8 @@
 `uc 1 ABDOVF 1 0 :1:7 
 ]
 "16212
-[u S1379 . 1 `S1370 1 . 1 0 ]
-[v _BAUD4CONbits BAUD4CONbits `VES1379  1 e 1 @3817 ]
+[u S1376 . 1 `S1367 1 . 1 0 ]
+[v _BAUD4CONbits BAUD4CONbits `VES1376  1 e 1 @3817 ]
 [s S182 . 1 `uc 1 LATA0 1 0 :1:0 
 `uc 1 LATA1 1 0 :1:1 
 `uc 1 LATA2 1 0 :1:2 
@@ -592,7 +592,7 @@
 "30072
 [u S288 . 1 `S283 1 . 1 0 ]
 [v _TRISHbits TRISHbits `VES288  1 e 1 @3976 ]
-[s S1707 . 1 `uc 1 RF0 1 0 :1:0 
+[s S1704 . 1 `uc 1 RF0 1 0 :1:0 
 `uc 1 RF1 1 0 :1:1 
 `uc 1 RF2 1 0 :1:2 
 `uc 1 RF3 1 0 :1:3 
@@ -602,12 +602,12 @@
 `uc 1 RF7 1 0 :1:7 
 ]
 "30602
-[s S1716 . 1 `uc 1 . 1 0 :1:0 
+[s S1713 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 C2OUTF 1 0 :1:1 
 `uc 1 C1OUTF 1 0 :1:2 
 ]
-[u S1720 . 1 `S1707 1 . 1 0 `S1716 1 . 1 0 ]
-[v _PORTFbits PORTFbits `VES1720  1 e 1 @3982 ]
+[u S1717 . 1 `S1704 1 . 1 0 `S1713 1 . 1 0 ]
+[v _PORTFbits PORTFbits `VES1717  1 e 1 @3982 ]
 "33628
 [v _PWM7DCH PWM7DCH `VEuc  1 e 1 @4000 ]
 [s S1146 . 1 `uc 1 . 1 0 :4:0 
@@ -733,29 +733,29 @@
 [v _TMR0L TMR0L `VEuc  1 e 1 @4051 ]
 "39327
 [v _TMR0H TMR0H `VEuc  1 e 1 @4052 ]
-[s S1549 . 1 `uc 1 T0OUTPS 1 0 :4:0 
+[s S1545 . 1 `uc 1 T0OUTPS 1 0 :4:0 
 `uc 1 T016BIT 1 0 :1:4 
 `uc 1 T0OUT 1 0 :1:5 
 `uc 1 . 1 0 :1:6 
 `uc 1 T0EN 1 0 :1:7 
 ]
 "39601
-[s S1555 . 1 `uc 1 T0OUTPS0 1 0 :1:0 
+[s S1551 . 1 `uc 1 T0OUTPS0 1 0 :1:0 
 `uc 1 T0OUTPS1 1 0 :1:1 
 `uc 1 T0OUTPS2 1 0 :1:2 
 `uc 1 T0OUTPS3 1 0 :1:3 
 ]
 "39601
-[u S1560 . 1 `S1549 1 . 1 0 `S1555 1 . 1 0 ]
+[u S1556 . 1 `S1545 1 . 1 0 `S1551 1 . 1 0 ]
 "39601
 "39601
-[v _T0CON0bits T0CON0bits `VES1560  1 e 1 @4053 ]
-[s S1872 . 1 `uc 1 T0CKPS 1 0 :4:0 
+[v _T0CON0bits T0CON0bits `VES1556  1 e 1 @4053 ]
+[s S1869 . 1 `uc 1 T0CKPS 1 0 :4:0 
 `uc 1 T0ASYNC 1 0 :1:4 
 `uc 1 T0CS 1 0 :3:5 
 ]
 "39677
-[s S1876 . 1 `uc 1 T0CKPS0 1 0 :1:0 
+[s S1873 . 1 `uc 1 T0CKPS0 1 0 :1:0 
 `uc 1 T0CKPS1 1 0 :1:1 
 `uc 1 T0CKPS2 1 0 :1:2 
 `uc 1 T0CKPS3 1 0 :1:3 
@@ -765,20 +765,20 @@
 `uc 1 T0CS2 1 0 :1:7 
 ]
 "39677
-[s S1885 . 1 `uc 1 T0PS0 1 0 :1:0 
+[s S1882 . 1 `uc 1 T0PS0 1 0 :1:0 
 `uc 1 T0PS1 1 0 :1:1 
 `uc 1 T0PS2 1 0 :1:2 
 `uc 1 T0PS3 1 0 :1:3 
 ]
 "39677
-[s S1890 . 1 `uc 1 T0PS 1 0 :4:0 
+[s S1887 . 1 `uc 1 T0PS 1 0 :4:0 
 ]
 "39677
-[u S1892 . 1 `S1872 1 . 1 0 `S1876 1 . 1 0 `S1885 1 . 1 0 `S1890 1 . 1 0 ]
+[u S1889 . 1 `S1869 1 . 1 0 `S1873 1 . 1 0 `S1882 1 . 1 0 `S1887 1 . 1 0 ]
 "39677
 "39677
-[v _T0CON1bits T0CON1bits `VES1892  1 e 1 @4054 ]
-[s S1762 . 1 `uc 1 INT0EDG 1 0 :1:0 
+[v _T0CON1bits T0CON1bits `VES1889  1 e 1 @4054 ]
+[s S1759 . 1 `uc 1 INT0EDG 1 0 :1:0 
 `uc 1 INT1EDG 1 0 :1:1 
 `uc 1 INT2EDG 1 0 :1:2 
 `uc 1 INT3EDG 1 0 :1:3 
@@ -788,20 +788,20 @@
 `uc 1 GIE_GIEH 1 0 :1:7 
 ]
 "40500
-[s S1771 . 1 `uc 1 . 1 0 :6:0 
+[s S1768 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 PEIE 1 0 :1:6 
 `uc 1 GIE 1 0 :1:7 
 ]
 "40500
-[s S1775 . 1 `uc 1 . 1 0 :6:0 
+[s S1772 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 GIEL 1 0 :1:6 
 `uc 1 GIEH 1 0 :1:7 
 ]
 "40500
-[u S1779 . 1 `S1762 1 . 1 0 `S1771 1 . 1 0 `S1775 1 . 1 0 ]
+[u S1776 . 1 `S1759 1 . 1 0 `S1768 1 . 1 0 `S1772 1 . 1 0 ]
 "40500
 "40500
-[v _INTCONbits INTCONbits `VES1779  1 e 1 @4082 ]
+[v _INTCONbits INTCONbits `VES1776  1 e 1 @4082 ]
 "55 C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\doprnt.c
 [v _flags flags `i  1 s 2 flags ]
 [v _prec prec `i  1 s 2 prec ]
@@ -810,7 +810,7 @@
 [v _dbuf dbuf `[32]uc  1 s 32 dbuf ]
 "69
 [v _nout nout `i  1 s 2 nout ]
-"25 C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\main.c
+"25 C:\Users\jinyu\MPLABXProjects\final-project-kangan-yuhai.X\main.c
 [v _color color `uc  1 e 1 0 ]
 "27
 [v _main main `(v  1 e 1 0 ]
@@ -836,9 +836,9 @@
 [v main@accident accident `uc  1 a 1 15 ]
 "43
 [v main@stop_signal stop_signal `uc  1 a 1 10 ]
-"87
+"85
 } 0
-"345 C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+"345 C:\Users\jinyu\MPLABXProjects\final-project-kangan-yuhai.X\color.c
 [v _verify_color verify_color `(uc  1 e 1 0 ]
 {
 [v verify_color@color color `uc  1 a 1 wreg ]
@@ -854,7 +854,7 @@
 [v verify_color@color color `uc  1 a 1 58 ]
 "356
 } 0
-"18 C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\movement.c
+"14 C:\Users\jinyu\MPLABXProjects\final-project-kangan-yuhai.X\movement.c
 [v _turning_action turning_action `(v  1 e 1 0 ]
 {
 [v turning_action@color color `uc  1 a 1 wreg ]
@@ -863,41 +863,41 @@
 [v turning_action@mL mL `*.39S429  1 p 2 51 ]
 [v turning_action@mR mR `*.39S429  1 p 2 53 ]
 [v turning_action@color color `uc  1 a 1 55 ]
-"67
+"63
 } 0
-"69
+"65
 [v _goback goback `(v  1 e 1 0 ]
 {
-"76
+"72
 [v goback@i i `ui  1 a 2 49 ]
 [s S429 DC_motor 9 `uc 1 power 1 0 `uc 1 direction 1 1 `*.39uc 1 dutyHighByte 2 2 `*.39uc 1 dir_LAT 2 4 `uc 1 dir_pin 1 6 `i 1 PWMperiod 2 7 ]
-"69
+"65
 [v goback@mL mL `*.39S429  1 p 2 43 ]
 [v goback@mR mR `*.39S429  1 p 2 45 ]
-"93
+"89
 } 0
-"140 C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
+"136 C:\Users\jinyu\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
 [v _fullSpeedBack fullSpeedBack `(v  1 e 1 0 ]
 {
 [s S429 DC_motor 9 `uc 1 power 1 0 `uc 1 direction 1 1 `*.39uc 1 dutyHighByte 2 2 `*.39uc 1 dir_LAT 2 4 `uc 1 dir_pin 1 6 `i 1 PWMperiod 2 7 ]
 [v fullSpeedBack@mL mL `*.39S429  1 p 2 31 ]
 [v fullSpeedBack@mR mR `*.39S429  1 p 2 33 ]
 [v fullSpeedBack@instruction instruction `uc  1 p 1 35 ]
-"156
+"152
 } 0
-"84 C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\test_and_calibration.c
+"81 C:\Users\jinyu\MPLABXProjects\final-project-kangan-yuhai.X\test_and_calibration.c
 [v _test_function test_function `(v  1 e 1 0 ]
 {
 [v test_function@test_code test_code `uc  1 a 1 wreg ]
-"89
-[v test_function@amb_light amb_light `ui  1 a 2 144 ]
-"88
-[v test_function@stop_signal stop_signal `uc  1 a 1 148 ]
-"87
-[v test_function@color color `uc  1 a 1 147 ]
 "86
-[v test_function@complete complete `uc  1 a 1 146 ]
+[v test_function@amb_light amb_light `ui  1 a 2 144 ]
+"85
+[v test_function@stop_signal stop_signal `uc  1 a 1 148 ]
 "84
+[v test_function@color color `uc  1 a 1 147 ]
+"83
+[v test_function@complete complete `uc  1 a 1 146 ]
+"81
 [v test_function@test_code test_code `uc  1 a 1 wreg ]
 [s S386 color_rgb 8 `ui 1 R 2 0 `ui 1 G 2 2 `ui 1 B 2 4 `ui 1 C 2 6 ]
 [v test_function@m m `*.39S386  1 p 2 134 ]
@@ -906,25 +906,25 @@
 [s S429 DC_motor 9 `uc 1 power 1 0 `uc 1 direction 1 1 `*.39uc 1 dutyHighByte 2 2 `*.39uc 1 dir_LAT 2 4 `uc 1 dir_pin 1 6 `i 1 PWMperiod 2 7 ]
 [v test_function@mL mL `*.39S429  1 p 2 138 ]
 [v test_function@mR mR `*.39S429  1 p 2 140 ]
-"86
+"83
 [v test_function@test_code test_code `uc  1 a 1 149 ]
-"129
+"126
 } 0
-"381 C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
-[v _distance_measure distance_measure `(uc  1 e 1 0 ]
+"381 C:\Users\jinyu\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+[v _detect_wall detect_wall `(uc  1 e 1 0 ]
 {
 "385
-[v distance_measure@threshold threshold `ui  1 a 2 26 ]
+[v detect_wall@threshold threshold `ui  1 a 2 26 ]
 "383
-[v distance_measure@CC_amb CC_amb `ui  1 a 2 24 ]
-[v distance_measure@CG_amb CG_amb `ui  1 a 2 18 ]
+[v detect_wall@CC_amb CC_amb `ui  1 a 2 24 ]
+[v detect_wall@CG_amb CG_amb `ui  1 a 2 18 ]
 "384
-[v distance_measure@stop stop `uc  1 a 1 28 ]
+[v detect_wall@stop stop `uc  1 a 1 28 ]
 [s S429 DC_motor 9 `uc 1 power 1 0 `uc 1 direction 1 1 `*.39uc 1 dutyHighByte 2 2 `*.39uc 1 dir_LAT 2 4 `uc 1 dir_pin 1 6 `i 1 PWMperiod 2 7 ]
 "381
-[v distance_measure@mL mL `*.39S429  1 p 2 10 ]
-[v distance_measure@mR mR `*.39S429  1 p 2 12 ]
-[v distance_measure@amb_light amb_light `ui  1 p 2 14 ]
+[v detect_wall@mL mL `*.39S429  1 p 2 10 ]
+[v detect_wall@mR mR `*.39S429  1 p 2 12 ]
+[v detect_wall@amb_light amb_light `ui  1 p 2 14 ]
 "395
 } 0
 "270
@@ -961,20 +961,20 @@
 [v compare@upper upper `ui  1 p 2 14 ]
 "342
 } 0
-"32 C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\test_and_calibration.c
+"29 C:\Users\jinyu\MPLABXProjects\final-project-kangan-yuhai.X\test_and_calibration.c
 [v _color_data_collection color_data_collection `(v  1 e 1 0 ]
 {
-"34
+"31
 [v color_data_collection@x x `i  1 a 2 132 ]
 [v color_data_collection@k k `i  1 a 2 130 ]
 [v color_data_collection@j j `i  1 a 2 128 ]
 [v color_data_collection@i i `i  1 a 2 126 ]
 [s S386 color_rgb 8 `ui 1 R 2 0 `ui 1 G 2 2 `ui 1 B 2 4 `ui 1 C 2 6 ]
-"32
+"29
 [v color_data_collection@m m `*.39S386  1 p 2 89 ]
-"64
+"61
 } 0
-"167 C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+"167 C:\Users\jinyu\MPLABXProjects\final-project-kangan-yuhai.X\color.c
 [v _read_color read_color `(v  1 e 1 0 ]
 {
 [s S386 color_rgb 8 `ui 1 R 2 0 `ui 1 G 2 2 `ui 1 B 2 4 `ui 1 C 2 6 ]
@@ -1006,10 +1006,10 @@
 "9 C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\nf_sprintf.c
 [v _sprintf sprintf `(i  1 e 2 0 ]
 {
-[u S2539 . 3 `*.2uc 1 buffer 3 0 `*.2Cuc 1 source 3 0 ]
+[u S2534 . 3 `*.2uc 1 buffer 3 0 `*.2Cuc 1 source 3 0 ]
 "13
-[s S2542 _IO_FILE 11 `S2539 1 . 3 0 `i 1 count 2 3 `[2]uc 1 ungetbuf 2 5 `i 1 ungetcnt 2 7 `i 1 limit 2 9 ]
-[v sprintf@f f `S2542  1 a 11 14 ]
+[s S2537 _IO_FILE 11 `S2534 1 . 3 0 `i 1 count 2 3 `[2]uc 1 ungetbuf 2 5 `i 1 ungetcnt 2 7 `i 1 limit 2 9 ]
+[v sprintf@f f `S2537  1 a 11 14 ]
 "12
 [v sprintf@ap ap `[1]*.39v  1 a 2 12 ]
 "9
@@ -1022,9 +1022,9 @@
 {
 "1393
 [v vfprintf@cfmt cfmt `*.32uc  1 a 2 85 ]
-[s S2574 _IO_FILE 0 ]
+[s S2569 _IO_FILE 0 ]
 "1390
-[v vfprintf@fp fp `*.39S2574  1 p 2 79 ]
+[v vfprintf@fp fp `*.39S2569  1 p 2 79 ]
 [v vfprintf@fmt fmt `*.32Cuc  1 p 2 81 ]
 [v vfprintf@ap ap `*.39*.39v  1 p 2 83 ]
 "1404
@@ -1034,9 +1034,9 @@
 {
 "696
 [v vfpfcnvrt@ll ll `o  1 a 8 71 ]
-[s S2574 _IO_FILE 0 ]
+[s S2569 _IO_FILE 0 ]
 "692
-[v vfpfcnvrt@fp fp `*.39S2574  1 p 2 63 ]
+[v vfpfcnvrt@fp fp `*.39S2569  1 p 2 63 ]
 [v vfpfcnvrt@fmt fmt `*.39*.32uc  1 p 2 65 ]
 [v vfpfcnvrt@ap ap `*.39*.39v  1 p 2 67 ]
 "1387
@@ -1051,9 +1051,9 @@
 [v dtoa@s s `i  1 a 2 51 ]
 [v dtoa@w w `i  1 a 2 49 ]
 [v dtoa@p p `i  1 a 2 47 ]
-[s S2574 _IO_FILE 0 ]
+[s S2569 _IO_FILE 0 ]
 "287
-[v dtoa@fp fp `*.39S2574  1 p 2 27 ]
+[v dtoa@fp fp `*.39S2569  1 p 2 27 ]
 [v dtoa@d d `o  1 p 8 29 ]
 "328
 } 0
@@ -1063,9 +1063,9 @@
 "74
 [v pad@w w `i  1 a 2 25 ]
 [v pad@i i `i  1 a 2 23 ]
-[s S2574 _IO_FILE 0 ]
+[s S2569 _IO_FILE 0 ]
 "72
-[v pad@fp fp `*.39S2574  1 p 2 16 ]
+[v pad@fp fp `*.39S2569  1 p 2 16 ]
 [v pad@buf buf `*.39uc  1 p 2 18 ]
 [v pad@p p `i  1 p 2 20 ]
 "95
@@ -1088,18 +1088,18 @@
 [v fputs@c c `uc  1 a 1 13 ]
 "8
 [v fputs@s s `*.39Cuc  1 p 2 9 ]
-[u S2539 . 3 `*.2uc 1 buffer 3 0 `*.2Cuc 1 source 3 0 ]
-[s S2542 _IO_FILE 11 `S2539 1 . 3 0 `i 1 count 2 3 `[2]uc 1 ungetbuf 2 5 `i 1 ungetcnt 2 7 `i 1 limit 2 9 ]
-[v fputs@fp fp `*.39S2542  1 p 2 11 ]
+[u S2534 . 3 `*.2uc 1 buffer 3 0 `*.2Cuc 1 source 3 0 ]
+[s S2537 _IO_FILE 11 `S2534 1 . 3 0 `i 1 count 2 3 `[2]uc 1 ungetbuf 2 5 `i 1 ungetcnt 2 7 `i 1 limit 2 9 ]
+[v fputs@fp fp `*.39S2537  1 p 2 11 ]
 "19
 } 0
 "8 C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\nf_fputc.c
 [v _fputc fputc `(i  1 e 2 0 ]
 {
 [v fputc@c c `i  1 p 2 0 ]
-[u S2539 . 3 `*.2uc 1 buffer 3 0 `*.2Cuc 1 source 3 0 ]
-[s S2542 _IO_FILE 11 `S2539 1 . 3 0 `i 1 count 2 3 `[2]uc 1 ungetbuf 2 5 `i 1 ungetcnt 2 7 `i 1 limit 2 9 ]
-[v fputc@fp fp `*.39S2542  1 p 2 2 ]
+[u S2534 . 3 `*.2uc 1 buffer 3 0 `*.2Cuc 1 source 3 0 ]
+[s S2537 _IO_FILE 11 `S2534 1 . 3 0 `i 1 count 2 3 `[2]uc 1 ungetbuf 2 5 `i 1 ungetcnt 2 7 `i 1 limit 2 9 ]
+[v fputc@fp fp `*.39S2537  1 p 2 2 ]
 "24
 } 0
 "7 C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\putch.c
@@ -1137,7 +1137,7 @@
 [v ___aodiv@divisor divisor `o  1 p 8 8 ]
 "43
 } 0
-"35 C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\serial.c
+"35 C:\Users\jinyu\MPLABXProjects\final-project-kangan-yuhai.X\serial.c
 [v _sendStringSerial4 sendStringSerial4 `(v  1 e 1 0 ]
 {
 [v sendStringSerial4@string string `*.39uc  1 p 2 1 ]
@@ -1151,87 +1151,87 @@
 [v sendCharSerial4@charToSend charToSend `uc  1 a 1 0 ]
 "32
 } 0
-"11 C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\movement.c
+"7 C:\Users\jinyu\MPLABXProjects\final-project-kangan-yuhai.X\movement.c
 [v _short_burst short_burst `(v  1 e 1 0 ]
 {
 [s S429 DC_motor 9 `uc 1 power 1 0 `uc 1 direction 1 1 `*.39uc 1 dutyHighByte 2 2 `*.39uc 1 dir_LAT 2 4 `uc 1 dir_pin 1 6 `i 1 PWMperiod 2 7 ]
 [v short_burst@mL mL `*.39S429  1 p 2 31 ]
 [v short_burst@mR mR `*.39S429  1 p 2 33 ]
-"16
+"12
 } 0
-"9 C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\test_and_calibration.c
+"6 C:\Users\jinyu\MPLABXProjects\final-project-kangan-yuhai.X\test_and_calibration.c
 [v _setup setup `(ui  1 e 2 0 ]
 {
-"11
+"8
 [v setup@amb_light amb_light `ui  1 a 2 34 ]
 [s S402 white_card 28 `ui 1 RR 2 0 `ui 1 RG 2 2 `ui 1 RB 2 4 `ui 1 GR 2 6 `ui 1 GG 2 8 `ui 1 GB 2 10 `ui 1 BR 2 12 `ui 1 BG 2 14 `ui 1 BB 2 16 `ui 1 CR 2 18 `ui 1 CG 2 20 `ui 1 CB 2 22 `ui 1 CC 2 24 `ui 1 BC 2 26 ]
-"9
+"6
 [v setup@white white `*.39S402  1 p 2 24 ]
 [s S386 color_rgb 8 `ui 1 R 2 0 `ui 1 G 2 2 `ui 1 B 2 4 `ui 1 C 2 6 ]
 [v setup@amb amb `*.39S386  1 p 2 26 ]
 [s S429 DC_motor 9 `uc 1 power 1 0 `uc 1 direction 1 1 `*.39uc 1 dutyHighByte 2 2 `*.39uc 1 dir_LAT 2 4 `uc 1 dir_pin 1 6 `i 1 PWMperiod 2 7 ]
 [v setup@mL mL `*.39S429  1 p 2 28 ]
 [v setup@mR mR `*.39S429  1 p 2 30 ]
-"28
+"25
 } 0
-"131
+"128
 [v _calibration_motor calibration_motor `(v  1 e 1 0 ]
 {
 [s S429 DC_motor 9 `uc 1 power 1 0 `uc 1 direction 1 1 `*.39uc 1 dutyHighByte 2 2 `*.39uc 1 dir_LAT 2 4 `uc 1 dir_pin 1 6 `i 1 PWMperiod 2 7 ]
 [v calibration_motor@mL mL `*.39S429  1 p 2 49 ]
 [v calibration_motor@mR mR `*.39S429  1 p 2 51 ]
-"156
+"148
 } 0
-"66
+"63
 [v _test_action test_action `(v  1 e 1 0 ]
 {
 [s S429 DC_motor 9 `uc 1 power 1 0 `uc 1 direction 1 1 `*.39uc 1 dutyHighByte 2 2 `*.39uc 1 dir_LAT 2 4 `uc 1 dir_pin 1 6 `i 1 PWMperiod 2 7 ]
 [v test_action@mL mL `*.39S429  1 p 2 43 ]
 [v test_action@mR mR `*.39S429  1 p 2 45 ]
-"81
+"78
 } 0
-"92 C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
+"88 C:\Users\jinyu\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
 [v _turn45 turn45 `(v  1 e 1 0 ]
 {
-"118
-[v turn45@i_1336 i `ui  1 a 2 40 ]
-"107
-[v turn45@i_1334 i `ui  1 a 2 38 ]
-"95
+"114
+[v turn45@i_1333 i `ui  1 a 2 40 ]
+"103
+[v turn45@i_1331 i `ui  1 a 2 38 ]
+"91
 [v turn45@i i `uc  1 a 1 42 ]
 [s S429 DC_motor 9 `uc 1 power 1 0 `uc 1 direction 1 1 `*.39uc 1 dutyHighByte 2 2 `*.39uc 1 dir_LAT 2 4 `uc 1 dir_pin 1 6 `i 1 PWMperiod 2 7 ]
-"92
+"88
 [v turn45@mL mL `*.39S429  1 p 2 31 ]
 [v turn45@mR mR `*.39S429  1 p 2 33 ]
 [v turn45@turn_time turn_time `uc  1 p 1 35 ]
 [v turn45@direction direction `uc  1 p 1 36 ]
-"122
+"118
 } 0
-"80
+"76
 [v _stop stop `(v  1 e 1 0 ]
 {
 [s S429 DC_motor 9 `uc 1 power 1 0 `uc 1 direction 1 1 `*.39uc 1 dutyHighByte 2 2 `*.39uc 1 dir_LAT 2 4 `uc 1 dir_pin 1 6 `i 1 PWMperiod 2 7 ]
 [v stop@mL mL `*.39S429  1 p 2 25 ]
 [v stop@mR mR `*.39S429  1 p 2 27 ]
-"90
+"86
 } 0
-"125
+"121
 [v _fullSpeedAhead fullSpeedAhead `(v  1 e 1 0 ]
 {
 [s S429 DC_motor 9 `uc 1 power 1 0 `uc 1 direction 1 1 `*.39uc 1 dutyHighByte 2 2 `*.39uc 1 dir_LAT 2 4 `uc 1 dir_pin 1 6 `i 1 PWMperiod 2 7 ]
 [v fullSpeedAhead@mL mL `*.39S429  1 p 2 25 ]
 [v fullSpeedAhead@mR mR `*.39S429  1 p 2 27 ]
-"136
+"132
 } 0
-"60
+"56
 [v _setMotorPWM setMotorPWM `(v  1 e 1 0 ]
 {
-"62
+"58
 [v setMotorPWM@PWMduty PWMduty `i  1 a 2 23 ]
 [s S429 DC_motor 9 `uc 1 power 1 0 `uc 1 direction 1 1 `*.39uc 1 dutyHighByte 2 2 `*.39uc 1 dir_LAT 2 4 `uc 1 dir_pin 1 6 `i 1 PWMperiod 2 7 ]
-"60
+"56
 [v setMotorPWM@m m `*.39S429  1 p 2 14 ]
-"77
+"73
 } 0
 "15 C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\Umul16.c
 [v ___wmul __wmul `(ui  1 e 2 0 ]
@@ -1256,7 +1256,7 @@
 [v ___awdiv@divisor divisor `i  1 p 2 8 ]
 "41
 } 0
-"238 C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+"238 C:\Users\jinyu\MPLABXProjects\final-project-kangan-yuhai.X\color.c
 [v _calibrate_white calibrate_white `(v  1 e 1 0 ]
 {
 [s S402 white_card 28 `ui 1 RR 2 0 `ui 1 RG 2 2 `ui 1 RB 2 4 `ui 1 GR 2 6 `ui 1 GG 2 8 `ui 1 GB 2 10 `ui 1 BR 2 12 `ui 1 BG 2 14 `ui 1 BB 2 16 `ui 1 CR 2 18 `ui 1 CG 2 20 `ui 1 CB 2 22 `ui 1 CC 2 24 `ui 1 BC 2 26 ]
@@ -1342,15 +1342,15 @@
 {
 "16
 [v roundf@y y `f  1 a 4 86 ]
-[u S2687 . 4 `f 1 f 4 0 `ul 1 i 4 0 ]
+[u S2682 . 4 `f 1 f 4 0 `ul 1 i 4 0 ]
 "14
-[v roundf@u u `S2687  1 a 4 82 ]
+[v roundf@u u `S2682  1 a 4 82 ]
 "15
 [v roundf@e e `i  1 a 2 76 ]
 "12
 [v roundf@x x `f  1 p 4 64 ]
 "13
-[v roundf@F527 F527 `S2687  1 s 4 F527 ]
+[v roundf@F527 F527 `S2682  1 s 4 F527 ]
 "36
 } 0
 "245 C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\sprcadd.c
@@ -1385,17 +1385,17 @@
 "8 C:\Program Files\Microchip\xc8\v2.35\pic\sources\c99\common\sprcmul.c
 [v ___flmul __flmul `(d  1 e 4 0 ]
 {
-[s S2397 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
+[s S2392 . 4 `uc 1 a 1 0 `uc 1 b 1 1 `uc 1 c 1 2 `uc 1 d 1 3 ]
 "13
-[s S2402 . 4 `s 1 wordA 2 0 `s 1 wordB 2 2 ]
-[u S2405 . 4 `l 1 i 4 0 `d 1 f 4 0 `S2397 1 fAsBytes 4 0 `S2402 1 fAsWords 4 0 ]
-[v ___flmul@prod prod `S2405  1 a 4 58 ]
+[s S2397 . 4 `s 1 wordA 2 0 `s 1 wordB 2 2 ]
+[u S2400 . 4 `l 1 i 4 0 `d 1 f 4 0 `S2392 1 fAsBytes 4 0 `S2397 1 fAsWords 4 0 ]
+[v ___flmul@prod prod `S2400  1 a 4 58 ]
 "12
 [v ___flmul@grs grs `ul  1 a 4 52 ]
-[s S2473 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
+[s S2468 . 2 `uc 1 a 1 0 `uc 1 b 1 1 ]
 "14
-[u S2476 . 2 `s 1 i 2 0 `us 1 n 2 0 `S2473 1 nAsBytes 2 0 ]
-[v ___flmul@temp temp `S2476  1 a 2 62 ]
+[u S2471 . 2 `s 1 i 2 0 `us 1 n 2 0 `S2468 1 nAsBytes 2 0 ]
+[v ___flmul@temp temp `S2471  1 a 2 62 ]
 "10
 [v ___flmul@bexp bexp `uc  1 a 1 57 ]
 "11
@@ -1424,14 +1424,14 @@
 [v ___fltol@f1 f1 `d  1 p 4 90 ]
 "70
 } 0
-"153 C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+"153 C:\Users\jinyu\MPLABXProjects\final-project-kangan-yuhai.X\color.c
 [v _color_read_Clear color_read_Clear `(ui  1 e 2 0 ]
 {
 "155
 [v color_read_Clear@tmp tmp `ui  1 a 2 9 ]
 "165
 } 0
-"33 C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
+"33 C:\Users\jinyu\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
 [v _I2C_2_Master_RepStart I2C_2_Master_RepStart `(v  1 e 1 0 ]
 {
 "37
@@ -1483,7 +1483,7 @@
 [v ___fldiv@a a `d  1 p 4 18 ]
 "185
 } 0
-"193 C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+"193 C:\Users\jinyu\MPLABXProjects\final-project-kangan-yuhai.X\color.c
 [v _LED_C LED_C `(v  1 e 1 0 ]
 {
 "200
@@ -1493,26 +1493,26 @@
 {
 "46
 } 0
-"4 C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\serial.c
+"4 C:\Users\jinyu\MPLABXProjects\final-project-kangan-yuhai.X\serial.c
 [v _initUSART4 initUSART4 `(v  1 e 1 0 ]
 {
 "20
 } 0
-"41 C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
+"37 C:\Users\jinyu\MPLABXProjects\final-project-kangan-yuhai.X\dc_motor.c
 [v _initDCmotors_parameter initDCmotors_parameter `(v  1 e 1 0 ]
 {
 [s S429 DC_motor 9 `uc 1 power 1 0 `uc 1 direction 1 1 `*.39uc 1 dutyHighByte 2 2 `*.39uc 1 dir_LAT 2 4 `uc 1 dir_pin 1 6 `i 1 PWMperiod 2 7 ]
 [v initDCmotors_parameter@motorL motorL `*.39S429  1 p 2 0 ]
 [v initDCmotors_parameter@motorR motorR `*.39S429  1 p 2 2 ]
-"57
+"53
 } 0
-"11
+"7
 [v _initDCmotorsPWM initDCmotorsPWM `(v  1 e 1 0 ]
 {
 [v initDCmotorsPWM@PWMperiod PWMperiod `i  1 p 2 0 ]
-"40
+"36
 } 0
-"87 C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\color.c
+"87 C:\Users\jinyu\MPLABXProjects\final-project-kangan-yuhai.X\color.c
 [v _color_click_init color_click_init `(v  1 e 1 0 ]
 {
 "101
@@ -1526,7 +1526,7 @@
 [v color_writetoaddr@address address `uc  1 a 1 3 ]
 "109
 } 0
-"45 C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
+"45 C:\Users\jinyu\MPLABXProjects\final-project-kangan-yuhai.X\i2c.c
 [v _I2C_2_Master_Write I2C_2_Master_Write `(v  1 e 1 0 ]
 {
 [v I2C_2_Master_Write@data_byte data_byte `uc  1 a 1 wreg ]
@@ -1555,12 +1555,12 @@
 {
 "20
 } 0
-"7 C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\timers.c
+"7 C:\Users\jinyu\MPLABXProjects\final-project-kangan-yuhai.X\timers.c
 [v _Timer0_init Timer0_init `(v  1 e 1 0 ]
 {
 "18
 } 0
-"9 C:\Users\Kangan Chen\MPLABXProjects\final-project-kangan-yuhai.X\interrupts.c
+"9 C:\Users\jinyu\MPLABXProjects\final-project-kangan-yuhai.X\interrupts.c
 [v _Interrupts_init Interrupts_init `(v  1 e 1 0 ]
 {
 "14

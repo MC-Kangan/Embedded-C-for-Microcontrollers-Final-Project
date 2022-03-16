@@ -378,7 +378,7 @@ unsigned amb_light_measure(struct color_rgb *amb)
     return CC_amb_ave;  
 }
 
-unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light) 
+unsigned char detect_wall(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light) 
 {
     unsigned int CC_amb = 0, CG_amb = 0; 
     unsigned char stop = 0;

@@ -2,8 +2,6 @@
 #define _color_H
 
 #include <xc.h>
-//#include "dc_motor.h"
-//#include "test_and_calibration.h"
 
 #define _XTAL_FREQ 64000000 //note intrinsic _delay function is 62.5ns at 64,000,000Hz  
 
@@ -77,7 +75,7 @@ void color_predict(unsigned char color);
 unsigned char detect_color(struct color_rgb *m, struct white_card *w);
 unsigned char verify_color(unsigned char color,struct color_rgb *m, struct white_card *w);
 unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned int upper);
-unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light) ;
+unsigned char detect_wall(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light) ;
 unsigned amb_light_measure(struct color_rgb *amb);
 
 #endif
