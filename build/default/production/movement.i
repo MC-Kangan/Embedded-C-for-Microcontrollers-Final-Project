@@ -24460,8 +24460,8 @@ unsigned amb_light_measure(struct color_rgb *amb);
 # 3 "movement.c" 2
 
 # 1 "./dc_motor.h" 1
-# 17 "./dc_motor.h"
-unsigned int SENSITIVITY = 360;
+# 11 "./dc_motor.h"
+unsigned int SENSITIVITY = 355;
 
 struct DC_motor {
     char power;
@@ -24478,13 +24478,9 @@ void initDCmotors_parameter(struct DC_motor *motorL, struct DC_motor *motorR);
 void setMotorPWM(struct DC_motor *m);
 void stop(struct DC_motor *mL, struct DC_motor *mR);
 void turn45(struct DC_motor *mL, struct DC_motor *mR, unsigned char turn_time, unsigned char direction);
-void halfSpeedBack(struct DC_motor *mL, struct DC_motor *mR);
-void turnLeft(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_left);
-void turnRight(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_right);
 void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
 void fullSpeedAhead_test(struct DC_motor *mL, struct DC_motor *mR);
-void fullSpeedBack(struct DC_motor *mL, struct DC_motor *mR);
-void short_reverse(struct DC_motor *mL, struct DC_motor *mR, unsigned char instruction);
+void fullSpeedBack(struct DC_motor *mL, struct DC_motor *mR, unsigned char instruction);
 # 4 "movement.c" 2
 
 # 1 "./serial.h" 1
@@ -24513,9 +24509,12 @@ unsigned int memory[20];
 unsigned char array_index = 0;
 
 
-void short_burst(struct DC_motor *mL, struct DC_motor *mR);
-void action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR);
 void pin_init(void);
+void setup(unsigned int amb_light, struct white_card *white,struct color_rgb*amb,struct DC_motor *mL, struct DC_motor *mR);
+void short_burst(struct DC_motor *mL, struct DC_motor *mR);
+void straight_action(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light, unsigned int start_time, unsigned int stop_time);
+void distance_memory(struct DC_motor *mL, struct DC_motor *mR, unsigned int start_time, unsigned int stop_time);
+void turning_action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR);
 void goback(struct DC_motor *mL, struct DC_motor *mR);
 # 6 "movement.c" 2
 
@@ -24530,82 +24529,19 @@ void goback(struct DC_motor *mL, struct DC_motor *mR);
 void Timer0_init(void);
 # 7 "movement.c" 2
 
+# 1 "./test_and_calibration.h" 1
+# 10 "./test_and_calibration.h"
+void test_action (struct DC_motor *mL, struct DC_motor *mR);
+void calibration_motor(struct DC_motor *mL, struct DC_motor *mR);
+void test_function(unsigned char test_code, struct color_rgb *m, struct white_card *w, struct DC_motor *mL, struct DC_motor *mR);
+# 8 "movement.c" 2
 
-
-void short_burst(struct DC_motor *mL, struct DC_motor *mR)
-{
-    fullSpeedAhead(mL,mR);
-    _delay((unsigned long)((500)*(64000000/4000.0)));
-    stop(mL,mR);
-}
-
-void action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR)
-{ if (color != 0){
-        if (color == 1){
-            short_reverse(mL,mR,1);
-            turn45(mL, mR, 2, 2);
-
-            memory[array_index] = 1;
-            array_index++;
-        }
-        if (color == 2){
-            short_reverse(mL,mR,1);
-            turn45(mL, mR, 2, 1);
-
-            memory[array_index] = 2;
-            array_index++;
-        }
-        if (color == 3){
-            short_reverse(mL,mR,1);
-            turn45(mL, mR, 4, 1);
-
-            memory[array_index] = 3;
-            array_index++;
-        }
-        if (color == 4){
-            short_reverse(mL,mR,3);
-            turn45(mL, mR, 2, 2);
-
-            memory[array_index] = 4;
-            array_index++;
-        }
-        if (color == 5){
-            short_reverse(mL,mR,3);
-            turn45(mL, mR, 2, 1);
-
-            memory[array_index] = 5;
-            array_index++;
-        }
-        if (color == 6){
-            short_reverse(mL,mR,1);
-            turn45(mL, mR, 3, 2);
-
-            memory[array_index] = 6;
-            array_index++;
-        }
-        if (color == 7){
-            short_reverse(mL,mR,1);
-            turn45(mL, mR, 3, 1);
-
-            memory[array_index] = 7;
-            array_index++;
-        }
-        if (color == 8){
-            toggle_light(2,1);
-            short_reverse(mL,mR,1);
-            goback(mL,mR);
-        }
-    }
-}
 
 void pin_init(void)
 { TRISFbits.TRISF2=1;
     ANSELFbits.ANSELF2=0;
     TRISFbits.TRISF3=1;
     ANSELFbits.ANSELF3=0;
-
-
-
 
     TRISGbits.TRISG1 = 0;
     TRISFbits.TRISF7 = 0;
@@ -24620,11 +24556,117 @@ void pin_init(void)
     TRISHbits.TRISH3 = 0;
     LATHbits.LATH3 = 0;
 }
+void setup(unsigned int amb_light, struct white_card *white,struct color_rgb*amb,struct DC_motor *mL, struct DC_motor *mR)
+{
+    LED_OFF();
+    LATDbits.LATD7 = 1;
+    LATHbits.LATH3 = 1;
+    while (PORTFbits.RF2);
+    if (!PORTFbits.RF2){calibrate_white(white); LATDbits.LATD7 = 0; _delay((unsigned long)((500)*(64000000/4000.0)));}
+    while (PORTFbits.RF3);
+    if (!PORTFbits.RF3){amb_light = amb_light_measure(amb); LATHbits.LATH3 = 0; _delay((unsigned long)((500)*(64000000/4000.0)));}
+    LATDbits.LATD7 = 1;
+    if (!PORTFbits.RF3){calibration_motor(mL,mR);}
+    while (PORTFbits.RF2);
+    if (!PORTFbits.RF2){LATDbits.LATD7 = 0;_delay((unsigned long)((500)*(64000000/4000.0)));}
+}
+
+void short_burst(struct DC_motor *mL, struct DC_motor *mR)
+{
+    fullSpeedAhead(mL,mR);
+    _delay((unsigned long)((500)*(64000000/4000.0)));
+    stop(mL,mR);
+}
+
+void straight_action(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light, unsigned int start_time, unsigned int stop_time)
+{
+    unsigned char stop_signal = 0;
+
+
+    T0CON0bits.T0EN=1;
+    start_time = centisecond;
+    while (stop_signal == 0){
+        fullSpeedAhead(mL,mR);
+        stop_signal = distance_measure(mL,mR,amb_light);
+    }
+    T0CON0bits.T0EN=0;
+    stop_time = centisecond;
+    stop(mL,mR);
+    _delay((unsigned long)((1000)*(64000000/4000.0)));
+}
+
+void distance_memory(struct DC_motor *mL, struct DC_motor *mR, unsigned int start_time, unsigned int stop_time)
+{
+    unsigned char accident = 0;
+    if ((stop_time-start_time)>10){
+        memory[array_index] = (stop_time-start_time-3);
+        array_index++;
+    }
+    else{
+        accident++;
+        color_predict(accident);
+        if (accident >= 5){
+            goback(mL,mR);
+            accident = 0;
+        }
+    }
+}
+
+void turning_action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR)
+{ if (color != 0){
+        if (color == 1){
+            fullSpeedBack(mL,mR,1);
+            turn45(mL,mR,2,2);
+            memory[array_index] = 1;
+            array_index++;
+        }
+        if (color == 2){
+            fullSpeedBack(mL,mR,1);
+            turn45(mL,mR,2,1);
+            memory[array_index] = 2;
+            array_index++;
+        }
+        if (color == 3){
+            fullSpeedBack(mL,mR,1);
+            turn45(mL,mR,4,1);
+            memory[array_index] = 3;
+            array_index++;
+        }
+        if (color == 4){
+            fullSpeedBack(mL,mR,3);
+            turn45(mL,mR,2,2);
+            memory[array_index] = 4;
+            array_index++;
+        }
+        if (color == 5){
+            fullSpeedBack(mL,mR,3);
+            turn45(mL,mR,2,1);
+            memory[array_index] = 5;
+            array_index++;
+        }
+        if (color == 6){
+            fullSpeedBack(mL,mR,1);
+            turn45(mL,mR,3,2);
+            memory[array_index] = 6;
+            array_index++;
+        }
+        if (color == 7){
+            fullSpeedBack(mL,mR,1);
+            turn45(mL,mR,3,1);
+            memory[array_index] = 7;
+            array_index++;
+        }
+        if (color == 8){
+            toggle_light(2,1);
+            goback(mL,mR);
+        }
+    }
+}
 
 void goback(struct DC_motor *mL, struct DC_motor *mR)
-{ turn45(mL, mR, 4, 1);
-
-    short_reverse(mL,mR,2);
+{ fullSpeedBack(mL,mR,1);
+    turn45(mL,mR,4,1);
+    fullSpeedBack(mL,mR,2);
     array_index--;
     while(array_index >= 0){
         fullSpeedAhead(mL,mR);
@@ -24632,18 +24674,17 @@ void goback(struct DC_motor *mL, struct DC_motor *mR)
         stop(mL,mR);
         if (array_index == 0){break;}
         array_index--;
-        if (memory[array_index] == 1){turn45(mL, mR, 2, 1);short_reverse(mL,mR,2);array_index--;}
-        else if (memory[array_index] == 2){turn45(mL, mR, 2, 2);short_reverse(mL,mR,2);array_index--;}
-        else if (memory[array_index] == 3){turn45(mL, mR, 4, 1);short_reverse(mL,mR,2);array_index--;}
-        else if (memory[array_index] == 4){turn45(mL, mR, 2, 1);short_reverse(mL,mR,3);array_index--;}
-        else if (memory[array_index] == 5){turn45(mL, mR, 2, 2);short_reverse(mL,mR,3);array_index--;}
-        else if (memory[array_index] == 6){turn45(mL, mR, 3, 1);short_reverse(mL,mR,2);array_index--;}
-        else if (memory[array_index] == 7){turn45(mL, mR, 3, 2);short_reverse(mL,mR,2);array_index--;}
+        if (memory[array_index] == 1){turn45(mL,mR,2,1);fullSpeedBack(mL,mR,2);array_index--;}
+        else if (memory[array_index] == 2){turn45(mL,mR,2,2);fullSpeedBack(mL,mR,2);array_index--;}
+        else if (memory[array_index] == 3){turn45(mL,mR,4,1);fullSpeedBack(mL,mR,2);array_index--;}
+        else if (memory[array_index] == 4){turn45(mL,mR,2,1);fullSpeedBack(mL,mR,3);array_index--;}
+        else if (memory[array_index] == 5){turn45(mL,mR,2,2);fullSpeedBack(mL,mR,3);array_index--;}
+        else if (memory[array_index] == 6){turn45(mL,mR,3,1);fullSpeedBack(mL,mR,2);array_index--;}
+        else if (memory[array_index] == 7){turn45(mL,mR,3,2);fullSpeedBack(mL,mR,2);array_index--;}
     }
     LATDbits.LATD7 = 1;
     while(PORTFbits.RF2){
         stop(mL,mR);
         if (!PORTFbits.RF2){LATDbits.LATD7 = 0;break;}
-
     }
 }

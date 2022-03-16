@@ -4,4 +4,5 @@ color.h  \
 dc_motor.h  \
 serial.h  \
 movement.h  \
-timers.h 
+timers.h  \
+test_and_calibration.h 

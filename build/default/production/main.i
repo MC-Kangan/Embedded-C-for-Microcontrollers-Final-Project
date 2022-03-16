@@ -24241,8 +24241,8 @@ unsigned char __t3rd16on(void);
 # 9 "main.c" 2
 
 # 1 "./dc_motor.h" 1
-# 17 "./dc_motor.h"
-unsigned int SENSITIVITY = 360;
+# 11 "./dc_motor.h"
+unsigned int SENSITIVITY = 355;
 
 struct DC_motor {
     char power;
@@ -24259,13 +24259,9 @@ void initDCmotors_parameter(struct DC_motor *motorL, struct DC_motor *motorR);
 void setMotorPWM(struct DC_motor *m);
 void stop(struct DC_motor *mL, struct DC_motor *mR);
 void turn45(struct DC_motor *mL, struct DC_motor *mR, unsigned char turn_time, unsigned char direction);
-void halfSpeedBack(struct DC_motor *mL, struct DC_motor *mR);
-void turnLeft(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_left);
-void turnRight(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_right);
 void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
 void fullSpeedAhead_test(struct DC_motor *mL, struct DC_motor *mR);
-void fullSpeedBack(struct DC_motor *mL, struct DC_motor *mR);
-void short_reverse(struct DC_motor *mL, struct DC_motor *mR, unsigned char instruction);
+void fullSpeedBack(struct DC_motor *mL, struct DC_motor *mR, unsigned char instruction);
 # 10 "main.c" 2
 
 # 1 "./serial.h" 1
@@ -24411,9 +24407,12 @@ unsigned int memory[20];
 unsigned char array_index = 0;
 
 
-void short_burst(struct DC_motor *mL, struct DC_motor *mR);
-void action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR);
 void pin_init(void);
+void setup(unsigned int amb_light, struct white_card *white,struct color_rgb*amb,struct DC_motor *mL, struct DC_motor *mR);
+void short_burst(struct DC_motor *mL, struct DC_motor *mR);
+void straight_action(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light, unsigned int start_time, unsigned int stop_time);
+void distance_memory(struct DC_motor *mL, struct DC_motor *mR, unsigned int start_time, unsigned int stop_time);
+void turning_action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR);
 void goback(struct DC_motor *mL, struct DC_motor *mR);
 # 14 "main.c" 2
 
@@ -24441,7 +24440,7 @@ void Timer0_init(void);
 # 16 "main.c" 2
 
 # 1 "./test_and_calibration.h" 1
-# 17 "./test_and_calibration.h"
+# 10 "./test_and_calibration.h"
 void test_action (struct DC_motor *mL, struct DC_motor *mR);
 void calibration_motor(struct DC_motor *mL, struct DC_motor *mR);
 void test_function(unsigned char test_code, struct color_rgb *m, struct white_card *w, struct DC_motor *mL, struct DC_motor *mR);
@@ -24600,11 +24599,8 @@ char *tempnam(const char *, const char *);
 
 
 unsigned char color = 0;
-unsigned int start_move;
-unsigned int stop_move;
 
 void main(void){
-
 
     I2C_2_Master_Init();
     color_click_init();
@@ -24613,6 +24609,7 @@ void main(void){
     initUSART4();
     Timer0_init();
     Interrupts_init();
+    pin_init();
 
     struct color_rgb rgb, amb;
     struct white_card white;
@@ -24620,81 +24617,44 @@ void main(void){
 
 
     struct DC_motor motorL, motorR;
-    pin_init();
+
     initDCmotors_parameter(&motorL, &motorR);
-
     unsigned char stop_signal = 0;
-
     unsigned int amb_light = 0;
 
-    unsigned char setup = 0;
     unsigned char accident = 0;
+    unsigned int start_time= 0;
+    unsigned int stop_time = 0;
+
+
     if (0 == 0){
-        while(!setup){
-            LED_OFF();
-            LATDbits.LATD7 = 1;
-            LATHbits.LATH3 = 1;
-            while (PORTFbits.RF2);
-            if (!PORTFbits.RF2){calibrate_white(&white); LATDbits.LATD7 = 0; _delay((unsigned long)((500)*(64000000/4000.0)));}
-            while (PORTFbits.RF3);
-            if (!PORTFbits.RF3){amb_light = amb_light_measure(&amb); LATHbits.LATH3 = 0; _delay((unsigned long)((500)*(64000000/4000.0)));}
-            LATDbits.LATD7 = 1;
-            if (!PORTFbits.RF3){calibration_motor(&motorL, &motorR);}
-            while (PORTFbits.RF2);
-            if (!PORTFbits.RF2){LATDbits.LATD7 = 0; setup = 1;_delay((unsigned long)((500)*(64000000/4000.0)));}
-        }
+        setup(amb_light,&white,&amb,&motorL,&motorR);
+# 69 "main.c"
     }
 
-
     while(1){
-
-  if (0 == 1){
-
-            unsigned char i = 0, j = 0;
-
-
-
-
-
-
-
-            fullSpeedAhead(&motorL, &motorR);
-
-
-        }
+  if (0 == 1){test_function(3, &rgb, &white, &motorL, &motorR);}
         if (0 == 0){
-
-
-            T0CON0bits.T0EN=1;
-            start_move = centisecond;
-            while (stop_signal == 0){
-                fullSpeedAhead(&motorL, &motorR);
-                stop_signal = distance_measure(&motorL, &motorR, amb_light);
-            }
-            T0CON0bits.T0EN=0;
-            stop_move = centisecond;
-            if ((stop_move-start_move)>1){
-                memory[array_index] = (stop_move-start_move);
+            straight_action(&motorL, &motorR, amb_light, start_time, stop_time);
+# 85 "main.c"
+            if ((stop_time-start_time)>10){
+                memory[array_index] = (stop_time-start_time-3);
                 array_index++;
             }
             else{
                 accident++;
-                if (accident >= 10){
+                color_predict(accident);
+                if (accident >= 5){
                     goback(&motorL, &motorR);
                     accident = 0;
                 }
             }
 
-            char buf[100];
-            sprintf(buf,"%d\r\n",(stop_move-start_move));
-            sendStringSerial4(buf);
 
-            stop(&motorL, &motorR);
-            _delay((unsigned long)((1000)*(64000000/4000.0)));
             short_burst(&motorL, &motorR);
             color = detect_color(&rgb, &white);
             color = verify_color(color, &rgb, &white);
-            if (color!= 0){action(color, &motorL, &motorR); color = 0;}
+            if (color!= 0){turning_action(color, &motorL, &motorR); color = 0;}
             stop_signal = 0;
         }
     }

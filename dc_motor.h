@@ -2,19 +2,13 @@
 #define _DC_MOTOR_H
 
 #include <xc.h>
-//#include "test_and_calibration.h"
-//#include "color.h"
 
 #define _XTAL_FREQ 64000000
 #define TURNING_POWER 30 // This number needs to be adjusted according to different floor condition
-#define TURNING_POWER_R 40 // This number needs to be adjusted according to different floor condition
-#define TURNING_POWER_L 40
 #define FORWARD_POWER_L 34
 #define FORWARD_POWER_R 30
 #define BACKWARD_POWER 40
-#define CALIBRATION_135 15;
-#define CALIBRATION_180 0;
-unsigned int SENSITIVITY = 360;
+unsigned int SENSITIVITY = 355;
 
 struct DC_motor { //definition of DC_motor structure
     char power;         //motor power, out of 100
@@ -31,14 +25,8 @@ void initDCmotors_parameter(struct DC_motor *motorL, struct DC_motor *motorR);
 void setMotorPWM(struct DC_motor *m);
 void stop(struct DC_motor *mL, struct DC_motor *mR);
 void turn45(struct DC_motor *mL, struct DC_motor *mR, unsigned char turn_time, unsigned char direction);
-void halfSpeedBack(struct DC_motor *mL, struct DC_motor *mR);
-void turnLeft(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_left);
-void turnRight(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_right);
 void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
 void fullSpeedAhead_test(struct DC_motor *mL, struct DC_motor *mR);
-void fullSpeedBack(struct DC_motor *mL, struct DC_motor *mR);
-void short_reverse(struct DC_motor *mL, struct DC_motor *mR, unsigned char instruction);
-//void reverse_square(struct DC_motor *mL, struct DC_motor *mR);
-
+void fullSpeedBack(struct DC_motor *mL, struct DC_motor *mR, unsigned char instruction);
 
 #endif

@@ -1,9 +1,3 @@
-/*
- * File:   test_and_calibration.c
- * Author: Kangan Chen
- *
- * Created on March 12, 2022, 5:35 PM
- */
 #include <xc.h>
 #include "dc_motor.h"
 #include "serial.h"
@@ -14,26 +8,12 @@
 
 
 void test_action (struct DC_motor *mL, struct DC_motor *mR)
-{   fullSpeedAhead_test(mL,mR);
-    turnLeft(mL,mR,90);
-    fullSpeedAhead_test(mL,mR);
-    turnLeft(mL,mR,90);
-    fullSpeedAhead_test(mL,mR);
-    turnLeft(mL,mR,180);
-    fullSpeedAhead_test(mL,mR);
-    turnRight(mL,mR,90);
-    fullSpeedAhead_test(mL,mR);
-    turnRight(mL,mR,90);
-    fullSpeedAhead_test(mL,mR);
-    turnLeft(mL,mR,180);
-    fullSpeedAhead_test(mL,mR);
-    turnLeft(mL,mR,135);
-    fullSpeedAhead_test(mL,mR);
-    turnRight(mL,mR,135);
-    fullSpeedAhead_test(mL,mR);
-    turnLeft(mL,mR,135);
-    fullSpeedAhead_test(mL,mR);
-    turnRight(mL,mR,135);
+{   // a testing function for the movement of the buggy. See whether the buggy can turn the correct angle, go straight properly etc.
+    turn45(mL,mR,8,1);              //turn left 45 degrees for 8 times
+    turn45(mL,mR,8,2);              //turn right 45 degrees for 8 times
+    fullSpeedAhead_test(mL,mR);     //full speed ahead to test whether the buggy go straight properly
+    turn45(mL,mR,3,1);              //turn left 180 degrees
+    fullSpeedAhead_test(mL,mR);     //full speed ahead to test whether the buggy go straight properly
 }
 
 void test_function(unsigned char test_code, struct color_rgb *m, struct white_card *w, struct DC_motor *mL, struct DC_motor *mR)

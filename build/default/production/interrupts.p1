@@ -2057,7 +2057,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . . _PIE0bits 0 5 -> -> 1 `i `uc ]
 "14
 [; ;interrupts.c: 14: }
-[e :UE 2018 ]
+[e :UE 2023 ]
 }
 [v $root$_HighISR `(v ~T0 @X0 0 e ]
 "21
@@ -2070,7 +2070,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "23
 [; ;interrupts.c: 23:     if(PIR0bits.TMR0IF){
-[e $ ! != -> . . _PIR0bits 0 5 `i -> 0 `i 2020  ]
+[e $ ! != -> . . _PIR0bits 0 5 `i -> 0 `i 2025  ]
 {
 "24
 [; ;interrupts.c: 24:         TMR0H=0b00111100;
@@ -2087,8 +2087,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "28
 [; ;interrupts.c: 28:     }
 }
-[e :U 2020 ]
+[e :U 2025 ]
 "29
 [; ;interrupts.c: 29: }
-[e :UE 2019 ]
+[e :UE 2024 ]
 }

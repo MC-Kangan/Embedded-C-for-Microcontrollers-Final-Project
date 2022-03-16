@@ -7,12 +7,6 @@
 # 1 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
 # 1 "test_and_calibration.c" 2
-
-
-
-
-
-
 # 1 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -24235,11 +24229,11 @@ __attribute__((__unsupported__("The READTIMER" "0" "() macro is not available wi
 unsigned char __t1rd16on(void);
 unsigned char __t3rd16on(void);
 # 34 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\\pic\\include\\xc.h" 2 3
-# 7 "test_and_calibration.c" 2
+# 1 "test_and_calibration.c" 2
 
 # 1 "./dc_motor.h" 1
-# 17 "./dc_motor.h"
-unsigned int SENSITIVITY = 360;
+# 11 "./dc_motor.h"
+unsigned int SENSITIVITY = 355;
 
 struct DC_motor {
     char power;
@@ -24256,14 +24250,10 @@ void initDCmotors_parameter(struct DC_motor *motorL, struct DC_motor *motorR);
 void setMotorPWM(struct DC_motor *m);
 void stop(struct DC_motor *mL, struct DC_motor *mR);
 void turn45(struct DC_motor *mL, struct DC_motor *mR, unsigned char turn_time, unsigned char direction);
-void halfSpeedBack(struct DC_motor *mL, struct DC_motor *mR);
-void turnLeft(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_left);
-void turnRight(struct DC_motor *mL, struct DC_motor *mR, unsigned char angle_right);
 void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
 void fullSpeedAhead_test(struct DC_motor *mL, struct DC_motor *mR);
-void fullSpeedBack(struct DC_motor *mL, struct DC_motor *mR);
-void short_reverse(struct DC_motor *mL, struct DC_motor *mR, unsigned char instruction);
-# 8 "test_and_calibration.c" 2
+void fullSpeedBack(struct DC_motor *mL, struct DC_motor *mR, unsigned char instruction);
+# 2 "test_and_calibration.c" 2
 
 # 1 "./serial.h" 1
 
@@ -24278,7 +24268,7 @@ void initUSART4(void);
 char getCharSerial4(void);
 void sendCharSerial4(char charToSend);
 void sendStringSerial4(char *string);
-# 9 "test_and_calibration.c" 2
+# 3 "test_and_calibration.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\c99\\stdio.h" 1 3
 # 24 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\c99\\stdio.h" 3
@@ -24424,7 +24414,7 @@ char *ctermid(char *);
 
 
 char *tempnam(const char *, const char *);
-# 10 "test_and_calibration.c" 2
+# 4 "test_and_calibration.c" 2
 
 # 1 "./movement.h" 1
 
@@ -24437,14 +24427,21 @@ unsigned int memory[20];
 unsigned char array_index = 0;
 
 
-void short_burst(struct DC_motor *mL, struct DC_motor *mR);
-void action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR);
 void pin_init(void);
+void setup(unsigned int amb_light, struct white_card *white,struct color_rgb*amb,struct DC_motor *mL, struct DC_motor *mR);
+void short_burst(struct DC_motor *mL, struct DC_motor *mR);
+void straight_action(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light, unsigned int start_time, unsigned int stop_time);
+void distance_memory(struct DC_motor *mL, struct DC_motor *mR, unsigned int start_time, unsigned int stop_time);
+void turning_action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR);
 void goback(struct DC_motor *mL, struct DC_motor *mR);
-# 11 "test_and_calibration.c" 2
+# 5 "test_and_calibration.c" 2
 
 # 1 "./test_and_calibration.h" 1
-# 13 "./test_and_calibration.h"
+
+
+
+
+
 # 1 "./color.h" 1
 # 10 "./color.h"
 struct color_rgb {
@@ -24525,7 +24522,7 @@ void color_data_collection(struct color_rgb *m);
 
 unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light) ;
 unsigned amb_light_measure(struct color_rgb *amb);
-# 13 "./test_and_calibration.h" 2
+# 6 "./test_and_calibration.h" 2
 
 
 
@@ -24533,32 +24530,18 @@ unsigned amb_light_measure(struct color_rgb *amb);
 void test_action (struct DC_motor *mL, struct DC_motor *mR);
 void calibration_motor(struct DC_motor *mL, struct DC_motor *mR);
 void test_function(unsigned char test_code, struct color_rgb *m, struct white_card *w, struct DC_motor *mL, struct DC_motor *mR);
-# 12 "test_and_calibration.c" 2
+# 6 "test_and_calibration.c" 2
 
 
 
 
 void test_action (struct DC_motor *mL, struct DC_motor *mR)
-{ fullSpeedAhead_test(mL,mR);
-    turnLeft(mL,mR,90);
+{
+    turn45(mL,mR,8,1);
+    turn45(mL,mR,8,2);
     fullSpeedAhead_test(mL,mR);
-    turnLeft(mL,mR,90);
+    turn45(mL,mR,3,1);
     fullSpeedAhead_test(mL,mR);
-    turnLeft(mL,mR,180);
-    fullSpeedAhead_test(mL,mR);
-    turnRight(mL,mR,90);
-    fullSpeedAhead_test(mL,mR);
-    turnRight(mL,mR,90);
-    fullSpeedAhead_test(mL,mR);
-    turnLeft(mL,mR,180);
-    fullSpeedAhead_test(mL,mR);
-    turnLeft(mL,mR,135);
-    fullSpeedAhead_test(mL,mR);
-    turnRight(mL,mR,135);
-    fullSpeedAhead_test(mL,mR);
-    turnLeft(mL,mR,135);
-    fullSpeedAhead_test(mL,mR);
-    turnRight(mL,mR,135);
 }
 
 void test_function(unsigned char test_code, struct color_rgb *m, struct white_card *w, struct DC_motor *mL, struct DC_motor *mR)

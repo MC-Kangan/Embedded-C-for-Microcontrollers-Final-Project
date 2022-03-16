@@ -1,4 +1,4 @@
-# 1 "color.c"
+# 1 "main.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,7 +6,16 @@
 # 1 "<built-in>" 2
 # 1 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\\pic\\include\\language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "color.c" 2
+# 1 "main.c" 2
+
+#pragma config FEXTOSC = HS
+#pragma config RSTOSC = EXTOSC_4PLL
+
+
+#pragma config WDTCPS = WDTCPS_31
+#pragma config WDTE = OFF
+
+
 # 1 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\\pic\\include\\xc.h" 1 3
 # 18 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\\pic\\include\\xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -24229,7 +24238,7 @@ __attribute__((__unsupported__("The READTIMER" "0" "() macro is not available wi
 unsigned char __t1rd16on(void);
 unsigned char __t3rd16on(void);
 # 34 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\\pic\\include\\xc.h" 2 3
-# 1 "color.c" 2
+# 9 "main.c" 2
 
 # 1 "./dc_motor.h" 1
 # 11 "./dc_motor.h"
@@ -24253,7 +24262,7 @@ void turn45(struct DC_motor *mL, struct DC_motor *mR, unsigned char turn_time, u
 void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
 void fullSpeedAhead_test(struct DC_motor *mL, struct DC_motor *mR);
 void fullSpeedBack(struct DC_motor *mL, struct DC_motor *mR, unsigned char instruction);
-# 2 "color.c" 2
+# 10 "main.c" 2
 
 # 1 "./serial.h" 1
 
@@ -24268,7 +24277,7 @@ void initUSART4(void);
 char getCharSerial4(void);
 void sendCharSerial4(char charToSend);
 void sendStringSerial4(char *string);
-# 3 "color.c" 2
+# 11 "main.c" 2
 
 # 1 "./color.h" 1
 # 10 "./color.h"
@@ -24350,7 +24359,7 @@ void color_data_collection(struct color_rgb *m);
 
 unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light) ;
 unsigned amb_light_measure(struct color_rgb *amb);
-# 4 "color.c" 2
+# 12 "main.c" 2
 
 # 1 "./i2c.h" 1
 # 13 "./i2c.h"
@@ -24385,7 +24394,54 @@ void I2C_2_Master_Write(unsigned char data_byte);
 
 
 unsigned char I2C_2_Master_Read(unsigned char ack);
-# 5 "color.c" 2
+# 13 "main.c" 2
+
+# 1 "./movement.h" 1
+
+
+
+
+
+unsigned int centisecond = 0;
+unsigned int memory[20];
+unsigned char array_index = 0;
+
+
+void short_burst(struct DC_motor *mL, struct DC_motor *mR);
+void action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR);
+void pin_init(void);
+void goback(struct DC_motor *mL, struct DC_motor *mR);
+# 14 "main.c" 2
+
+# 1 "./interrupts.h" 1
+
+
+
+
+
+
+
+void Interrupts_init(void);
+void __attribute__((picinterrupt(("high_priority")))) HighISR();
+# 15 "main.c" 2
+
+# 1 "./timers.h" 1
+
+
+
+
+
+
+
+void Timer0_init(void);
+# 16 "main.c" 2
+
+# 1 "./test_and_calibration.h" 1
+# 10 "./test_and_calibration.h"
+void test_action (struct DC_motor *mL, struct DC_motor *mR);
+void calibration_motor(struct DC_motor *mL, struct DC_motor *mR);
+void test_function(unsigned char test_code, struct color_rgb *m, struct white_card *w, struct DC_motor *mL, struct DC_motor *mR);
+# 17 "main.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\c99\\stdio.h" 1 3
 # 24 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\c99\\stdio.h" 3
@@ -24531,821 +24587,94 @@ char *ctermid(char *);
 
 
 char *tempnam(const char *, const char *);
-# 6 "color.c" 2
+# 18 "main.c" 2
 
 
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\c99\\math.h" 1 3
-# 15 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\c99\\math.h" 3
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\c99\\bits/alltypes.h" 1 3
-# 33 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\c99\\bits/alltypes.h" 3
-typedef float float_t;
 
 
 
 
-typedef double double_t;
-# 15 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\c99\\math.h" 2 3
-# 42 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\c99\\math.h" 3
-int __fpclassifyf(float);
 
+unsigned char color = 0;
+unsigned int start_move;
+unsigned int stop_move;
 
-
-
-
-
-
-int __signbitf(float);
-# 59 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\c99\\math.h" 3
-double acos(double);
-float acosf(float);
-long double acosl(long double);
-
-
-
-double acosh(double);
-float acoshf(float);
-long double acoshl(long double);
-
-
-
-double asin(double);
-float asinf(float);
-long double asinl(long double);
-
-
-
-double asinh(double);
-float asinhf(float);
-long double asinhl(long double);
-
-
-
-double atan(double);
-float atanf(float);
-long double atanl(long double);
-
-
-
-double atan2(double, double);
-float atan2f(float, float);
-long double atan2l(long double, long double);
-
-
-
-double atanh(double);
-float atanhf(float);
-long double atanhl(long double);
-
-
-
-double cbrt(double);
-float cbrtf(float);
-long double cbrtl(long double);
-
-
-
-double ceil(double);
-float ceilf(float);
-long double ceill(long double);
-
-
-
-double copysign(double, double);
-float copysignf(float, float);
-long double copysignl(long double, long double);
-
-
-
-double cos(double);
-float cosf(float);
-long double cosl(long double);
-
-
-
-double cosh(double);
-float coshf(float);
-long double coshl(long double);
-
-
-
-double erf(double);
-float erff(float);
-long double erfl(long double);
-
-
-
-double erfc(double);
-float erfcf(float);
-long double erfcl(long double);
-
-
-
-double exp(double);
-float expf(float);
-long double expl(long double);
-
-
-
-double exp2(double);
-float exp2f(float);
-long double exp2l(long double);
-
-
-
-double expm1(double);
-float expm1f(float);
-long double expm1l(long double);
-
-
-
-double fabs(double);
-float fabsf(float);
-long double fabsl(long double);
-
-
-
-double fdim(double, double);
-float fdimf(float, float);
-long double fdiml(long double, long double);
-
-
-
-double floor(double);
-float floorf(float);
-long double floorl(long double);
-
-
-
-double fma(double, double, double);
-float fmaf(float, float, float);
-long double fmal(long double, long double, long double);
-
-
-
-double fmax(double, double);
-float fmaxf(float, float);
-long double fmaxl(long double, long double);
-
-
-
-double fmin(double, double);
-float fminf(float, float);
-long double fminl(long double, long double);
-
-
-
-double fmod(double, double);
-float fmodf(float, float);
-long double fmodl(long double, long double);
-
-
-
-double frexp(double, int *);
-float frexpf(float, int *);
-long double frexpl(long double, int *);
-
-
-
-double hypot(double, double);
-float hypotf(float, float);
-long double hypotl(long double, long double);
-
-
-
-int ilogb(double);
-int ilogbf(float);
-int ilogbl(long double);
-
-
-
-double ldexp(double, int);
-float ldexpf(float, int);
-long double ldexpl(long double, int);
-
-
-
-double lgamma(double);
-float lgammaf(float);
-long double lgammal(long double);
-
-
-
-long long llrint(double);
-long long llrintf(float);
-long long llrintl(long double);
-
-
-
-long long llround(double);
-long long llroundf(float);
-long long llroundl(long double);
-
-
-
-double log(double);
-float logf(float);
-long double logl(long double);
-
-
-
-double log10(double);
-float log10f(float);
-long double log10l(long double);
-
-
-
-double log1p(double);
-float log1pf(float);
-long double log1pl(long double);
-
-
-
-double log2(double);
-float log2f(float);
-long double log2l(long double);
-
-
-
-double logb(double);
-float logbf(float);
-long double logbl(long double);
-
-
-
-long lrint(double);
-long lrintf(float);
-long lrintl(long double);
-
-
-
-long lround(double);
-long lroundf(float);
-long lroundl(long double);
-
-
-
-double modf(double, double *);
-float modff(float, float *);
-long double modfl(long double, long double *);
-
-
-
-double nan(const char *);
-float nanf(const char *);
-long double nanl(const char *);
-
-
-
-double nearbyint(double);
-float nearbyintf(float);
-long double nearbyintl(long double);
-
-
-
-double nextafter(double, double);
-float nextafterf(float, float);
-long double nextafterl(long double, long double);
-
-
-
-double nexttoward(double, long double);
-float nexttowardf(float, long double);
-long double nexttowardl(long double, long double);
-# 323 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\c99\\math.h" 3
-double pow(double, double);
-__attribute__((nonreentrant)) float powf(float, float);
-long double powl(long double, long double);
-
-
-
-double remainder(double, double);
-float remainderf(float, float);
-long double remainderl(long double, long double);
-
-
-
-double remquo(double, double, int *);
-float remquof(float, float, int *);
-long double remquol(long double, long double, int *);
-
-
-
-double rint(double);
-float rintf(float);
-long double rintl(long double);
-
-
-
-double round(double);
-float roundf(float);
-long double roundl(long double);
-
-
-
-double scalbln(double, long);
-float scalblnf(float, long);
-long double scalblnl(long double, long);
-
-
-
-double scalbn(double, int);
-float scalbnf(float, int);
-long double scalbnl(long double, int);
-
-
-
-double sin(double);
-float sinf(float);
-long double sinl(long double);
-
-
-
-double sinh(double);
-float sinhf(float);
-long double sinhl(long double);
-
-
-
-double sqrt(double);
-float sqrtf(float);
-long double sqrtl(long double);
-
-
-
-double tan(double);
-float tanf(float);
-long double tanl(long double);
-
-
-
-double tanh(double);
-float tanhf(float);
-long double tanhl(long double);
-
-
-
-double tgamma(double);
-float tgammaf(float);
-long double tgammal(long double);
-
-
-
-double trunc(double);
-float truncf(float);
-long double truncl(long double);
-# 428 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\c99\\math.h" 3
-extern int signgam;
-
-double j0(double);
-double j1(double);
-double jn(int, double);
-
-double y0(double);
-double y1(double);
-double yn(int, double);
-# 8 "color.c" 2
-
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\c99\\fenv.h" 1 3
-# 10 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\c99\\fenv.h" 3
-# 1 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\c99\\bits/fenv.h" 1 3
-# 14 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\c99\\bits/fenv.h" 3
-typedef unsigned short fexcept_t;
-
-typedef struct {
- unsigned short __control_word;
- unsigned short __status_word;
-} fenv_t;
-# 10 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\c99\\fenv.h" 2 3
-# 9 "color.c" 2
-
-# 1 "./movement.h" 1
-
-
-
-
-
-unsigned int centisecond = 0;
-unsigned int memory[20];
-unsigned char array_index = 0;
-
-
-void pin_init(void);
-void setup(unsigned int amb_light, struct white_card *white,struct color_rgb*amb,struct DC_motor *mL, struct DC_motor *mR);
-void short_burst(struct DC_motor *mL, struct DC_motor *mR);
-void straight_action(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light, unsigned int start_time, unsigned int stop_time);
-void distance_memory(struct DC_motor *mL, struct DC_motor *mR, unsigned int start_time, unsigned int stop_time);
-void turning_action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR);
-void goback(struct DC_motor *mL, struct DC_motor *mR);
-# 10 "color.c" 2
-
-# 1 "./test_and_calibration.h" 1
-# 10 "./test_and_calibration.h"
-void test_action (struct DC_motor *mL, struct DC_motor *mR);
-void calibration_motor(struct DC_motor *mL, struct DC_motor *mR);
-void test_function(unsigned char test_code, struct color_rgb *m, struct white_card *w, struct DC_motor *mL, struct DC_motor *mR);
-# 11 "color.c" 2
-
-
-void buggylight_init(void)
-{
-    TRISHbits.TRISH1=0;
-    TRISDbits.TRISD4=0;
-    TRISDbits.TRISD3=0;
-    TRISFbits.TRISF0=0;
-    TRISHbits.TRISH0=0;
-
-    LATHbits.LATH1 = 0;
-    LATDbits.LATD4 = 0;
-    LATDbits.LATD3 = 0;
-    LATFbits.LATF0 = 0;
-    LATHbits.LATH0 = 0;
-}
-
-
-void toggle_light(unsigned char lightnumber, unsigned char toggletime)
-{
-    unsigned char i = 0;
-
-    for (i = 0; i < toggletime; i++){
-        if (lightnumber == 1){
-            LATHbits.LATH1 = !LATHbits.LATH1;
-            _delay((unsigned long)((500)*(64000000/4000.0)));
-            LATHbits.LATH1 = !LATHbits.LATH1;
-            _delay((unsigned long)((500)*(64000000/4000.0)));
-        }
-        if (lightnumber == 2){
-            LATDbits.LATD4 = !LATDbits.LATD4;
-            _delay((unsigned long)((500)*(64000000/4000.0)));
-            LATDbits.LATD4 = !LATDbits.LATD4;
-            _delay((unsigned long)((500)*(64000000/4000.0)));
-        }
-        if (lightnumber == 3){
-            LATDbits.LATD3 = !LATDbits.LATD3;
-            _delay((unsigned long)((500)*(64000000/4000.0)));
-            LATDbits.LATD3 = !LATDbits.LATD3;
-            _delay((unsigned long)((500)*(64000000/4000.0)));
-        }
-        if (lightnumber == 4){
-            LATFbits.LATF0 = !LATFbits.LATF0;
-            _delay((unsigned long)((500)*(64000000/4000.0)));
-            LATFbits.LATF0 = !LATFbits.LATF0;
-            _delay((unsigned long)((500)*(64000000/4000.0)));
-        }
-        if (lightnumber == 3){
-            LATHbits.LATH0 = !LATHbits.LATH0;
-            _delay((unsigned long)((500)*(64000000/4000.0)));
-            LATHbits.LATH0 = !LATHbits.LATH0;
-            _delay((unsigned long)((500)*(64000000/4000.0)));
-        }
-    }
-}
-
-void color_click_init(void)
-{
+void main(void){
 
     I2C_2_Master_Init();
-
-
- color_writetoaddr(0x00, 0x01);
-    _delay((unsigned long)((3)*(64000000/4000.0)));
-
-
- color_writetoaddr(0x00, 0x03);
-
-
- color_writetoaddr(0x01, 0xD5);
-}
-
-void color_writetoaddr(char address, char value){
-    I2C_2_Master_Start();
-    I2C_2_Master_Write(0x52 | 0x00);
-    I2C_2_Master_Write(0x80 | address);
-    I2C_2_Master_Write(value);
-    I2C_2_Master_Stop();
-}
-
-unsigned int color_read_Red(void)
-{
- unsigned int tmp;
- I2C_2_Master_Start();
- I2C_2_Master_Write(0x52 | 0x00);
- I2C_2_Master_Write(0xA0 | 0x16);
- I2C_2_Master_RepStart();
- I2C_2_Master_Write(0x52 | 0x01);
- tmp=I2C_2_Master_Read(1);
- tmp=tmp | (I2C_2_Master_Read(0)<<8);
- I2C_2_Master_Stop();
- return tmp;
-}
-
-unsigned int color_read_Blue(void)
-{
- unsigned int tmp;
- I2C_2_Master_Start();
- I2C_2_Master_Write(0x52 | 0x00);
- I2C_2_Master_Write(0xA0 | 0x1A);
- I2C_2_Master_RepStart();
- I2C_2_Master_Write(0x52 | 0x01);
- tmp=I2C_2_Master_Read(1);
- tmp=tmp | (I2C_2_Master_Read(0)<<8);
- I2C_2_Master_Stop();
- return tmp;
-}
-
-unsigned int color_read_Green(void)
-{
- unsigned int tmp;
- I2C_2_Master_Start();
- I2C_2_Master_Write(0x52 | 0x00);
- I2C_2_Master_Write(0xA0 | 0x18);
- I2C_2_Master_RepStart();
- I2C_2_Master_Write(0x52 | 0x01);
- tmp=I2C_2_Master_Read(1);
- tmp=tmp | (I2C_2_Master_Read(0)<<8);
- I2C_2_Master_Stop();
- return tmp;
-}
-
-unsigned int color_read_Clear(void)
-{
- unsigned int tmp;
- I2C_2_Master_Start();
- I2C_2_Master_Write(0x52 | 0x00);
- I2C_2_Master_Write(0xA0 | 0x14);
- I2C_2_Master_RepStart();
- I2C_2_Master_Write(0x52 | 0x01);
- tmp=I2C_2_Master_Read(1);
- tmp=tmp | (I2C_2_Master_Read(0)<<8);
- I2C_2_Master_Stop();
- return tmp;
-}
-
-void read_color (struct color_rgb *m)
-{
-    m->R = color_read_Red();
-    m->B = color_read_Blue();
-    m->G = color_read_Green();
-    m->C = color_read_Clear();
-}
-
-void LED_OFF(void)
-{
-    LATGbits.LATG1 = 0;
-    LATFbits.LATF7 = 0;
-    LATAbits.LATA4 = 0;
-    _delay((unsigned long)((200)*(64000000/4000.0)));
-
-}
-
-void LED_R(void)
-{
-    LATGbits.LATG1 = 1;
-    LATFbits.LATF7 = 0;
-    LATAbits.LATA4 = 0;
-    _delay((unsigned long)((200)*(64000000/4000.0)));
-
-}
-
-void LED_C(void)
-{
-    LATGbits.LATG1 = 1;
-    LATFbits.LATF7 = 1;
-    LATAbits.LATA4 = 1;
-    _delay((unsigned long)((200)*(64000000/4000.0)));
-
-}
-
-void LED_B(void)
-{
-    LATGbits.LATG1 = 0;
-    LATFbits.LATF7 = 1;
-    LATAbits.LATA4 = 0;
-    _delay((unsigned long)((200)*(64000000/4000.0)));
-
-}
-
-void LED_G(void)
-{
-    LATGbits.LATG1 = 0;
-    LATFbits.LATF7 = 0;
-    LATAbits.LATA4 = 1;
-    _delay((unsigned long)((200)*(64000000/4000.0)));
-
-}
-
-void color_data_collection(struct color_rgb *m){
-
-    int i = 0; int j = 0; int k = 0; int x = 0;
-    for (i = 0; i < 1; ++i){
-        LED_C();
-        _delay((unsigned long)((100)*(64000000/4000.0)));
-        read_color(m);
-        color_display(m);
-    }
-
-    for (j = 0; j < 1; ++j){
-        LED_R();
-        _delay((unsigned long)((100)*(64000000/4000.0)));
-        read_color(m);
-        color_display(m);
-    }
-
-    for (k = 0; k < 1; ++k){
-        LED_G();
-        _delay((unsigned long)((100)*(64000000/4000.0)));
-        read_color(m);
-        color_display(m);
-    }
-
-    for (x = 0; x < 1; ++x){
-        LED_B();
-        _delay((unsigned long)((100)*(64000000/4000.0)));
-        read_color(m);
-        color_display(m);
-    }
-    color_predict(1);
-    LED_C();
-}
-
-void color_display(struct color_rgb *m)
-{
-    char buf[100];
-    sprintf(buf,"%d\t%d\t%d\t%d\r\n", m->R, m->G, m->B, m->C);
-    sendStringSerial4(buf);
-}
-
-void check_color_reading(struct color_rgb *m, struct white_card *w)
-{
-    char buf[100];
-
-    int result = lroundf((float)(m->R)/(w->RR)*100);
-
-
-}
-
-void color_predict(unsigned char color)
-{
-    char buf[100];
-    sprintf(buf,"\t%d\r\n", color);
-    sendStringSerial4(buf);
-
-}
-
-void calibrate_white(struct white_card *w)
-{
-    LED_OFF();
-    toggle_light(1,2);
-    _delay((unsigned long)((500)*(64000000/4000.0)));
-
-    LED_R();
-    _delay((unsigned long)((100)*(64000000/4000.0)));
-    w->RR = color_read_Red(); w->RG = color_read_Green(); w->RB = color_read_Blue();
-
-
-    LED_G();
-    _delay((unsigned long)((100)*(64000000/4000.0)));
-    w->GR = color_read_Red(); w->GG = color_read_Green(); w->GB = color_read_Blue();
-
-
-
-    LED_B();
-    _delay((unsigned long)((100)*(64000000/4000.0)));
-    w->BR = color_read_Red(); w->BG = color_read_Green(); w->BB = color_read_Blue(); w->BC = color_read_Clear();
-
-
-    LED_C();
-    _delay((unsigned long)((100)*(64000000/4000.0)));
-    w->CR = color_read_Red(); w->CG = color_read_Green(); w->CB = color_read_Blue(); w->CC = color_read_Clear();
-
-    LED_OFF();
-    _delay((unsigned long)((500)*(64000000/4000.0)));
-    toggle_light(1,2);
-}
-
-
-unsigned char detect_color(struct color_rgb *m, struct white_card *w)
-{
-
-
-
-    unsigned int RR = 0, RG = 0, RB = 0, GR = 0, GG = 0, GB = 0, BR = 0, BG = 0, BB = 0, BC = 0;
-    unsigned char color = 0;
-
-    LED_R();
-    _delay((unsigned long)((100)*(64000000/4000.0)));
-    read_color(m);
-
-    RR = lroundf((float)(m->R)/(w->RR)*100); RG = lroundf((float)(m->G)/(w->RG)*100); RB = lroundf((float)(m->B)/(w->RB)*100);
-    _delay((unsigned long)((50)*(64000000/4000.0)));
-
-
-
-
-
-    LED_G();
-    _delay((unsigned long)((100)*(64000000/4000.0)));
-    read_color(m);
-
-
-    GR = lroundf((float)(m->R)/(w->GR)*100); GG = lroundf((float)(m->G)/(w->GG)*100); GB = lroundf((float)(m->B)/(w->GB)*100);
-
-
-
-
-    LED_B();
-    _delay((unsigned long)((100)*(64000000/4000.0)));
-    read_color(m);
-    BR = lroundf((float)(m->R)/(w->BR)*100); BG = lroundf((float)(m->G)/(w->BG)*100); BB = lroundf((float)(m->B)/(w->BB)*100);
-    BC = lroundf((float)(m->C)/(w->BC)*100);
-
-
-
-
-
-    if (compare(0, RR, 45)){
-         if (compare(0, lroundf((float)(GG + BG)/BB * 200), 467)){color = 3;}
-        else{color = 2;}
-    }
-    else{
-        if (GG <= 30 && GB <= 30){
-
-            if (compare(0, lroundf((float)GR/RR * 500), 150)){color = 1;}
-            else {color = 6;}
+    color_click_init();
+    initDCmotorsPWM(199);
+    buggylight_init();
+    initUSART4();
+    Timer0_init();
+    Interrupts_init();
+    pin_init();
+
+    struct color_rgb rgb, amb;
+    struct white_card white;
+
+
+
+    struct DC_motor motorL, motorR;
+
+    initDCmotors_parameter(&motorL, &motorR);
+    unsigned char stop_signal = 0;
+    unsigned int amb_light = 0;
+    unsigned char setup = 0;
+    unsigned char accident = 0;
+
+
+    if (0 == 0){
+        while(!setup){
+            LED_OFF();
+            LATDbits.LATD7 = 1;
+            LATHbits.LATH3 = 1;
+            while (PORTFbits.RF2);
+            if (!PORTFbits.RF2){calibrate_white(&white); LATDbits.LATD7 = 0; _delay((unsigned long)((500)*(64000000/4000.0)));}
+            while (PORTFbits.RF3);
+            if (!PORTFbits.RF3){amb_light = amb_light_measure(&amb); LATHbits.LATH3 = 0; _delay((unsigned long)((500)*(64000000/4000.0)));}
+            LATDbits.LATD7 = 1;
+            if (!PORTFbits.RF3){calibration_motor(&motorL, &motorR);}
+            while (PORTFbits.RF2);
+            if (!PORTFbits.RF2){LATDbits.LATD7 = 0; setup = 1;_delay((unsigned long)((500)*(64000000/4000.0)));}
         }
-        else if (GG > 30 && GB > 30){
+    }
 
-            if (BG >= BR) {color = 7;}
-            else{
-                if (BG < 48){color = 4;}
-                else {color = 5;}
+    while(1){
+  if (0 == 1){test_function(3, &rgb, &white, &motorL, &motorR);}
+        if (0 == 0){
+
+
+            T0CON0bits.T0EN=1;
+            start_move = centisecond;
+            while (stop_signal == 0){
+                fullSpeedAhead(&motorL, &motorR);
+                stop_signal = distance_measure(&motorL, &motorR, amb_light);
             }
+            T0CON0bits.T0EN=0;
+            stop_move = centisecond;
+            if ((stop_move-start_move)>10){
+                memory[array_index] = (stop_move-start_move-3);
+                array_index++;
+            }
+            else{
+                accident++;
+                color_predict(accident);
+                if (accident >= 5){
+                    goback(&motorL, &motorR);
+                    accident = 0;
+                }
+            }
+            char buf[100];
+            sprintf(buf,"%d\r\n",(stop_move-start_move));
+            sendStringSerial4(buf);
+            stop(&motorL, &motorR);
+            _delay((unsigned long)((1000)*(64000000/4000.0)));
+            short_burst(&motorL, &motorR);
+            color = detect_color(&rgb, &white);
+            color = verify_color(color, &rgb, &white);
+            if (color!= 0){action(color, &motorL, &motorR); color = 0;}
+            stop_signal = 0;
         }
-        else {color = 0;}
     }
-
-    if (compare(90, RR, RR * 2) && compare(90, RB, RB * 2) && compare(90, BG, BG * 2)){color = 8;}
-    if (compare(0, BR, 25) && compare(0,RR,30)){color = 0;}
-
-    if (color == 8) {toggle_light(2,1);}
-    return color;
-}
-
-unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned int upper)
-{
-    unsigned char result = 0;
-    if (lower < value2compare && value2compare <= upper){result = 1;}
-    return result;
-}
-
-
-unsigned char verify_color(unsigned char color,struct color_rgb *m, struct white_card *w)
-{
-    _delay((unsigned long)((50)*(64000000/4000.0)));
-    unsigned int color2, color3;
-    color2 = detect_color(m,w);
-    _delay((unsigned long)((50)*(64000000/4000.0)));
-
-    if (color == color2){return color;}
-    else {
-        color = 0;
-        return color;}
-}
-
-unsigned amb_light_measure(struct color_rgb *amb)
-{
-    unsigned int CC_amb_1 = 0, CC_amb_2 = 0, CC_amb_3 = 0, CC_amb_ave, upper_bound = 0;
-    toggle_light(2,2);
-    LED_C();
-    _delay((unsigned long)((500)*(64000000/4000.0)));
-
-    CC_amb_1 = color_read_Clear();
-    _delay((unsigned long)((200)*(64000000/4000.0)));
-
-    CC_amb_2 = color_read_Clear();
-    _delay((unsigned long)((200)*(64000000/4000.0)));
-
-    CC_amb_3 = color_read_Clear();
-    _delay((unsigned long)((200)*(64000000/4000.0)));
-
-    CC_amb_ave = lroundf((float)(CC_amb_1 + CC_amb_2 + CC_amb_3)/3);
-
-    toggle_light(2,2);
-
-    return CC_amb_ave;
-}
-
-unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light)
-{
-    unsigned int CC_amb = 0, CG_amb = 0;
-    unsigned char stop = 0;
-    unsigned int threshold = 0;
-    LED_C();
-    _delay((unsigned long)((100)*(64000000/4000.0)));
-    CC_amb = color_read_Clear();
-    CG_amb = color_read_Green();
-    threshold = lroundf((float)amb_light * 1.1);
-
-
-    if (CC_amb >= threshold){stop = 1;}
-    return stop;
 }

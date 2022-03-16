@@ -21,19 +21,19 @@ void initUSART4(void) {
 
 //function to wait for a byte to arrive on serial port and read it once it does 
 char getCharSerial4(void) {
-    while (!PIR4bits.RC4IF);//wait for the data to arrive
-    return RC4REG; //return byte in RCREG
+    while (!PIR4bits.RC4IF);    // wait for the data to arrive
+    return RC4REG;              // return byte in RCREG
 }
 
 //function to check the TX reg is free and send a byte
 void sendCharSerial4(char charToSend) {
-    while (!PIR4bits.TX4IF); // wait for flag to be set
-    TX4REG = charToSend; //transfer char to transmitter
+    while (!PIR4bits.TX4IF);    // wait for flag to be set
+    TX4REG = charToSend;        // transfer char to transmitter
 }
 
 //function to send a string over the serial interface
 void sendStringSerial4(char *string){
 	//Hint: look at how you did this for the LCD lab 
-    while(*string != 0){  //  strings in C must end with a NULL byte 
-		sendCharSerial4(*string++);} 	//Send out the current byte pointed to and increment the pointer
+    while(*string != 0){                // strings in C must end with a NULL byte 
+		sendCharSerial4(*string++);} 	// Send out the current byte pointed to and increment the pointer
 }
