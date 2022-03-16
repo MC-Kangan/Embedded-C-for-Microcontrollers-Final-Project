@@ -30,7 +30,7 @@ timers.c | Contains functions to record the time
 
 Distance measuring 
 
-[Relevant files ] 
+![main function logic](gifs/Main_Funciton_General.png)
 
 The distance-measuring function allows the buggy to stop moving when detecting the presence of a colored card. 
 When a card is detected, the function will set the stop_signal to 1, which will trigger the color detection function 
