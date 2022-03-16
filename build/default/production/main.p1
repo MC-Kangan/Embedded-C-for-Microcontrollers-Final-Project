@@ -62,9 +62,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 [s S2019 ]
 [n S2019 DC_motor ]
 [v _detect_wall `(uc ~T0 @X0 0 ef3`*S2019`*S2019`ui ]
-"74
-[; ;./color.h: 74: void color_predict(unsigned char color);
-[v _color_predict `(v ~T0 @X0 0 ef1`uc ]
 "16 ./movement.h
 [; ;./movement.h: 16: void goback(struct DC_motor *mL, struct DC_motor *mR);
 [v _goback `(v ~T0 @X0 0 ef2`*S2020`*S2020 ]
@@ -2082,8 +2079,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 0 `i `ui
 ]
 "7
-[; ;./movement.h: 7: unsigned int memory[20];
-[v _memory `ui ~T0 @X0 -> 20 `i e ]
+[; ;./movement.h: 7: unsigned int memory[50];
+[v _memory `ui ~T0 @X0 -> 50 `i e ]
 "8
 [; ;./movement.h: 8: unsigned char array_index = 0;
 [v _array_index `uc ~T0 @X0 1 e ]
@@ -2171,10 +2168,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 2024 ]
 {
 "54
-[; ;main.c: 54:   if (0 == 1){test_function(2, &rgb, &white, &motorL, &motorR);}
+[; ;main.c: 54:   if (0 == 1){test_function(5, &rgb, &white, &motorL, &motorR);}
 [e $ ! == -> 0 `i -> 1 `i 2026  ]
 {
-[e ( _test_function (4 , , , , -> -> 2 `i `uc &U _rgb &U _white &U _motorL &U _motorR ]
+[e ( _test_function (4 , , , , -> -> 5 `i `uc &U _rgb &U _white &U _motorL &U _motorR ]
 }
 [e :U 2026 ]
 "55
@@ -2206,36 +2203,33 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;main.c: 58:             while (stop_signal == 0){
 [e $ == -> _stop_signal `i -> 0 `i 2029  ]
 [e :U 2030 ]
-"62
-[; ;main.c: 62:             T0CON0bits.T0EN=0;
-[e = . . _T0CON0bits 0 4 -> -> 0 `i `uc ]
 "63
-[; ;main.c: 63:             stop_time = centisecond;
-[e = _stop_time _centisecond ]
+[; ;main.c: 63:             T0CON0bits.T0EN=0;
+[e = . . _T0CON0bits 0 4 -> -> 0 `i `uc ]
 "64
-[; ;main.c: 64:             if ((stop_time-start_time)>10){
+[; ;main.c: 64:             stop_time = centisecond;
+[e = _stop_time _centisecond ]
+"65
+[; ;main.c: 65:             if ((stop_time-start_time)>10){
 [e $ ! > - _stop_time _start_time -> -> 10 `i `ui 2031  ]
 {
-"65
-[; ;main.c: 65:                 memory[array_index] = (stop_time-start_time-3);
-[e = *U + &U _memory * -> _array_index `ux -> -> # *U &U _memory `ui `ux - - _stop_time _start_time -> -> 3 `i `ui ]
 "66
-[; ;main.c: 66:                 array_index++;
-[e ++ _array_index -> -> 1 `i `uc ]
+[; ;main.c: 66:                 memory[array_index] = (stop_time-start_time-3);
+[e = *U + &U _memory * -> _array_index `ux -> -> # *U &U _memory `ui `ux - - _stop_time _start_time -> -> 3 `i `ui ]
 "67
-[; ;main.c: 67:             }
+[; ;main.c: 67:                 array_index++;
+[e ++ _array_index -> -> 1 `i `uc ]
+"68
+[; ;main.c: 68:             }
 }
 [e $U 2032  ]
-"68
-[; ;main.c: 68:             else{
+"69
+[; ;main.c: 69:             else{
 [e :U 2031 ]
 {
-"69
-[; ;main.c: 69:                 accident++;
-[e ++ _accident -> -> 1 `i `uc ]
 "70
-[; ;main.c: 70:                 color_predict(accident);
-[e ( _color_predict (1 _accident ]
+[; ;main.c: 70:                 accident++;
+[e ++ _accident -> -> 1 `i `uc ]
 "71
 [; ;main.c: 71:                 if (accident >= 5){
 [e $ ! >= -> _accident `i -> 5 `i 2033  ]

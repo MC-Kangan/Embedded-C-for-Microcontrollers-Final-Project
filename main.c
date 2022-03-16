@@ -47,40 +47,39 @@ void main(void){
     unsigned int stop_time = 0;
 
     if (TEST == 0){
-        amb_light = setup(&white, &amb, &motorL, &motorR);
+        amb_light = setup(&white, &amb, &motorL, &motorR);  // setup function, including calibration white card and ambient light calibration, more detail in test_and_calibration.c
     }
       
     while(1){
-		if (TEST == 1){test_function(2, &rgb, &white, &motorL, &motorR);}
-        if (TEST == 0){ 
-            T0CON0bits.T0EN=1;	//start the timer (energy saving for the timer to count only when buggy is going straight)
-            start_time = centisecond;
-            while (stop_signal == 0){
-                fullSpeedAhead(&motorL, &motorR);
-                stop_signal = detect_wall(&motorL, &motorR, amb_light);
-            }            
-            T0CON0bits.T0EN=0;  //stop the timer (energy saving for the timer to count only when buggy is going straight)
-            stop_time = centisecond;
-            if ((stop_time-start_time)>10){
-                memory[array_index] = (stop_time-start_time-3);
-                array_index++;
+		if (TEST == 1){test_function(5, &rgb, &white, &motorL, &motorR);}  // Test mode, call test function
+        if (TEST == 0){                                                    // Normal mode
+            T0CON0bits.T0EN=1;                          //start the timer (energy saving for the timer to count only when buggy is going straight)
+            start_time = centisecond;                   //record the start time
+            while (stop_signal == 0){                   //while the buggy doesn't detect the wall, stop signal == 0
+                fullSpeedAhead(&motorL, &motorR);       //buggy will keep moving forward
+                stop_signal = detect_wall(&motorL, &motorR, amb_light);     //if the buggy detects the wall, stop signal == 1 and the buggy will stop moving(Line 75 & 76)
             }
-            else{
-                accident++;
-                color_predict(accident);
-                if (accident >= 5){
-                    goback(&motorL, &motorR);
-                    accident = 0;
+            // before stop the buggy, record the forward moving duration into memory first     
+            T0CON0bits.T0EN=0;                          //stop the timer (energy saving for the timer to count only when buggy is going straight)
+            stop_time = centisecond;                    //record the stop time
+            if ((stop_time-start_time)>10){             //only record the forward moving duration when it is greater than 1 second
+                memory[array_index] = (stop_time-start_time-3);             //record the forward moving duration in memory
+                array_index++;                                              // increase array index position by 1 for next recording
+            }
+            else{                                       //if the forward moving duration is less than 1 second
+                accident++;                             //it means the buggy runs into an accident
+                if (accident >= 5){                     //if the accidents happen more than 5 times, the buggy is identified as getting lost
+                    goback(&motorL, &motorR);           //ask the buggy to go back to the starting point
+                    accident = 0;                       //clear the number of accidents
                 }
             }                   
-            stop(&motorL, &motorR);
+            stop(&motorL, &motorR);                     //stop the buggy for 1.5 seconds. 500ms builtin and extra 1000ms
             __delay_ms(1000);
-            short_burst(&motorL, &motorR);
-            color = detect_color(&rgb, &white);
-            color = verify_color(color, &rgb, &white);
-            if (color!= 0){turning_action(color, &motorL, &motorR); color = 0;}
-            stop_signal = 0;
+            short_burst(&motorL, &motorR);              //the buggy will short burst to the wall and detect the color
+            color = detect_color(&rgb, &white);         //detect the color
+            color = verify_color(color, &rgb, &white);  //verify the color
+            if (color!= 0){turning_action(color, &motorL, &motorR); color = 0;}     //if color is not 0 (black), call the turning action function
+            stop_signal = 0;                            //reset the stop signal as 0
         }
     }
 }
-

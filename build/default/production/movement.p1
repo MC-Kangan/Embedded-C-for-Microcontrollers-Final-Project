@@ -2042,8 +2042,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 0 `i `ui
 ]
 "7
-[; ;./movement.h: 7: unsigned int memory[20];
-[v _memory `ui ~T0 @X0 -> 20 `i e ]
+[; ;./movement.h: 7: unsigned int memory[50];
+[v _memory `ui ~T0 @X0 -> 50 `i e ]
 "8
 [; ;./movement.h: 8: unsigned char array_index = 0;
 [v _array_index `uc ~T0 @X0 1 e ]

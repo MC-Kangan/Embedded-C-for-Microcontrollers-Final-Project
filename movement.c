@@ -66,24 +66,24 @@ void goback(struct DC_motor *mL, struct DC_motor *mR)
 {   fullSpeedBack(mL,mR,1);     // Reverse moving for a small distance to leave space for turning
     turn45(mL,mR,4,1);          // Turn 180 for a small distance to leave space for turning
     fullSpeedBack(mL,mR,2);     // Reverse moving for a medium distance so the buggy can auto calibrate the position. 
-    array_index--;              // Reduce the array index by 1 for reading the memory data later.
-    while(array_index >= 0){
-        fullSpeedAhead(mL,mR);
-        for (unsigned int i=0; i<memory[array_index]; i++) {__delay_ms(100);}
-        stop(mL,mR);
-        if (array_index == 0){break;}   
-        array_index--;                  // Reduce the array index by 1 for reading the memory data later.
-        if (memory[array_index] == 1){turn45(mL,mR,2,1);fullSpeedBack(mL,mR,2);array_index--;}
-        else if (memory[array_index] == 2){turn45(mL,mR,2,2);fullSpeedBack(mL,mR,2);array_index--;}
-        else if (memory[array_index] == 3){turn45(mL,mR,4,2);fullSpeedBack(mL,mR,2);array_index--;}
-        else if (memory[array_index] == 4){turn45(mL,mR,2,1);fullSpeedBack(mL,mR,3);array_index--;}
-        else if (memory[array_index] == 5){turn45(mL,mR,2,2);fullSpeedBack(mL,mR,3);array_index--;}
-        else if (memory[array_index] == 6){turn45(mL,mR,3,1);fullSpeedBack(mL,mR,2);array_index--;}
-        else if (memory[array_index] == 7){turn45(mL,mR,3,2);fullSpeedBack(mL,mR,2);array_index--;}
+    array_index--;              // Reduce the array index by 1 for reading the last term in memory[array_index] .
+    while(array_index >= 0){            // keep the while loop until there
+        fullSpeedAhead(mL,mR);          // the last term is always a distance, therefore moving straight for that recorded duration
+        for (unsigned int i=0; i<memory[array_index]; i++) {__delay_ms(100);}   // delay = straight movement duration
+        stop(mL,mR);                    
+        if (array_index == 0){break;}   // if the array_index == 0, it means all terms in memory has been acted.break the while loop
+        array_index--;                  // Reduce the array index by 1 to back read the next term in memory data 
+        if (memory[array_index] == 1){turn45(mL,mR,2,1);fullSpeedBack(mL,mR,2);array_index--;}     // if it's 1(red) in memory, Turn Left 90 degrees, Reverse a medium distance, Reduce the array index by 1 to back read the next term in memory data 
+        else if (memory[array_index] == 2){turn45(mL,mR,2,2);fullSpeedBack(mL,mR,2);array_index--;}// if it's 2(green) in memory, Turn Right 90 degrees, Reverse a medium distance, Reduce the array index by 1 to back read the next term in memory data 
+        else if (memory[array_index] == 3){turn45(mL,mR,4,2);fullSpeedBack(mL,mR,2);array_index--;}// if it's 3(blue) in memory, Turn 180 degrees, Reverse a medium distance, Reduce the array index by 1 to back read the next term in memory data 
+        else if (memory[array_index] == 4){turn45(mL,mR,2,1);fullSpeedBack(mL,mR,3);array_index--;}// if it's 4(yellow) in memory, Turn Left 90 degrees, Reverse a Square(long distance), Reduce the array index by 1 to back read the next term in memory data   
+        else if (memory[array_index] == 5){turn45(mL,mR,2,2);fullSpeedBack(mL,mR,3);array_index--;}// if it's 5(pink) in memory, Turn Right 90 degrees, Reverse a Square, Reduce the array index by 1 to back read the next term in memory data 
+        else if (memory[array_index] == 6){turn45(mL,mR,3,1);fullSpeedBack(mL,mR,2);array_index--;}// if it's 6(orange) in memory, Turn Left 135 degrees  Reverse a medium distance, Reduce the array index by 1 to back read the next term in memory data  
+        else if (memory[array_index] == 7){turn45(mL,mR,3,2);fullSpeedBack(mL,mR,2);array_index--;}// if it's 7(light blue) in memory, Turn Right 135 degrees Reverse a medium distance, Reduce the array index by 1 to back read the next term in memory data  
     }
     LATDbits.LATD7 = 1;     // turn on RD7 to indicate users to press RF2
     while(PORTFbits.RF2){   // wait RF2 to be pressed, otherwise the buggy will stop forever
         stop(mL,mR); 
-        if (!PORTFbits.RF2){LATDbits.LATD7 = 0;break;}      // if RF2 is pressed, turn of RD7                                                    
-    }                                                       // break the while loop and buggy will full-speed ahead
+        if (!PORTFbits.RF2){LATDbits.LATD7 = 0;break;}      // if RF2 is pressed, turn off RD7                                                    
+    }                                                       // break the while loop, buggy move ahead and detect color as function suggested in main.c
 }

@@ -2600,15 +2600,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 "132
 [; ;test_and_calibration.c: 132:         LATHbits.LATH3 = 1;
 [e = . . _LATHbits 0 3 -> -> 1 `i `uc ]
-"134
-[; ;test_and_calibration.c: 134:         if (!PORTFbits.RF2) {
+"133
+[; ;test_and_calibration.c: 133:         if (!PORTFbits.RF2) {
 [e $ ! ! != -> . . _PORTFbits 0 2 `i -> 0 `i 2071  ]
 {
-"135
-[; ;test_and_calibration.c: 135:             _delay((unsigned long)((300)*(64000000/4000.0)));
+"134
+[; ;test_and_calibration.c: 134:             _delay((unsigned long)((300)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 300 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"136
-[; ;test_and_calibration.c: 136:             if (!PORTFbits.RF2){LATDbits.LATD7 = 0; _delay((unsigned long)((300)*(64000000/4000.0))); SENSITIVITY += 5; }
+"135
+[; ;test_and_calibration.c: 135:             if (!PORTFbits.RF2){LATDbits.LATD7 = 0; _delay((unsigned long)((300)*(64000000/4000.0))); SENSITIVITY += 5; }
 [e $ ! ! != -> . . _PORTFbits 0 2 `i -> 0 `i 2072  ]
 {
 [e = . . _LATDbits 0 7 -> -> 0 `i `uc ]
@@ -2616,33 +2616,33 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e =+ _SENSITIVITY -> -> 5 `i `ui ]
 }
 [e :U 2072 ]
-"137
-[; ;test_and_calibration.c: 137:             if (!PORTFbits.RF3){break;}
+"136
+[; ;test_and_calibration.c: 136:             if (!PORTFbits.RF3){break;}
 [e $ ! ! != -> . . _PORTFbits 0 3 `i -> 0 `i 2073  ]
 {
 [e $U 2070  ]
 }
 [e :U 2073 ]
-"138
-[; ;test_and_calibration.c: 138:         }
+"137
+[; ;test_and_calibration.c: 137:         }
 }
 [e :U 2071 ]
-"139
-[; ;test_and_calibration.c: 139:         if (!PORTFbits.RF3) {
+"138
+[; ;test_and_calibration.c: 138:         if (!PORTFbits.RF3) {
 [e $ ! ! != -> . . _PORTFbits 0 3 `i -> 0 `i 2074  ]
 {
-"140
-[; ;test_and_calibration.c: 140:             _delay((unsigned long)((300)*(64000000/4000.0)));
+"139
+[; ;test_and_calibration.c: 139:             _delay((unsigned long)((300)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 300 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"141
-[; ;test_and_calibration.c: 141:             if (!PORTFbits.RF2){break;}
+"140
+[; ;test_and_calibration.c: 140:             if (!PORTFbits.RF2){break;}
 [e $ ! ! != -> . . _PORTFbits 0 2 `i -> 0 `i 2075  ]
 {
 [e $U 2070  ]
 }
 [e :U 2075 ]
-"142
-[; ;test_and_calibration.c: 142:             if (!PORTFbits.RF3){LATHbits.LATH3 = 0; _delay((unsigned long)((300)*(64000000/4000.0))); SENSITIVITY -= 5; }
+"141
+[; ;test_and_calibration.c: 141:             if (!PORTFbits.RF3){LATHbits.LATH3 = 0; _delay((unsigned long)((300)*(64000000/4000.0))); SENSITIVITY -= 5; }
 [e $ ! ! != -> . . _PORTFbits 0 3 `i -> 0 `i 2076  ]
 {
 [e = . . _LATHbits 0 3 -> -> 0 `i `uc ]
@@ -2650,26 +2650,26 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e =- _SENSITIVITY -> -> 5 `i `ui ]
 }
 [e :U 2076 ]
-"143
-[; ;test_and_calibration.c: 143:             }
+"142
+[; ;test_and_calibration.c: 142:             }
 }
 [e :U 2074 ]
-"144
-[; ;test_and_calibration.c: 144:     }
+"143
+[; ;test_and_calibration.c: 143:     }
 }
 [e :U 2068 ]
 [e $U 2069  ]
 [e :U 2070 ]
-"145
-[; ;test_and_calibration.c: 145:     LATDbits.LATD7 = 0;
+"144
+[; ;test_and_calibration.c: 144:     LATDbits.LATD7 = 0;
 [e = . . _LATDbits 0 7 -> -> 0 `i `uc ]
-"146
-[; ;test_and_calibration.c: 146:     LATHbits.LATH3 = 0;
+"145
+[; ;test_and_calibration.c: 145:     LATHbits.LATH3 = 0;
 [e = . . _LATHbits 0 3 -> -> 0 `i `uc ]
-"147
-[; ;test_and_calibration.c: 147:     test_action(mL, mR);
+"146
+[; ;test_and_calibration.c: 146:     test_action(mL, mR);
 [e ( _test_action (2 , _mL _mR ]
-"148
-[; ;test_and_calibration.c: 148: }
+"147
+[; ;test_and_calibration.c: 147: }
 [e :UE 2067 ]
 }

@@ -63,18 +63,18 @@ void color_data_collection(struct color_rgb *m)
 void test_action(struct DC_motor *mL, struct DC_motor *mR)
 {
     stop(mL,mR);
-    __delay_ms(2000);
+    __delay_ms(2000);               //stop for 2.5 seconds(500ms builtin, 2000ms delay) for the ease of placing buggy into correct position
     turn45(mL,mR,8,1);              //turn left 45 degrees for 8 times
     stop(mL,mR);
-    __delay_ms(2000);
+    __delay_ms(2000);               //stop for 2.5 seconds(500ms builtin, 2000ms delay) for the ease of placing buggy into correct position
     turn45(mL,mR,8,2);              //turn right 45 degrees for 8 times
-    fullSpeedAhead(mL,mR);          //full speed ahead to test whether the buggy go straight properly
+    fullSpeedAhead(mL,mR);          //full speed ahead for 3 seconds to test whether the buggy go straight properly
     __delay_ms(3000);
     stop(mL,mR);
     turn45(mL,mR,4,1);              //turn left 180 degrees
-    fullSpeedAhead(mL,mR);          //full speed ahead to test whether the buggy go straight properly
+    fullSpeedAhead(mL,mR);          //full speed ahead for 3 seconds to test whether the buggy go straight properly
     __delay_ms(3000);
-    stop(mL,mR);
+    stop(mL,mR);                    // stop
 }
 
 
@@ -127,23 +127,22 @@ void test_function(unsigned char test_code, struct color_rgb *m, struct white_ca
 
 void calibration_motor(struct DC_motor *mL, struct DC_motor *mR)
 { 
-    while (1) {  // press both to exit and start buggy
+    while (1) {                 // turn on RD7 and RH3 on clicker board to indicate the motor calibration function is on
         LATDbits.LATD7 = 1;
-        LATHbits.LATH3 = 1;
-        
-        if (!PORTFbits.RF2) {
+        LATHbits.LATH3 = 1;       
+        if (!PORTFbits.RF2) {   // if the user presses RF2
             __delay_ms(300);
-            if (!PORTFbits.RF2){LATDbits.LATD7 = 0; __delay_ms(300); SENSITIVITY += 5; }
-            if (!PORTFbits.RF3){break;}    // end the infinite while loop if RF3 is also pressed
+            if (!PORTFbits.RF2){LATDbits.LATD7 = 0; __delay_ms(300); SENSITIVITY += 5; }    // add sensitivity by 5 for each 300ms if the user is holding RF2 button. The light will toggle in this case to show the user how many times the sensitivity if added
+            if (!PORTFbits.RF3){break;}                                                     // end the infinite while loop if RF3 is also pressed(both button are pressed)
         }
-        if (!PORTFbits.RF3) {
+        if (!PORTFbits.RF3) {   // if the user presses RF3
             __delay_ms(300);
-            if (!PORTFbits.RF2){break;}
-            if (!PORTFbits.RF3){LATHbits.LATH3 = 0; __delay_ms(300); SENSITIVITY -= 5; }    // end the infinite while loop if RF3 is also pressed
+            if (!PORTFbits.RF2){break;}                                                     // end the infinite while loop if RF2 is also pressed(both button are pressed)
+            if (!PORTFbits.RF3){LATHbits.LATH3 = 0; __delay_ms(300); SENSITIVITY -= 5; }    // reduce sensitivity by 5 for each 300ms if the user is holding RF2 button. The light will toggle in this case to show the user how many times the sensitivity if added
             }
     }
     LATDbits.LATD7 = 0;
     LATHbits.LATH3 = 0;
-    test_action(mL, mR);
+    test_action(mL, mR);      // turn off RD7 and RH3 on clicker board, and start test action function to see whether the motor moves properly.
 }
 

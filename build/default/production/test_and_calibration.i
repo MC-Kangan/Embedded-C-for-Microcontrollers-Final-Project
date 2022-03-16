@@ -24479,7 +24479,6 @@ void calibration_motor(struct DC_motor *mL, struct DC_motor *mR)
     while (1) {
         LATDbits.LATD7 = 1;
         LATHbits.LATH3 = 1;
-
         if (!PORTFbits.RF2) {
             _delay((unsigned long)((300)*(64000000/4000.0)));
             if (!PORTFbits.RF2){LATDbits.LATD7 = 0; _delay((unsigned long)((300)*(64000000/4000.0))); SENSITIVITY += 5; }

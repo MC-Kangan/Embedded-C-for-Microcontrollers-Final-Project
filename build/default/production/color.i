@@ -24924,7 +24924,7 @@ typedef struct {
 
 
 unsigned int centisecond = 0;
-unsigned int memory[20];
+unsigned int memory[50];
 unsigned char array_index = 0;
 
 

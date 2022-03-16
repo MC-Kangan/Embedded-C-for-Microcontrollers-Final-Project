@@ -12,15 +12,15 @@
 
 Document | Application 
 ---------|--------- 
-Main.c | Contains the basic logic of the buggy motion  
-Color.c | Contains functions to initialize Color Click, control the LED lights and detect colors  
-Dc_motor.c | Contains functions to control the basic motion of the motor/ Buggy, e.g., moving forward and backward, and turning 
-I2c.c | Contain functions to communicate between microcontrollers and peripheral integrated circuits 
-Interrupt.c | Contains functions to initialize interrupts 
-Movement.c | Contains functions to control the complex motion of the Buggy, allowing the Buggy to move correctly when detecting color 
-Serial.c | Contains functions to send and receive data from PC 
-Test_and_calibration.c | Contains functions to calibrate the color sensing and motor and tests 
-Timers.c | Contains functions to record the time 
+main.c | Contains the basic logic of the buggy motion  
+color.c | Contains functions to initialize Color Click, control the LED lights and detect colors  
+dc_motor.c | Contains functions to control the basic motion of the motor/ Buggy, e.g., moving forward and backward, and turning 
+i2c.c | Contain functions to communicate between microcontrollers and peripheral integrated circuits 
+interrupt.c | Contains functions to initialize interrupts 
+movement.c | Contains functions to control the complex motion of the Buggy, allowing the Buggy to move correctly when detecting color 
+serial.c | Contains functions to send and receive data from PC 
+test_and_calibration.c | Contains functions to calibrate the color sensing and motor and tests 
+timers.c | Contains functions to record the time 
 
  
 

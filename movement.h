@@ -3,8 +3,8 @@
 
 #include <xc.h>
 
-unsigned int centisecond = 0; //1 centisecond = 100ms
-unsigned int memory[20];
+unsigned int centisecond = 0;   //1 centisecond = 100ms
+unsigned int memory[50];        //the array for memory. Recording straight moving durations and turning actions
 unsigned char array_index = 0;
 
 //function prototypes

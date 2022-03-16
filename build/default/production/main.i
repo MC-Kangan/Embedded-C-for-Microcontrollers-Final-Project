@@ -24533,7 +24533,7 @@ void fullSpeedBack(struct DC_motor *mL, struct DC_motor *mR, unsigned char instr
 
 
 unsigned int centisecond = 0;
-unsigned int memory[20];
+unsigned int memory[50];
 unsigned char array_index = 0;
 
 
@@ -24633,7 +24633,7 @@ void main(void){
     }
 
     while(1){
-  if (0 == 1){test_function(2, &rgb, &white, &motorL, &motorR);}
+  if (0 == 1){test_function(5, &rgb, &white, &motorL, &motorR);}
         if (0 == 0){
             T0CON0bits.T0EN=1;
             start_time = centisecond;
@@ -24641,6 +24641,7 @@ void main(void){
                 fullSpeedAhead(&motorL, &motorR);
                 stop_signal = detect_wall(&motorL, &motorR, amb_light);
             }
+
             T0CON0bits.T0EN=0;
             stop_time = centisecond;
             if ((stop_time-start_time)>10){
@@ -24649,7 +24650,6 @@ void main(void){
             }
             else{
                 accident++;
-                color_predict(accident);
                 if (accident >= 5){
                     goback(&motorL, &motorR);
                     accident = 0;
