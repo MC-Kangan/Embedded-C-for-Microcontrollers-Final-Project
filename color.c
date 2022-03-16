@@ -10,8 +10,27 @@
 #include "movement.h"
 #include "test_and_calibration.h"
 
-void buggylight_init(void) //initiations for buggy lights
-{
+void pin_init(void)
+{   TRISFbits.TRISF2=1; //set TRIS value for pin (input)
+    ANSELFbits.ANSELF2=0; //turn off analogue input on pin     
+    TRISFbits.TRISF3=1; //set TRIS value for pin (input)
+    ANSELFbits.ANSELF3=0; //turn off analogue input on pin  
+    
+    TRISGbits.TRISG1 = 0; //output on RG1 (LED_R)
+    TRISFbits.TRISF7 = 0; //output on RF7 (LED_G)
+    TRISAbits.TRISA4 = 0; //output on RA4 (LED_B)
+    
+    LATGbits.LATG1 = 1; // output LED_R set on (power)
+    LATFbits.LATF7 = 1; // output LED_G set on (power)
+    LATAbits.LATA4 = 1; // output LED_B set on (power)
+    
+    // pins connected to buttons
+    TRISDbits.TRISD7 = 0;
+    LATDbits.LATD7 = 0;
+    TRISHbits.TRISH3 = 0;
+    LATHbits.LATH3 = 0;
+    
+    // Buggy light initiation
     TRISHbits.TRISH1=0; // Head lamps
     TRISDbits.TRISD4=0; // Brake
     TRISDbits.TRISD3=0; // Main beam 
@@ -23,6 +42,7 @@ void buggylight_init(void) //initiations for buggy lights
     LATDbits.LATD3 = 0; // front white (full)
     LATFbits.LATF0 = 0; // TURN-L light
     LATHbits.LATH0 = 0; // TURN-R light
+    
 }
 
 
@@ -197,39 +217,7 @@ void LED_G(void)//struct color_rgb *m)
     //read_color(m);
 }
 
-void color_data_collection(struct color_rgb *m){
-    
-    int i = 0; int j = 0; int k = 0; int x = 0;
-    for (i = 0; i < 1; ++i){
-        LED_C();
-        __delay_ms(100);
-        read_color(m);
-        color_display(m);
-    }  
-    //color_predict(00000);
-    for (j = 0; j < 1; ++j){
-        LED_R();
-        __delay_ms(100);
-        read_color(m);
-        color_display(m);
-    }
-    //color_predict(00000);
-    for (k = 0; k < 1; ++k){
-        LED_G();
-        __delay_ms(100);
-        read_color(m);
-        color_display(m);
-    }
-    //color_predict(00000);
-    for (x = 0; x < 1; ++x){
-        LED_B();
-        __delay_ms(100);
-        read_color(m);
-        color_display(m);
-    }
-    color_predict(1);
-    LED_C();
-}
+
 
 void color_display(struct color_rgb *m)
 {
@@ -238,14 +226,6 @@ void color_display(struct color_rgb *m)
     sendStringSerial4(buf);
 }
 
-void check_color_reading(struct color_rgb *m, struct white_card *w)
-{
-    char buf[100];
-    
-    int result = lround((float)(m->R)/(w->RR)*100);
-    //sprintf(buf,"\t%d\t%d\t%d\r\n", m->R, w->RR, result);
-    //sendStringSerial4(buf);
-}
 
 void color_predict(unsigned char color)
 {

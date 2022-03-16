@@ -4,6 +4,7 @@
 #include <stdio.h>
 #include "movement.h"
 #include "test_and_calibration.h"
+
 // function initialise T2 and PWM for DC motor control
 struct DC_motor motorL, motorR;
 
@@ -78,7 +79,7 @@ void setMotorPWM(struct DC_motor *m)
 //function to stop the robot gradually 
 void stop(struct DC_motor *mL, struct DC_motor *mR)
 {
-    while (mL->power >0 | mR->power >0){       // when either of the powers for left and right motors are larger than 0
+    while (mL->power >0 || mR->power >0){       // when either of the powers for left and right motors are larger than 0
         if (mL->power !=0){mL->power -= 2;}    // reduce the left motor power by 2 for each time (this case the power of motor doesn't drop to 0 immediately)
         if (mR->power !=0){mR->power -= 2;}    // reduce the right motor power by 2 for each time (this case the power of motor doesn't drop to 0 immediately)
         setMotorPWM(mL);                       // set the power to motor
@@ -114,7 +115,7 @@ void turn45(struct DC_motor *mL, struct DC_motor *mR, unsigned char turn_time, u
                 setMotorPWM(mR);                   // set the power to motor
                 __delay_ms(10);
             }
-            for(unsigned int i = 0; i <SENSITIVITY + 10; i++){__delay_ms(1);}   // delay time for turning: control how far the buggy will turn right. see sensitivity value in dc_motor.h
+            for(unsigned int i = 0; i <SENSITIVITY; i++){__delay_ms(1);}   // delay time for turning: control how far the buggy will turn right. see sensitivity value in dc_motor.h
             stop(mL,mR);                           // stop the movement of the buggy for 0.5 second after turning
         }
     }
@@ -125,7 +126,7 @@ void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR)
 {
     mL->direction=1;                                                    // set forward direction
     mR->direction=1;                                                    // set forward direction
-    while (mL->power<FORWARD_POWER_L | mR->power<FORWARD_POWER_R){      // when the powers for left and right motors are smaller than the setting value(see dc_motor.h)
+    while (mL->power<FORWARD_POWER_L || mR->power<FORWARD_POWER_R){      // when the powers for left and right motors are smaller than the setting value(see dc_motor.h)
         if (mL->power<FORWARD_POWER_L) {mL->power += 2;}                // increase the left motor power by 2 for each time (this case the power of motor doesn't push to the setting value immediately)
         if (mR->power<FORWARD_POWER_R) {mR->power += 2;}                // increase the right motor power by 10 for each time (this case the power of motor doesn't push to the setting value immediately)                                             
         setMotorPWM(mL);                                                // set the power to motor
@@ -134,27 +135,22 @@ void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR)
     }
 }
 
-void fullSpeedAhead_test(struct DC_motor *mL, struct DC_motor *mR)
-{   // a function for testing, just easier to call. Don't have to write delay and stop all the time in the testing script
-    fullSpeedAhead(mL,mR);  // full-speed ahead for a particular time
-    __delay_ms(3000);       // full-speed ahead for 3 seconds
-    stop(mL,mR);            // stop the movement of the buggy for 0.5 second after full-speed ahead
-}
+
 
 void fullSpeedBack(struct DC_motor *mL, struct DC_motor *mR, unsigned char instruction)
 {
     mL->direction=0;                                                // set backward direction
     mR->direction=0;                                                // set backward direction
-    while (mL->power<BACKWARD_POWER | mR->power<BACKWARD_POWER){    // when the powers for left and right motors are smaller than the setting value(see dc_motor.h)
-        mL->power += 10;                                            // increase the left motor power by 10 for each time (this case the power of motor doesn't push to the setting value immediately)
-        mR->power += 10;                                            // increase the right motor power by 10 for each time (this case the power of motor doesn't push to the setting value immediately)
+    while (mL->power<BACKWARD_POWER || mR->power<BACKWARD_POWER){    // when the powers for left and right motors are smaller than the setting value(see dc_motor.h)
+        if (mL->power<BACKWARD_POWER) {mL->power += 2;}                                            // increase the left motor power by 10 for each time (this case the power of motor doesn't push to the setting value immediately)
+        if (mR->power<BACKWARD_POWER) {mR->power += 2;}                                            // increase the right motor power by 10 for each time (this case the power of motor doesn't push to the setting value immediately)
         setMotorPWM(mL);                                            // set the power to motor
         setMotorPWM(mR);                                            // set the power to motor
-        __delay_ms(10);
+        __delay_ms(5);
     }
     // full-speed back for a particular time 
     if (instruction == 1) {__delay_ms(600);}        // short delay, short reverse
-    if (instruction == 2) {__delay_ms(800);}        // medium delay, medium reverse
-    if (instruction == 3) {__delay_ms(1400);}       // large delay, large reverse
+    if (instruction == 2) {__delay_ms(1000);}        // medium delay, medium reverse
+    if (instruction == 3) {__delay_ms(1900);}       // large delay, large reverse
     stop(mL,mR);                                    // stop the movement of the buggy for 0.5 second after reverse
 }

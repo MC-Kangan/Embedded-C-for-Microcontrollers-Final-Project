@@ -24405,10 +24405,8 @@ struct white_card {
 
 };
 
-
-void buggylight_init(void);
+void pin_init(void);
 void toggle_light(unsigned char lightnumber, unsigned char toggletime);
-
 
 
 
@@ -24451,17 +24449,13 @@ void color_predict(unsigned char color);
 unsigned char detect_color(struct color_rgb *m, struct white_card *w);
 unsigned char verify_color(unsigned char color,struct color_rgb *m, struct white_card *w);
 unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned int upper);
-
-void check_color_reading(struct color_rgb *, struct white_card *w);
-void color_data_collection(struct color_rgb *m);
-
 unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light) ;
 unsigned amb_light_measure(struct color_rgb *amb);
 # 3 "movement.c" 2
 
 # 1 "./dc_motor.h" 1
 # 11 "./dc_motor.h"
-unsigned int SENSITIVITY = 355;
+unsigned int SENSITIVITY = 345;
 
 struct DC_motor {
     char power;
@@ -24479,7 +24473,6 @@ void setMotorPWM(struct DC_motor *m);
 void stop(struct DC_motor *mL, struct DC_motor *mR);
 void turn45(struct DC_motor *mL, struct DC_motor *mR, unsigned char turn_time, unsigned char direction);
 void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
-void fullSpeedAhead_test(struct DC_motor *mL, struct DC_motor *mR);
 void fullSpeedBack(struct DC_motor *mL, struct DC_motor *mR, unsigned char instruction);
 # 4 "movement.c" 2
 
@@ -24509,11 +24502,10 @@ unsigned int memory[20];
 unsigned char array_index = 0;
 
 
-void pin_init(void);
-void setup(unsigned int amb_light, struct white_card *white,struct color_rgb*amb,struct DC_motor *mL, struct DC_motor *mR);
+
 void short_burst(struct DC_motor *mL, struct DC_motor *mR);
-void straight_action(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light, unsigned int start_time, unsigned int stop_time);
-void distance_memory(struct DC_motor *mL, struct DC_motor *mR, unsigned int start_time, unsigned int stop_time);
+unsigned int straight_action(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light, unsigned int start_time, unsigned int stop_time);
+void distance_memory(struct DC_motor *mL, struct DC_motor *mR, unsigned int duration, unsigned char accident);
 void turning_action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR);
 void goback(struct DC_motor *mL, struct DC_motor *mR);
 # 6 "movement.c" 2
@@ -24531,85 +24523,20 @@ void Timer0_init(void);
 
 # 1 "./test_and_calibration.h" 1
 # 10 "./test_and_calibration.h"
-void test_action (struct DC_motor *mL, struct DC_motor *mR);
+unsigned int setup(struct white_card *white,struct color_rgb*amb,struct DC_motor *mL, struct DC_motor *mR);
+void test_action(struct DC_motor *mL, struct DC_motor *mR);
+void color_data_collection(struct color_rgb *m);
 void calibration_motor(struct DC_motor *mL, struct DC_motor *mR);
 void test_function(unsigned char test_code, struct color_rgb *m, struct white_card *w, struct DC_motor *mL, struct DC_motor *mR);
 # 8 "movement.c" 2
 
 
-void pin_init(void)
-{ TRISFbits.TRISF2=1;
-    ANSELFbits.ANSELF2=0;
-    TRISFbits.TRISF3=1;
-    ANSELFbits.ANSELF3=0;
-
-    TRISGbits.TRISG1 = 0;
-    TRISFbits.TRISF7 = 0;
-    TRISAbits.TRISA4 = 0;
-    LATGbits.LATG1 = 1;
-    LATFbits.LATF7 = 1;
-    LATAbits.LATA4 = 1;
-
-
-    TRISDbits.TRISD7 = 0;
-    LATDbits.LATD7 = 0;
-    TRISHbits.TRISH3 = 0;
-    LATHbits.LATH3 = 0;
-}
-void setup(unsigned int amb_light, struct white_card *white,struct color_rgb*amb,struct DC_motor *mL, struct DC_motor *mR)
-{
-    LED_OFF();
-    LATDbits.LATD7 = 1;
-    LATHbits.LATH3 = 1;
-    while (PORTFbits.RF2);
-    if (!PORTFbits.RF2){calibrate_white(white); LATDbits.LATD7 = 0; _delay((unsigned long)((500)*(64000000/4000.0)));}
-    while (PORTFbits.RF3);
-    if (!PORTFbits.RF3){amb_light = amb_light_measure(amb); LATHbits.LATH3 = 0; _delay((unsigned long)((500)*(64000000/4000.0)));}
-    LATDbits.LATD7 = 1;
-    if (!PORTFbits.RF3){calibration_motor(mL,mR);}
-    while (PORTFbits.RF2);
-    if (!PORTFbits.RF2){LATDbits.LATD7 = 0;_delay((unsigned long)((500)*(64000000/4000.0)));}
-}
 
 void short_burst(struct DC_motor *mL, struct DC_motor *mR)
 {
     fullSpeedAhead(mL,mR);
-    _delay((unsigned long)((500)*(64000000/4000.0)));
+    _delay((unsigned long)((400)*(64000000/4000.0)));
     stop(mL,mR);
-}
-
-void straight_action(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light, unsigned int start_time, unsigned int stop_time)
-{
-    unsigned char stop_signal = 0;
-
-
-    T0CON0bits.T0EN=1;
-    start_time = centisecond;
-    while (stop_signal == 0){
-        fullSpeedAhead(mL,mR);
-        stop_signal = distance_measure(mL,mR,amb_light);
-    }
-    T0CON0bits.T0EN=0;
-    stop_time = centisecond;
-    stop(mL,mR);
-    _delay((unsigned long)((1000)*(64000000/4000.0)));
-}
-
-void distance_memory(struct DC_motor *mL, struct DC_motor *mR, unsigned int start_time, unsigned int stop_time)
-{
-    unsigned char accident = 0;
-    if ((stop_time-start_time)>10){
-        memory[array_index] = (stop_time-start_time-3);
-        array_index++;
-    }
-    else{
-        accident++;
-        color_predict(accident);
-        if (accident >= 5){
-            goback(mL,mR);
-            accident = 0;
-        }
-    }
 }
 
 void turning_action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR)

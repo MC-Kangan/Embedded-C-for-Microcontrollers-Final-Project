@@ -5,10 +5,10 @@
 
 #define _XTAL_FREQ 64000000
 #define TURNING_POWER 30 // This number needs to be adjusted according to different floor condition
-#define FORWARD_POWER_L 34
+#define FORWARD_POWER_L 30
 #define FORWARD_POWER_R 30
-#define BACKWARD_POWER 40
-unsigned int SENSITIVITY = 355;
+#define BACKWARD_POWER 44
+unsigned int SENSITIVITY = 345;
 
 struct DC_motor { //definition of DC_motor structure
     char power;         //motor power, out of 100
@@ -26,7 +26,6 @@ void setMotorPWM(struct DC_motor *m);
 void stop(struct DC_motor *mL, struct DC_motor *mR);
 void turn45(struct DC_motor *mL, struct DC_motor *mR, unsigned char turn_time, unsigned char direction);
 void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
-void fullSpeedAhead_test(struct DC_motor *mL, struct DC_motor *mR);
 void fullSpeedBack(struct DC_motor *mL, struct DC_motor *mR, unsigned char instruction);
 
 #endif

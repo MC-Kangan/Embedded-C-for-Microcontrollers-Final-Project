@@ -7,80 +7,12 @@
 #include "timers.h"
 #include "test_and_calibration.h"
 
-void pin_init(void)
-{   TRISFbits.TRISF2=1; //set TRIS value for pin (input)
-    ANSELFbits.ANSELF2=0; //turn off analogue input on pin     
-    TRISFbits.TRISF3=1; //set TRIS value for pin (input)
-    ANSELFbits.ANSELF3=0; //turn off analogue input on pin  
-    
-    TRISGbits.TRISG1 = 0; //output on RG1 (LED_R)
-    TRISFbits.TRISF7 = 0; //output on RF7 (LED_G)
-    TRISAbits.TRISA4 = 0; //output on RA4 (LED_B)
-    LATGbits.LATG1 = 1; // output LED_R set on (power)
-    LATFbits.LATF7 = 1; // output LED_G set on (power)
-    LATAbits.LATA4 = 1; // output LED_B set on (power)
-    
-    // pins connected to buttons
-    TRISDbits.TRISD7 = 0;
-    LATDbits.LATD7 = 0;
-    TRISHbits.TRISH3 = 0;
-    LATHbits.LATH3 = 0;
-}
-
-void setup(unsigned int amb_light, struct white_card *white,struct color_rgb*amb,struct DC_motor *mL, struct DC_motor *mR)
-{
-    LED_OFF();
-    LATDbits.LATD7 = 1;
-    LATHbits.LATH3 = 1;
-    while (PORTFbits.RF2);
-    if (!PORTFbits.RF2){calibrate_white(white); LATDbits.LATD7 = 0; __delay_ms(500);}
-    while (PORTFbits.RF3);
-    if (!PORTFbits.RF3){amb_light = amb_light_measure(amb); LATHbits.LATH3 = 0; __delay_ms(500);}
-    LATDbits.LATD7 = 1;
-    if (!PORTFbits.RF3){calibration_motor(mL,mR);} // This line is not working as intended
-    while (PORTFbits.RF2);
-    if (!PORTFbits.RF2){LATDbits.LATD7 = 0;__delay_ms(500);}
-}
 
 void short_burst(struct DC_motor *mL, struct DC_motor *mR)
 {
     fullSpeedAhead(mL,mR);
-    __delay_ms(500);
+    __delay_ms(400);
     stop(mL,mR);
-}
-
-void straight_action(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light, unsigned int start_time, unsigned int stop_time)
-{  
-    unsigned char stop_signal = 0;
-    //read_color(&rgb);
-    //color_display(&rgb);
-    T0CON0bits.T0EN=1;	//start the timer (energy saving for the timer to count only when buggy is going straight)
-    start_time = centisecond;
-    while (stop_signal == 0){
-        fullSpeedAhead(mL,mR);
-        stop_signal = distance_measure(mL,mR,amb_light);
-    }            
-    T0CON0bits.T0EN=0;  //stop the timer (energy saving for the timer to count only when buggy is going straight)
-    stop_time = centisecond;    
-    stop(mL,mR);
-    __delay_ms(1000);
-}
-
-void distance_memory(struct DC_motor *mL, struct DC_motor *mR, unsigned int start_time, unsigned int stop_time)
-{   
-    unsigned char accident = 0; 
-    if ((stop_time-start_time)>10){
-        memory[array_index] = (stop_time-start_time-3);
-        array_index++;
-    }
-    else{
-        accident++;
-        color_predict(accident);
-        if (accident >= 5){
-            goback(mL,mR);
-            accident = 0;
-        }
-    }                   
 }
 
 void turning_action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR)

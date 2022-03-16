@@ -24233,7 +24233,7 @@ unsigned char __t3rd16on(void);
 
 # 1 "./dc_motor.h" 1
 # 11 "./dc_motor.h"
-unsigned int SENSITIVITY = 355;
+unsigned int SENSITIVITY = 345;
 
 struct DC_motor {
     char power;
@@ -24251,7 +24251,6 @@ void setMotorPWM(struct DC_motor *m);
 void stop(struct DC_motor *mL, struct DC_motor *mR);
 void turn45(struct DC_motor *mL, struct DC_motor *mR, unsigned char turn_time, unsigned char direction);
 void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
-void fullSpeedAhead_test(struct DC_motor *mL, struct DC_motor *mR);
 void fullSpeedBack(struct DC_motor *mL, struct DC_motor *mR, unsigned char instruction);
 # 2 "color.c" 2
 
@@ -24298,10 +24297,8 @@ struct white_card {
 
 };
 
-
-void buggylight_init(void);
+void pin_init(void);
 void toggle_light(unsigned char lightnumber, unsigned char toggletime);
-
 
 
 
@@ -24344,10 +24341,6 @@ void color_predict(unsigned char color);
 unsigned char detect_color(struct color_rgb *m, struct white_card *w);
 unsigned char verify_color(unsigned char color,struct color_rgb *m, struct white_card *w);
 unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned int upper);
-
-void check_color_reading(struct color_rgb *, struct white_card *w);
-void color_data_collection(struct color_rgb *m);
-
 unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light) ;
 unsigned amb_light_measure(struct color_rgb *amb);
 # 4 "color.c" 2
@@ -24929,25 +24922,45 @@ unsigned int memory[20];
 unsigned char array_index = 0;
 
 
-void pin_init(void);
-void setup(unsigned int amb_light, struct white_card *white,struct color_rgb*amb,struct DC_motor *mL, struct DC_motor *mR);
+
 void short_burst(struct DC_motor *mL, struct DC_motor *mR);
-void straight_action(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light, unsigned int start_time, unsigned int stop_time);
-void distance_memory(struct DC_motor *mL, struct DC_motor *mR, unsigned int start_time, unsigned int stop_time);
+unsigned int straight_action(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light, unsigned int start_time, unsigned int stop_time);
+void distance_memory(struct DC_motor *mL, struct DC_motor *mR, unsigned int duration, unsigned char accident);
 void turning_action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR);
 void goback(struct DC_motor *mL, struct DC_motor *mR);
 # 10 "color.c" 2
 
 # 1 "./test_and_calibration.h" 1
 # 10 "./test_and_calibration.h"
-void test_action (struct DC_motor *mL, struct DC_motor *mR);
+unsigned int setup(struct white_card *white,struct color_rgb*amb,struct DC_motor *mL, struct DC_motor *mR);
+void test_action(struct DC_motor *mL, struct DC_motor *mR);
+void color_data_collection(struct color_rgb *m);
 void calibration_motor(struct DC_motor *mL, struct DC_motor *mR);
 void test_function(unsigned char test_code, struct color_rgb *m, struct white_card *w, struct DC_motor *mL, struct DC_motor *mR);
 # 11 "color.c" 2
 
 
-void buggylight_init(void)
-{
+void pin_init(void)
+{ TRISFbits.TRISF2=1;
+    ANSELFbits.ANSELF2=0;
+    TRISFbits.TRISF3=1;
+    ANSELFbits.ANSELF3=0;
+
+    TRISGbits.TRISG1 = 0;
+    TRISFbits.TRISF7 = 0;
+    TRISAbits.TRISA4 = 0;
+
+    LATGbits.LATG1 = 1;
+    LATFbits.LATF7 = 1;
+    LATAbits.LATA4 = 1;
+
+
+    TRISDbits.TRISD7 = 0;
+    LATDbits.LATD7 = 0;
+    TRISHbits.TRISH3 = 0;
+    LATHbits.LATH3 = 0;
+
+
     TRISHbits.TRISH1=0;
     TRISDbits.TRISD4=0;
     TRISDbits.TRISD3=0;
@@ -24959,6 +24972,7 @@ void buggylight_init(void)
     LATDbits.LATD3 = 0;
     LATFbits.LATF0 = 0;
     LATHbits.LATH0 = 0;
+
 }
 
 
@@ -25133,39 +25147,7 @@ void LED_G(void)
 
 }
 
-void color_data_collection(struct color_rgb *m){
 
-    int i = 0; int j = 0; int k = 0; int x = 0;
-    for (i = 0; i < 1; ++i){
-        LED_C();
-        _delay((unsigned long)((100)*(64000000/4000.0)));
-        read_color(m);
-        color_display(m);
-    }
-
-    for (j = 0; j < 1; ++j){
-        LED_R();
-        _delay((unsigned long)((100)*(64000000/4000.0)));
-        read_color(m);
-        color_display(m);
-    }
-
-    for (k = 0; k < 1; ++k){
-        LED_G();
-        _delay((unsigned long)((100)*(64000000/4000.0)));
-        read_color(m);
-        color_display(m);
-    }
-
-    for (x = 0; x < 1; ++x){
-        LED_B();
-        _delay((unsigned long)((100)*(64000000/4000.0)));
-        read_color(m);
-        color_display(m);
-    }
-    color_predict(1);
-    LED_C();
-}
 
 void color_display(struct color_rgb *m)
 {
@@ -25174,14 +25156,6 @@ void color_display(struct color_rgb *m)
     sendStringSerial4(buf);
 }
 
-void check_color_reading(struct color_rgb *m, struct white_card *w)
-{
-    char buf[100];
-
-    int result = lroundf((float)(m->R)/(w->RR)*100);
-
-
-}
 
 void color_predict(unsigned char color)
 {

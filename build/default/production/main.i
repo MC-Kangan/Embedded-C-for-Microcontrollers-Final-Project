@@ -24242,7 +24242,7 @@ unsigned char __t3rd16on(void);
 
 # 1 "./dc_motor.h" 1
 # 11 "./dc_motor.h"
-unsigned int SENSITIVITY = 355;
+unsigned int SENSITIVITY = 345;
 
 struct DC_motor {
     char power;
@@ -24260,7 +24260,6 @@ void setMotorPWM(struct DC_motor *m);
 void stop(struct DC_motor *mL, struct DC_motor *mR);
 void turn45(struct DC_motor *mL, struct DC_motor *mR, unsigned char turn_time, unsigned char direction);
 void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
-void fullSpeedAhead_test(struct DC_motor *mL, struct DC_motor *mR);
 void fullSpeedBack(struct DC_motor *mL, struct DC_motor *mR, unsigned char instruction);
 # 10 "main.c" 2
 
@@ -24307,10 +24306,8 @@ struct white_card {
 
 };
 
-
-void buggylight_init(void);
+void pin_init(void);
 void toggle_light(unsigned char lightnumber, unsigned char toggletime);
-
 
 
 
@@ -24353,10 +24350,6 @@ void color_predict(unsigned char color);
 unsigned char detect_color(struct color_rgb *m, struct white_card *w);
 unsigned char verify_color(unsigned char color,struct color_rgb *m, struct white_card *w);
 unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned int upper);
-
-void check_color_reading(struct color_rgb *, struct white_card *w);
-void color_data_collection(struct color_rgb *m);
-
 unsigned char distance_measure(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light) ;
 unsigned amb_light_measure(struct color_rgb *amb);
 # 12 "main.c" 2
@@ -24407,11 +24400,10 @@ unsigned int memory[20];
 unsigned char array_index = 0;
 
 
-void pin_init(void);
-void setup(unsigned int amb_light, struct white_card *white,struct color_rgb*amb,struct DC_motor *mL, struct DC_motor *mR);
+
 void short_burst(struct DC_motor *mL, struct DC_motor *mR);
-void straight_action(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light, unsigned int start_time, unsigned int stop_time);
-void distance_memory(struct DC_motor *mL, struct DC_motor *mR, unsigned int start_time, unsigned int stop_time);
+unsigned int straight_action(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light, unsigned int start_time, unsigned int stop_time);
+void distance_memory(struct DC_motor *mL, struct DC_motor *mR, unsigned int duration, unsigned char accident);
 void turning_action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR);
 void goback(struct DC_motor *mL, struct DC_motor *mR);
 # 14 "main.c" 2
@@ -24441,7 +24433,9 @@ void Timer0_init(void);
 
 # 1 "./test_and_calibration.h" 1
 # 10 "./test_and_calibration.h"
-void test_action (struct DC_motor *mL, struct DC_motor *mR);
+unsigned int setup(struct white_card *white,struct color_rgb*amb,struct DC_motor *mL, struct DC_motor *mR);
+void test_action(struct DC_motor *mL, struct DC_motor *mR);
+void color_data_collection(struct color_rgb *m);
 void calibration_motor(struct DC_motor *mL, struct DC_motor *mR);
 void test_function(unsigned char test_code, struct color_rgb *m, struct white_card *w, struct DC_motor *mL, struct DC_motor *mR);
 # 17 "main.c" 2
@@ -24602,41 +24596,43 @@ unsigned char color = 0;
 
 void main(void){
 
+    struct color_rgb rgb, amb;
+    struct white_card white;
+    struct DC_motor motorL, motorR;
+
+
     I2C_2_Master_Init();
     color_click_init();
     initDCmotorsPWM(199);
-    buggylight_init();
     initUSART4();
     Timer0_init();
     Interrupts_init();
     pin_init();
-
-    struct color_rgb rgb, amb;
-    struct white_card white;
-
-
-
-    struct DC_motor motorL, motorR;
-
     initDCmotors_parameter(&motorL, &motorR);
+
     unsigned char stop_signal = 0;
     unsigned int amb_light = 0;
-
     unsigned char accident = 0;
     unsigned int start_time= 0;
     unsigned int stop_time = 0;
 
 
+
     if (0 == 0){
-        setup(amb_light,&white,&amb,&motorL,&motorR);
-# 69 "main.c"
+        amb_light = setup(&white, &amb, &motorL, &motorR);
     }
 
     while(1){
   if (0 == 1){test_function(3, &rgb, &white, &motorL, &motorR);}
         if (0 == 0){
-            straight_action(&motorL, &motorR, amb_light, start_time, stop_time);
-# 85 "main.c"
+
+            T0CON0bits.T0EN=1;
+            start_time = centisecond;
+            while (stop_signal == 0){
+                fullSpeedAhead(&motorL, &motorR);
+                stop_signal = distance_measure(&motorL, &motorR, amb_light);
+            }
+            stop_time = centisecond;
             if ((stop_time-start_time)>10){
                 memory[array_index] = (stop_time-start_time-3);
                 array_index++;
@@ -24649,8 +24645,8 @@ void main(void){
                     accident = 0;
                 }
             }
-
-
+            stop(&motorL, &motorR);
+            _delay((unsigned long)((1000)*(64000000/4000.0)));
             short_burst(&motorL, &motorR);
             color = detect_color(&rgb, &white);
             color = verify_color(color, &rgb, &white);
