@@ -26,39 +26,6 @@ unsigned int setup(struct white_card *white,struct color_rgb*amb,struct DC_motor
 
 
 
-void color_data_collection(struct color_rgb *m)
-{
-    int i = 0; int j = 0; int k = 0; int x = 0;
-    for (i = 0; i < 1; ++i){
-        LED_C();
-        __delay_ms(100);
-        read_color(m);
-        color_display(m);
-    }  
-    //color_predict(00000);
-    for (j = 0; j < 1; ++j){
-        LED_R();
-        __delay_ms(100);
-        read_color(m);
-        color_display(m);
-    }
-    //color_predict(00000);
-    for (k = 0; k < 1; ++k){
-        LED_G();
-        __delay_ms(100);
-        read_color(m);
-        color_display(m);
-    }
-    //color_predict(00000);
-    for (x = 0; x < 1; ++x){
-        LED_B();
-        __delay_ms(100);
-        read_color(m);
-        color_display(m);
-    }
-    color_predict(1);
-    LED_C();
-}
 
 void test_action(struct DC_motor *mL, struct DC_motor *mR)
 {

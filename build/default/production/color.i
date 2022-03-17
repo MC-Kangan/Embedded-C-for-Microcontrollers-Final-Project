@@ -24233,7 +24233,7 @@ unsigned char __t3rd16on(void);
 
 # 1 "./dc_motor.h" 1
 # 11 "./dc_motor.h"
-unsigned int SENSITIVITY = 150;
+unsigned int SENSITIVITY = 100;
 
 struct DC_motor {
     char power;
@@ -24345,6 +24345,7 @@ void color_display(struct color_rgb *m);
 void calibrate_white(struct white_card *w);
 void color_predict(unsigned char color);
 unsigned char detect_color(struct color_rgb *m, struct white_card *w);
+void color_data_collection(struct color_rgb *m);
 unsigned char verify_color(unsigned char color,struct color_rgb *m, struct white_card *w);
 unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned int upper);
 unsigned char detect_wall(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light) ;
@@ -24946,17 +24947,26 @@ void goback(struct DC_motor *mL, struct DC_motor *mR);
 
 unsigned int setup(struct white_card *white,struct color_rgb*amb,struct DC_motor *mL, struct DC_motor *mR);
 void test_action(struct DC_motor *mL, struct DC_motor *mR);
-void color_data_collection(struct color_rgb *m);
+
 void calibration_motor(struct DC_motor *mL, struct DC_motor *mR);
 void test_function(unsigned char test_code, struct color_rgb *m, struct white_card *w, struct DC_motor *mL, struct DC_motor *mR);
 # 11 "color.c" 2
 
 
+
 void pin_init(void)
-{ TRISFbits.TRISF2=1;
+{
+    TRISFbits.TRISF2=1;
     ANSELFbits.ANSELF2=0;
     TRISFbits.TRISF3=1;
     ANSELFbits.ANSELF3=0;
+
+
+    TRISDbits.TRISD7 = 0;
+    LATDbits.LATD7 = 0;
+    TRISHbits.TRISH3 = 0;
+    LATHbits.LATH3 = 0;
+
 
     TRISGbits.TRISG1 = 0;
     TRISFbits.TRISF7 = 0;
@@ -24965,12 +24975,6 @@ void pin_init(void)
     LATGbits.LATG1 = 1;
     LATFbits.LATF7 = 1;
     LATAbits.LATA4 = 1;
-
-
-    TRISDbits.TRISD7 = 0;
-    LATDbits.LATD7 = 0;
-    TRISHbits.TRISH3 = 0;
-    LATHbits.LATH3 = 0;
 
 
     TRISHbits.TRISH1=0;
@@ -25017,7 +25021,7 @@ void toggle_light(unsigned char lightnumber, unsigned char toggletime)
             LATFbits.LATF0 = !LATFbits.LATF0;
             _delay((unsigned long)((500)*(64000000/4000.0)));
         }
-        if (lightnumber == 3){
+        if (lightnumber == 5){
             LATHbits.LATH0 = !LATHbits.LATH0;
             _delay((unsigned long)((500)*(64000000/4000.0)));
             LATHbits.LATH0 = !LATHbits.LATH0;
@@ -25031,14 +25035,9 @@ void color_click_init(void)
 
     I2C_2_Master_Init();
 
-
  color_writetoaddr(0x00, 0x01);
     _delay((unsigned long)((3)*(64000000/4000.0)));
-
-
  color_writetoaddr(0x00, 0x03);
-
-
  color_writetoaddr(0x01, 0xD5);
 }
 
@@ -25106,6 +25105,7 @@ unsigned int color_read_Clear(void)
  return tmp;
 }
 
+
 void read_color (struct color_rgb *m)
 {
     m->R = color_read_Red();
@@ -25114,14 +25114,15 @@ void read_color (struct color_rgb *m)
     m->C = color_read_Clear();
 }
 
+
 void LED_OFF(void)
 {
     LATGbits.LATG1 = 0;
     LATFbits.LATF7 = 0;
     LATAbits.LATA4 = 0;
     _delay((unsigned long)((200)*(64000000/4000.0)));
-
 }
+
 
 void LED_R(void)
 {
@@ -25129,8 +25130,8 @@ void LED_R(void)
     LATFbits.LATF7 = 0;
     LATAbits.LATA4 = 0;
     _delay((unsigned long)((200)*(64000000/4000.0)));
-
 }
+
 
 void LED_C(void)
 {
@@ -25138,8 +25139,8 @@ void LED_C(void)
     LATFbits.LATF7 = 1;
     LATAbits.LATA4 = 1;
     _delay((unsigned long)((200)*(64000000/4000.0)));
-
 }
+
 
 void LED_B(void)
 {
@@ -25147,8 +25148,8 @@ void LED_B(void)
     LATFbits.LATF7 = 1;
     LATAbits.LATA4 = 0;
     _delay((unsigned long)((200)*(64000000/4000.0)));
-
 }
+
 
 void LED_G(void)
 {
@@ -25156,57 +25157,8 @@ void LED_G(void)
     LATFbits.LATF7 = 0;
     LATAbits.LATA4 = 1;
     _delay((unsigned long)((200)*(64000000/4000.0)));
-
 }
 
-
-
-void color_display(struct color_rgb *m)
-{
-    char buf[100];
-    sprintf(buf,"%d\t%d\t%d\t%d\r\n", m->R, m->G, m->B, m->C);
-    sendStringSerial4(buf);
-}
-
-
-void color_predict(unsigned char color)
-{
-    char buf[100];
-    sprintf(buf,"\t%d\r\n", color);
-    sendStringSerial4(buf);
-
-}
-
-void calibrate_white(struct white_card *w)
-{
-    LED_OFF();
-    toggle_light(1,2);
-    _delay((unsigned long)((500)*(64000000/4000.0)));
-
-    LED_R();
-    _delay((unsigned long)((100)*(64000000/4000.0)));
-    w->RR = color_read_Red(); w->RG = color_read_Green(); w->RB = color_read_Blue();
-
-
-    LED_G();
-    _delay((unsigned long)((100)*(64000000/4000.0)));
-    w->GR = color_read_Red(); w->GG = color_read_Green(); w->GB = color_read_Blue();
-
-
-
-    LED_B();
-    _delay((unsigned long)((100)*(64000000/4000.0)));
-    w->BR = color_read_Red(); w->BG = color_read_Green(); w->BB = color_read_Blue(); w->BC = color_read_Clear();
-
-
-    LED_C();
-    _delay((unsigned long)((100)*(64000000/4000.0)));
-    w->CR = color_read_Red(); w->CG = color_read_Green(); w->CB = color_read_Blue(); w->CC = color_read_Clear();
-
-    LED_OFF();
-    _delay((unsigned long)((500)*(64000000/4000.0)));
-    toggle_light(1,2);
-}
 
 
 unsigned char detect_color(struct color_rgb *m, struct white_card *w)
@@ -25271,11 +25223,85 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
     }
 
     if (compare(90, RR, RR * 2) && compare(90, RB, RB * 2) && compare(90, BG, BG * 2)){color = 8;}
-    if (compare(0, BR, 25) && compare(0,RR,30)){color = 0;}
+    if (compare(0, BR, 30) && compare(0,BG,30)){color = 0;}
 
     if (color == 8) {toggle_light(2,1);}
     return color;
 }
+
+
+void color_display(struct color_rgb *m)
+{
+    char buf[100];
+    sprintf(buf,"%d\t%d\t%d\t%d\r\n", m->R, m->G, m->B, m->C);
+    sendStringSerial4(buf);
+}
+
+
+void color_predict(unsigned char color)
+{
+    char buf[100];
+    sprintf(buf,"\t%d\r\n", color);
+    sendStringSerial4(buf);
+}
+
+
+void calibrate_white(struct white_card *w)
+{
+    LED_OFF();
+    toggle_light(1,2);
+    _delay((unsigned long)((500)*(64000000/4000.0)));
+
+    LED_R();
+    _delay((unsigned long)((100)*(64000000/4000.0)));
+    w->RR = color_read_Red(); w->RG = color_read_Green(); w->RB = color_read_Blue();
+
+    LED_G();
+    _delay((unsigned long)((100)*(64000000/4000.0)));
+    w->GR = color_read_Red(); w->GG = color_read_Green(); w->GB = color_read_Blue();
+
+    LED_B();
+    _delay((unsigned long)((100)*(64000000/4000.0)));
+    w->BR = color_read_Red(); w->BG = color_read_Green(); w->BB = color_read_Blue(); w->BC = color_read_Clear();
+
+    LED_C();
+    _delay((unsigned long)((100)*(64000000/4000.0)));
+    w->CR = color_read_Red(); w->CG = color_read_Green(); w->CB = color_read_Blue(); w->CC = color_read_Clear();
+
+    LED_OFF();
+    _delay((unsigned long)((500)*(64000000/4000.0)));
+    toggle_light(1,2);
+}
+
+
+void color_data_collection(struct color_rgb *m)
+{
+    int i = 0;
+    for (i = 0; i < 1; ++i){
+        LED_C();
+        _delay((unsigned long)((100)*(64000000/4000.0)));
+        read_color(m);
+        color_display(m);
+
+        LED_R();
+        _delay((unsigned long)((100)*(64000000/4000.0)));
+        read_color(m);
+        color_display(m);
+
+        LED_G();
+        _delay((unsigned long)((100)*(64000000/4000.0)));
+        read_color(m);
+        color_display(m);
+
+        LED_B();
+        _delay((unsigned long)((100)*(64000000/4000.0)));
+        read_color(m);
+        color_display(m);
+    }
+    color_predict(1);
+    LED_C();
+}
+
 
 unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned int upper)
 {

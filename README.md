@@ -30,15 +30,15 @@ Table 1 shows 16 variables used in the program. This section aims to explain the
 
 When the buggy is switched on, some calibrations are required.  
 
-# Calibration 1: White color calibration 
+### Calibration 1: White color calibration 
 
 When the RF2 is pressed, the white color calibration is triggered. The user needs to show the Color Click a white card and the Color Click will turn on white, red, green and blue lights consecutively to take R, G, B and C readings. The white card data will be stored in a structure, named white_card.  
 
-# Calibration 2: Ambient light measurement 
+### Calibration 2: Ambient light measurement 
 
 When RF3 is pressed, the ambient light measurement will be triggered, and the CC value from the surrounding is measured and stored.  
 
-# Calibration 3 (Optional): Motor power calibration 
+### Calibration 3 (Optional): Motor power calibration 
 
 After the measurement of the ambient light, the user can choose to start the maze directly by pressing the RF2. Optionally, the user can press RF3 to trigger the motor power calibration. During the motor power calibration, both LED RD7 and RH3 will turn on. The user can press RF2 to increase the turning sensitivity or press RF3 to decrease the turning sensitivity. After setting the turning sensitivity, the user can press both RF2 and RF3 to trigger the test function. The buggy will turn left and right multiple times to demonstrate the turning effect after changing the sensitivity. Once the testing function is completed, the user can press RF2 to start the maze or press RF3 again to recalibrate the motor. 
 
@@ -47,13 +47,13 @@ After the measurement of the ambient light, the user can choose to start the maz
 
 ## Methodology 
 
-# Detect-wall function 
+### Detect-wall function 
 
 [Relevant files ] 
 
 The detect-wall function allows the buggy to stop moving when detecting the presence of a colored card or wall. When a card is detected, the function will set the stop_signal to 1, which will trigger the color detection function and further movements. This effect is achieved by detecting the ambient light. During the program setup stage, the ambient light is measured and stored in a CC value (see table X). When the buggy approaches a card, due to the increase in reflection, the CC value measured by the buggy will increase. When the ambient light exceeds the 1.1 times of the CC value measured at the setup stage, the stop_signal will be changed from 0 to 1, instructing the buggy to stop. 
 
-# Color detection function 
+### Color detection function 
 
 [Relevant files ] 
 
@@ -61,7 +61,7 @@ The color-detection is achieved by analyzing the RGBC data with RGBC lights. Whe
 
 ![RGB data demonstration](gifs/RGB_reading_demo.png)
 
-# Motor turning 
+### Motor turning 
 
 [Relevant files] 
 

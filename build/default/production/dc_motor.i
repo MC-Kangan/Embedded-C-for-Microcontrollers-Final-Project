@@ -24233,7 +24233,7 @@ unsigned char __t3rd16on(void);
 
 # 1 "./dc_motor.h" 1
 # 11 "./dc_motor.h"
-unsigned int SENSITIVITY = 150;
+unsigned int SENSITIVITY = 100;
 
 struct DC_motor {
     char power;
@@ -24347,7 +24347,7 @@ void turn45(struct DC_motor *mL, struct DC_motor *mR, unsigned char turn_time, u
         mL->direction=1;
         mR->direction=1;
         if (direction == 1){
-            while (mR->power <50){
+            while (mR->power <60){
                 mR->power += 5;
                 mL->power = 0;
                 setMotorPWM(mL);
@@ -24358,7 +24358,7 @@ void turn45(struct DC_motor *mL, struct DC_motor *mR, unsigned char turn_time, u
             stop(mL,mR);
         }
         else if (direction == 2){
-            while (mL->power <50){
+            while (mL->power <60){
                 mL->power += 5;
                 mR->power = 0;
                 setMotorPWM(mL);

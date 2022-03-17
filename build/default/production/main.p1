@@ -57,8 +57,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "28 ./dc_motor.h
 [; ;./dc_motor.h: 28: void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
 [v _fullSpeedAhead `(v ~T0 @X0 0 ef2`*S2020`*S2020 ]
-"78 ./color.h
-[; ;./color.h: 78: unsigned char detect_wall(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light) ;
+"79 ./color.h
+[; ;./color.h: 79: unsigned char detect_wall(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light) ;
 [s S2019 ]
 [n S2019 DC_motor ]
 [v _detect_wall `(uc ~T0 @X0 0 ef3`*S2019`*S2019`ui ]
@@ -78,8 +78,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "75 ./color.h
 [; ;./color.h: 75: unsigned char detect_color(struct color_rgb *m, struct white_card *w);
 [v _detect_color `(uc ~T0 @X0 0 ef2`*S2017`*S2018 ]
-"76
-[; ;./color.h: 76: unsigned char verify_color(unsigned char color,struct color_rgb *m, struct white_card *w);
+"77
+[; ;./color.h: 77: unsigned char verify_color(unsigned char color,struct color_rgb *m, struct white_card *w);
 [v _verify_color `(uc ~T0 @X0 0 ef3`uc`*S2017`*S2018 ]
 "15 ./movement.h
 [; ;./movement.h: 15: void turning_action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR);
@@ -2067,10 +2067,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 40928: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
 "11 ./dc_motor.h
-[; ;./dc_motor.h: 11: unsigned int SENSITIVITY = 150;
+[; ;./dc_motor.h: 11: unsigned int SENSITIVITY = 100;
 [v _SENSITIVITY `ui ~T0 @X0 1 e ]
 [i _SENSITIVITY
--> -> 150 `i `ui
+-> -> 100 `i `ui
 ]
 "6 ./movement.h
 [; ;./movement.h: 6: unsigned int centisecond = 0;

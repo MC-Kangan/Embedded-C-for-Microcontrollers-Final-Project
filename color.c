@@ -10,12 +10,21 @@
 #include "movement.h"
 #include "test_and_calibration.h"
 
+// Function used to initialise pins
 void pin_init(void)
-{   TRISFbits.TRISF2=1; //set TRIS value for pin (input)
+{   // Button pins initiation
+    TRISFbits.TRISF2=1; //set TRIS value for pin (input)
     ANSELFbits.ANSELF2=0; //turn off analogue input on pin     
     TRISFbits.TRISF3=1; //set TRIS value for pin (input)
     ANSELFbits.ANSELF3=0; //turn off analogue input on pin  
     
+    // Clicker2 board LED initiation
+    TRISDbits.TRISD7 = 0;
+    LATDbits.LATD7 = 0;
+    TRISHbits.TRISH3 = 0;
+    LATHbits.LATH3 = 0;
+    
+    // Color click LED initiation
     TRISGbits.TRISG1 = 0; //output on RG1 (LED_R)
     TRISFbits.TRISF7 = 0; //output on RF7 (LED_G)
     TRISAbits.TRISA4 = 0; //output on RA4 (LED_B)
@@ -23,12 +32,6 @@ void pin_init(void)
     LATGbits.LATG1 = 1; // output LED_R set on (power)
     LATFbits.LATF7 = 1; // output LED_G set on (power)
     LATAbits.LATA4 = 1; // output LED_B set on (power)
-    
-    // pins connected to buttons
-    TRISDbits.TRISD7 = 0;
-    LATDbits.LATD7 = 0;
-    TRISHbits.TRISH3 = 0;
-    LATHbits.LATH3 = 0;
     
     // Buggy light initiation
     TRISHbits.TRISH1=0; // Head lamps
@@ -45,37 +48,37 @@ void pin_init(void)
     
 }
 
-
-void toggle_light(unsigned char lightnumber, unsigned char toggletime)
+// Function used to toggle the buggy light
+void toggle_light(unsigned char lightnumber, unsigned char toggletime) 
 {
     unsigned char i = 0;
     
-    for (i = 0; i < toggletime; i++){
-        if (lightnumber == 1){
-            LATHbits.LATH1 = !LATHbits.LATH1; 
+    for (i = 0; i < toggletime; i++){           // Use for loop to repeat the toggle i times
+        if (lightnumber == 1){                  // Buggy light 1 = front white and rear red (reduced)
+            LATHbits.LATH1 = !LATHbits.LATH1;   // Toggle light
             __delay_ms(500);
             LATHbits.LATH1 = !LATHbits.LATH1;
             __delay_ms(500);
         }
-        if (lightnumber == 2){
+        if (lightnumber == 2){                  // Buggy light 2 = rear red (full)
             LATDbits.LATD4 = !LATDbits.LATD4; 
             __delay_ms(500);
             LATDbits.LATD4 = !LATDbits.LATD4;
             __delay_ms(500);
         }
-        if (lightnumber == 3){
+        if (lightnumber == 3){                  // Buggy light 3 = front white (full)
             LATDbits.LATD3 = !LATDbits.LATD3; 
             __delay_ms(500);
             LATDbits.LATD3 = !LATDbits.LATD3;
             __delay_ms(500);
         }        
-        if (lightnumber == 4){
+        if (lightnumber == 4){                  // Buggy light 4 = TURN-L light
             LATFbits.LATF0 = !LATFbits.LATF0; 
             __delay_ms(500);
             LATFbits.LATF0 = !LATFbits.LATF0;
             __delay_ms(500);
         }        
-        if (lightnumber == 3){
+        if (lightnumber == 5){                  // Buggy light 5 = TURN-R light
             LATHbits.LATH0 = !LATHbits.LATH0; 
             __delay_ms(500);
             LATHbits.LATH0 = !LATHbits.LATH0;
@@ -86,185 +89,133 @@ void toggle_light(unsigned char lightnumber, unsigned char toggletime)
 
 void color_click_init(void)
 {   
-    //setup colour sensor via i2c interface
-    I2C_2_Master_Init();      //Initialise i2c Master
-
-     //set device PON
+                                  //setup colour sensor via i2c interface
+    I2C_2_Master_Init();          //Initialise i2c Master
+                                  //set device PON
 	color_writetoaddr(0x00, 0x01);
-    __delay_ms(3); //need to wait 3ms for everthing to start up
-    
-    //turn on device ADC
-	color_writetoaddr(0x00, 0x03);
-
-    //set integration time
-	color_writetoaddr(0x01, 0xD5);
+    __delay_ms(3);                //need to wait 3ms for everthing to start up                            
+	color_writetoaddr(0x00, 0x03);//turn on device ADC                            
+	color_writetoaddr(0x01, 0xD5);//set integration time
 }
 
 void color_writetoaddr(char address, char value){
-    I2C_2_Master_Start();         //Start condition
+    I2C_2_Master_Start();                //Start condition
     I2C_2_Master_Write(0x52 | 0x00);     //7 bit device address + Write mode
-    I2C_2_Master_Write(0x80 | address);    //command + register address
+    I2C_2_Master_Write(0x80 | address);  //command + register address
     I2C_2_Master_Write(value);    
-    I2C_2_Master_Stop();          //Stop condition
+    I2C_2_Master_Stop();                 //Stop condition
 }
 
 unsigned int color_read_Red(void)
 {
 	unsigned int tmp;
-	I2C_2_Master_Start();         //Start condition
+	I2C_2_Master_Start();                //Start condition
 	I2C_2_Master_Write(0x52 | 0x00);     //7 bit address + Write mode
-	I2C_2_Master_Write(0xA0 | 0x16);    //command (auto-increment protocol transaction) + start at RED low register (Color Datasheet 11)
-	I2C_2_Master_RepStart();			// start a repeated transmission
+	I2C_2_Master_Write(0xA0 | 0x16);     //command (auto-increment protocol transaction) + start at RED low register (Color Datasheet 11)
+	I2C_2_Master_RepStart();			 // start a repeated transmission
 	I2C_2_Master_Write(0x52 | 0x01);     //7 bit address + Read (1) mode
-	tmp=I2C_2_Master_Read(1);			//read the Red LSB
+	tmp=I2C_2_Master_Read(1);			 //read the Red LSB
 	tmp=tmp | (I2C_2_Master_Read(0)<<8); //read the Red MSB (don't acknowledge as this is the last read)
-	I2C_2_Master_Stop();          //Stop condition
+	I2C_2_Master_Stop();                 //Stop condition
 	return tmp;
 }
 
 unsigned int color_read_Blue(void)
 {
 	unsigned int tmp;
-	I2C_2_Master_Start();         //Start condition
+	I2C_2_Master_Start();                //Start condition
 	I2C_2_Master_Write(0x52 | 0x00);     //7 bit address + Write mode
-	I2C_2_Master_Write(0xA0 | 0x1A);    //command (auto-increment protocol transaction) + start at BLUE low register (Color Datasheet 11)
-	I2C_2_Master_RepStart();			// start a repeated transmission
+	I2C_2_Master_Write(0xA0 | 0x1A);     //command (auto-increment protocol transaction) + start at BLUE low register (Color Datasheet 11)
+	I2C_2_Master_RepStart();			 // start a repeated transmission
 	I2C_2_Master_Write(0x52 | 0x01);     //7 bit address + Read (1) mode
-	tmp=I2C_2_Master_Read(1);			//read the Blue LSB
+	tmp=I2C_2_Master_Read(1);			 //read the Blue LSB
 	tmp=tmp | (I2C_2_Master_Read(0)<<8); //read the Blue MSB (don't acknowledge as this is the last read)
-	I2C_2_Master_Stop();          //Stop condition
+	I2C_2_Master_Stop();                 //Stop condition
 	return tmp;
 }
 
 unsigned int color_read_Green(void)
 {
 	unsigned int tmp;
-	I2C_2_Master_Start();         //Start condition
+	I2C_2_Master_Start();                //Start condition
 	I2C_2_Master_Write(0x52 | 0x00);     //7 bit address + Write mode
-	I2C_2_Master_Write(0xA0 | 0x18);    //command (auto-increment protocol transaction) + start at GREEN low register (Color Datasheet 11)
-	I2C_2_Master_RepStart();			// start a repeated transmission
+	I2C_2_Master_Write(0xA0 | 0x18);     //command (auto-increment protocol transaction) + start at GREEN low register (Color Datasheet 11)
+	I2C_2_Master_RepStart();			 // start a repeated transmission
 	I2C_2_Master_Write(0x52 | 0x01);     //7 bit address + Read (1) mode
-	tmp=I2C_2_Master_Read(1);			//read the Green LSB
+	tmp=I2C_2_Master_Read(1);			 //read the Green LSB
 	tmp=tmp | (I2C_2_Master_Read(0)<<8); //read the Green MSB (don't acknowledge as this is the last read)
-	I2C_2_Master_Stop();          //Stop condition
+	I2C_2_Master_Stop();                 //Stop condition
 	return tmp;
 }
 
 unsigned int color_read_Clear(void)
 {
 	unsigned int tmp;
-	I2C_2_Master_Start();         //Start condition
+	I2C_2_Master_Start();                //Start condition
 	I2C_2_Master_Write(0x52 | 0x00);     //7 bit address + Write mode
-	I2C_2_Master_Write(0xA0 | 0x14);    //command (auto-increment protocol transaction) + start at CLEAR low register (Color Datasheet 11)
-	I2C_2_Master_RepStart();			// start a repeated transmission
+	I2C_2_Master_Write(0xA0 | 0x14);     //command (auto-increment protocol transaction) + start at CLEAR low register (Color Datasheet 11)
+	I2C_2_Master_RepStart();			 // start a repeated transmission
 	I2C_2_Master_Write(0x52 | 0x01);     //7 bit address + Read (1) mode
-	tmp=I2C_2_Master_Read(1);			//read the Clear LSB
+	tmp=I2C_2_Master_Read(1);			 //read the Clear LSB
 	tmp=tmp | (I2C_2_Master_Read(0)<<8); //read the Clear MSB (don't acknowledge as this is the last read)
-	I2C_2_Master_Stop();          //Stop condition
+	I2C_2_Master_Stop();                 //Stop condition
 	return tmp;
 }
 
+// Function used to read the color and store to a sturcture
 void read_color (struct color_rgb *m)
 {
-    m->R = color_read_Red();
-    m->B = color_read_Blue();
-    m->G = color_read_Green();
-    m->C = color_read_Clear();
+    m->R = color_read_Red();             // Read red color
+    m->B = color_read_Blue();            // Read blue color
+    m->G = color_read_Green();           // Read green color
+    m->C = color_read_Clear();           // Read white color (clear value)
 }
 
+// Function used to turn off all LED
 void LED_OFF(void)
 {    
-    LATGbits.LATG1 = 0; // output LED_R set on (power)
-    LATFbits.LATF7 = 0; // output LED_B set on (power)
-    LATAbits.LATA4 = 0; // output LED_G set on (power)
+    LATGbits.LATG1 = 0; // output LED_R set off (power)
+    LATFbits.LATF7 = 0; // output LED_B set off (power)
+    LATAbits.LATA4 = 0; // output LED_G set off (power)
     __delay_ms(200);
-    //read_color(m);
 }
 
-void LED_R(void)//struct color_rgb *m)
+// Function used to turn on red LED
+void LED_R(void)
 {    
     LATGbits.LATG1 = 1; // output LED_R set on (power)
-    LATFbits.LATF7 = 0; // output LED_B set on (power)
-    LATAbits.LATA4 = 0; // output LED_G set on (power)
+    LATFbits.LATF7 = 0; // output LED_B set off (power)
+    LATAbits.LATA4 = 0; // output LED_G set off (power)
     __delay_ms(200);
-    //read_color(m);
 }
 
-void LED_C(void)//struct color_rgb *m)
+// Function used to turn on white LED (all LEDs)
+void LED_C(void)
 {
     LATGbits.LATG1 = 1; // output LED_R set on (power)
     LATFbits.LATF7 = 1; // output LED_B set on (power)
     LATAbits.LATA4 = 1; // output LED_G set on (power)
-    __delay_ms(200); // originally 200
-    //read_color(m);
+    __delay_ms(200); 
 }
 
-void LED_B(void)//struct color_rgb *m)
+// Function used to turn on blue LED (all LEDs)
+void LED_B(void)
 {
-    LATGbits.LATG1 = 0; // output LED_R set on (power)
+    LATGbits.LATG1 = 0; // output LED_R set off (power)
     LATFbits.LATF7 = 1; // output LED_B set on (power)
-    LATAbits.LATA4 = 0; // output LED_G set on (power)
-    __delay_ms(200);//200
-    //read_color(m);
+    LATAbits.LATA4 = 0; // output LED_G set off (power)
+    __delay_ms(200);
 }
 
-void LED_G(void)//struct color_rgb *m)
+// Function used to turn on green LED
+void LED_G(void)
 {    
-    LATGbits.LATG1 = 0; // output LED_R set on (power)
-    LATFbits.LATF7 = 0; // output LED_B set on (power)
+    LATGbits.LATG1 = 0; // output LED_R set off (power)
+    LATFbits.LATF7 = 0; // output LED_B set off (power)
     LATAbits.LATA4 = 1; // output LED_G set on (power)
     __delay_ms(200);
-    //read_color(m);
 }
 
-
-
-void color_display(struct color_rgb *m)
-{
-    char buf[100];
-    sprintf(buf,"%d\t%d\t%d\t%d\r\n", m->R, m->G, m->B, m->C);
-    sendStringSerial4(buf);
-}
-
-
-void color_predict(unsigned char color)
-{
-    char buf[100];
-    sprintf(buf,"\t%d\r\n", color);
-    sendStringSerial4(buf);
-    //sendStringSerial4(color_name);
-}
-
-void calibrate_white(struct white_card *w)
-{   
-    LED_OFF();
-    toggle_light(1,2);
-    __delay_ms(500);
-    
-    LED_R(); // Turn on red light 
-    __delay_ms(100);
-    w->RR = color_read_Red(); w->RG = color_read_Green(); w->RB = color_read_Blue();
-    
-    
-    LED_G(); // Turn on green light
-    __delay_ms(100);
-    w->GR = color_read_Red(); w->GG = color_read_Green(); w->GB = color_read_Blue();
-    //w->GC = color_read_Clear();
-    
-    
-    LED_B(); // Turn on blue light 
-    __delay_ms(100);
-    w->BR = color_read_Red(); w->BG = color_read_Green(); w->BB = color_read_Blue(); w->BC = color_read_Clear(); 
-    
-    
-    LED_C(); // Turn on white light
-    __delay_ms(100);
-    w->CR = color_read_Red(); w->CG = color_read_Green(); w->CB = color_read_Blue(); w->CC = color_read_Clear();
-    
-    LED_OFF();
-    __delay_ms(500);
-    toggle_light(1,2);
-}
 
 // Function used to detect color with white light
 unsigned char detect_color(struct color_rgb *m, struct white_card *w)
@@ -329,11 +280,85 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
     }
     // Group 0 (black and white)
     if (compare(90, RR, RR * 2) && compare(90, RB, RB * 2) && compare(90, BG, BG * 2)){color = 8;}
-    if (compare(0, BR, 25) && compare(0,RR,30)){color = 0;}
+    if (compare(0, BR, 30) && compare(0,BG,30)){color = 0;}
     
     if (color == 8) {toggle_light(2,1);}
     return color;
 }
+
+// Function used to display color readings to PC
+void color_display(struct color_rgb *m)
+{
+    char buf[100];                                             // Define a string (character array)
+    sprintf(buf,"%d\t%d\t%d\t%d\r\n", m->R, m->G, m->B, m->C); // Convert RGBC data to string
+    sendStringSerial4(buf);                                    // Send to PC via serial
+}
+
+// Function used to display the predicted color to PC
+void color_predict(unsigned char color)
+{
+    char buf[100];                                             // Define a string (character array)
+    sprintf(buf,"\t%d\r\n", color);                            // Convert color code data to string
+    sendStringSerial4(buf);                                    // Send to PC via serial
+}
+
+// Function used to calibrate the color with the white card and store into a structure
+void calibrate_white(struct white_card *w)
+{   
+    LED_OFF();          // Turn off all lights to start with           
+    toggle_light(1,2);  // Toggle buggy light
+    __delay_ms(500);  
+    
+    LED_R();            // Turn on red light 
+    __delay_ms(100);
+    w->RR = color_read_Red(); w->RG = color_read_Green(); w->RB = color_read_Blue(); // Store RR, RG, RB data respectively (see README file for the explanation of these variables)
+    
+    LED_G();            // Turn on green light
+    __delay_ms(100);
+    w->GR = color_read_Red(); w->GG = color_read_Green(); w->GB = color_read_Blue(); // Store GR, GG, GB data respectively (see README file for the explanation of these variables)
+    
+    LED_B();            // Turn on blue light 
+    __delay_ms(100);
+    w->BR = color_read_Red(); w->BG = color_read_Green(); w->BB = color_read_Blue(); w->BC = color_read_Clear(); // Store BR, BG, BB, BC data respectively (see README file for the explanation of these variables)
+    
+    LED_C();            // Turn on white light
+    __delay_ms(100);
+    w->CR = color_read_Red(); w->CG = color_read_Green(); w->CB = color_read_Blue(); w->CC = color_read_Clear(); // Store CR, CG, CB, CC data respectively (see README file for the explanation of these variables)
+    
+    LED_OFF();          // Turn off all lights
+    __delay_ms(500);
+    toggle_light(1,2);  // Toggle the light
+}
+
+// Function used to collect data for testing
+void color_data_collection(struct color_rgb *m)
+{
+    int i = 0;                // Initialise a counter that defines the number of repetitions of collecting the data
+    for (i = 0; i < 1; ++i){
+        LED_C();              // Turn on white light
+        __delay_ms(100);
+        read_color(m);        // Read data
+        color_display(m);     // Display to PC
+
+        LED_R();              // Turn on red light
+        __delay_ms(100);
+        read_color(m);        // Read data
+        color_display(m);     // Display to PC
+
+        LED_G();              // Similar procedures as above
+        __delay_ms(100);
+        read_color(m);
+        color_display(m);
+    
+        LED_B();
+        __delay_ms(100);
+        read_color(m);
+        color_display(m);
+    }
+    color_predict(1);         // Print number 1 as a end note, meaning that the data collection is completed
+    LED_C();                  // Turn on all lights
+}
+
 
 unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned int upper)
 {

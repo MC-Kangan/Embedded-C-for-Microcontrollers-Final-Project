@@ -24462,6 +24462,7 @@ void color_display(struct color_rgb *m);
 void calibrate_white(struct white_card *w);
 void color_predict(unsigned char color);
 unsigned char detect_color(struct color_rgb *m, struct white_card *w);
+void color_data_collection(struct color_rgb *m);
 unsigned char verify_color(unsigned char color,struct color_rgb *m, struct white_card *w);
 unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned int upper);
 unsigned char detect_wall(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light) ;
@@ -24505,7 +24506,7 @@ unsigned char I2C_2_Master_Read(unsigned char ack);
 
 # 1 "./dc_motor.h" 1
 # 11 "./dc_motor.h"
-unsigned int SENSITIVITY = 150;
+unsigned int SENSITIVITY = 100;
 
 struct DC_motor {
     char power;
@@ -24593,7 +24594,7 @@ void sendStringSerial4(char *string);
 
 unsigned int setup(struct white_card *white,struct color_rgb*amb,struct DC_motor *mL, struct DC_motor *mR);
 void test_action(struct DC_motor *mL, struct DC_motor *mR);
-void color_data_collection(struct color_rgb *m);
+
 void calibration_motor(struct DC_motor *mL, struct DC_motor *mR);
 void test_function(unsigned char test_code, struct color_rgb *m, struct white_card *w, struct DC_motor *mL, struct DC_motor *mR);
 # 18 "main.c" 2

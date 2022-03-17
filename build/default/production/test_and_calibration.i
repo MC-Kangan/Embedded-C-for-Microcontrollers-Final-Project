@@ -24307,6 +24307,7 @@ void color_display(struct color_rgb *m);
 void calibrate_white(struct white_card *w);
 void color_predict(unsigned char color);
 unsigned char detect_color(struct color_rgb *m, struct white_card *w);
+void color_data_collection(struct color_rgb *m);
 unsigned char verify_color(unsigned char color,struct color_rgb *m, struct white_card *w);
 unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned int upper);
 unsigned char detect_wall(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light) ;
@@ -24315,7 +24316,7 @@ unsigned amb_light_measure(struct color_rgb *amb);
 
 # 1 "./dc_motor.h" 1
 # 11 "./dc_motor.h"
-unsigned int SENSITIVITY = 150;
+unsigned int SENSITIVITY = 100;
 
 struct DC_motor {
     char power;
@@ -24346,7 +24347,7 @@ void fullSpeedBack(struct DC_motor *mL, struct DC_motor *mR, unsigned char instr
 
 unsigned int setup(struct white_card *white,struct color_rgb*amb,struct DC_motor *mL, struct DC_motor *mR);
 void test_action(struct DC_motor *mL, struct DC_motor *mR);
-void color_data_collection(struct color_rgb *m);
+
 void calibration_motor(struct DC_motor *mL, struct DC_motor *mR);
 void test_function(unsigned char test_code, struct color_rgb *m, struct white_card *w, struct DC_motor *mL, struct DC_motor *mR);
 # 4 "test_and_calibration.c" 2
@@ -24375,39 +24376,6 @@ unsigned int setup(struct white_card *white,struct color_rgb*amb,struct DC_motor
 
 
 
-void color_data_collection(struct color_rgb *m)
-{
-    int i = 0; int j = 0; int k = 0; int x = 0;
-    for (i = 0; i < 1; ++i){
-        LED_C();
-        _delay((unsigned long)((100)*(64000000/4000.0)));
-        read_color(m);
-        color_display(m);
-    }
-
-    for (j = 0; j < 1; ++j){
-        LED_R();
-        _delay((unsigned long)((100)*(64000000/4000.0)));
-        read_color(m);
-        color_display(m);
-    }
-
-    for (k = 0; k < 1; ++k){
-        LED_G();
-        _delay((unsigned long)((100)*(64000000/4000.0)));
-        read_color(m);
-        color_display(m);
-    }
-
-    for (x = 0; x < 1; ++x){
-        LED_B();
-        _delay((unsigned long)((100)*(64000000/4000.0)));
-        read_color(m);
-        color_display(m);
-    }
-    color_predict(1);
-    LED_C();
-}
 
 void test_action(struct DC_motor *mL, struct DC_motor *mR)
 {
