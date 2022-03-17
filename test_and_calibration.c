@@ -56,27 +56,27 @@ void test_function(unsigned char test_code, struct color_rgb *m, struct white_ca
     while(1){
         // Test 1: Read RGBC data in white light
         if (test_code == 1){
-            LED_C(); // Turn on White light
-            read_color(m); 
-            color_display(m);
+            LED_C();            // Turn on White light
+            read_color(m);      // Read RGBC values of color reflected
+            color_display(m);   // Display RGBC values on Realterm
         }
         // Test 2: Detect color in RGB light and predict it via serial port
         if (test_code == 2){
-            color = detect_color(m,w);
-            //color_display(m);
-            color_predict(color);
+            color = detect_color(m,w);   // Turning on RGB light and detect color, assign color numbers (1-9)  
+            color_display(m);            // Display RGBC values on Realterm
+            color_predict(color);        // Display color(1-9) on Realterm
         }
         // Test 3: Collect data for different color cards
         if (test_code == 3){
             while (complete == 0){
-                color_data_collection(m);
+                color_data_collection(m);// Turning on RGB light, collect and display RGBC values on Realterm
                 complete = 1;
             }
         }   
-        // Test 4: Distance measure
+        // Test 4: Detect wall can color card
         if (test_code == 4){
             while (stop_signal == 0){
-                fullSpeedAhead(mL, mR);
+                fullSpeedAhead(mL, mR);  // moving forward until the detect_wall function ask the buggy to stop
                 stop_signal = detect_wall(mL, mR, amb_light);
             }
             stop(mL, mR);
@@ -85,7 +85,7 @@ void test_function(unsigned char test_code, struct color_rgb *m, struct white_ca
         }
         // Test 5: Motor calibration
         if (test_code == 5){
-            test_action(mL,mR);
+            test_action(mL,mR);          // turn left and right to see whether the motor calibrates well, see more in test_action function
         }
     }
 }

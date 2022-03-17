@@ -18,20 +18,20 @@
 #include "test_and_calibration.h"
 
 #define _XTAL_FREQ 64000000 //note intrinsic _delay function is 62.5ns at 64,000,000Hz 
-#define TEST 0
+#define TEST 0              // Normal mode(Test=0), Test mode(Test=1)
 
 // Color code: 
 // 1: red; 2: green; 3: blue; 4: yellow; 5:pink; 6:orange; 7:light blue; 8:white; 9: black
-unsigned char color = 0;  
+unsigned char color = 0;  //global variable
 
 void main(void){
     
+    // Structure used in the program
     struct color_rgb rgb, amb;
     struct white_card white;
     struct DC_motor motorL, motorR;
     
     // Initiation
-    // I2C_2_Master_Init();
     color_click_init();     // color click initiation including I2C initiation(color.c)
     pin_init();             // RGB initiation, RF2, RF3 button initiation, clicker board light and buggy light initiation(color.c)
     initDCmotorsPWM(199);   // TRIS and LAT registers for PWM initiation(motor.c)
@@ -46,7 +46,7 @@ void main(void){
     unsigned int start_time= 0;
     unsigned int stop_time = 0;
 
-    if (TEST == 0){
+    if (TEST == 0){     //Normal mode
         amb_light = setup(&white, &amb, &motorL, &motorR);  // setup function, including calibration white card and ambient light calibration, more detail in test_and_calibration.c
     }
       
@@ -54,14 +54,14 @@ void main(void){
 		if (TEST == 1){test_function(5, &rgb, &white, &motorL, &motorR);}  // Test mode, call test function
         if (TEST == 0){                                                    // Normal mode
             T0CON0bits.T0EN=1;                          //start the timer (energy saving for the timer to count only when buggy is going straight)
-            start_time = centisecond;                   //record the start time
-            while (stop_signal == 0){                   //while the buggy doesn't detect the wall, stop signal == 0
+            start_time = centisecond;                   //record the start time in centisecond
+            while (stop_signal == 0){                   //while the buggy doesn't detect the wall or color card, stop signal == 0
                 fullSpeedAhead(&motorL, &motorR);       //buggy will keep moving forward
-                stop_signal = detect_wall(&motorL, &motorR, amb_light);     //if the buggy detects the wall, stop signal == 1 and the buggy will stop moving(Line 75 & 76)
+                stop_signal = detect_wall(&motorL, &motorR, amb_light);     //if the buggy detects the wall or color card, stop signal == 1 and the buggy will stop moving(Line 76 & 77)
             }
             // before stop the buggy, record the forward moving duration into memory first     
             T0CON0bits.T0EN=0;                          //stop the timer (energy saving for the timer to count only when buggy is going straight)
-            stop_time = centisecond;                    //record the stop time
+            stop_time = centisecond;                    //record the stop time in centisecond
             if ((stop_time-start_time)>10){             //only record the forward moving duration when it is greater than 1 second
                 memory[array_index] = (stop_time-start_time-3);             //record the forward moving duration in memory
                 array_index++;                                              // increase array index position by 1 for next recording

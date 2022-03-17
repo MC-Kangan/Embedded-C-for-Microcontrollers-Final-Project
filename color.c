@@ -1,12 +1,12 @@
 #include <xc.h>
-#include "dc_motor.h"
-#include "serial.h"
-#include "color.h"
-#include "i2c.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
 #include <fenv.h>
+#include "dc_motor.h"
+#include "serial.h"
+#include "color.h"
+#include "i2c.h"
 #include "movement.h"
 #include "test_and_calibration.h"
 
@@ -338,23 +338,23 @@ void color_data_collection(struct color_rgb *m)
     for (i = 0; i < 1; ++i){
         LED_C();              // Turn on white light
         __delay_ms(100);
-        read_color(m);        // Read data
-        color_display(m);     // Display to PC
+        read_color(m);        // Read RGBC values of color reflected
+        color_display(m);     // Display RGBC values on Realterm
 
         LED_R();              // Turn on red light
         __delay_ms(100);
-        read_color(m);        // Read data
-        color_display(m);     // Display to PC
+        read_color(m);        // Read RGBC values of color reflected
+        color_display(m);     // Display RGBC values on Realterm
 
-        LED_G();              // Similar procedures as above
+        LED_G();              // Turn on green light
         __delay_ms(100);
-        read_color(m);
-        color_display(m);
+        read_color(m);        // Read RGBC values of color reflected
+        color_display(m);     // Display RGBC values on Realterm
     
-        LED_B();
+        LED_B();              // Turn on blue light
         __delay_ms(100);
-        read_color(m);
-        color_display(m);
+        read_color(m);        // Read RGBC values of color reflected
+        color_display(m);     // Display RGBC values on Realterm
     }
     color_predict(1);         // Print number 1 as a end note, meaning that the data collection is completed
     LED_C();                  // Turn on all lights
