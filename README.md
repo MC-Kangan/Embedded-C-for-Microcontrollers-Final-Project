@@ -107,15 +107,15 @@ After the measurement of the ambient light, the user can choose to start the maz
 
 ## Methodology 
 
-### Detect-wall function 
+### Detect wall or color card 
 
 [Relevant files: color.c] 
 
-The detect-wall function allows the buggy to stop moving when detecting the presence of a color card or wall. When a card is detected, the function will set the stop_signal to 1, which will trigger the color detection function and further movements. This effect is achieved by detecting the ambient light. During the program setup stage, the ambient light is measured and stored in a CC value (see table 3). When the buggy approaches a card, due to the increase in reflection, the CC value measured by the buggy will increase. When the ambient light exceeds the 1.1 times of the CC value measured at the setup stage, the stop_signal will be changed from 0 to 1, instructing the buggy to stop. 
+This function allows the buggy to stop moving when detecting the presence of a color card or wall. When a card is detected, the function will set the stop_signal to 1, which will trigger the color detection function and further movements. This effect is achieved by detecting the ambient light. During the program setup stage, the ambient light is measured and stored in a CC value (see table 3). When the buggy approaches a card, due to the increase in reflection, the CC value measured by the buggy will increase. When the ambient light exceeds the 1.1 times of the CC value measured at the setup stage, the stop_signal will be changed from 0 to 1, instructing the buggy to stop. 
 
 When the buggy is stopped as a result of the detect-wall function discussed above, the buggy will start a short burst to hit the wall. This is designed for two purposes. Firsly, it allows the direction of the buggy movement to be corrected (perpendicular to the wall). Secondly, it allows the buggy to move closer to the colored card for color detection. 
 
-### Color detection function 
+### Color detection 
 
 [Relevant files: color.c] 
 
@@ -153,9 +153,10 @@ After the color card is detected and verified, the turning action is taken accor
 
 The basic logic of goback function is storing the duration of movements and action of movements (determined by color) alternatively in a single array. The method of storing the duration and color is discussed above. The first and the last term of the memory array are always duration terms. When the goback function is called, the array will be read in the reverse direction, which will reverse the actions accordingly. Once array index == 0. In this case, all data in the memory array has been read, and the car will stop. Press RF2 to start the buggy, it will go to the main function, exploring the maze again. 
 
-## Test 
 
-The program has two defined settings,?# Define TEST 0? or ?# Define TEST 1?. In order to start the maze, the user has to set TEST = 0, which will trigger all the functions described above. During the program development phase or debugging phase, the user can set TEST = 1 to enter the test mode, which will call various of test functions in ?test_and_calibration.c?.  Each test has its unique test code. 
+## Test functions for development and debugging
+
+The program has two defined settings,"# Define TEST 0" or "# Define TEST 1". In order to start the maze, the user has to set TEST = 0, which will trigger all the functions described above. During the program development phase or debugging phase, the user can set TEST = 1 to enter the test mode, which will call various of test functions in "test_and_calibration.".  Each test has its unique test code. 
 
 Table 4: Test functions and purposes 
 
