@@ -69,21 +69,21 @@ The color-detection is achieved by analyzing the RGBC data with RGBC lights. Whe
 
 The most basic turning angle is 45 degrees. Turning 90 degrees requires repeating the turning function twice and turning 135 degrees requires repeating the turning function thrice etc. This method is beneficial because we only need to calibrate the motor setting for one angle. As long as the 45-degree turning is accurate, 90, 135 and 180 degrees will also be accurate. The turning sensitivity can be adjusted and tested by using the calibration function in program setup. 
 
-## Forward movement memory
+### Forward movement memory
 
-[Relevant files: main.c] 
+[Relevant files: main.c, timer.c, interrupt.c] 
 
 ![Memory Recording logic](gifs/Memory_Recording.png)
 
-The timer starts right before the buggy moves forward. The starting time is recorded at the same time as the timer is started. Once the card/wall is detected, the buggy will stop. The timer is also stopped and stop time is recorded. The duration of forward movement (stop time ? start time) compared to 1 second. If the duration is larger than 1 second, the forward movement duration is valid and will be recorded in the memory array at the current array index. The array index is then plus 1 for next recording. If the duration is less than 1 second, the forward movement is considered as an accident, and it will not be recorded in the memory array. If the accident happens more than 5 times, the buggy is identified as lost, it will call the goback function and go back to the starting point. 
+The timer starts right before the buggy moves forward. The starting time is recorded at the same time as the timer is started. Once the card/wall is detected, the buggy will stop. The timer is also stopped and stop time is recorded. The duration of forward movement (stop time - start time) compared to 1 second. If the duration is larger than 1 second, the forward movement duration is valid and will be recorded in the memory array at the current array index. The array index is then plus 1 for next recording. If the duration is less than 1 second, the forward movement is considered as an accident, and it will not be recorded in the memory array. If the accident happens more than 5 times, the buggy is identified as lost, it will call the goback function and go back to the starting point. 
 
-## Turning memory
+###  Turning memory
 
 [Relevant files: movement.c] 
 
 After the color card is detected and verified, the turning action is taken according to the color. If color is white, goback function is called and the buggy will go back to the starting point. If it is other color, the turning action will be recorded in the memory array at the current array index. The array index is then plus 1 for next recording. After that, color and stop signal are cleared. The loop repeats, and timer is started again for duration recording purposes. 
 
-## Goback function
+###  Goback function
 
 [Relevant files: movement.c] 
 

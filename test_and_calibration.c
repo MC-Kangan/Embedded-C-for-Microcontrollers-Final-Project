@@ -7,20 +7,18 @@ unsigned int setup(struct white_card *white,struct color_rgb*amb,struct DC_motor
 {
     unsigned int amb_light = 0;
     LED_OFF();
-    LATDbits.LATD7 = 1;
-    LATHbits.LATH3 = 1;
+    LATDbits.LATD7 = 1;     //Turn on RD7, indicate users to press RF2
+    LATHbits.LATH3 = 1;     //Turn on RH3, indicate users to press RF3
     // Press RF2: Calibration with white card
     while (PORTFbits.RF2);
-    if (!PORTFbits.RF2){calibrate_white(white); LATDbits.LATD7 = 0; __delay_ms(500);}
+    if (!PORTFbits.RF2){calibrate_white(white); LATDbits.LATD7 = 0; __delay_ms(500);}               // After calibration with white card, turn off RD7
     // Press RF3: Measurement of the ambient light
     while (PORTFbits.RF3);
-    if (!PORTFbits.RF3){amb_light = amb_light_measure(amb); LATHbits.LATH3 = 0; __delay_ms(500);}
-    
-    //LATDbits.LATD7 = 1;
-    while(1){
+    if (!PORTFbits.RF3){amb_light = amb_light_measure(amb); LATHbits.LATH3 = 0; __delay_ms(500);}   // After embient light measurement, turn off RH3
+    while(1){                                                                                           // Turn on RD7 and toggling RH3 to indicate users press either RF2 or RF3.
         while (PORTFbits.RF3 && PORTFbits.RF2){LATDbits.LATD7 = 1; LATHbits.LATH3 = !LATHbits.LATH3; __delay_ms(200);}
-        if (!PORTFbits.RF3){calibration_motor(mL,mR); LATDbits.LATD7 = 0;} // This line is not working as intended
-        if (!PORTFbits.RF2){LATDbits.LATD7 = 0; LATHbits.LATH3 = 0; __delay_ms(500); return amb_light;}
+        if (!PORTFbits.RF3){calibration_motor(mL,mR); LATDbits.LATD7 = 0;}                              // if RF3 is pressed, start motor calibration process
+        if (!PORTFbits.RF2){LATDbits.LATD7 = 0; LATHbits.LATH3 = 0; __delay_ms(500); return amb_light;} // if RF2 is pressed, start the maze
     }
 }
 
