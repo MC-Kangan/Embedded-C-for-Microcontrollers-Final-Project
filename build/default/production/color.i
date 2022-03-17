@@ -25160,10 +25160,17 @@ void LED_G(void)
 }
 
 
+unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned int upper)
+{
+    unsigned char result = 0;
+    if (lower < value2compare && value2compare <= upper){result = 1;}
+    return result;
+}
+
+
 
 unsigned char detect_color(struct color_rgb *m, struct white_card *w)
 {
-
 
 
     unsigned int RR = 0, RG = 0, RB = 0, GR = 0, GG = 0, GB = 0, BR = 0, BG = 0, BB = 0, BC = 0;
@@ -25176,33 +25183,24 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
     RR = lroundf((float)(m->R)/(w->RR)*100); RG = lroundf((float)(m->G)/(w->RG)*100); RB = lroundf((float)(m->B)/(w->RB)*100);
     _delay((unsigned long)((50)*(64000000/4000.0)));
 
-    char buf[100];
-    sprintf(buf,"%d\t%d\t%d\r\n", RR, RG, RB);
-    sendStringSerial4(buf);
-
     LED_G();
     _delay((unsigned long)((100)*(64000000/4000.0)));
     read_color(m);
 
-    GR = (float)(m->R)/(w->GR)*100; GG = (float)(m->G)/(w->GG)*100; GB = (float)(m->B)/(w->GB)*100;
     GR = lroundf((float)(m->R)/(w->GR)*100); GG = lroundf((float)(m->G)/(w->GG)*100); GB = lroundf((float)(m->B)/(w->GB)*100);
 
-    sprintf(buf,"%d\t%d\t%d\r\n", GR, GG, GB);
-    sendStringSerial4(buf);
 
     LED_B();
     _delay((unsigned long)((100)*(64000000/4000.0)));
     read_color(m);
+
     BR = lroundf((float)(m->R)/(w->BR)*100); BG = lroundf((float)(m->G)/(w->BG)*100); BB = lroundf((float)(m->B)/(w->BB)*100);
     BC = lroundf((float)(m->C)/(w->BC)*100);
-
-    sprintf(buf,"%d\t%d\t%d\r\n", BR, BG, BB);
-    sendStringSerial4(buf);
 
 
     if (compare(0, RR, 45)){
          if (compare(0, lroundf((float)(GG + BG)/BB * 200), 467)){color = 3;}
-        else{color = 2;}
+         else{color = 2;}
     }
     else{
         if (GG <= 30 && GB <= 30){
@@ -25213,7 +25211,6 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
         else if (GG > 30 && GB > 30){
 
             if (BB >= 80){color = 7;}
-
             else{
                 if (BG < 48){color = 4;}
                 else {color = 5;}
@@ -25222,10 +25219,14 @@ unsigned char detect_color(struct color_rgb *m, struct white_card *w)
         else {color = 0;}
     }
 
+
     if (compare(90, RR, RR * 2) && compare(90, RB, RB * 2) && compare(90, BG, BG * 2)){color = 8;}
+
+
     if (compare(0, BR, 30) && compare(0,BG,30)){color = 0;}
 
     if (color == 8) {toggle_light(2,1);}
+
     return color;
 }
 
@@ -25303,30 +25304,23 @@ void color_data_collection(struct color_rgb *m)
 }
 
 
-unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned int upper)
-{
-    unsigned char result = 0;
-    if (lower < value2compare && value2compare <= upper){result = 1;}
-    return result;
-}
-
-
 unsigned char verify_color(unsigned char color,struct color_rgb *m, struct white_card *w)
 {
     _delay((unsigned long)((50)*(64000000/4000.0)));
-    unsigned int color2, color3;
+    unsigned int color2;
     color2 = detect_color(m,w);
     _delay((unsigned long)((50)*(64000000/4000.0)));
-
     if (color == color2){return color;}
     else {
         color = 0;
         return color;}
 }
 
+
+
 unsigned amb_light_measure(struct color_rgb *amb)
 {
-    unsigned int CC_amb_1 = 0, CC_amb_2 = 0, CC_amb_3 = 0, CC_amb_ave, upper_bound = 0;
+    unsigned int CC_amb_1 = 0, CC_amb_2 = 0, CC_amb_3 = 0, CC_amb_ave;
     toggle_light(2,2);
     LED_C();
     _delay((unsigned long)((500)*(64000000/4000.0)));
@@ -25347,17 +25341,17 @@ unsigned amb_light_measure(struct color_rgb *amb)
     return CC_amb_ave;
 }
 
+
+
 unsigned char detect_wall(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light)
 {
-    unsigned int CC_amb = 0, CG_amb = 0;
+    unsigned int CC_amb = 0;
     unsigned char stop = 0;
     unsigned int threshold = 0;
     LED_C();
     _delay((unsigned long)((100)*(64000000/4000.0)));
     CC_amb = color_read_Clear();
-    CG_amb = color_read_Green();
-    threshold = lroundf((float)amb_light * 1.1);
-
+    threshold = lroundf((float)amb_light * 110 / 100);
 
     if (CC_amb >= threshold){stop = 1;}
     return stop;

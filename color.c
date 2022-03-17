@@ -89,13 +89,13 @@ void toggle_light(unsigned char lightnumber, unsigned char toggletime)
 
 void color_click_init(void)
 {   
-                                  //setup colour sensor via i2c interface
-    I2C_2_Master_Init();          //Initialise i2c Master
-                                  //set device PON
+                                        //setup colour sensor via i2c interface
+    I2C_2_Master_Init();                //Initialise i2c Master
+                                        //set device PON
 	color_writetoaddr(0x00, 0x01);
-    __delay_ms(3);                //need to wait 3ms for everthing to start up                            
-	color_writetoaddr(0x00, 0x03);//turn on device ADC                            
-	color_writetoaddr(0x01, 0xD5);//set integration time
+    __delay_ms(3);                      //need to wait 3ms for everthing to start up                            
+	color_writetoaddr(0x00, 0x03);      //turn on device ADC                            
+	color_writetoaddr(0x01, 0xD5);      //set integration time
 }
 
 void color_writetoaddr(char address, char value){
@@ -216,74 +216,75 @@ void LED_G(void)
     __delay_ms(200);
 }
 
+// Function used to compare the numerical values with a given upper bound and lower bound
+unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned int upper)
+{
+    unsigned char result = 0; 
+    if (lower < value2compare && value2compare <= upper){result = 1;} // Return 1 if true, return 0 if false
+    return result;
+}
 
-// Function used to detect color with white light
+
+// Function used to detect color 
 unsigned char detect_color(struct color_rgb *m, struct white_card *w)
 {
-    
     // Color code:
     // 1: red; 2: green; 3: blue; 4: yellow; 5:pink; 6:orange; 7:light blue; 8:white; 0: black
-    unsigned int RR = 0, RG = 0, RB = 0, GR = 0, GG = 0, GB = 0, BR = 0, BG = 0, BB = 0, BC = 0; //GR_REAL = 0, GC_REAL = 0, BC = 0;
-    unsigned char color = 0;   
+    unsigned int RR = 0, RG = 0, RB = 0, GR = 0, GG = 0, GB = 0, BR = 0, BG = 0, BB = 0, BC = 0; // Initialise variables (see README for explanation of these variables)
+    unsigned char color = 0; // Initialise a color; Color = 0 means zero
             
-    LED_R(); // Turn on red light 
+    LED_R();         // Turn on red light 
     __delay_ms(100);
-    read_color(m); 
-    //RR = (float)(m->R)/(w->RR)*100; RG = (float)(m->G)/(w->RG)*100; RB =(float)(m->B)/(w->RB)*100;
-    RR = lround((float)(m->R)/(w->RR)*100); RG = lround((float)(m->G)/(w->RG)*100); RB = lround((float)(m->B)/(w->RB)*100);
+    read_color(m);   // Read color
+    // Calculate the ratio between the RGB data of the color card and the RGB data of the white card, when red light is on
+    RR = lround((float)(m->R)/(w->RR)*100); RG = lround((float)(m->G)/(w->RG)*100); RB = lround((float)(m->B)/(w->RB)*100); 
     __delay_ms(50);
     
-    char buf[100];  
-    sprintf(buf,"%d\t%d\t%d\r\n", RR, RG, RB);
-    sendStringSerial4(buf);
-    
-    LED_G(); // Turn on green light
+    LED_G();         // Turn on green light
     __delay_ms(100);
-    read_color(m); 
-
-    GR = (float)(m->R)/(w->GR)*100; GG = (float)(m->G)/(w->GG)*100; GB = (float)(m->B)/(w->GB)*100;
+    read_color(m);   // Read color
+    // Calculate the ratio between the RGB data of the color card and the RGB data of the white card, when green light is on
     GR = lround((float)(m->R)/(w->GR)*100); GG = lround((float)(m->G)/(w->GG)*100); GB = lround((float)(m->B)/(w->GB)*100);
 
-    sprintf(buf,"%d\t%d\t%d\r\n", GR, GG, GB);
-    sendStringSerial4(buf);
     
-    LED_B(); // Turn on blue light
+    LED_B();        // Turn on blue light
     __delay_ms(100);
-    read_color(m); 
+    read_color(m);  // Read color
+    // Calculate the ratio between the RGB data of the color card and the RGB data of the white card, when blue light is on
     BR = lround((float)(m->R)/(w->BR)*100); BG = lround((float)(m->G)/(w->BG)*100); BB = lround((float)(m->B)/(w->BB)*100);
     BC = lround((float)(m->C)/(w->BC)*100);
-
-    sprintf(buf,"%d\t%d\t%d\r\n", BR, BG, BB);
-    sendStringSerial4(buf);
     
     // Distinguish green (2) and blue (3)
-    if (compare(0, RR, 45)){ 
-         if (compare(0, lround((float)(GG + BG)/BB * 200), 467)){color = 3;} //Blue
-        else{color = 2;} // if (GG+BG)/BB*2 > 391 //Green
+    if (compare(0, RR, 45)){                                                 // If 0 < RR < 45
+         if (compare(0, lround((float)(GG + BG)/BB * 200), 467)){color = 3;} // If 0 < (GG + BG)/ BB * 200 < 467, color = Blue
+         else{color = 2;}                                                    // If (GG + BG) / BB * 200 > 467, color = Green
     }
-    else{
-        if (GG <= 30 && GB <= 30){ // if RG < 75
+    else{                                                                    // If RR >= 45
+        if (GG <= 30 && GB <= 30){                                           // If GG <= 30 and GB <= 30
             // Distinguish red (1) and orange (6)
-            if (compare(0, lround((float)GR/RR * 500), 150)){color = 1;}
-            else {color = 6;} // if RR/BG*2 >= 313
+            if (compare(0, lround((float)GR/RR * 500), 150)){color = 1;}     // If 0 < (GR / RR) * 500 < 150, color = Red
+            else {color = 6;}                                                // If (GR / RR) * 500 >= 150, color = Orange 
         }
-        else if (GG > 30 && GB > 30){
+        else if (GG > 30 && GB > 30){                                        // If GG > 30 and GB > 30
             // Distinguish yellow (4), pink (5) and light blue (7)
-            if (BB >= 80){color = 7;}
-            //if (BG >= BR) {color = 7;}
-            else{
-                if (BG < 48){color = 4;}
-                else {color = 5;}
+            if (BB >= 80){color = 7;}                                        // If BB >= 80, color = Light blue
+            else{                                                            // If BB < 80
+                if (BG < 48){color = 4;}                                     // If BG < 48, color = Yellow
+                else {color = 5;}                                            // If BG >= 48, color = Pink
             }    
         }
-        else {color = 0;}
+        else {color = 0;}                                                    // Else, color = Black
     }
-    // Group 0 (black and white)
-    if (compare(90, RR, RR * 2) && compare(90, RB, RB * 2) && compare(90, BG, BG * 2)){color = 8;}
+    // Distinguish white (8) and black (0)
+    // If 90 < RR < RR * 2 and 90 < RB < RB * 2 and 90 < BG < BG * 2, color = white
+    if (compare(90, RR, RR * 2) && compare(90, RB, RB * 2) && compare(90, BG, BG * 2)){color = 8;} 
+    
+    // If 0 < BR < 30 and 0 < BG < 30, color = black
     if (compare(0, BR, 30) && compare(0,BG,30)){color = 0;}
     
-    if (color == 8) {toggle_light(2,1);}
-    return color;
+    if (color == 8) {toggle_light(2,1);} // If color = white, toggle buggy lights
+    
+    return color; // Return color
 }
 
 // Function used to display color readings to PC
@@ -359,63 +360,56 @@ void color_data_collection(struct color_rgb *m)
     LED_C();                  // Turn on all lights
 }
 
-
-unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned int upper)
-{
-    unsigned char result = 0;
-    if (lower < value2compare && value2compare <= upper){result = 1;} // Return 1 if true
-    return result;
-}
-
-// Function used to check the color after detecting the color with white light
+// Function used to double check the color predicted
 unsigned char verify_color(unsigned char color,struct color_rgb *m, struct white_card *w)
 {
     __delay_ms(50);
-    unsigned int color2, color3;
-    color2 = detect_color(m,w);
+    unsigned int color2; 
+    color2 = detect_color(m,w);        // Detect the color the second time
     __delay_ms(50);
-//    color3 = detect_color(m,w);
-    if (color == color2){return color;}
+    if (color == color2){return color;}// If color detected in the first time = color detected in the second time, return color
     else {
         color = 0;
-        return color;}
+        return color;}                 // Else, return color = 0 (black)
 }
 
+
+// Function used to measure the ambient light in CC value
 unsigned amb_light_measure(struct color_rgb *amb)
 {
-    unsigned int CC_amb_1 = 0, CC_amb_2 = 0, CC_amb_3 = 0, CC_amb_ave, upper_bound = 0;
-    toggle_light(2,2);
-    LED_C();
+    unsigned int CC_amb_1 = 0, CC_amb_2 = 0, CC_amb_3 = 0, CC_amb_ave;
+    toggle_light(2,2); // Toggle buggy lights
+    LED_C();           // Turn on white light
     __delay_ms(500);
        
-    CC_amb_1 = color_read_Clear();
+    CC_amb_1 = color_read_Clear(); // Read clear reading 
     __delay_ms(200);
     
-    CC_amb_2 = color_read_Clear();
+    CC_amb_2 = color_read_Clear(); // Read clear reading 
     __delay_ms(200);
 
-    CC_amb_3 = color_read_Clear();
+    CC_amb_3 = color_read_Clear(); // Read clear reading 
     __delay_ms(200);
     
-    CC_amb_ave = lround((float)(CC_amb_1 + CC_amb_2 + CC_amb_3)/3);
+    CC_amb_ave = lround((float)(CC_amb_1 + CC_amb_2 + CC_amb_3)/3); // Calculate the average reading
 
-    toggle_light(2,2);
+    toggle_light(2,2); // Toggle buggy lights                      
     
-    return CC_amb_ave;  
+    return CC_amb_ave; // Return the averaged ambient light
 }
 
+
+// Function used to detect the presence of a wall or card
 unsigned char detect_wall(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light) 
 {
-    unsigned int CC_amb = 0, CG_amb = 0; 
-    unsigned char stop = 0;
-    unsigned int threshold = 0; // should be CC 
-    LED_C();
+    unsigned int CC_amb = 0;    // Initialise ambient light = 0
+    unsigned char stop = 0;     // Initialise stop signal = 0
+    unsigned int threshold = 0; // Initialise threshold = 0
+    LED_C();                    // Turn on white light
     __delay_ms(100);
-    CC_amb = color_read_Clear();
-    CG_amb = color_read_Green();//, CR = m->R, CG = m->G, CB = m->B;
-    threshold = lround((float)amb_light * 1.1);
-    //threshold = lround((float)(w->CC)/ 105 * 100);
+    CC_amb = color_read_Clear();// When the buggy is moving, it obtain the CC value from the ambient light
+    threshold = lround((float)amb_light * 110 / 100); // The threshold is 1.1 times the ambient light measured by function 'amb_light_measure'
 
-    if (CC_amb >= threshold){stop = 1;}
-    return stop;
+    if (CC_amb >= threshold){stop = 1;} // If the measured CC value is greater than the threshold, set stop signal to 1, instructing the buggy to stop
+    return stop; // Return stop
 }

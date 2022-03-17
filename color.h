@@ -5,7 +5,7 @@
 
 #define _XTAL_FREQ 64000000 //note intrinsic _delay function is 62.5ns at 64,000,000Hz  
 
-struct color_rgb { //definition of color_rgb structure
+struct color_rgb {           //definition of color_rgb structure
     unsigned int R ;         //Red color reading
     unsigned int G ;         //Green color reading
     unsigned int B ;         //Blue color reading
@@ -15,14 +15,13 @@ struct color_rgb { //definition of color_rgb structure
 struct white_card { //definition of white_card structure
     unsigned int RR ;         //Red color reading when red light on
     unsigned int RG ;         //Green color reading when red light on
-    unsigned int RB;         //Blue color reading when red light on
+    unsigned int RB;          //Blue color reading when red light on
     unsigned int GR ;         //Red color reading when green light on
     unsigned int GG ;         //Green color reading when green light on
     unsigned int GB ;         //Blue color reading when green light on
     unsigned int BR ;         //Red color reading when blue light on
     unsigned int BG ;         //Green color reading when blue light on
     unsigned int BB ;         //Blue color reading when blue light on
-    //unsigned int GC ;         //Clear color reading when green light on
     unsigned int CR ;         //Red color reading when white light on
     unsigned int CG ;         //Green color reading when white light on
     unsigned int CB ;         //Blue color reading when white light on
@@ -31,8 +30,6 @@ struct white_card { //definition of white_card structure
     
 };
 
-void pin_init(void);
-void toggle_light(unsigned char lightnumber, unsigned char toggletime);
 /********************************************//**
  *  Function to initialise the colour click module using I2C
  ***********************************************/
@@ -62,7 +59,15 @@ unsigned int color_read_Blue(void);
  *	Returns a 16 bit ADC value representing colour intensity
  ***********************************************/
 unsigned int color_read_Green(void);
+
+/********************************************//**
+ *  Function to read the clear channel
+ *	Returns a 16 bit ADC value representing colour intensity
+ ***********************************************/
 unsigned int color_read_Clear(void);
+
+void pin_init(void);
+void toggle_light(unsigned char lightnumber, unsigned char toggletime);
 void read_color (struct color_rgb *m);
 void LED_OFF(void);
 void LED_R(void);

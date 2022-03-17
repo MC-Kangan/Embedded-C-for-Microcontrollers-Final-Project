@@ -2161,12 +2161,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( __delay (1 -> * -> -> 500 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 }
 [e :U 2027 ]
-"20
-[; ;test_and_calibration.c: 20:     while(1){
+"18
+[; ;test_and_calibration.c: 18:     while(1){
 [e :U 2029 ]
 {
-"21
-[; ;test_and_calibration.c: 21:         while (PORTFbits.RF3 && PORTFbits.RF2){LATDbits.LATD7 = 1; LATHbits.LATH3 = !LATHbits.LATH3; _delay((unsigned long)((200)*(64000000/4000.0)));}
+"19
+[; ;test_and_calibration.c: 19:         while (PORTFbits.RF3 && PORTFbits.RF2){LATDbits.LATD7 = 1; LATHbits.LATH3 = !LATHbits.LATH3; _delay((unsigned long)((200)*(64000000/4000.0)));}
 [e $U 2031  ]
 [e :U 2032 ]
 {
@@ -2177,16 +2177,16 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U 2031 ]
 [e $ && != -> . . _PORTFbits 0 3 `i -> 0 `i != -> . . _PORTFbits 0 2 `i -> 0 `i 2032  ]
 [e :U 2033 ]
-"22
-[; ;test_and_calibration.c: 22:         if (!PORTFbits.RF3){calibration_motor(mL,mR); LATDbits.LATD7 = 0;}
+"20
+[; ;test_and_calibration.c: 20:         if (!PORTFbits.RF3){calibration_motor(mL,mR); LATDbits.LATD7 = 0;}
 [e $ ! ! != -> . . _PORTFbits 0 3 `i -> 0 `i 2034  ]
 {
 [e ( _calibration_motor (2 , _mL _mR ]
 [e = . . _LATDbits 0 7 -> -> 0 `i `uc ]
 }
 [e :U 2034 ]
-"23
-[; ;test_and_calibration.c: 23:         if (!PORTFbits.RF2){LATDbits.LATD7 = 0; LATHbits.LATH3 = 0; _delay((unsigned long)((500)*(64000000/4000.0))); return amb_light;}
+"21
+[; ;test_and_calibration.c: 21:         if (!PORTFbits.RF2){LATDbits.LATD7 = 0; LATHbits.LATH3 = 0; _delay((unsigned long)((500)*(64000000/4000.0))); return amb_light;}
 [e $ ! ! != -> . . _PORTFbits 0 2 `i -> 0 `i 2035  ]
 {
 [e = . . _LATDbits 0 7 -> -> 0 `i `uc ]
@@ -2196,272 +2196,272 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $UE 2019  ]
 }
 [e :U 2035 ]
-"24
-[; ;test_and_calibration.c: 24:     }
+"22
+[; ;test_and_calibration.c: 22:     }
 }
 [e :U 2028 ]
 [e $U 2029  ]
 [e :U 2030 ]
-"25
-[; ;test_and_calibration.c: 25: }
+"23
+[; ;test_and_calibration.c: 23: }
 [e :UE 2019 ]
 }
-"30
-[; ;test_and_calibration.c: 30: void test_action(struct DC_motor *mL, struct DC_motor *mR)
+"28
+[; ;test_and_calibration.c: 28: void test_action(struct DC_motor *mL, struct DC_motor *mR)
 [v _test_action `(v ~T0 @X0 1 ef2`*S2018`*S2018 ]
-"31
-[; ;test_and_calibration.c: 31: {
+"29
+[; ;test_and_calibration.c: 29: {
 {
 [e :U _test_action ]
-"30
-[; ;test_and_calibration.c: 30: void test_action(struct DC_motor *mL, struct DC_motor *mR)
+"28
+[; ;test_and_calibration.c: 28: void test_action(struct DC_motor *mL, struct DC_motor *mR)
 [v _mL `*S2018 ~T0 @X0 1 r1 ]
 [v _mR `*S2018 ~T0 @X0 1 r2 ]
-"31
-[; ;test_and_calibration.c: 31: {
+"29
+[; ;test_and_calibration.c: 29: {
 [f ]
+"30
+[; ;test_and_calibration.c: 30:     stop(mL,mR);
+[e ( _stop (2 , _mL _mR ]
+"31
+[; ;test_and_calibration.c: 31:     _delay((unsigned long)((2000)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 2000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "32
-[; ;test_and_calibration.c: 32:     stop(mL,mR);
-[e ( _stop (2 , _mL _mR ]
-"33
-[; ;test_and_calibration.c: 33:     _delay((unsigned long)((2000)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 2000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"34
-[; ;test_and_calibration.c: 34:     turn45(mL,mR,8,1);
+[; ;test_and_calibration.c: 32:     turn45(mL,mR,8,1);
 [e ( _turn45 (4 , , , _mL _mR -> -> 8 `i `uc -> -> 1 `i `uc ]
-"35
-[; ;test_and_calibration.c: 35:     stop(mL,mR);
+"33
+[; ;test_and_calibration.c: 33:     stop(mL,mR);
 [e ( _stop (2 , _mL _mR ]
-"36
-[; ;test_and_calibration.c: 36:     _delay((unsigned long)((2000)*(64000000/4000.0)));
+"34
+[; ;test_and_calibration.c: 34:     _delay((unsigned long)((2000)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 2000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"37
-[; ;test_and_calibration.c: 37:     turn45(mL,mR,8,2);
+"35
+[; ;test_and_calibration.c: 35:     turn45(mL,mR,8,2);
 [e ( _turn45 (4 , , , _mL _mR -> -> 8 `i `uc -> -> 2 `i `uc ]
+"36
+[; ;test_and_calibration.c: 36:     fullSpeedAhead(mL,mR);
+[e ( _fullSpeedAhead (2 , _mL _mR ]
+"37
+[; ;test_and_calibration.c: 37:     _delay((unsigned long)((3000)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 3000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "38
-[; ;test_and_calibration.c: 38:     fullSpeedAhead(mL,mR);
-[e ( _fullSpeedAhead (2 , _mL _mR ]
+[; ;test_and_calibration.c: 38:     stop(mL,mR);
+[e ( _stop (2 , _mL _mR ]
 "39
-[; ;test_and_calibration.c: 39:     _delay((unsigned long)((3000)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 3000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"40
-[; ;test_and_calibration.c: 40:     stop(mL,mR);
-[e ( _stop (2 , _mL _mR ]
-"41
-[; ;test_and_calibration.c: 41:     turn45(mL,mR,4,1);
+[; ;test_and_calibration.c: 39:     turn45(mL,mR,4,1);
 [e ( _turn45 (4 , , , _mL _mR -> -> 4 `i `uc -> -> 1 `i `uc ]
-"42
-[; ;test_and_calibration.c: 42:     fullSpeedAhead(mL,mR);
+"40
+[; ;test_and_calibration.c: 40:     fullSpeedAhead(mL,mR);
 [e ( _fullSpeedAhead (2 , _mL _mR ]
-"43
-[; ;test_and_calibration.c: 43:     _delay((unsigned long)((3000)*(64000000/4000.0)));
+"41
+[; ;test_and_calibration.c: 41:     _delay((unsigned long)((3000)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 3000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"44
-[; ;test_and_calibration.c: 44:     stop(mL,mR);
+"42
+[; ;test_and_calibration.c: 42:     stop(mL,mR);
 [e ( _stop (2 , _mL _mR ]
-"45
-[; ;test_and_calibration.c: 45: }
+"43
+[; ;test_and_calibration.c: 43: }
 [e :UE 2036 ]
 }
-"48
-[; ;test_and_calibration.c: 48: void test_function(unsigned char test_code, struct color_rgb *m, struct white_card *w, struct DC_motor *mL, struct DC_motor *mR)
+"46
+[; ;test_and_calibration.c: 46: void test_function(unsigned char test_code, struct color_rgb *m, struct white_card *w, struct DC_motor *mL, struct DC_motor *mR)
 [v _test_function `(v ~T0 @X0 1 ef5`uc`*S2015`*S2016`*S2018`*S2018 ]
-"49
-[; ;test_and_calibration.c: 49: {
+"47
+[; ;test_and_calibration.c: 47: {
 {
 [e :U _test_function ]
-"48
-[; ;test_and_calibration.c: 48: void test_function(unsigned char test_code, struct color_rgb *m, struct white_card *w, struct DC_motor *mL, struct DC_motor *mR)
+"46
+[; ;test_and_calibration.c: 46: void test_function(unsigned char test_code, struct color_rgb *m, struct white_card *w, struct DC_motor *mL, struct DC_motor *mR)
 [v _test_code `uc ~T0 @X0 1 r1 ]
 [v _m `*S2015 ~T0 @X0 1 r2 ]
 [v _w `*S2016 ~T0 @X0 1 r3 ]
 [v _mL `*S2018 ~T0 @X0 1 r4 ]
 [v _mR `*S2018 ~T0 @X0 1 r5 ]
-"49
-[; ;test_and_calibration.c: 49: {
+"47
+[; ;test_and_calibration.c: 47: {
 [f ]
-"50
-[; ;test_and_calibration.c: 50:     unsigned char complete = 0;
+"48
+[; ;test_and_calibration.c: 48:     unsigned char complete = 0;
 [v _complete `uc ~T0 @X0 1 a ]
 [e = _complete -> -> 0 `i `uc ]
-"51
-[; ;test_and_calibration.c: 51:     unsigned char color = 0;
+"49
+[; ;test_and_calibration.c: 49:     unsigned char color = 0;
 [v _color `uc ~T0 @X0 1 a ]
 [e = _color -> -> 0 `i `uc ]
-"52
-[; ;test_and_calibration.c: 52:     unsigned char stop_signal = 0;
+"50
+[; ;test_and_calibration.c: 50:     unsigned char stop_signal = 0;
 [v _stop_signal `uc ~T0 @X0 1 a ]
 [e = _stop_signal -> -> 0 `i `uc ]
-"53
-[; ;test_and_calibration.c: 53:     unsigned int amb_light = 0;
+"51
+[; ;test_and_calibration.c: 51:     unsigned int amb_light = 0;
 [v _amb_light `ui ~T0 @X0 1 a ]
 [e = _amb_light -> -> 0 `i `ui ]
-"55
-[; ;test_and_calibration.c: 55:     if (test_code == 2){calibrate_white(w);}
+"53
+[; ;test_and_calibration.c: 53:     if (test_code == 2){calibrate_white(w);}
 [e $ ! == -> _test_code `i -> 2 `i 2038  ]
 {
 [e ( _calibrate_white (1 _w ]
 }
 [e :U 2038 ]
-"56
-[; ;test_and_calibration.c: 56:     if (test_code == 4){amb_light = amb_light_measure(m);}
+"54
+[; ;test_and_calibration.c: 54:     if (test_code == 4){amb_light = amb_light_measure(m);}
 [e $ ! == -> _test_code `i -> 4 `i 2039  ]
 {
 [e = _amb_light ( _amb_light_measure (1 _m ]
 }
 [e :U 2039 ]
-"58
-[; ;test_and_calibration.c: 58:     while(1){
+"56
+[; ;test_and_calibration.c: 56:     while(1){
 [e :U 2041 ]
 {
-"60
-[; ;test_and_calibration.c: 60:         if (test_code == 1){
+"58
+[; ;test_and_calibration.c: 58:         if (test_code == 1){
 [e $ ! == -> _test_code `i -> 1 `i 2043  ]
 {
-"61
-[; ;test_and_calibration.c: 61:             LED_C();
+"59
+[; ;test_and_calibration.c: 59:             LED_C();
 [e ( _LED_C ..  ]
-"62
-[; ;test_and_calibration.c: 62:             read_color(m);
+"60
+[; ;test_and_calibration.c: 60:             read_color(m);
 [e ( _read_color (1 _m ]
-"63
-[; ;test_and_calibration.c: 63:             color_display(m);
+"61
+[; ;test_and_calibration.c: 61:             color_display(m);
 [e ( _color_display (1 _m ]
-"64
-[; ;test_and_calibration.c: 64:         }
+"62
+[; ;test_and_calibration.c: 62:         }
 }
 [e :U 2043 ]
-"66
-[; ;test_and_calibration.c: 66:         if (test_code == 2){
+"64
+[; ;test_and_calibration.c: 64:         if (test_code == 2){
 [e $ ! == -> _test_code `i -> 2 `i 2044  ]
 {
-"67
-[; ;test_and_calibration.c: 67:             color = detect_color(m,w);
+"65
+[; ;test_and_calibration.c: 65:             color = detect_color(m,w);
 [e = _color ( _detect_color (2 , _m _w ]
-"69
-[; ;test_and_calibration.c: 69:             color_predict(color);
+"67
+[; ;test_and_calibration.c: 67:             color_predict(color);
 [e ( _color_predict (1 _color ]
-"70
-[; ;test_and_calibration.c: 70:         }
+"68
+[; ;test_and_calibration.c: 68:         }
 }
 [e :U 2044 ]
-"72
-[; ;test_and_calibration.c: 72:         if (test_code == 3){
+"70
+[; ;test_and_calibration.c: 70:         if (test_code == 3){
 [e $ ! == -> _test_code `i -> 3 `i 2045  ]
 {
-"73
-[; ;test_and_calibration.c: 73:             while (complete == 0){
+"71
+[; ;test_and_calibration.c: 71:             while (complete == 0){
 [e $U 2046  ]
 [e :U 2047 ]
 {
-"74
-[; ;test_and_calibration.c: 74:                 color_data_collection(m);
+"72
+[; ;test_and_calibration.c: 72:                 color_data_collection(m);
 [e ( _color_data_collection (1 _m ]
-"75
-[; ;test_and_calibration.c: 75:                 complete = 1;
+"73
+[; ;test_and_calibration.c: 73:                 complete = 1;
 [e = _complete -> -> 1 `i `uc ]
-"76
-[; ;test_and_calibration.c: 76:             }
+"74
+[; ;test_and_calibration.c: 74:             }
 }
 [e :U 2046 ]
-"73
-[; ;test_and_calibration.c: 73:             while (complete == 0){
+"71
+[; ;test_and_calibration.c: 71:             while (complete == 0){
 [e $ == -> _complete `i -> 0 `i 2047  ]
 [e :U 2048 ]
-"77
-[; ;test_and_calibration.c: 77:         }
+"75
+[; ;test_and_calibration.c: 75:         }
 }
 [e :U 2045 ]
-"79
-[; ;test_and_calibration.c: 79:         if (test_code == 4){
+"77
+[; ;test_and_calibration.c: 77:         if (test_code == 4){
 [e $ ! == -> _test_code `i -> 4 `i 2049  ]
 {
-"80
-[; ;test_and_calibration.c: 80:             while (stop_signal == 0){
+"78
+[; ;test_and_calibration.c: 78:             while (stop_signal == 0){
 [e $U 2050  ]
 [e :U 2051 ]
 {
-"81
-[; ;test_and_calibration.c: 81:                 fullSpeedAhead(mL, mR);
+"79
+[; ;test_and_calibration.c: 79:                 fullSpeedAhead(mL, mR);
 [e ( _fullSpeedAhead (2 , _mL _mR ]
-"82
-[; ;test_and_calibration.c: 82:                 stop_signal = detect_wall(mL, mR, amb_light);
+"80
+[; ;test_and_calibration.c: 80:                 stop_signal = detect_wall(mL, mR, amb_light);
 [e = _stop_signal ( _detect_wall (3 , , -> _mL `*S2017 -> _mR `*S2017 _amb_light ]
-"83
-[; ;test_and_calibration.c: 83:             }
+"81
+[; ;test_and_calibration.c: 81:             }
 }
 [e :U 2050 ]
-"80
-[; ;test_and_calibration.c: 80:             while (stop_signal == 0){
+"78
+[; ;test_and_calibration.c: 78:             while (stop_signal == 0){
 [e $ == -> _stop_signal `i -> 0 `i 2051  ]
 [e :U 2052 ]
-"84
-[; ;test_and_calibration.c: 84:             stop(mL, mR);
+"82
+[; ;test_and_calibration.c: 82:             stop(mL, mR);
 [e ( _stop (2 , _mL _mR ]
-"85
-[; ;test_and_calibration.c: 85:             _delay((unsigned long)((1000)*(64000000/4000.0)));
+"83
+[; ;test_and_calibration.c: 83:             _delay((unsigned long)((1000)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"86
-[; ;test_and_calibration.c: 86:             stop_signal = 0;
+"84
+[; ;test_and_calibration.c: 84:             stop_signal = 0;
 [e = _stop_signal -> -> 0 `i `uc ]
-"87
-[; ;test_and_calibration.c: 87:         }
+"85
+[; ;test_and_calibration.c: 85:         }
 }
 [e :U 2049 ]
-"89
-[; ;test_and_calibration.c: 89:         if (test_code == 5){
+"87
+[; ;test_and_calibration.c: 87:         if (test_code == 5){
 [e $ ! == -> _test_code `i -> 5 `i 2053  ]
 {
-"90
-[; ;test_and_calibration.c: 90:             test_action(mL,mR);
+"88
+[; ;test_and_calibration.c: 88:             test_action(mL,mR);
 [e ( _test_action (2 , _mL _mR ]
-"91
-[; ;test_and_calibration.c: 91:         }
+"89
+[; ;test_and_calibration.c: 89:         }
 }
 [e :U 2053 ]
-"92
-[; ;test_and_calibration.c: 92:     }
+"90
+[; ;test_and_calibration.c: 90:     }
 }
 [e :U 2040 ]
 [e $U 2041  ]
 [e :U 2042 ]
-"93
-[; ;test_and_calibration.c: 93: }
+"91
+[; ;test_and_calibration.c: 91: }
 [e :UE 2037 ]
 }
-"95
-[; ;test_and_calibration.c: 95: void calibration_motor(struct DC_motor *mL, struct DC_motor *mR)
+"93
+[; ;test_and_calibration.c: 93: void calibration_motor(struct DC_motor *mL, struct DC_motor *mR)
 [v _calibration_motor `(v ~T0 @X0 1 ef2`*S2018`*S2018 ]
-"96
-[; ;test_and_calibration.c: 96: {
+"94
+[; ;test_and_calibration.c: 94: {
 {
 [e :U _calibration_motor ]
-"95
-[; ;test_and_calibration.c: 95: void calibration_motor(struct DC_motor *mL, struct DC_motor *mR)
+"93
+[; ;test_and_calibration.c: 93: void calibration_motor(struct DC_motor *mL, struct DC_motor *mR)
 [v _mL `*S2018 ~T0 @X0 1 r1 ]
 [v _mR `*S2018 ~T0 @X0 1 r2 ]
-"96
-[; ;test_and_calibration.c: 96: {
+"94
+[; ;test_and_calibration.c: 94: {
 [f ]
-"97
-[; ;test_and_calibration.c: 97:     while (1) {
+"95
+[; ;test_and_calibration.c: 95:     while (1) {
 [e :U 2056 ]
 {
-"98
-[; ;test_and_calibration.c: 98:         LATDbits.LATD7 = 1;
+"96
+[; ;test_and_calibration.c: 96:         LATDbits.LATD7 = 1;
 [e = . . _LATDbits 0 7 -> -> 1 `i `uc ]
-"99
-[; ;test_and_calibration.c: 99:         LATHbits.LATH3 = 1;
+"97
+[; ;test_and_calibration.c: 97:         LATHbits.LATH3 = 1;
 [e = . . _LATHbits 0 3 -> -> 1 `i `uc ]
-"100
-[; ;test_and_calibration.c: 100:         if (!PORTFbits.RF2) {
+"98
+[; ;test_and_calibration.c: 98:         if (!PORTFbits.RF2) {
 [e $ ! ! != -> . . _PORTFbits 0 2 `i -> 0 `i 2058  ]
 {
-"101
-[; ;test_and_calibration.c: 101:             _delay((unsigned long)((300)*(64000000/4000.0)));
+"99
+[; ;test_and_calibration.c: 99:             _delay((unsigned long)((300)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 300 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"102
-[; ;test_and_calibration.c: 102:             if (!PORTFbits.RF2){LATDbits.LATD7 = 0; _delay((unsigned long)((300)*(64000000/4000.0))); SENSITIVITY += 5; }
+"100
+[; ;test_and_calibration.c: 100:             if (!PORTFbits.RF2){LATDbits.LATD7 = 0; _delay((unsigned long)((300)*(64000000/4000.0))); SENSITIVITY += 5; }
 [e $ ! ! != -> . . _PORTFbits 0 2 `i -> 0 `i 2059  ]
 {
 [e = . . _LATDbits 0 7 -> -> 0 `i `uc ]
@@ -2469,33 +2469,33 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e =+ _SENSITIVITY -> -> 5 `i `ui ]
 }
 [e :U 2059 ]
-"103
-[; ;test_and_calibration.c: 103:             if (!PORTFbits.RF3){break;}
+"101
+[; ;test_and_calibration.c: 101:             if (!PORTFbits.RF3){break;}
 [e $ ! ! != -> . . _PORTFbits 0 3 `i -> 0 `i 2060  ]
 {
 [e $U 2057  ]
 }
 [e :U 2060 ]
-"104
-[; ;test_and_calibration.c: 104:         }
+"102
+[; ;test_and_calibration.c: 102:         }
 }
 [e :U 2058 ]
-"105
-[; ;test_and_calibration.c: 105:         if (!PORTFbits.RF3) {
+"103
+[; ;test_and_calibration.c: 103:         if (!PORTFbits.RF3) {
 [e $ ! ! != -> . . _PORTFbits 0 3 `i -> 0 `i 2061  ]
 {
-"106
-[; ;test_and_calibration.c: 106:             _delay((unsigned long)((300)*(64000000/4000.0)));
+"104
+[; ;test_and_calibration.c: 104:             _delay((unsigned long)((300)*(64000000/4000.0)));
 [e ( __delay (1 -> * -> -> 300 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
-"107
-[; ;test_and_calibration.c: 107:             if (!PORTFbits.RF2){break;}
+"105
+[; ;test_and_calibration.c: 105:             if (!PORTFbits.RF2){break;}
 [e $ ! ! != -> . . _PORTFbits 0 2 `i -> 0 `i 2062  ]
 {
 [e $U 2057  ]
 }
 [e :U 2062 ]
-"108
-[; ;test_and_calibration.c: 108:             if (!PORTFbits.RF3){LATHbits.LATH3 = 0; _delay((unsigned long)((300)*(64000000/4000.0))); SENSITIVITY -= 5; }
+"106
+[; ;test_and_calibration.c: 106:             if (!PORTFbits.RF3){LATHbits.LATH3 = 0; _delay((unsigned long)((300)*(64000000/4000.0))); SENSITIVITY -= 5; }
 [e $ ! ! != -> . . _PORTFbits 0 3 `i -> 0 `i 2063  ]
 {
 [e = . . _LATHbits 0 3 -> -> 0 `i `uc ]
@@ -2503,26 +2503,26 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e =- _SENSITIVITY -> -> 5 `i `ui ]
 }
 [e :U 2063 ]
-"109
-[; ;test_and_calibration.c: 109:             }
+"107
+[; ;test_and_calibration.c: 107:             }
 }
 [e :U 2061 ]
-"110
-[; ;test_and_calibration.c: 110:     }
+"108
+[; ;test_and_calibration.c: 108:     }
 }
 [e :U 2055 ]
 [e $U 2056  ]
 [e :U 2057 ]
-"111
-[; ;test_and_calibration.c: 111:     LATDbits.LATD7 = 0;
+"109
+[; ;test_and_calibration.c: 109:     LATDbits.LATD7 = 0;
 [e = . . _LATDbits 0 7 -> -> 0 `i `uc ]
-"112
-[; ;test_and_calibration.c: 112:     LATHbits.LATH3 = 0;
+"110
+[; ;test_and_calibration.c: 110:     LATHbits.LATH3 = 0;
 [e = . . _LATHbits 0 3 -> -> 0 `i `uc ]
-"113
-[; ;test_and_calibration.c: 113:     test_action(mL, mR);
+"111
+[; ;test_and_calibration.c: 111:     test_action(mL, mR);
 [e ( _test_action (2 , _mL _mR ]
-"114
-[; ;test_and_calibration.c: 114: }
+"112
+[; ;test_and_calibration.c: 112: }
 [e :UE 2054 ]
 }

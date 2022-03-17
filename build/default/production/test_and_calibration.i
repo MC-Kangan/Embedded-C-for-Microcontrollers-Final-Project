@@ -24365,8 +24365,6 @@ unsigned int setup(struct white_card *white,struct color_rgb*amb,struct DC_motor
 
     while (PORTFbits.RF3);
     if (!PORTFbits.RF3){amb_light = amb_light_measure(amb); LATHbits.LATH3 = 0; _delay((unsigned long)((500)*(64000000/4000.0)));}
-
-
     while(1){
         while (PORTFbits.RF3 && PORTFbits.RF2){LATDbits.LATD7 = 1; LATHbits.LATH3 = !LATHbits.LATH3; _delay((unsigned long)((200)*(64000000/4000.0)));}
         if (!PORTFbits.RF3){calibration_motor(mL,mR); LATDbits.LATD7 = 0;}
