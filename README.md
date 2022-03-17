@@ -11,6 +11,27 @@ Your task is to develop an autonomous robot that can navigate a "mine" using a s
 1. Handle exceptions and return back to the starting position if final card cannot be found
 
 
+## "Mine" environment specification
+
+A "mine" is contstructed from black plywood walls 100mm high with some walls having coloured cards located on the sides of the maze to assist with navigation. The following colour code is to be used for navigation:
+
+Colour | Instruction
+---------|---------
+Red | Turn Right 90
+Green | Turn Left 90
+Blue | Turn 180
+Yellow | Reverse 1 square and turn right 90
+Pink | Reverse 1 square and turn left 90
+Orange | Turn Right 135
+Light blue | Turn Left 135 
+White | Finish (return home)
+Black | Maze wall colour
+
+Mine courses will vary in difficulty, with the simplest requiring 4 basic moves to navigate. More advanced courses may require 10 or moves to navigate. The mines may have features such as dead ends but colour cards will always direct you to the end of the maze. Once the end of the maze has been reached, you must return to the starting position. An example course to navigate is shown below. You do not know in advance which colours will be in the course or how many.
+
+![Navi Diagram](gifs/maze.gif)
+
+
 ## Demonstration
 
 Youtube link: https://www.youtube.com/watch?v=E8A-zQ6wuDk
@@ -64,7 +85,7 @@ This session introduces the general logic flow of the program. More details will
 
 Power on the buggy, the first thing is starting the basic program setup, including white card calibration, ambient light measurement, and motor calibration(optional). After finishing the basic program setup, press RF2, and the main program execution starts. The buggy will keep moving forward until the detect-wall function tells it to stop (stop signal == 1).  Once it stops (card detected), the buggy will do a short burst to hit the wall, and then detect and verify the color. After the color has been verified, the buggy will react according to the color. The color and stop signal are cleared, and the buggy will move forward to explore the maze. All the actions, both forward moving and turning are memorized for back track purposes.  
 
-![main function logic](gifs/Main_Funciton_General.png)
+![main function logic flow](gifs/Main_Function_General.png)
 
 
 ## Program setup 
@@ -90,15 +111,19 @@ After the measurement of the ambient light, the user can choose to start the maz
 
 [Relevant files: color.c] 
 
-The detect-wall function allows the buggy to stop moving when detecting the presence of a colored card or wall. When a card is detected, the function will set the stop_signal to 1, which will trigger the color detection function and further movements. This effect is achieved by detecting the ambient light. During the program setup stage, the ambient light is measured and stored in a CC value (see table X). When the buggy approaches a card, due to the increase in reflection, the CC value measured by the buggy will increase. When the ambient light exceeds the 1.1 times of the CC value measured at the setup stage, the stop_signal will be changed from 0 to 1, instructing the buggy to stop. 
+The detect-wall function allows the buggy to stop moving when detecting the presence of a colored card or wall. When a card is detected, the function will set the stop_signal to 1, which will trigger the color detection function and further movements. This effect is achieved by detecting the ambient light. During the program setup stage, the ambient light is measured and stored in a CC value (see table 3). When the buggy approaches a card, due to the increase in reflection, the CC value measured by the buggy will increase. When the ambient light exceeds the 1.1 times of the CC value measured at the setup stage, the stop_signal will be changed from 0 to 1, instructing the buggy to stop. 
+
+When the buggy is stopped as a result of the detect-wall function discussed above, the buggy will start a short burst to hit the wall. This is designed for two purposes. Firsly, it allows the direction of the buggy movement to be corrected (perpendicular to the wall). Secondly, it allows the buggy to move closer to the colored card for color detection. 
 
 ### Color detection function 
 
 [Relevant files: color.c] 
 
-The color-detection is achieved by analyzing the RGBC data with RGBC lights. When detecting color, we switched on the red, green, and blue lights consecutively on every colored card and measured the R, G and B data from the Color Click. For each card, we will obtain 9 different data as shown in table X (RR, RG, RB, BR, BG, BB, GR, GB, GG). The color detection algorithm is designed by analyzing the 9 variables. To reduce the influence of ambient light, only the ratios between the RGBC data of the colored card and the RGBC data of the white card are stored.  
+The color-detection is achieved by analyzing the RGBC data with RGBC lights. When detecting color, we switched on the red, green, and blue lights consecutively on every colored card and measured the R, G and B data from the Color Click. For each card, we will obtain 9 different data as shown in table 3 (RR, RG, RB, BR, BG, BB, GR, GB, GG). The color detection algorithm is designed by analyzing the 9 variables. 
 
 ![RGB data demonstration](gifs/RGB_reading_demo.png)
+
+To reduce the influence of ambient light, all the color readings are normalized by the white card data. Only the ratios between the RGBC data of the colored card and the RGBC data of the white card are stored. Another effort to eliminate the effect of environmental lighting is building a cover with a black card. When the buggy hits the wall, the black cover is able to block and absorb the majority of the ambient light, leading to a more accurate color detection. 
 
 ### Motor turning 
 
@@ -130,25 +155,7 @@ From forward movement memory and turning memory logic, the first and the last te
 
 
 
-## "Mine" environment specification
 
-A "mine" is contstructed from black plywood walls 100mm high with some walls having coloured cards located on the sides of the maze to assist with navigation. The following colour code is to be used for navigation:
-
-Colour | Instruction
----------|---------
-Red | Turn Right 90
-Green | Turn Left 90
-Blue | Turn 180
-Yellow | Reverse 1 square and turn right 90
-Pink | Reverse 1 square and turn left 90
-Orange | Turn Right 135
-Light blue | Turn Left 135 
-White | Finish (return home)
-Black | Maze wall colour
-
-Mine courses will vary in difficulty, with the simplest requiring 4 basic moves to navigate. More advanced courses may require 10 or moves to navigate. The mines may have features such as dead ends but colour cards will always direct you to the end of the maze. Once the end of the maze has been reached, you must return to the starting position. An example course to navigate is shown below. You do not know in advance which colours will be in the course or how many.
-
-![Navi Diagram](gifs/maze.gif)
 
 
 
