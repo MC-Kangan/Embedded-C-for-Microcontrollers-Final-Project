@@ -307,7 +307,7 @@ void color_predict(unsigned char color)
 void calibrate_white(struct white_card *w)
 {   
     LED_OFF();          // Turn off all lights to start with           
-    toggle_light(1,2);  // Toggle buggy light
+    toggle_light(1,2);  // Toggle buggy lights
     __delay_ms(500);  
     
     LED_R();            // Turn on red light 
@@ -328,7 +328,7 @@ void calibrate_white(struct white_card *w)
     
     LED_OFF();          // Turn off all lights
     __delay_ms(500);
-    toggle_light(1,2);  // Toggle the light
+    toggle_light(1,2);  // Toggle buggy lights
 }
 
 // Function used to collect data for testing
@@ -407,9 +407,9 @@ unsigned char detect_wall(struct DC_motor *mL, struct DC_motor *mR, unsigned int
     unsigned int threshold = 0; // Initialise threshold = 0
     LED_C();                    // Turn on white light
     __delay_ms(100);
-    CC_amb = color_read_Clear();// When the buggy is moving, it obtain the CC value from the ambient light
+    CC_amb = color_read_Clear();// When the buggy is moving, it constantly reads the CC value from the ambient light
     threshold = lround((float)amb_light * 110 / 100); // The threshold is 1.1 times the ambient light measured by function 'amb_light_measure'
 
     if (CC_amb >= threshold){stop = 1;} // If the measured CC value is greater than the threshold, set stop signal to 1, instructing the buggy to stop
-    return stop; // Return stop
+    return stop; // Return stop signal
 }

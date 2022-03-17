@@ -64,14 +64,14 @@ void turning_action(unsigned char color, struct DC_motor *mL, struct DC_motor *m
 
 void goback(struct DC_motor *mL, struct DC_motor *mR)
 {   fullSpeedBack(mL,mR,1);     // Reverse moving for a small distance to leave space for turning
-    turn45(mL,mR,4,1);          // Turn 180 for a small distance to leave space for turning
+    turn45(mL,mR,4,1);          // Turn 180
     fullSpeedBack(mL,mR,2);     // Reverse moving for a medium distance so the buggy can auto calibrate the position. 
-    array_index--;              // Reduce the array index by 1 for reading the last term in memory[array_index] .
-    while(array_index >= 0){            // keep the while loop until there
+    array_index--;              // Reduce the array index by 1 for reading the last term in memory[array_index]
+    while(array_index >= 0){            // keep the while loop as long as there are terms in the memory array
         fullSpeedAhead(mL,mR);          // the last term is always a distance, therefore moving straight for that recorded duration
         for (unsigned int i=0; i<memory[array_index]; i++) {__delay_ms(100);}   // delay = straight movement duration
         stop(mL,mR);                    
-        if (array_index == 0){break;}   // if the array_index == 0, it means all terms in memory has been acted.break the while loop
+        if (array_index == 0){break;}   // if the array_index == 0, it means all terms in memory has been acted, break the while loop
         array_index--;                  // Reduce the array index by 1 to back read the next term in memory data 
         if (memory[array_index] == 1){turn45(mL,mR,2,1);fullSpeedBack(mL,mR,2);array_index--;}     // if it's 1(red) in memory, Turn Left 90 degrees, Reverse a medium distance, Reduce the array index by 1 to back read the next term in memory data 
         else if (memory[array_index] == 2){turn45(mL,mR,2,2);fullSpeedBack(mL,mR,2);array_index--;}// if it's 2(green) in memory, Turn Right 90 degrees, Reverse a medium distance, Reduce the array index by 1 to back read the next term in memory data 

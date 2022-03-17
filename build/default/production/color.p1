@@ -163,8 +163,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "13 ./i2c.h
 [; ;./i2c.h: 13: void I2C_2_Master_Init(void);
 [v _I2C_2_Master_Init `(v ~T0 @X0 0 ef ]
-"46 ./color.h
-[; ;./color.h: 46: void color_writetoaddr(char address, char value);
+"43 ./color.h
+[; ;./color.h: 43: void color_writetoaddr(char address, char value);
 [v _color_writetoaddr `(v ~T0 @X0 0 ef2`uc`uc ]
 "23 ./i2c.h
 [; ;./i2c.h: 23: void I2C_2_Master_Start(void);
@@ -183,12 +183,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _I2C_2_Master_Read `(uc ~T0 @X0 0 ef1`uc ]
 "8 ./color.h
 [; ;./color.h: 8: struct color_rgb {
-[s S2016 `ui 1 `ui 1 `ui 1 `ui 1 ]
-[n S2016 color_rgb R G B C ]
+[s S2019 `ui 1 `ui 1 `ui 1 `ui 1 ]
+[n S2019 color_rgb R G B C ]
 "15
 [; ;./color.h: 15: struct white_card {
-[s S2017 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 ]
-[n S2017 white_card RR RG RB GR GG GB BR BG BB CR CG CB CC BC ]
+[s S2020 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 `ui 1 ]
+[n S2020 white_card RR RG RB GR GG GB BR BG BB CR CG CB CC BC ]
 "282 C:\Program Files\Microchip\xc8\v2.35\pic\include\c99\math.h
 [; ;C:\Program Files\Microchip\xc8\v2.35\pic\include\c99\math.h: 282: long lroundf(float);
 [v _lroundf `(l ~T0 @X0 0 ef1`f ]
@@ -200,8 +200,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _sendStringSerial4 `(v ~T0 @X0 0 ef1`*uc ]
 "13 ./dc_motor.h
 [; ;./dc_motor.h: 13: struct DC_motor {
-[s S2015 `uc 1 `uc 1 `*uc 1 `*uc 1 `uc 1 `i 1 ]
-[n S2015 DC_motor power direction dutyHighByte dir_LAT dir_pin PWMperiod ]
+[s S2018 `uc 1 `uc 1 `*uc 1 `*uc 1 `uc 1 `i 1 ]
+[n S2018 DC_motor power direction dutyHighByte dir_LAT dir_pin PWMperiod ]
 "55 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 55: __asm("PPSLOCK equ 0DEFh");
 [; <" PPSLOCK equ 0DEFh ;# ">
@@ -2646,14 +2646,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 "166
 [; ;color.c: 166: void read_color (struct color_rgb *m)
-[v _read_color `(v ~T0 @X0 1 ef1`*S2016 ]
+[v _read_color `(v ~T0 @X0 1 ef1`*S2019 ]
 "167
 [; ;color.c: 167: {
 {
 [e :U _read_color ]
 "166
 [; ;color.c: 166: void read_color (struct color_rgb *m)
-[v _m `*S2016 ~T0 @X0 1 r1 ]
+[v _m `*S2019 ~T0 @X0 1 r1 ]
 "167
 [; ;color.c: 167: {
 [f ]
@@ -2829,15 +2829,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 "229
 [; ;color.c: 229: unsigned char detect_color(struct color_rgb *m, struct white_card *w)
-[v _detect_color `(uc ~T0 @X0 1 ef2`*S2016`*S2017 ]
+[v _detect_color `(uc ~T0 @X0 1 ef2`*S2019`*S2020 ]
 "230
 [; ;color.c: 230: {
 {
 [e :U _detect_color ]
 "229
 [; ;color.c: 229: unsigned char detect_color(struct color_rgb *m, struct white_card *w)
-[v _m `*S2016 ~T0 @X0 1 r1 ]
-[v _w `*S2017 ~T0 @X0 1 r2 ]
+[v _m `*S2019 ~T0 @X0 1 r1 ]
+[v _w `*S2020 ~T0 @X0 1 r2 ]
 "230
 [; ;color.c: 230: {
 [f ]
@@ -3044,14 +3044,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 "291
 [; ;color.c: 291: void color_display(struct color_rgb *m)
-[v _color_display `(v ~T0 @X0 1 ef1`*S2016 ]
+[v _color_display `(v ~T0 @X0 1 ef1`*S2019 ]
 "292
 [; ;color.c: 292: {
 {
 [e :U _color_display ]
 "291
 [; ;color.c: 291: void color_display(struct color_rgb *m)
-[v _m `*S2016 ~T0 @X0 1 r1 ]
+[v _m `*S2019 ~T0 @X0 1 r1 ]
 "292
 [; ;color.c: 292: {
 [f ]
@@ -3096,14 +3096,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 "307
 [; ;color.c: 307: void calibrate_white(struct white_card *w)
-[v _calibrate_white `(v ~T0 @X0 1 ef1`*S2017 ]
+[v _calibrate_white `(v ~T0 @X0 1 ef1`*S2020 ]
 "308
 [; ;color.c: 308: {
 {
 [e :U _calibrate_white ]
 "307
 [; ;color.c: 307: void calibrate_white(struct white_card *w)
-[v _w `*S2017 ~T0 @X0 1 r1 ]
+[v _w `*S2020 ~T0 @X0 1 r1 ]
 "308
 [; ;color.c: 308: {
 [f ]
@@ -3177,14 +3177,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 "335
 [; ;color.c: 335: void color_data_collection(struct color_rgb *m)
-[v _color_data_collection `(v ~T0 @X0 1 ef1`*S2016 ]
+[v _color_data_collection `(v ~T0 @X0 1 ef1`*S2019 ]
 "336
 [; ;color.c: 336: {
 {
 [e :U _color_data_collection ]
 "335
 [; ;color.c: 335: void color_data_collection(struct color_rgb *m)
-[v _m `*S2016 ~T0 @X0 1 r1 ]
+[v _m `*S2019 ~T0 @X0 1 r1 ]
 "336
 [; ;color.c: 336: {
 [f ]
@@ -3267,7 +3267,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 "364
 [; ;color.c: 364: unsigned char verify_color(unsigned char color,struct color_rgb *m, struct white_card *w)
-[v _verify_color `(uc ~T0 @X0 1 ef3`uc`*S2016`*S2017 ]
+[v _verify_color `(uc ~T0 @X0 1 ef3`uc`*S2019`*S2020 ]
 "365
 [; ;color.c: 365: {
 {
@@ -3275,8 +3275,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "364
 [; ;color.c: 364: unsigned char verify_color(unsigned char color,struct color_rgb *m, struct white_card *w)
 [v _color `uc ~T0 @X0 1 r1 ]
-[v _m `*S2016 ~T0 @X0 1 r2 ]
-[v _w `*S2017 ~T0 @X0 1 r3 ]
+[v _m `*S2019 ~T0 @X0 1 r2 ]
+[v _w `*S2020 ~T0 @X0 1 r3 ]
 "365
 [; ;color.c: 365: {
 [f ]
@@ -3319,14 +3319,14 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 "378
 [; ;color.c: 378: unsigned amb_light_measure(struct color_rgb *amb)
-[v _amb_light_measure `(ui ~T0 @X0 1 ef1`*S2016 ]
+[v _amb_light_measure `(ui ~T0 @X0 1 ef1`*S2019 ]
 "379
 [; ;color.c: 379: {
 {
 [e :U _amb_light_measure ]
 "378
 [; ;color.c: 378: unsigned amb_light_measure(struct color_rgb *amb)
-[v _amb `*S2016 ~T0 @X0 1 r1 ]
+[v _amb `*S2019 ~T0 @X0 1 r1 ]
 "379
 [; ;color.c: 379: {
 [f ]
@@ -3382,15 +3382,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 }
 "403
 [; ;color.c: 403: unsigned char detect_wall(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light)
-[v _detect_wall `(uc ~T0 @X0 1 ef3`*S2015`*S2015`ui ]
+[v _detect_wall `(uc ~T0 @X0 1 ef3`*S2018`*S2018`ui ]
 "404
 [; ;color.c: 404: {
 {
 [e :U _detect_wall ]
 "403
 [; ;color.c: 403: unsigned char detect_wall(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light)
-[v _mL `*S2015 ~T0 @X0 1 r1 ]
-[v _mR `*S2015 ~T0 @X0 1 r2 ]
+[v _mL `*S2018 ~T0 @X0 1 r1 ]
+[v _mR `*S2018 ~T0 @X0 1 r2 ]
 [v _amb_light `ui ~T0 @X0 1 r3 ]
 "404
 [; ;color.c: 404: {

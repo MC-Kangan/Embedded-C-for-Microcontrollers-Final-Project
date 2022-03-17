@@ -19,8 +19,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "27
 [; ;./dc_motor.h: 27: void turn45(struct DC_motor *mL, struct DC_motor *mR, unsigned char turn_time, unsigned char direction);
 [v _turn45 `(v ~T0 @X0 0 ef4`*S2018`*S2018`uc`uc ]
-"35 ./color.h
-[; ;./color.h: 35: void toggle_light(unsigned char lightnumber, unsigned char toggletime);
+"70 ./color.h
+[; ;./color.h: 70: void toggle_light(unsigned char lightnumber, unsigned char toggletime);
 [v _toggle_light `(v ~T0 @X0 0 ef2`uc`uc ]
 "16 ./movement.h
 [; ;./movement.h: 16: void goback(struct DC_motor *mL, struct DC_motor *mR);

@@ -11,8 +11,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./dc_motor.h: 13: struct DC_motor {
 [s S2018 `uc 1 `uc 1 `*uc 1 `*uc 1 `uc 1 `i 1 ]
 [n S2018 DC_motor power direction dutyHighByte dir_LAT dir_pin PWMperiod ]
-"67 ./color.h
-[; ;./color.h: 67: void LED_OFF(void);
+"72 ./color.h
+[; ;./color.h: 72: void LED_OFF(void);
 [v _LED_OFF `(v ~T0 @X0 0 ef ]
 "28811 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 28811:     struct {
@@ -75,15 +75,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 "30602
 [; ;C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\proc\pic18f67k40.h: 30602: extern volatile PORTFbits_t PORTFbits __attribute__((address(0xF8E)));
 [v _PORTFbits `VS1411 ~T0 @X0 0 e@3982 ]
-"73 ./color.h
-[; ;./color.h: 73: void calibrate_white(struct white_card *w);
+"78 ./color.h
+[; ;./color.h: 78: void calibrate_white(struct white_card *w);
 [v _calibrate_white `(v ~T0 @X0 0 ef1`*S2016 ]
 [v F192 `(v ~T0 @X0 1 tf1`ul ]
 "12 C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\pic\include\builtins.h
 [v __delay `JF192 ~T0 @X0 0 e ]
 [p i __delay ]
-"80 ./color.h
-[; ;./color.h: 80: unsigned amb_light_measure(struct color_rgb *amb);
+"85 ./color.h
+[; ;./color.h: 85: unsigned amb_light_measure(struct color_rgb *amb);
 [v _amb_light_measure `(ui ~T0 @X0 0 ef1`*S2015 ]
 "11 ./test_and_calibration.h
 [; ;./test_and_calibration.h: 11: void calibration_motor(struct DC_motor *mL, struct DC_motor *mR);
@@ -97,26 +97,26 @@ Version 4.0 HI-TECH Software Intermediate Code
 "28
 [; ;./dc_motor.h: 28: void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
 [v _fullSpeedAhead `(v ~T0 @X0 0 ef2`*S2018`*S2018 ]
-"69 ./color.h
-[; ;./color.h: 69: void LED_C(void);
+"74 ./color.h
+[; ;./color.h: 74: void LED_C(void);
 [v _LED_C `(v ~T0 @X0 0 ef ]
-"66
-[; ;./color.h: 66: void read_color (struct color_rgb *m);
+"71
+[; ;./color.h: 71: void read_color (struct color_rgb *m);
 [v _read_color `(v ~T0 @X0 0 ef1`*S2015 ]
-"72
-[; ;./color.h: 72: void color_display(struct color_rgb *m);
+"77
+[; ;./color.h: 77: void color_display(struct color_rgb *m);
 [v _color_display `(v ~T0 @X0 0 ef1`*S2015 ]
-"75
-[; ;./color.h: 75: unsigned char detect_color(struct color_rgb *m, struct white_card *w);
+"80
+[; ;./color.h: 80: unsigned char detect_color(struct color_rgb *m, struct white_card *w);
 [v _detect_color `(uc ~T0 @X0 0 ef2`*S2015`*S2016 ]
-"74
-[; ;./color.h: 74: void color_predict(unsigned char color);
-[v _color_predict `(v ~T0 @X0 0 ef1`uc ]
-"76
-[; ;./color.h: 76: void color_data_collection(struct color_rgb *m);
-[v _color_data_collection `(v ~T0 @X0 0 ef1`*S2015 ]
 "79
-[; ;./color.h: 79: unsigned char detect_wall(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light) ;
+[; ;./color.h: 79: void color_predict(unsigned char color);
+[v _color_predict `(v ~T0 @X0 0 ef1`uc ]
+"81
+[; ;./color.h: 81: void color_data_collection(struct color_rgb *m);
+[v _color_data_collection `(v ~T0 @X0 0 ef1`*S2015 ]
+"84
+[; ;./color.h: 84: unsigned char detect_wall(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light) ;
 [s S2017 ]
 [n S2017 DC_motor ]
 [v _detect_wall `(uc ~T0 @X0 0 ef3`*S2017`*S2017`ui ]
@@ -2338,6 +2338,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "65
 [; ;test_and_calibration.c: 65:             color = detect_color(m,w);
 [e = _color ( _detect_color (2 , _m _w ]
+"66
+[; ;test_and_calibration.c: 66:             color_display(m);
+[e ( _color_display (1 _m ]
 "67
 [; ;test_and_calibration.c: 67:             color_predict(color);
 [e ( _color_predict (1 _color ]

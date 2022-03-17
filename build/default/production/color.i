@@ -24231,162 +24231,6 @@ unsigned char __t3rd16on(void);
 # 34 "C:/Program Files/Microchip/MPLABX/v6.00/packs/Microchip/PIC18F-K_DFP/1.5.114/xc8\\pic\\include\\xc.h" 2 3
 # 1 "color.c" 2
 
-# 1 "./dc_motor.h" 1
-# 11 "./dc_motor.h"
-unsigned int SENSITIVITY = 100;
-
-struct DC_motor {
-    char power;
-    char direction;
-    unsigned char *dutyHighByte;
-    unsigned char *dir_LAT;
-    char dir_pin;
-    int PWMperiod;
-};
-
-
-void initDCmotorsPWM(int PWMperiod);
-void initDCmotors_parameter(struct DC_motor *motorL, struct DC_motor *motorR);
-void setMotorPWM(struct DC_motor *m);
-void stop(struct DC_motor *mL, struct DC_motor *mR);
-void turn45(struct DC_motor *mL, struct DC_motor *mR, unsigned char turn_time, unsigned char direction);
-void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
-void fullSpeedBack(struct DC_motor *mL, struct DC_motor *mR, unsigned char instruction);
-# 2 "color.c" 2
-
-# 1 "./serial.h" 1
-
-
-
-
-
-
-
-
-void initUSART4(void);
-char getCharSerial4(void);
-void sendCharSerial4(char charToSend);
-void sendStringSerial4(char *string);
-# 3 "color.c" 2
-
-# 1 "./color.h" 1
-
-
-
-
-
-
-
-struct color_rgb {
-    unsigned int R ;
-    unsigned int G ;
-    unsigned int B ;
-    unsigned int C ;
-};
-
-struct white_card {
-    unsigned int RR ;
-    unsigned int RG ;
-    unsigned int RB;
-    unsigned int GR ;
-    unsigned int GG ;
-    unsigned int GB ;
-    unsigned int BR ;
-    unsigned int BG ;
-    unsigned int BB ;
-
-    unsigned int CR ;
-    unsigned int CG ;
-    unsigned int CB ;
-    unsigned int CC ;
-    unsigned int BC;
-
-};
-
-void pin_init(void);
-void toggle_light(unsigned char lightnumber, unsigned char toggletime);
-
-
-
-void color_click_init(void);
-
-
-
-
-
-
-void color_writetoaddr(char address, char value);
-
-
-
-
-
-unsigned int color_read_Red(void);
-
-
-
-
-
-unsigned int color_read_Blue(void);
-
-
-
-
-
-unsigned int color_read_Green(void);
-unsigned int color_read_Clear(void);
-void read_color (struct color_rgb *m);
-void LED_OFF(void);
-void LED_R(void);
-void LED_C(void);
-void LED_B(void);
-void LED_G(void);
-void color_display(struct color_rgb *m);
-void calibrate_white(struct white_card *w);
-void color_predict(unsigned char color);
-unsigned char detect_color(struct color_rgb *m, struct white_card *w);
-void color_data_collection(struct color_rgb *m);
-unsigned char verify_color(unsigned char color,struct color_rgb *m, struct white_card *w);
-unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned int upper);
-unsigned char detect_wall(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light) ;
-unsigned amb_light_measure(struct color_rgb *amb);
-# 4 "color.c" 2
-
-# 1 "./i2c.h" 1
-# 13 "./i2c.h"
-void I2C_2_Master_Init(void);
-
-
-
-
-void I2C_2_Master_Idle(void);
-
-
-
-
-void I2C_2_Master_Start(void);
-
-
-
-
-void I2C_2_Master_RepStart(void);
-
-
-
-
-void I2C_2_Master_Stop(void);
-
-
-
-
-void I2C_2_Master_Write(unsigned char data_byte);
-
-
-
-
-unsigned char I2C_2_Master_Read(unsigned char ack);
-# 5 "color.c" 2
-
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\c99\\stdio.h" 1 3
 # 24 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\c99\\stdio.h" 3
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\c99\\bits/alltypes.h" 1 3
@@ -24531,7 +24375,7 @@ char *ctermid(char *);
 
 
 char *tempnam(const char *, const char *);
-# 6 "color.c" 2
+# 2 "color.c" 2
 
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\c99\\math.h" 1 3
@@ -24903,7 +24747,7 @@ double jn(int, double);
 double y0(double);
 double y1(double);
 double yn(int, double);
-# 8 "color.c" 2
+# 4 "color.c" 2
 
 # 1 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\c99\\fenv.h" 1 3
 # 10 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\c99\\fenv.h" 3
@@ -24916,6 +24760,167 @@ typedef struct {
  unsigned short __status_word;
 } fenv_t;
 # 10 "C:\\Program Files\\Microchip\\xc8\\v2.35\\pic\\include\\c99\\fenv.h" 2 3
+# 5 "color.c" 2
+
+# 1 "./dc_motor.h" 1
+# 11 "./dc_motor.h"
+unsigned int SENSITIVITY = 100;
+
+struct DC_motor {
+    char power;
+    char direction;
+    unsigned char *dutyHighByte;
+    unsigned char *dir_LAT;
+    char dir_pin;
+    int PWMperiod;
+};
+
+
+void initDCmotorsPWM(int PWMperiod);
+void initDCmotors_parameter(struct DC_motor *motorL, struct DC_motor *motorR);
+void setMotorPWM(struct DC_motor *m);
+void stop(struct DC_motor *mL, struct DC_motor *mR);
+void turn45(struct DC_motor *mL, struct DC_motor *mR, unsigned char turn_time, unsigned char direction);
+void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
+void fullSpeedBack(struct DC_motor *mL, struct DC_motor *mR, unsigned char instruction);
+# 6 "color.c" 2
+
+# 1 "./serial.h" 1
+
+
+
+
+
+
+
+
+void initUSART4(void);
+char getCharSerial4(void);
+void sendCharSerial4(char charToSend);
+void sendStringSerial4(char *string);
+# 7 "color.c" 2
+
+# 1 "./color.h" 1
+
+
+
+
+
+
+
+struct color_rgb {
+    unsigned int R ;
+    unsigned int G ;
+    unsigned int B ;
+    unsigned int C ;
+};
+
+struct white_card {
+    unsigned int RR ;
+    unsigned int RG ;
+    unsigned int RB;
+    unsigned int GR ;
+    unsigned int GG ;
+    unsigned int GB ;
+    unsigned int BR ;
+    unsigned int BG ;
+    unsigned int BB ;
+    unsigned int CR ;
+    unsigned int CG ;
+    unsigned int CB ;
+    unsigned int CC ;
+    unsigned int BC;
+
+};
+
+
+
+
+void color_click_init(void);
+
+
+
+
+
+
+void color_writetoaddr(char address, char value);
+
+
+
+
+
+unsigned int color_read_Red(void);
+
+
+
+
+
+unsigned int color_read_Blue(void);
+
+
+
+
+
+unsigned int color_read_Green(void);
+
+
+
+
+
+unsigned int color_read_Clear(void);
+
+void pin_init(void);
+void toggle_light(unsigned char lightnumber, unsigned char toggletime);
+void read_color (struct color_rgb *m);
+void LED_OFF(void);
+void LED_R(void);
+void LED_C(void);
+void LED_B(void);
+void LED_G(void);
+void color_display(struct color_rgb *m);
+void calibrate_white(struct white_card *w);
+void color_predict(unsigned char color);
+unsigned char detect_color(struct color_rgb *m, struct white_card *w);
+void color_data_collection(struct color_rgb *m);
+unsigned char verify_color(unsigned char color,struct color_rgb *m, struct white_card *w);
+unsigned char compare(unsigned int lower, unsigned int value2compare, unsigned int upper);
+unsigned char detect_wall(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light) ;
+unsigned amb_light_measure(struct color_rgb *amb);
+# 8 "color.c" 2
+
+# 1 "./i2c.h" 1
+# 13 "./i2c.h"
+void I2C_2_Master_Init(void);
+
+
+
+
+void I2C_2_Master_Idle(void);
+
+
+
+
+void I2C_2_Master_Start(void);
+
+
+
+
+void I2C_2_Master_RepStart(void);
+
+
+
+
+void I2C_2_Master_Stop(void);
+
+
+
+
+void I2C_2_Master_Write(unsigned char data_byte);
+
+
+
+
+unsigned char I2C_2_Master_Read(unsigned char ack);
 # 9 "color.c" 2
 
 # 1 "./movement.h" 1

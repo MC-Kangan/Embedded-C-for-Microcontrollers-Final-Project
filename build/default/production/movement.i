@@ -24256,7 +24256,6 @@ struct white_card {
     unsigned int BR ;
     unsigned int BG ;
     unsigned int BB ;
-
     unsigned int CR ;
     unsigned int CG ;
     unsigned int CB ;
@@ -24265,8 +24264,6 @@ struct white_card {
 
 };
 
-void pin_init(void);
-void toggle_light(unsigned char lightnumber, unsigned char toggletime);
 
 
 
@@ -24296,7 +24293,15 @@ unsigned int color_read_Blue(void);
 
 
 unsigned int color_read_Green(void);
+
+
+
+
+
 unsigned int color_read_Clear(void);
+
+void pin_init(void);
+void toggle_light(unsigned char lightnumber, unsigned char toggletime);
 void read_color (struct color_rgb *m);
 void LED_OFF(void);
 void LED_R(void);

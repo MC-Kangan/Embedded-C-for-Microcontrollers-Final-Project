@@ -12,11 +12,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;./dc_motor.h: 13: struct DC_motor {
 [s S2020 `uc 1 `uc 1 `*uc 1 `*uc 1 `uc 1 `i 1 ]
 [n S2020 DC_motor power direction dutyHighByte dir_LAT dir_pin PWMperiod ]
-"39 ./color.h
-[; ;./color.h: 39: void color_click_init(void);
+"36 ./color.h
+[; ;./color.h: 36: void color_click_init(void);
 [v _color_click_init `(v ~T0 @X0 0 ef ]
-"34
-[; ;./color.h: 34: void pin_init(void);
+"69
+[; ;./color.h: 69: void pin_init(void);
 [v _pin_init `(v ~T0 @X0 0 ef ]
 "23 ./dc_motor.h
 [; ;./dc_motor.h: 23: void initDCmotorsPWM(int PWMperiod);
@@ -57,8 +57,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "28 ./dc_motor.h
 [; ;./dc_motor.h: 28: void fullSpeedAhead(struct DC_motor *mL, struct DC_motor *mR);
 [v _fullSpeedAhead `(v ~T0 @X0 0 ef2`*S2020`*S2020 ]
-"79 ./color.h
-[; ;./color.h: 79: unsigned char detect_wall(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light) ;
+"84 ./color.h
+[; ;./color.h: 84: unsigned char detect_wall(struct DC_motor *mL, struct DC_motor *mR, unsigned int amb_light) ;
 [s S2019 ]
 [n S2019 DC_motor ]
 [v _detect_wall `(uc ~T0 @X0 0 ef3`*S2019`*S2019`ui ]
@@ -75,11 +75,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 "12 ./movement.h
 [; ;./movement.h: 12: void short_burst(struct DC_motor *mL, struct DC_motor *mR);
 [v _short_burst `(v ~T0 @X0 0 ef2`*S2020`*S2020 ]
-"75 ./color.h
-[; ;./color.h: 75: unsigned char detect_color(struct color_rgb *m, struct white_card *w);
+"80 ./color.h
+[; ;./color.h: 80: unsigned char detect_color(struct color_rgb *m, struct white_card *w);
 [v _detect_color `(uc ~T0 @X0 0 ef2`*S2017`*S2018 ]
-"77
-[; ;./color.h: 77: unsigned char verify_color(unsigned char color,struct color_rgb *m, struct white_card *w);
+"82
+[; ;./color.h: 82: unsigned char verify_color(unsigned char color,struct color_rgb *m, struct white_card *w);
 [v _verify_color `(uc ~T0 @X0 0 ef3`uc`*S2017`*S2018 ]
 "15 ./movement.h
 [; ;./movement.h: 15: void turning_action(unsigned char color, struct DC_motor *mL, struct DC_motor *mR);
@@ -2100,15 +2100,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 [e :U _main ]
 [f ]
-"29
-[; ;main.c: 29:     struct color_rgb rgb, amb;
+"30
+[; ;main.c: 30:     struct color_rgb rgb, amb;
 [v _rgb `S2017 ~T0 @X0 1 a ]
 [v _amb `S2017 ~T0 @X0 1 a ]
-"30
-[; ;main.c: 30:     struct white_card white;
-[v _white `S2018 ~T0 @X0 1 a ]
 "31
-[; ;main.c: 31:     struct DC_motor motorL, motorR;
+[; ;main.c: 31:     struct white_card white;
+[v _white `S2018 ~T0 @X0 1 a ]
+"32
+[; ;main.c: 32:     struct DC_motor motorL, motorR;
 [v _motorL `S2020 ~T0 @X0 1 a ]
 [v _motorR `S2020 ~T0 @X0 1 a ]
 "35
@@ -2132,159 +2132,159 @@ Version 4.0 HI-TECH Software Intermediate Code
 "41
 [; ;main.c: 41:     Interrupts_init();
 [e ( _Interrupts_init ..  ]
-"43
-[; ;main.c: 43:     unsigned char stop_signal = 0;
+"44
+[; ;main.c: 44:     unsigned char stop_signal = 0;
 [v _stop_signal `uc ~T0 @X0 1 a ]
 [e = _stop_signal -> -> 0 `i `uc ]
-"44
-[; ;main.c: 44:     unsigned int amb_light = 0;
+"45
+[; ;main.c: 45:     unsigned int amb_light = 0;
 [v _amb_light `ui ~T0 @X0 1 a ]
 [e = _amb_light -> -> 0 `i `ui ]
-"45
-[; ;main.c: 45:     unsigned char accident = 0;
+"46
+[; ;main.c: 46:     unsigned char accident = 0;
 [v _accident `uc ~T0 @X0 1 a ]
 [e = _accident -> -> 0 `i `uc ]
-"46
-[; ;main.c: 46:     unsigned int start_time= 0;
+"47
+[; ;main.c: 47:     unsigned int start_time= 0;
 [v _start_time `ui ~T0 @X0 1 a ]
 [e = _start_time -> -> 0 `i `ui ]
-"47
-[; ;main.c: 47:     unsigned int stop_time = 0;
+"48
+[; ;main.c: 48:     unsigned int stop_time = 0;
 [v _stop_time `ui ~T0 @X0 1 a ]
 [e = _stop_time -> -> 0 `i `ui ]
-"49
-[; ;main.c: 49:     if (0 == 0){
+"50
+[; ;main.c: 50:     if (0 == 0){
 [e $ ! == -> 0 `i -> 0 `i 2022  ]
 {
-"50
-[; ;main.c: 50:         amb_light = setup(&white, &amb, &motorL, &motorR);
-[e = _amb_light ( _setup (4 , , , &U _white &U _amb &U _motorL &U _motorR ]
 "51
-[; ;main.c: 51:     }
+[; ;main.c: 51:         amb_light = setup(&white, &amb, &motorL, &motorR);
+[e = _amb_light ( _setup (4 , , , &U _white &U _amb &U _motorL &U _motorR ]
+"52
+[; ;main.c: 52:     }
 }
 [e :U 2022 ]
-"53
-[; ;main.c: 53:     while(1){
+"54
+[; ;main.c: 54:     while(1){
 [e :U 2024 ]
 {
-"54
-[; ;main.c: 54:   if (0 == 1){test_function(5, &rgb, &white, &motorL, &motorR);}
+"55
+[; ;main.c: 55:   if (0 == 1){test_function(5, &rgb, &white, &motorL, &motorR);}
 [e $ ! == -> 0 `i -> 1 `i 2026  ]
 {
 [e ( _test_function (4 , , , , -> -> 5 `i `uc &U _rgb &U _white &U _motorL &U _motorR ]
 }
 [e :U 2026 ]
-"55
-[; ;main.c: 55:         if (0 == 0){
+"56
+[; ;main.c: 56:         if (0 == 0){
 [e $ ! == -> 0 `i -> 0 `i 2027  ]
 {
-"56
-[; ;main.c: 56:             T0CON0bits.T0EN=1;
-[e = . . _T0CON0bits 0 4 -> -> 1 `i `uc ]
 "57
-[; ;main.c: 57:             start_time = centisecond;
-[e = _start_time _centisecond ]
+[; ;main.c: 57:             T0CON0bits.T0EN=1;
+[e = . . _T0CON0bits 0 4 -> -> 1 `i `uc ]
 "58
-[; ;main.c: 58:             while (stop_signal == 0){
+[; ;main.c: 58:             start_time = centisecond;
+[e = _start_time _centisecond ]
+"59
+[; ;main.c: 59:             while (stop_signal == 0){
 [e $U 2028  ]
 [e :U 2029 ]
 {
-"59
-[; ;main.c: 59:                 fullSpeedAhead(&motorL, &motorR);
-[e ( _fullSpeedAhead (2 , &U _motorL &U _motorR ]
 "60
-[; ;main.c: 60:                 stop_signal = detect_wall(&motorL, &motorR, amb_light);
-[e = _stop_signal ( _detect_wall (3 , , -> &U _motorL `*S2019 -> &U _motorR `*S2019 _amb_light ]
+[; ;main.c: 60:                 fullSpeedAhead(&motorL, &motorR);
+[e ( _fullSpeedAhead (2 , &U _motorL &U _motorR ]
 "61
-[; ;main.c: 61:             }
+[; ;main.c: 61:                 stop_signal = detect_wall(&motorL, &motorR, amb_light);
+[e = _stop_signal ( _detect_wall (3 , , -> &U _motorL `*S2019 -> &U _motorR `*S2019 _amb_light ]
+"62
+[; ;main.c: 62:             }
 }
 [e :U 2028 ]
-"58
-[; ;main.c: 58:             while (stop_signal == 0){
+"59
+[; ;main.c: 59:             while (stop_signal == 0){
 [e $ == -> _stop_signal `i -> 0 `i 2029  ]
 [e :U 2030 ]
-"63
-[; ;main.c: 63:             T0CON0bits.T0EN=0;
-[e = . . _T0CON0bits 0 4 -> -> 0 `i `uc ]
 "64
-[; ;main.c: 64:             stop_time = centisecond;
-[e = _stop_time _centisecond ]
+[; ;main.c: 64:             T0CON0bits.T0EN=0;
+[e = . . _T0CON0bits 0 4 -> -> 0 `i `uc ]
 "65
-[; ;main.c: 65:             if ((stop_time-start_time)>10){
+[; ;main.c: 65:             stop_time = centisecond;
+[e = _stop_time _centisecond ]
+"66
+[; ;main.c: 66:             if ((stop_time-start_time)>10){
 [e $ ! > - _stop_time _start_time -> -> 10 `i `ui 2031  ]
 {
-"66
-[; ;main.c: 66:                 memory[array_index] = (stop_time-start_time-3);
-[e = *U + &U _memory * -> _array_index `ux -> -> # *U &U _memory `ui `ux - - _stop_time _start_time -> -> 3 `i `ui ]
 "67
-[; ;main.c: 67:                 array_index++;
-[e ++ _array_index -> -> 1 `i `uc ]
+[; ;main.c: 67:                 memory[array_index] = (stop_time-start_time-3);
+[e = *U + &U _memory * -> _array_index `ux -> -> # *U &U _memory `ui `ux - - _stop_time _start_time -> -> 3 `i `ui ]
 "68
-[; ;main.c: 68:             }
+[; ;main.c: 68:                 array_index++;
+[e ++ _array_index -> -> 1 `i `uc ]
+"69
+[; ;main.c: 69:             }
 }
 [e $U 2032  ]
-"69
-[; ;main.c: 69:             else{
+"70
+[; ;main.c: 70:             else{
 [e :U 2031 ]
 {
-"70
-[; ;main.c: 70:                 accident++;
-[e ++ _accident -> -> 1 `i `uc ]
 "71
-[; ;main.c: 71:                 if (accident >= 5){
-[e $ ! >= -> _accident `i -> 5 `i 2033  ]
-{
+[; ;main.c: 71:                 accident++;
+[e ++ _accident -> -> 1 `i `uc ]
 "72
-[; ;main.c: 72:                     goback(&motorL, &motorR);
-[e ( _goback (2 , &U _motorL &U _motorR ]
+[; ;main.c: 72:                 if (accident >= 10){
+[e $ ! >= -> _accident `i -> 10 `i 2033  ]
+{
 "73
-[; ;main.c: 73:                     accident = 0;
-[e = _accident -> -> 0 `i `uc ]
+[; ;main.c: 73:                     goback(&motorL, &motorR);
+[e ( _goback (2 , &U _motorL &U _motorR ]
 "74
-[; ;main.c: 74:                 }
+[; ;main.c: 74:                     accident = 0;
+[e = _accident -> -> 0 `i `uc ]
+"75
+[; ;main.c: 75:                 }
 }
 [e :U 2033 ]
-"75
-[; ;main.c: 75:             }
+"76
+[; ;main.c: 76:             }
 }
 [e :U 2032 ]
-"76
-[; ;main.c: 76:             stop(&motorL, &motorR);
-[e ( _stop (2 , &U _motorL &U _motorR ]
 "77
-[; ;main.c: 77:             _delay((unsigned long)((1000)*(64000000/4000.0)));
-[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
+[; ;main.c: 77:             stop(&motorL, &motorR);
+[e ( _stop (2 , &U _motorL &U _motorR ]
 "78
-[; ;main.c: 78:             short_burst(&motorL, &motorR);
-[e ( _short_burst (2 , &U _motorL &U _motorR ]
+[; ;main.c: 78:             _delay((unsigned long)((1000)*(64000000/4000.0)));
+[e ( __delay (1 -> * -> -> 1000 `i `d / -> -> 64000000 `l `d .4000.0 `ul ]
 "79
-[; ;main.c: 79:             color = detect_color(&rgb, &white);
-[e = _color ( _detect_color (2 , &U _rgb &U _white ]
+[; ;main.c: 79:             short_burst(&motorL, &motorR);
+[e ( _short_burst (2 , &U _motorL &U _motorR ]
 "80
-[; ;main.c: 80:             color = verify_color(color, &rgb, &white);
-[e = _color ( _verify_color (3 , , _color &U _rgb &U _white ]
+[; ;main.c: 80:             color = detect_color(&rgb, &white);
+[e = _color ( _detect_color (2 , &U _rgb &U _white ]
 "81
-[; ;main.c: 81:             if (color!= 0){turning_action(color, &motorL, &motorR); color = 0;}
+[; ;main.c: 81:             color = verify_color(color, &rgb, &white);
+[e = _color ( _verify_color (3 , , _color &U _rgb &U _white ]
+"82
+[; ;main.c: 82:             if (color!= 0){turning_action(color, &motorL, &motorR); color = 0;}
 [e $ ! != -> _color `i -> 0 `i 2034  ]
 {
 [e ( _turning_action (3 , , _color &U _motorL &U _motorR ]
 [e = _color -> -> 0 `i `uc ]
 }
 [e :U 2034 ]
-"82
-[; ;main.c: 82:             stop_signal = 0;
-[e = _stop_signal -> -> 0 `i `uc ]
 "83
-[; ;main.c: 83:         }
+[; ;main.c: 83:             stop_signal = 0;
+[e = _stop_signal -> -> 0 `i `uc ]
+"84
+[; ;main.c: 84:         }
 }
 [e :U 2027 ]
-"84
-[; ;main.c: 84:     }
+"85
+[; ;main.c: 85:     }
 }
 [e :U 2023 ]
 [e $U 2024  ]
 [e :U 2025 ]
-"85
-[; ;main.c: 85: }
+"86
+[; ;main.c: 86: }
 [e :UE 2021 ]
 }

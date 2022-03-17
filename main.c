@@ -40,6 +40,7 @@ void main(void){
     Timer0_init();          // Timer Initiation(timers.c)
     Interrupts_init();      // Interrupt Initiation(interrupt.c)
     
+    // Defined local variables (will be discussed in the following codes and README file)
     unsigned char stop_signal = 0;
     unsigned int amb_light = 0;
     unsigned char accident = 0; 
@@ -57,18 +58,18 @@ void main(void){
             start_time = centisecond;                   //record the start time in centisecond
             while (stop_signal == 0){                   //while the buggy doesn't detect the wall or color card, stop signal == 0
                 fullSpeedAhead(&motorL, &motorR);       //buggy will keep moving forward
-                stop_signal = detect_wall(&motorL, &motorR, amb_light);     //if the buggy detects the wall or color card, stop signal == 1 and the buggy will stop moving(Line 76 & 77)
+                stop_signal = detect_wall(&motorL, &motorR, amb_light);     //if the buggy detects the wall or color card, stop signal == 1 and the buggy will stop moving(Line 77 & 78)
             }
             // before stop the buggy, record the forward moving duration into memory first     
             T0CON0bits.T0EN=0;                          //stop the timer (energy saving for the timer to count only when buggy is going straight)
             stop_time = centisecond;                    //record the stop time in centisecond
-            if ((stop_time-start_time)>10){             //only record the forward moving duration when it is greater than 1 second
+            if ((stop_time-start_time)>10){             //only record the forward moving duration when it is greater than 10 centiseconds (1 second))
                 memory[array_index] = (stop_time-start_time-3);             //record the forward moving duration in memory
                 array_index++;                                              // increase array index position by 1 for next recording
             }
             else{                                       //if the forward moving duration is less than 1 second
                 accident++;                             //it means the buggy runs into an accident
-                if (accident >= 5){                     //if the accidents happen more than 5 times, the buggy is identified as getting lost
+                if (accident >= 10){                    //if the accidents happen more than 10 times, the buggy is identified as getting lost
                     goback(&motorL, &motorR);           //ask the buggy to go back to the starting point
                     accident = 0;                       //clear the number of accidents
                 }
@@ -78,8 +79,8 @@ void main(void){
             short_burst(&motorL, &motorR);              //the buggy will short burst to the wall and detect the color
             color = detect_color(&rgb, &white);         //detect the color
             color = verify_color(color, &rgb, &white);  //verify the color
-            if (color!= 0){turning_action(color, &motorL, &motorR); color = 0;}     //if color is not 0 (black), call the turning action function
-            stop_signal = 0;                            //reset the stop signal as 0
+            if (color!= 0){turning_action(color, &motorL, &motorR); color = 0;}     //if color is not 0 (black), call the turning_action function
+            stop_signal = 0;                            //reset the stop signal as 0 and restart the while loop
         }
     }
 }

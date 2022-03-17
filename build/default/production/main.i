@@ -24411,7 +24411,6 @@ struct white_card {
     unsigned int BR ;
     unsigned int BG ;
     unsigned int BB ;
-
     unsigned int CR ;
     unsigned int CG ;
     unsigned int CB ;
@@ -24420,8 +24419,6 @@ struct white_card {
 
 };
 
-void pin_init(void);
-void toggle_light(unsigned char lightnumber, unsigned char toggletime);
 
 
 
@@ -24451,7 +24448,15 @@ unsigned int color_read_Blue(void);
 
 
 unsigned int color_read_Green(void);
+
+
+
+
+
 unsigned int color_read_Clear(void);
+
+void pin_init(void);
+void toggle_light(unsigned char lightnumber, unsigned char toggletime);
 void read_color (struct color_rgb *m);
 void LED_OFF(void);
 void LED_R(void);
@@ -24609,10 +24614,10 @@ unsigned char color = 0;
 
 void main(void){
 
+
     struct color_rgb rgb, amb;
     struct white_card white;
     struct DC_motor motorL, motorR;
-
 
 
     color_click_init();
@@ -24622,6 +24627,7 @@ void main(void){
     initUSART4();
     Timer0_init();
     Interrupts_init();
+
 
     unsigned char stop_signal = 0;
     unsigned int amb_light = 0;
@@ -24651,7 +24657,7 @@ void main(void){
             }
             else{
                 accident++;
-                if (accident >= 5){
+                if (accident >= 10){
                     goback(&motorL, &motorR);
                     accident = 0;
                 }
